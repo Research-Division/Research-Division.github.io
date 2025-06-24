@@ -144,8 +144,40 @@ var devTools = (function(){
         // Apply dark mode
         if (isDark){
             document.body.classList.add('dark_theme');
-        } else{
+            
+            // Also set bar outline style to true in dark mode
+            window.useBarOutlineStyle = true;
+            
+            // Update the bar outline toggle in the UI if it exists
+            const barOutlineToggle = document.getElementById('bar-outline-toggle');
+            if (barOutlineToggle) {
+                barOutlineToggle.checked = true;
+                
+                // Update the toggle switch image if using custom toggles
+                const toggleImg = barOutlineToggle.closest('.toggle-switch')?.querySelector('img');
+                if (toggleImg) {
+                    toggleImg.src = 'assets/fontawesome/toggle-on-solid.svg';
+                    toggleImg.alt = 'Enabled';
+                }
+            }
+        } else {
             document.body.classList.remove('dark_theme');
+            
+            // Also set bar outline style to false in light mode
+            window.useBarOutlineStyle = false;
+            
+            // Update the bar outline toggle in the UI if it exists
+            const barOutlineToggle = document.getElementById('bar-outline-toggle');
+            if (barOutlineToggle) {
+                barOutlineToggle.checked = false;
+                
+                // Update the toggle switch image if using custom toggles
+                const toggleImg = barOutlineToggle.closest('.toggle-switch')?.querySelector('img');
+                if (toggleImg) {
+                    toggleImg.src = 'assets/fontawesome/toggle-off-solid.svg';
+                    toggleImg.alt = 'Disabled';
+                }
+            }
         }
     }
     
@@ -904,9 +936,15 @@ var devTools = (function(){
         }
     }
     
-    // Bar outline style setting
-    window.useBarOutlineStyle = false; // Default to false
-    
+    // Bar outline style setting - set based on dark mode
+    // Check if getCurrentMode function is available from map.js
+    if (typeof window.getCurrentMode === 'function') {
+        // Set useBarOutlineStyle to true if in dark mode, false otherwise
+        window.useBarOutlineStyle = (window.getCurrentMode() === 'dark');
+    } else {
+        // Fallback to checking body class directly
+        window.useBarOutlineStyle = document.body.classList.contains('dark_theme');
+    }
     // Function to toggle bar outline style
     function toggleBarOutlineStyle(enabled) {
         // Store the setting globally
@@ -938,6 +976,13 @@ var devTools = (function(){
             }
         });
     }
+    if (typeof window.getCurrentMode === 'function') {
+        // Set useBarOutlineStyle to true if in dark mode, false otherwise
+        window.useBarOutlineStyle = (window.getCurrentMode() === 'dark');
+    } else {
+        // Fallback to checking body class directly
+        window.useBarOutlineStyle = document.body.classList.contains('dark_theme');
+    }
     
     // Chart Style Configuration System
     // Define a global chart style configuration object that can be modified
@@ -961,8 +1006,8 @@ var devTools = (function(){
                 color: 'var(--text-color)'
             },
             title: {
-                align: 'center',        // 'center' or 'left'
-                padding: '0px'
+                align: 'left',        // 'center' or 'left'
+                padding: '10px'
             },
             gridLines: {
                 visible: true,

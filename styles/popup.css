@@ -11,7 +11,7 @@
 .popup-container {
     min-width: 250px; /* Increased from 230px to accommodate wider inputs */
     position: relative;
-    font-family: sans-serif;
+    font-family: var(--font-family-monospace);
     background-color: var(--background-color);
     color: var(--text-color);
     padding: 8px; /* Added padding */
@@ -139,10 +139,11 @@ body.dark_theme .help-icon{
 .custom-tooltip {
     position: absolute;
     background-color: var(--background-color);
+    font-family: var(--font-family-monospace);
     color: var(--text-color);
     padding: 6px 10px;
     border-radius: 5px;
-    font-size: 11px;
+    font-size: 10px;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
     z-index: 1000;
     max-width: 180px;
@@ -160,4 +161,13 @@ body.dark_theme .help-icon{
     color: var(--excellenceOrange);
     text-decoration: underline;
     font-size: 0.95em;
+}
+
+.orange-text {
+    color: var(--excellenceOrange);
+    font-weight: bold;
+}
+.primary-text{
+    color: var(--primary);
+    font-weight:bold;
 }

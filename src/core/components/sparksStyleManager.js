@@ -116,9 +116,9 @@ window.sparksStyleManager = (function() {
                 },
                 // Title properties
                 title: {
-                    align: 'center',
-                    padding: '0px',
-                    fontWeight: 'bold',
+                    align: 'left',
+                    padding: '10px',
+                    fontWeight: 'normal',
                     fontSize: '18px',
                     color: 'var(--text-color)',
                     marginBottom: '15px'
@@ -127,7 +127,7 @@ window.sparksStyleManager = (function() {
                 yAxis: {
                     visible: true,
                     position: 'left',
-                    titlePosition: 'rotate',
+                    titlePosition: 'horizontal',
                     titleVisible: true,
                     ticksVisible: true,
                     lineVisible: true,
@@ -167,8 +167,9 @@ window.sparksStyleManager = (function() {
             // CSS rules specific to this style
             cssRules: `
                 .chart-style-standard .chart-title {
-                    text-align: center;
-                    font-weight: bold;
+                    text-align: left;
+                    padding-left: 10px;
+                    font-weight: normal;
                 }
                 
                 .chart-style-standard .chart-notes {

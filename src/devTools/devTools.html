@@ -29,51 +29,31 @@
                 <input type="checkbox" id="dark-mode-toggle" onclick="devTools.toggleDark(this.checked)">
             </div>
             
-            <div class="settings-category">Display Options</div>
-            <div class="dev-option toggle-container">
-                <label for="receipt-toggle">Force Show Receipt</label>
-                <input type="checkbox" id="receipt-toggle" onclick="devTools.toggleReceipt(this.checked)">
-            </div>
-            <div class="dev-option toggle-container">
-                <label for="effects-toggle">Collapsible Effect Details</label>
-                <input type="checkbox" id="effects-toggle" checked onclick="devTools.toggleEffectDetails(this.checked)">
-            </div>
-            <div class="dev-option">
-                <label>Toggle Icon Style</label>
-                <div class="icon-toggle-buttons">
-                    <button id="chevron-toggle" class="icon-toggle-btn active" onclick="devTools.toggleIconStyle('chevron')">
-                        <img src="assets/fontawesome/chevron-right-solid.svg" alt="Chevron" class="icon-toggle-img">
-                    </button>
-                    <button id="plus-toggle" class="icon-toggle-btn" onclick="devTools.toggleIconStyle('plus')">
-                        <img src="assets/fontawesome/plus-solid.svg" alt="Plus" class="icon-toggle-img">
-                    </button>
-                </div>
-            </div>
-            
-            <div class="settings-category">SparksGraph Settings</div>
+            <div class="settings-category">Animation</div>
             <div class="dev-option">
                 <label for="chart-animation-duration">Chart Animation Duration (sec)</label>
                 <div class="range-input-container">
                     <input type="range" id="chart-animation-duration" min="0.2" max="3" step="0.1" value="0.8" 
-                           oninput="
+                            oninput="
                               // Update the display value immediately 
-                              document.getElementById('animation-duration-display').textContent = this.value + 's';
-                              
-                              // Update the gradient immediately
-                              const min = 0.2;
-                              const max = 3.0;
-                              const valuePercent = ((parseFloat(this.value) - min) / (max - min)) * 100;
-                              const isDarkMode = document.body.classList.contains('dark_theme');
-                              const borderColor = isDarkMode ? '#444' : '#a0a0a0';
-                              this.style.background = `linear-gradient(to right, #009EC1 0%, #009EC1 ${valuePercent}%, ${borderColor} ${valuePercent}%, ${borderColor} 100%)`;
-                              
-                              // Call the function to update global settings
-                              devTools.updateAnimationDuration(this.value);
-                           " 
-                           style="background: linear-gradient(to right, #009EC1 0%, #009EC1 25%, #a0a0a0 25%, #a0a0a0 100%);">
+                            document.getElementById('animation-duration-display').textContent = this.value + 's';
+                            
+                            // Update the gradient immediately
+                            const min = 0.2;
+                            const max = 3.0;
+                            const valuePercent = ((parseFloat(this.value) - min) / (max - min)) * 100;
+                            const isDarkMode = document.body.classList.contains('dark_theme');
+                            const borderColor = isDarkMode ? '#444' : '#a0a0a0';
+                            this.style.background = `linear-gradient(to right, #009EC1 0%, #009EC1 ${valuePercent}%, ${borderColor} ${valuePercent}%, ${borderColor} 100%)`;
+                            
+                            // Call the function to update global settings
+                            devTools.updateAnimationDuration(this.value);
+                            " 
+                            style="background: linear-gradient(to right, #009EC1 0%, #009EC1 25%, #a0a0a0 25%, #a0a0a0 100%);">
                     <span id="animation-duration-display">0.8s</span>
                 </div>
             </div>
+            <!--
             <div class="dev-option">
                 <label for="bar-highlight-color">Bar Highlight Color</label>
                 <div style="display: flex; align-items: center;">
@@ -98,10 +78,6 @@
                 <input type="checkbox" id="bar-outline-toggle" onclick="devTools.toggleBarOutlineStyle(this.checked);">
             </div>
             
-            <div class="dev-option toggle-container">
-                <label for="lightning-bolt-toggle">Show Lightning Bolt</label>
-                <input type="checkbox" id="lightning-bolt-toggle" checked onclick="if(window.toggleLightningBolt) window.toggleLightningBolt(this.checked);">
-            </div>
             
             <div class="dev-option toggle-container">
                 <label for="chart-wiz-style-toggle">Chart Wiz Style</label>
@@ -114,6 +90,7 @@
                 <input type = "checkbox" id = "price-basket-toggle" onclick = "devTools.toggleBasket(this.checked);">
             </div>
             </div>
+        -->
         </div>
     </div>
 </div>
