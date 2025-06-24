@@ -2,6 +2,8 @@
 #site-footer{
     background: var(--header-bg);
     color: var(--text-color);
+    font-size: 10px;
+    font-family: var(--font-family-monospace);
     text-align: center;
     padding: 20px;
 }
