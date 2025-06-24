@@ -269,8 +269,10 @@
 
 #receipt-footer{
     padding:10px;
-    text-align:left;
-    align-content:space-between;
+    text-align:center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .row-tariff{
@@ -400,7 +402,7 @@
 
 /* Receipt Button Options*/
 .receipt-btn {
-    margin: 10px auto;
+    margin: 5px auto;
     background-color: var(--background-color);
     color: var(--text-color);
     border: 1px solid var(--borderColor);
@@ -414,4 +416,13 @@
 
 .receipt-btn:hover {
     background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Style for larger clear history button */
+.receipt-btn.large-btn {
+    font-size: 1.1em;
+    padding: 12px 20px;
+    margin-top: 15px;
+    width: 80%;
+    max-width: 250px;
 }

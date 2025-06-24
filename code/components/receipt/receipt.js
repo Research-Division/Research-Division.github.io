@@ -617,6 +617,12 @@ function selectCountryReceiptPrompt(selectedISOs) {
             // Otherwise, use the passed selectedISOs
             updateReceipt(selectedISOs);
         }
+        
+        // Always ensure the add country button in the footer is visible
+        const addCountryBtn = document.getElementById('add-country-btn');
+        if (addCountryBtn) {
+            addCountryBtn.style.display = 'block';
+        }
     }, 100);
 }
 
@@ -1871,6 +1877,7 @@ function showSummaryEffects(iso) {
     // Open the tariff comparison modal for this country
     window.tariffComparisonChart.open(iso);
 }
+
 
 // Create a ReceiptModule to expose functions globally
 window.ReceiptModule = {

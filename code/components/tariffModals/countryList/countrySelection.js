@@ -495,6 +495,19 @@ var CountrySelectionModal = (function() {
                 window.initializeProductTariffModal();
             }
             
+            // If only one country is selected, open the product-level tariff modal for that country
+            if (permanentIsoCopy.length === 1) {
+                const isoCode = permanentIsoCopy[0];
+                // Get the country name
+                const countryName = window.isoToCountryName ? window.isoToCountryName[isoCode] : isoCode;
+                
+                // Open product tariff modal with original/current mode
+                window.ProductTariffModal.openModal(isoCode, { useOriginalCurrentMode: true });
+                
+                return;
+            }
+            
+            // For multiple countries, use the existing multi-country approach:
             
             // Create a new multi-country submission handler that uses the permanent copy
             const multiCountrySubmitHandler = function(tariffData) {

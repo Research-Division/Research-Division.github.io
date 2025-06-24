@@ -104,7 +104,8 @@
             </div>
         </div>
         <div id="receipt-footer">
-            <button id="clear-btn" class="receipt-btn" onclick="clearCountries()"> Clear History</button>
+            <button id="add-country-btn" class="receipt-btn" onclick="if(window.openCountrySelectionModal) window.openCountrySelectionModal(); else alert('Country selection not available')">Select Another Country</button>
+            <button id="clear-btn" class="receipt-btn large-btn" onclick="clearCountries()">Clear History</button>
         </div>
     </div>
 </aside>
