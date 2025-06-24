@@ -418,6 +418,15 @@
     background-color: rgba(0, 0, 0, 0.1);
 }
 
+/* Focus state for accessibility */
+.receipt-btn:focus {
+    outline: 3px solid var(--primary, #0073e6);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px rgba(0, 115, 230, 0.3);
+    position: relative;
+    z-index: 2;
+}
+
 /* Style for larger clear history button */
 .receipt-btn.large-btn {
     font-size: 1.1em;
