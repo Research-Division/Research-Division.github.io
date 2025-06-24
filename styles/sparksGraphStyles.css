@@ -368,14 +368,14 @@
 
 .modal-header {
     position: relative;
-    padding-bottom: 15px;
-    margin-bottom: 10px;
+    padding-bottom: 0px;
+    margin-bottom: -5px;
 }
 
 .modal-content {
     background: var(--background-color);
     color: var(--text-color);
-    padding: 25px;
+    padding: 25px 25px 0; /* Remove bottom padding */
     border-radius: var(--borderRadius);
     max-width: 500px;
     max-height: 80vh;

@@ -137,11 +137,51 @@ body.dark_theme .exit-icon{
     border: 1px solid var(--borderColor);
     padding: 5px 10px;
     cursor: pointer;
+    font-family: var(--font-family-monospace);
 }
 #btn-global:hover {
     background-color: rgba(0, 0, 0, 0.1); /* Slightly darker or lighter depending on the theme */
 }
 
+/* Generic button style to be applied throughout the application */
+button,
+.form-button,
+.primary-button,
+.secondary-button,
+.level-btn,
+.icon-toggle-btn,
+.next-button {
+    font-family: var(--font-family-monospace);
+}
+
+/* Ensure all inputs use monospace font */
+input[type="text"], 
+input[type="number"], 
+input[type="search"],
+input[type="email"],
+input[type="password"],
+select, 
+textarea {
+    font-family: var(--font-family-monospace);
+}
+
+/* Subtle focus style for accessibility */
+button:focus {
+    outline: 1px dotted var(--borderColor);
+    outline-offset: 1px;
+}
+
+
+/* Global separator styles - consistent with receipt */
+.separator {
+    border-bottom: var(--separatorSize) dashed var(--text-color);
+    margin: 5px 0; 
+}
+
+.separator_light {
+    border-bottom: var(--separatorLightSize) dashed var(--alt-text-color);
+    margin: 5px 0; 
+}
 
 /* Global Settings for Browsers */ 
 /* Chrome, Safari, Edge, and Opera*/

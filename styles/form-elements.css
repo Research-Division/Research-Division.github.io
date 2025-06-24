@@ -276,7 +276,7 @@ select.dropdown-select-lg {
     color: white;
     border: none;
     border-radius: var(--borderRadius);
-    font-family: var(--font-family-sans-serif);
+    font-family: var(--font-family-monospace);
     font-size: 14px;
     cursor: pointer;
     transition: background-color 0.2s ease;

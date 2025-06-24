@@ -87,10 +87,11 @@
     transition: background-color 0.3s ease;
     font-size: 0.95em;
     width: 100%;
+    font-family: var(--font-family-monospace);
 }
 
 #tariffSubmit:hover, .btn-product:hover {
-    /*background-color: rgba(0, 0, 0, 0.1);*/
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 .popup-buttons .separator {

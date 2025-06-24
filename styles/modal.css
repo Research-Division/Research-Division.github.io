@@ -12,11 +12,26 @@
     z-index: 1000;
     overflow-y: auto;
     padding: 30px 0;
+    font-family: var(--font-family-monospace);
 }
 .modal-header {
     position: relative;
-    padding-bottom: 15px;
-    margin-bottom: 10px;
+    padding: 15px 20px;
+    margin-bottom: 0;
+    /* Restore original vertical layout */
+    display: block;
+    background-color: var(--background-color, white);
+    z-index: 10;
+}
+
+/* Default border - individual modals can override this */
+.modal-header {
+    /*border-bottom: 2px solid var(--borderColor, #ddd);*/
+}
+
+/* Product tariff modal has its own separator so we remove the border */
+#modal-product-list .modal-header {
+    border-bottom: none;
 }
 
 .modal-header h2 {
@@ -24,14 +39,35 @@
     margin: 0;
     font-weight: 600;
     color: var(--text-color);
+    font-family: var(--font-family-monospace);
 }
 .modal-body {
     margin-top: 15px;
+    font-family: var(--font-family-monospace);
+}
+
+.modal-footer {
+    position: sticky;
+    bottom: 0;
+    background-color: var(--background-color, white);
+    padding: 15px 20px 25px; /* Increase bottom padding to fill gap */
+    z-index: 100;
+    margin: 0; /* No margins */
+    border-top: none; /* Remove border to avoid visual conflict with dashed line */
+    /* Ensure complete opacity */
+    opacity: 1;
+    backdrop-filter: none;
+    /* Layout */
+    display: flex;
+    justify-content: flex-end;
+    /* Ensure footer extends to bottom edge */
+    box-shadow: 0 5px 0 5px var(--background-color, white); /* Create shadow extending beyond footer */
+    font-family: var(--font-family-monospace);
 }
 .modal-content {
     background: var(--background-color, #fff);
     color: var(--text-color, #333);
-    padding: 25px;
+    padding: 25px 25px 0; /* Remove bottom padding to prevent gap */
     border-radius: var(--borderRadius, 8px);
     max-width: 500px;
     max-height: 80vh;
@@ -39,6 +75,10 @@
     position: relative;
     overflow-y: auto;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    font-family: var(--font-family-monospace);
+    /* Ensure content fills the container properly */
+    display: flex;
+    flex-direction: column;
 }
 
 /* Wider modal for bilateral tariff rates and industry breakdown */
@@ -49,20 +89,39 @@
     margin: auto; /* Center the modal */
     position: relative;
     align-self: center;
-}
-.modal-footer{
-    margin-top: 20px;
+    /* Ensure the flex layout is maintained */
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+}
+.modal-footer.transparent {
     background-color: transparent !important;
+}
+
+.modal-footer.solid-bg {
+    background-color: var(--background-color, white) !important;
+    padding-bottom: 25px !important; /* Increase bottom padding */
+    margin-bottom: 0 !important; /* Ensure no gap at bottom */
+    /* Ensure footer extends to bottom edge */
+    box-shadow: 0 5px 0 5px var(--background-color, white) !important; /* Shadow extends beyond footer */
+}
+
+/* Dashed separator matching the tab container style */
+.dashed-separator {
+    border-bottom: 1px dashed var(--borderColor, var(--medGray, #d0d0d0));
+    width: 100%;
+    margin: 15px 0;
+    padding: 0;
+    display: block;
+    clear: both;
 }
 .modal-close {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 15px; /* Match header padding */
+    right: 20px; /* Match header padding */
     background: transparent;
     color: var(--text-color);
     border: none;
+    z-index: 11; /* Ensure it's above other elements */
     font-size: 1.2rem;
     cursor: pointer;
     display: flex;
@@ -367,6 +426,7 @@ body.dark_theme .next-button{
     font-weight: bold;
     margin-left: 5px;
     font-size: 1.05em;
+    font-family: var(--font-family-monospace);
 }
 /* Dropdown triangles and icons for continent and product lists */
 .dropdown-triangle {
@@ -402,6 +462,7 @@ body.dark_theme .next-button{
     margin-left: 8px;
     cursor: pointer; 
     font-size: 1em;
+    font-family: var(--font-family-monospace);
 }
 .country-item input[type="checkbox"], 
 .continent-header input[type="checkbox"] {
@@ -467,6 +528,7 @@ body.dark_theme .next-button{
   /* Title styling */
 .node-title {
     margin-right: 10px;
+    font-family: var(--font-family-monospace);
 }
 
   /* Tariff input styling */
@@ -474,6 +536,7 @@ body.dark_theme .next-button{
     width: 120px;
     padding: 2px;
     margin-left: 4px;
+    font-family: var(--font-family-monospace);
 }
 
   /* Container for children nodes */
@@ -504,6 +567,7 @@ body.dark_theme .next-button{
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.2s;
+    font-family: var(--font-family-monospace);
 }
 
 .level-btn.active {
@@ -542,6 +606,7 @@ body.dark_theme .next-button{
     overflow: hidden;
     text-overflow: ellipsis;
     font-weight: normal;
+    font-family: var(--font-family-monospace);
 }
 
 .effect-item.header .effect-item-title {

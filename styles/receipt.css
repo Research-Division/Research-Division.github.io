@@ -412,19 +412,17 @@
     display: block;
     width: fit-content;
     transition: background-color 0.3s ease;
+    font-family: var(--font-family-monospace);
 }
 
 .receipt-btn:hover {
     background-color: rgba(0, 0, 0, 0.1);
 }
 
-/* Focus state for accessibility */
+/* Focus state for accessibility - subtle style */
 .receipt-btn:focus {
-    outline: 3px solid var(--primary, #0073e6);
-    outline-offset: 2px;
-    box-shadow: 0 0 0 2px rgba(0, 115, 230, 0.3);
-    position: relative;
-    z-index: 2;
+    outline: 1px dotted var(--borderColor);
+    outline-offset: 1px;
 }
 
 /* Style for larger clear history button */

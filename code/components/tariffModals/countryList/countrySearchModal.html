@@ -11,23 +11,20 @@
         <strong>How to use this page:</strong>
       </p>
       <ol style="text-align: left; margin-top: 5px; padding-left: 20px;">
-        <li>Click the <strong>▶</strong> next to a continent to see its countries</li>
-        <li>Select one or more countries by checking the boxes</li>
-        <li>Click the arrow at the bottom right to continue</li>
+        <li>Click the <img src="assets/fontawesome/chevron-right-solid.svg" alt="Expand" style="width: 14px; height: 14px; vertical-align: middle;"> next to a continent to see its <span class="primary-text">countries</span></li>
+        <li><span class="primary-text">Select one or more countries</span> by checking the boxes</li>
+        <li>Click the arrow at the bottom right to <span class="primary-text">continue</span></li>
       </ol>
       <p style="margin-top: 5px; font-size: 0.9em;">
         <em>Tip: You can also select countries directly from the world map</em>
       </p>
-      <div class="separator"></div>
-      <div style="display: flex; justify-content: center; margin-top: 10px;">
-        <button id="select-all-countries" class="receipt-btn">Select All Countries</button>
-      </div>
     </div>
     <div class="modal-body">
-      <!--<div style="display: flex; justify-content: center; margin: 10px 0; " > -->
-        <div style="display: none;" >
+      <div style="display: flex; align-items: center; justify-content: space-between; margin: 10px 0;">
+        <button id="select-all-countries" class="receipt-btn">Select All Countries</button>
         <input type="text" id="country-search-input" placeholder="Search for a country..."
-          style="width: 100%; max-width: 300px; padding: 4px; border: 2px solid var(--borderColor); background-color: var(--background-color); text-align: left; color: var(--text-color)">
+          style="width: 45%; max-width: 300px; padding: 4px; border: 2px solid var(--borderColor); background-color: var(--background-color); text-align: left; color: var(--text-color)">
+        <button id="clear-all-countries" class="receipt-btn">Clear Selection</button>
       </div>
       <!-- This is where the collapsible country list will be injected -->
       <div id="continent-list"></div>

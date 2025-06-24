@@ -129,9 +129,9 @@ var ProductTariffModal = (function() {
                 .replace('onclick="closeModal(\'modal-product-list\')"', '')
                 // Add chart container before the modal footer
                 .replace('<div class="modal-footer">', 
-                    `<div id="tariff-chart-container" style="width: 100%; height: 300px; margin: 20px 0; padding: 0 20px;"></div>
-                    <div class="separator"></div>
-                    <div class="modal-footer" style="position: sticky; bottom: 0; background-color: transparent; padding: 15px 0; z-index: 100; margin-top: 10px;">`)
+                    `<div id="tariff-chart-container" style="width: 100%; height: 300px; margin: 10px 0 0 0; padding: 0 20px;"></div>
+                    <div class="dashed-separator"></div>
+                    <div class="modal-footer solid-bg">`)
                 // Update the footer button style for better visibility
                 .replace('<button id="tariffSubmit" class="receipt-btn">',
                     '<button id="tariffSubmit" class="receipt-btn" style="font-size: 1.05em; padding: 10px 24px;">');
@@ -318,7 +318,7 @@ var ProductTariffModal = (function() {
      * @param {boolean} options.isGlobalTariff - Whether this is a global tariff application
      * @param {Function} options.onSubmit - Callback function to call when tariffs are submitted
      */
-    function openModal(countryIso, options = {}) {
+    async function openModal(countryIso, options = {}) {
         // Clean up any existing event listeners first to prevent duplicates
         cleanupEventListeners();
         
@@ -340,15 +340,29 @@ var ProductTariffModal = (function() {
         // Set custom submit callback if provided
         onSubmitCallback = typeof options.onSubmit === 'function' ? options.onSubmit : null;
         
-        
+        // Ensure calculation data is loaded first
+        if (window.TariffCalculations && typeof window.TariffCalculations.loadCalculationsData === 'function') {
+            try {
+                // Preload calculation data with persist flag to cache the matrices
+                await window.TariffCalculations.loadCalculationsData({ persist: true });
+            } catch (err) {
+                console.warn("Failed to preload calculation data:", err);
+                // Continue anyway, as we'll show an error in the UI if needed
+            }
+        }
         
         // First initialize if not already done
         if (!document.getElementById('modal-product-list')) {
-            initialize().then(() => {
+            try {
+                await initialize();
                 // After initialization complete, call openModal again with same options
                 openModal(countryIso, options);
-            });
-            return;
+                return;
+            } catch (error) {
+                console.error("Failed to initialize product list modal:", error);
+                alert("Failed to initialize the tariff selection. Please try again.");
+                return;
+            }
         }
         
         // Set the selected country
@@ -978,7 +992,7 @@ var ProductTariffModal = (function() {
             
             const newTariffLabel = document.createElement('label');
             newTariffLabel.setAttribute('for', 'newTariffInput_' + nodeId);
-            newTariffLabel.textContent = "Tariff Change:";
+            newTariffLabel.textContent = "Additional Tariffs:";
             
             const newTariffInputGroup = document.createElement('div');
             newTariffInputGroup.classList.add('input-group');

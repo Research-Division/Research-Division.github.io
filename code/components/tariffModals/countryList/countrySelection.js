@@ -3,6 +3,17 @@
  * 
  * This module handles selecting countries by continent and applying tariffs to the selected countries.
  * It integrates with the ProductTariffModal to select tariffs and the global tariff functionality to apply them.
+ * 
+ * -------------------------------------------------------------------------
+ * TODO FOR MOBILE IMPLEMENTATION:
+ * For phone/mobile mode, modify this modal to:
+ * - Remove the continent dropdown display
+ * - Keep only the search feature and two buttons (Select All, Clear Selection)
+ * - Make the search input field larger and more prominent
+ * - Show countries as a flat, searchable list instead of continent hierarchy
+ * - Consider implementing a virtual scroll for better performance with large lists
+ * - Adjust button and input sizes for touch targets (min 44x44px per WCAG)
+ * -------------------------------------------------------------------------
  */
 
 var CountrySelectionModal = (function() {
@@ -44,23 +55,21 @@ var CountrySelectionModal = (function() {
                                 <strong>How to use this page:</strong>
                             </p>
                             <ol style="text-align: left; margin-top: 5px; padding-left: 20px;">
-                                <li>Click the <strong>▶</strong> next to a continent to see its countries</li>
-                                <li>Select one or more countries by checking the boxes</li>
-                                <li>Click the "Continue to Tariff Selection" button when done</li>
+                                <li>Click the <img src="assets/fontawesome/chevron-right-solid.svg" alt="Expand" style="width: 14px; height: 14px; vertical-align: middle;"> next to a continent to see its <span class="primary-text">countries</span></li>
+                                <li><span class="primary-text">Select one or more countries</span> by checking the boxes</li>
+                                <li>Click the <span class="primary-text">"Continue to Tariff Selection"</span> button when done</li>
                             </ol>
                             <p style="margin-top: 5px; font-size: 0.9em;">
                                 <em>Tip: Check a continent box to select all countries in that continent</em>
                             </p>
                             <div class="separator"></div>
-                            <div style="display: flex; justify-content: center; margin-top: 10px;">
-                                <button id="select-all-countries" class="receipt-btn">Select All Countries</button>
-                                <button id="clear-all-countries" class="receipt-btn" style="margin-left: 10px;">Clear Selection</button>
-                            </div>
                         </div>
                         <div class="modal-body">
-                            <div style="display: flex; justify-content: center; margin: 10px 0;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin: 10px 0;">
+                                <button id="select-all-countries" class="receipt-btn">Select All Countries</button>
                                 <input type="text" id="country-search-input" placeholder="Search for a country..."
-                                    style="width: 100%; max-width: 300px; padding: 8px; border: 1px solid var(--borderColor); background-color: var(--background-color); color: var(--text-color); border-radius: var(--borderRadius);">
+                                    style="width: 40%; padding: 8px; border: 1px solid var(--borderColor); background-color: var(--background-color); color: var(--text-color); border-radius: var(--borderRadius);">
+                                <button id="clear-all-countries" class="receipt-btn">Clear Selection</button>
                             </div>
                             
                             <!-- Selected countries counter -->
@@ -490,6 +499,13 @@ var CountrySelectionModal = (function() {
         
         // Check if ProductTariffModal is available
         if (window.ProductTariffModal && typeof window.ProductTariffModal.openModal === 'function') {
+            // Ensure calculation data is loaded first
+            if (window.TariffCalculations && typeof window.TariffCalculations.loadCalculationsData === 'function') {
+                // Preload calculation data
+                window.TariffCalculations.loadCalculationsData({ persist: true })
+                    .catch(err => console.warn("Failed to preload calculation data:", err));
+            }
+            
             // Initialize if needed
             if (window.initializeProductTariffModal) {
                 window.initializeProductTariffModal();
