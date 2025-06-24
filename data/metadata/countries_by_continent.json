@@ -1,0 +1,920 @@
+{
+    "Africa": [
+        {
+            "country": "Algeria",
+            "ISO_A3": "DZA"
+        },
+        {
+            "country": "Angola",
+            "ISO_A3": "AGO"
+        },
+        {
+            "country": "Benin",
+            "ISO_A3": "BEN"
+        },
+        {
+            "country": "Botswana",
+            "ISO_A3": "BWA"
+        },
+        {
+            "country": "Burkina Faso",
+            "ISO_A3": "BFA"
+        },
+        {
+            "country": "Burundi",
+            "ISO_A3": "BDI"
+        },
+        {
+            "country": "Cabo Verde",
+            "ISO_A3": "CPV"
+        },
+        {
+            "country": "Cameroon",
+            "ISO_A3": "CMR"
+        },
+        {
+            "country": "Central African Republic",
+            "ISO_A3": "CAF"
+        },
+        {
+            "country": "Chad",
+            "ISO_A3": "TCD"
+        },
+        {
+            "country": "Comoros",
+            "ISO_A3": "COM"
+        },
+        {
+            "country": "Congo Republic",
+            "ISO_A3": "COG"
+        },
+        {
+            "country": "DR Congo",
+            "ISO_A3": "COD"
+        },
+        {
+            "country": "Cote d'Ivoire",
+            "ISO_A3": "CIV"
+        },
+        {
+            "country": "Djibouti",
+            "ISO_A3": "DJI"
+        },
+        {
+            "country": "Egypt",
+            "ISO_A3": "EGY"
+        },
+        {
+            "country": "Equatorial Guinea",
+            "ISO_A3": "GNQ"
+        },
+        {
+            "country": "Eritrea",
+            "ISO_A3": "ERI"
+        },
+        {
+            "country": "Eswatini",
+            "ISO_A3": "SWZ"
+        },
+        {
+            "country": "Ethiopia",
+            "ISO_A3": "ETH"
+        },
+        {
+            "country": "Gabon",
+            "ISO_A3": "GAB"
+        },
+        {
+            "country": "Gambia",
+            "ISO_A3": "GMB"
+        },
+        {
+            "country": "Ghana",
+            "ISO_A3": "GHA"
+        },
+        {
+            "country": "Guinea",
+            "ISO_A3": "GIN"
+        },
+        {
+            "country": "Guinea-Bissau",
+            "ISO_A3": "GNB"
+        },
+        {
+            "country": "Kenya",
+            "ISO_A3": "KEN"
+        },
+        {
+            "country": "Lesotho",
+            "ISO_A3": "LSO"
+        },
+        {
+            "country": "Liberia",
+            "ISO_A3": "LBR"
+        },
+        {
+            "country": "Libya",
+            "ISO_A3": "LBY"
+        },
+        {
+            "country": "Madagascar",
+            "ISO_A3": "MDG"
+        },
+        {
+            "country": "Malawi",
+            "ISO_A3": "MWI"
+        },
+        {
+            "country": "Mali",
+            "ISO_A3": "MLI"
+        },
+        {
+            "country": "Mauritania",
+            "ISO_A3": "MRT"
+        },
+        {
+            "country": "Mauritius",
+            "ISO_A3": "MUS"
+        },
+        {
+            "country": "Mayotte",
+            "ISO_A3": "MYT"
+        },
+        {
+            "country": "Morocco",
+            "ISO_A3": "MAR"
+        },
+        {
+            "country": "Mozambique",
+            "ISO_A3": "MOZ"
+        },
+        {
+            "country": "Namibia",
+            "ISO_A3": "NAM"
+        },
+        {
+            "country": "Niger",
+            "ISO_A3": "NER"
+        },
+        {
+            "country": "Nigeria",
+            "ISO_A3": "NGA"
+        },
+        {
+            "country": "Reunion",
+            "ISO_A3": "REU"
+        },
+        {
+            "country": "Rwanda",
+            "ISO_A3": "RWA"
+        },
+        {
+            "country": "Sao Tome and Principe",
+            "ISO_A3": "STP"
+        },
+        {
+            "country": "Senegal",
+            "ISO_A3": "SEN"
+        },
+        {
+            "country": "Seychelles",
+            "ISO_A3": "SYC"
+        },
+        {
+            "country": "Sierra Leone",
+            "ISO_A3": "SLE"
+        },
+        {
+            "country": "Somalia",
+            "ISO_A3": "SOM"
+        },
+        {
+            "country": "South Africa",
+            "ISO_A3": "ZAF"
+        },
+        {
+            "country": "South Sudan",
+            "ISO_A3": "SSD"
+        },
+        {
+            "country": "St. Helena",
+            "ISO_A3": "SHN"
+        },
+        {
+            "country": "Sudan",
+            "ISO_A3": "SDN"
+        },
+        {
+            "country": "Tanzania",
+            "ISO_A3": "TZA"
+        },
+        {
+            "country": "Togo",
+            "ISO_A3": "TGO"
+        },
+        {
+            "country": "Tunisia",
+            "ISO_A3": "TUN"
+        },
+        {
+            "country": "Uganda",
+            "ISO_A3": "UGA"
+        },
+        {
+            "country": "Zambia",
+            "ISO_A3": "ZMB"
+        },
+        {
+            "country": "Zimbabwe",
+            "ISO_A3": "ZWE"
+        }
+    ],
+    "Asia": [
+        {
+            "country": "Afghanistan",
+            "ISO_A3": "AFG"
+        },
+        {
+            "country": "Armenia",
+            "ISO_A3": "ARM"
+        },
+        {
+            "country": "Azerbaijan",
+            "ISO_A3": "AZE"
+        },
+        {
+            "country": "Bahrain",
+            "ISO_A3": "BHR"
+        },
+        {
+            "country": "Bangladesh",
+            "ISO_A3": "BGD"
+        },
+        {
+            "country": "Bhutan",
+            "ISO_A3": "BTN"
+        },
+        {
+            "country": "Brunei Darussalam",
+            "ISO_A3": "BRN"
+        },
+        {
+            "country": "Myanmar",
+            "ISO_A3": "MMR"
+        },
+        {
+            "country": "Cambodia",
+            "ISO_A3": "KHM"
+        },
+        {
+            "country": "China",
+            "ISO_A3": "CHN"
+        },
+        {
+            "country": "Christmas Island",
+            "ISO_A3": "CXR"
+        },
+        {
+            "country": "Cocos (Keeling) Islands",
+            "ISO_A3": "CCK"
+        },
+        {
+            "country": "Georgia",
+            "ISO_A3": "GEO"
+        },
+        {
+            "country": "Hong Kong",
+            "ISO_A3": "HKG"
+        },
+        {
+            "country": "India",
+            "ISO_A3": "IND"
+        },
+        {
+            "country": "Indonesia",
+            "ISO_A3": "IDN"
+        },
+        {
+            "country": "Iran",
+            "ISO_A3": "IRN"
+        },
+        {
+            "country": "Iraq",
+            "ISO_A3": "IRQ"
+        },
+        {
+            "country": "Israel",
+            "ISO_A3": "ISR"
+        },
+        {
+            "country": "Japan",
+            "ISO_A3": "JPN"
+        },
+        {
+            "country": "Jordan",
+            "ISO_A3": "JOR"
+        },
+        {
+            "country": "Kazakhstan",
+            "ISO_A3": "KAZ"
+        },
+        {
+            "country": "South Korea",
+            "ISO_A3": "KOR"
+        },
+        {
+            "country": "Kuwait",
+            "ISO_A3": "KWT"
+        },
+        {
+            "country": "Kyrgyz Republic",
+            "ISO_A3": "KGZ"
+        },
+        {
+            "country": "Laos",
+            "ISO_A3": "LAO"
+        },
+        {
+            "country": "Lebanon",
+            "ISO_A3": "LBN"
+        },
+        {
+            "country": "Macau",
+            "ISO_A3": "MAC"
+        },
+        {
+            "country": "Malaysia",
+            "ISO_A3": "MYS"
+        },
+        {
+            "country": "Maldives",
+            "ISO_A3": "MDV"
+        },
+        {
+            "country": "Mongolia",
+            "ISO_A3": "MNG"
+        },
+        {
+            "country": "Nepal",
+            "ISO_A3": "NPL"
+        },
+        {
+            "country": "Oman",
+            "ISO_A3": "OMN"
+        },
+        {
+            "country": "Pakistan",
+            "ISO_A3": "PAK"
+        },
+        {
+            "country": "Philippines",
+            "ISO_A3": "PHL"
+        },
+        {
+            "country": "Qatar",
+            "ISO_A3": "QAT"
+        },
+        {
+            "country": "Saudi Arabia",
+            "ISO_A3": "SAU"
+        },
+        {
+            "country": "Singapore",
+            "ISO_A3": "SGP"
+        },
+        {
+            "country": "Sri Lanka",
+            "ISO_A3": "LKA"
+        },
+        {
+            "country": "Syria",
+            "ISO_A3": "SYR"
+        },
+        {
+            "country": "Taiwan",
+            "ISO_A3": "TWN"
+        },
+        {
+            "country": "Tajikistan",
+            "ISO_A3": "TJK"
+        },
+        {
+            "country": "Thailand",
+            "ISO_A3": "THA"
+        },
+        {
+            "country": "Timor-Leste",
+            "ISO_A3": "TLS"
+        },
+        {
+            "country": "Türkiye",
+            "ISO_A3": "TUR"
+        },
+        {
+            "country": "Turkmenistan",
+            "ISO_A3": "TKM"
+        },
+        {
+            "country": "United Arab Emirates",
+            "ISO_A3": "ARE"
+        },
+        {
+            "country": "Uzbekistan",
+            "ISO_A3": "UZB"
+        },
+        {
+            "country": "Vietnam",
+            "ISO_A3": "VNM"
+        },
+        {
+            "country": [
+                "Israel",
+                "Palestine"
+            ],
+            "ISO_A3": [
+                "ISR",
+                "PSE"
+            ]
+        },
+        {
+            "country": "Yemen",
+            "ISO_A3": "YEM"
+        }
+    ],
+    "Europe": [
+        {
+            "country": "Albania",
+            "ISO_A3": "ALB"
+        },
+        {
+            "country": "Andorra",
+            "ISO_A3": "AND"
+        },
+        {
+            "country": "Austria",
+            "ISO_A3": "AUT"
+        },
+        {
+            "country": "Belarus",
+            "ISO_A3": "BLR"
+        },
+        {
+            "country": "Belgium",
+            "ISO_A3": "BEL"
+        },
+        {
+            "country": "Bosnia and Herzegovina",
+            "ISO_A3": "BIH"
+        },
+        {
+            "country": "Bulgaria",
+            "ISO_A3": "BGR"
+        },
+        {
+            "country": "Croatia",
+            "ISO_A3": "HRV"
+        },
+        {
+            "country": "Cyprus",
+            "ISO_A3": "CYP"
+        },
+        {
+            "country": "Czechia",
+            "ISO_A3": "CZE"
+        },
+        {
+            "country": "Denmark",
+            "ISO_A3": "DNK"
+        },
+        {
+            "country": "Estonia",
+            "ISO_A3": "EST"
+        },
+        {
+            "country": "Faroe Islands",
+            "ISO_A3": "FRO"
+        },
+        {
+            "country": "Finland",
+            "ISO_A3": "FIN"
+        },
+        {
+            "country": "France",
+            "ISO_A3": "FRA"
+        },
+        {
+            "country": "Germany",
+            "ISO_A3": "DEU"
+        },
+        {
+            "country": "Gibraltar",
+            "ISO_A3": "GIB"
+        },
+        {
+            "country": "Greece",
+            "ISO_A3": "GRC"
+        },
+        {
+            "country": "Hungary",
+            "ISO_A3": "HUN"
+        },
+        {
+            "country": "Iceland",
+            "ISO_A3": "ISL"
+        },
+        {
+            "country": "Ireland",
+            "ISO_A3": "IRL"
+        },
+        {
+            "country": "Italy",
+            "ISO_A3": "ITA"
+        },
+        {
+            "country": "Kosovo",
+            "ISO_A3": "XKX"
+        },
+        {
+            "country": "Latvia",
+            "ISO_A3": "LVA"
+        },
+        {
+            "country": "Liechtenstein",
+            "ISO_A3": "LIE"
+        },
+        {
+            "country": "Lithuania",
+            "ISO_A3": "LTU"
+        },
+        {
+            "country": "Luxembourg",
+            "ISO_A3": "LUX"
+        },
+        {
+            "country": "North Macedonia",
+            "ISO_A3": "MKD"
+        },
+        {
+            "country": "Malta",
+            "ISO_A3": "MLT"
+        },
+        {
+            "country": "Moldova",
+            "ISO_A3": "MDA"
+        },
+        {
+            "country": "Monaco",
+            "ISO_A3": "MCO"
+        },
+        {
+            "country": "Montenegro",
+            "ISO_A3": "MNE"
+        },
+        {
+            "country": "Netherlands",
+            "ISO_A3": "NLD"
+        },
+        {
+            "country": "Norway",
+            "ISO_A3": "NOR"
+        },
+        {
+            "country": "Poland",
+            "ISO_A3": "POL"
+        },
+        {
+            "country": "Portugal",
+            "ISO_A3": "PRT"
+        },
+        {
+            "country": "Romania",
+            "ISO_A3": "ROU"
+        },
+        {
+            "country": "Russia",
+            "ISO_A3": "RUS"
+        },
+        {
+            "country": "San Marino",
+            "ISO_A3": "SMR"
+        },
+        {
+            "country": "Serbia",
+            "ISO_A3": "SRB"
+        },
+        {
+            "country": "Slovakia",
+            "ISO_A3": "SVK"
+        },
+        {
+            "country": "Slovenia",
+            "ISO_A3": "SVN"
+        },
+        {
+            "country": "Spain",
+            "ISO_A3": "ESP"
+        },
+        {
+            "country": "Svalbard and Jan Mayen Islands",
+            "ISO_A3": "SJM"
+        },
+        {
+            "country": "Sweden",
+            "ISO_A3": "SWE"
+        },
+        {
+            "country": "Switzerland",
+            "ISO_A3": "CHE"
+        },
+        {
+            "country": "Ukraine",
+            "ISO_A3": "UKR"
+        },
+        {
+            "country": "United Kingdom",
+            "ISO_A3": "GBR"
+        },
+        {
+            "country": "Vatican",
+            "ISO_A3": "VAT"
+        }
+    ],
+    "North America": [
+        {
+            "country": "Anguilla",
+            "ISO_A3": "AIA"
+        },
+        {
+            "country": "Antigua and Barbuda",
+            "ISO_A3": "ATG"
+        },
+        {
+            "country": "Aruba",
+            "ISO_A3": "ABW"
+        },
+        {
+            "country": "Bahamas",
+            "ISO_A3": "BHS"
+        },
+        {
+            "country": "Barbados",
+            "ISO_A3": "BRB"
+        },
+        {
+            "country": "Belize",
+            "ISO_A3": "BLZ"
+        },
+        {
+            "country": "Bermuda",
+            "ISO_A3": "BMU"
+        },
+        {
+            "country": "British Virgin Islands",
+            "ISO_A3": "VGB"
+        },
+        {
+            "country": "Canada",
+            "ISO_A3": "CAN"
+        },
+        {
+            "country": "Cayman Islands",
+            "ISO_A3": "CYM"
+        },
+        {
+            "country": "Costa Rica",
+            "ISO_A3": "CRI"
+        },
+        {
+            "country": "Curacao",
+            "ISO_A3": "CUW"
+        },
+        {
+            "country": "Dominica",
+            "ISO_A3": "DMA"
+        },
+        {
+            "country": "Dominican Republic",
+            "ISO_A3": "DOM"
+        },
+        {
+            "country": "El Salvador",
+            "ISO_A3": "SLV"
+        },
+        {
+            "country": "Greenland",
+            "ISO_A3": "GRL"
+        },
+        {
+            "country": "Grenada",
+            "ISO_A3": "GRD"
+        },
+        {
+            "country": "Guadeloupe",
+            "ISO_A3": "GLP"
+        },
+        {
+            "country": "Guatemala",
+            "ISO_A3": "GTM"
+        },
+        {
+            "country": "Haiti",
+            "ISO_A3": "HTI"
+        },
+        {
+            "country": "Honduras",
+            "ISO_A3": "HND"
+        },
+        {
+            "country": "Jamaica",
+            "ISO_A3": "JAM"
+        },
+        {
+            "country": "Martinique",
+            "ISO_A3": "MTQ"
+        },
+        {
+            "country": "Mexico",
+            "ISO_A3": "MEX"
+        },
+        {
+            "country": "Montserrat",
+            "ISO_A3": "MSR"
+        },
+        {
+            "country": "Nicaragua",
+            "ISO_A3": "NIC"
+        },
+        {
+            "country": "Panama",
+            "ISO_A3": "PAN"
+        },
+        {
+            "country": "Sint Maarten",
+            "ISO_A3": "SXM"
+        },
+        {
+            "country": "St. Kitts and Nevis",
+            "ISO_A3": "KNA"
+        },
+        {
+            "country": "St. Lucia",
+            "ISO_A3": "LCA"
+        },
+        {
+            "country": "St. Vincent and the Grenadines",
+            "ISO_A3": "VCT"
+        },
+        {
+            "country": "Trinidad and Tobago",
+            "ISO_A3": "TTO"
+        },
+        {
+            "country": "Turks and Caicos Islands",
+            "ISO_A3": "TCA"
+        }
+    ],
+    "Oceania": [
+        {
+            "country": "Australia",
+            "ISO_A3": "AUS"
+        },
+        {
+            "country": "Cook Islands",
+            "ISO_A3": "COK"
+        },
+        {
+            "country": "Fiji",
+            "ISO_A3": "FJI"
+        },
+        {
+            "country": "French Polynesia",
+            "ISO_A3": "PYF"
+        },
+        {
+            "country": "Kiribati",
+            "ISO_A3": "KIR"
+        },
+        {
+            "country": "Marshall Islands",
+            "ISO_A3": "MHL"
+        },
+        {
+            "country": "Micronesia, Fed. Sts.",
+            "ISO_A3": "FSM"
+        },
+        {
+            "country": "Nauru",
+            "ISO_A3": "NRU"
+        },
+        {
+            "country": "New Caledonia",
+            "ISO_A3": "NCL"
+        },
+        {
+            "country": "New Zealand",
+            "ISO_A3": "NZL"
+        },
+        {
+            "country": "Niue",
+            "ISO_A3": "NIU"
+        },
+        {
+            "country": "Norfolk Island",
+            "ISO_A3": "NFK"
+        },
+        {
+            "country": "Palau",
+            "ISO_A3": "PLW"
+        },
+        {
+            "country": "Papua New Guinea",
+            "ISO_A3": "PNG"
+        },
+        {
+            "country": "Pitcairn",
+            "ISO_A3": "PCN"
+        },
+        {
+            "country": "Samoa",
+            "ISO_A3": "WSM"
+        },
+        {
+            "country": "Solomon Islands",
+            "ISO_A3": "SLB"
+        },
+        {
+            "country": "Tokelau",
+            "ISO_A3": "TKL"
+        },
+        {
+            "country": "Tonga",
+            "ISO_A3": "TON"
+        },
+        {
+            "country": "Tuvalu",
+            "ISO_A3": "TUV"
+        },
+        {
+            "country": "Vanuatu",
+            "ISO_A3": "VUT"
+        }
+    ],
+    "South America": [
+        {
+            "country": "Argentina",
+            "ISO_A3": "ARG"
+        },
+        {
+            "country": "Bolivia",
+            "ISO_A3": "BOL"
+        },
+        {
+            "country": "Brazil",
+            "ISO_A3": "BRA"
+        },
+        {
+            "country": "Chile",
+            "ISO_A3": "CHL"
+        },
+        {
+            "country": "Colombia",
+            "ISO_A3": "COL"
+        },
+        {
+            "country": "Ecuador",
+            "ISO_A3": "ECU"
+        },
+        {
+            "country": "Falkland Islands",
+            "ISO_A3": "FLK"
+        },
+        {
+            "country": "French Guiana",
+            "ISO_A3": "GUF"
+        },
+        {
+            "country": "Guyana",
+            "ISO_A3": "GUY"
+        },
+        {
+            "country": "Paraguay",
+            "ISO_A3": "PRY"
+        },
+        {
+            "country": "Peru",
+            "ISO_A3": "PER"
+        },
+        {
+            "country": "Suriname",
+            "ISO_A3": "SUR"
+        },
+        {
+            "country": "Uruguay",
+            "ISO_A3": "URY"
+        },
+        {
+            "country": "Venezuela",
+            "ISO_A3": "VEN"
+        }
+    ]
+}

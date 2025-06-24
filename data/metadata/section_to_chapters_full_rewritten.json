@@ -1,0 +1,4412 @@
+{
+  "1": {
+      "title": "Live Animals and Animal Products",
+      "chapters": {
+          "1": {
+              "short": "Live Animals",
+              "description": "Live animals such as cattle, pigs, sheep, poultry, and horses.",
+              "subcategories": {
+                  "101": {
+                      "name": "Horses, Asses, Mules And Hinnies, Live"
+                  },
+                  "102": {
+                      "name": "Bovine Animals, Live"
+                  },
+                  "103": {
+                      "name": "Swine, Live"
+                  },
+                  "104": {
+                      "name": "Sheep And Goats, Live"
+                  },
+                  "105": {
+                      "name": "Chickens, Ducks, Geese, Turkeys, And Guineas, Live"
+                  },
+                  "106": {
+                      "name": "Animals, Live, Nesoi"
+                  }
+              }
+          },
+          "2": {
+              "short": "Meat & Offal",
+              "description": "Fresh or processed meat and edible animal organs.",
+              "subcategories": {
+                  "201": {
+                      "name": "Meat Of Bovine Animals, Fresh Or Chilled"
+                  },
+                  "202": {
+                      "name": "Meat Of Bovine Animals, Frozen"
+                  },
+                  "203": {
+                      "name": "Meat Of Swine (pork), Fresh, Chilled Or Frozen"
+                  },
+                  "204": {
+                      "name": "Meat Of Sheep Or Goats, Fresh, Chilled Or Frozen"
+                  },
+                  "205": {
+                      "name": "Meat Of Horses, Asses, Mules, Hinnies Fr, Chld, Fz"
+                  },
+                  "206": {
+                      "name": "Ed Offal, Bovine, Swine, Sheep, Goat, Horse, Etc."
+                  },
+                  "207": {
+                      "name": "Meat & Ed Offal Of Poultry, Fresh, Chill Or Frozen"
+                  },
+                  "208": {
+                      "name": "Meat & Edible Offal Nesoi, Fresh, Chilld Or Frozen"
+                  },
+                  "209": {
+                      "name": "Pig/poultry Fat Frsh Chld Frz Salt Brine Dried Smk"
+                  },
+                  "210": {
+                      "name": "Meat & Ed Offal Salted, Dried Etc. & Flour & Meal"
+                  }
+              }
+          },
+          "3": {
+              "short": "Fish & Seafood",
+              "description": "Fish, crustaceans, mollusks, and aquatic invertebrates.",
+              "subcategories": {
+                  "301": {
+                      "name": "Fish, Live"
+                  },
+                  "302": {
+                      "name": "Fish, Fresh Or Chilled (no Fillets Or Other Meat)"
+                  },
+                  "303": {
+                      "name": "Fish, Frozen (no Fish Fillets Or Other Fish Meat)"
+                  },
+                  "304": {
+                      "name": "Fish Fillets & Oth Fish Meat, Fresh, Chill Or Froz"
+                  },
+                  "305": {
+                      "name": "Fish, Dried, Salted Or In Brine; Smoked Fish"
+                  },
+                  "306": {
+                      "name": "Crustaceans"
+                  },
+                  "307": {
+                      "name": "Molluscs"
+                  },
+                  "308": {
+                      "name": "Aquatic Invertebrates, Nesoi"
+                  },
+                  "309": {
+                      "name": "Flours, Meals And Pellets Of Fish, Crustaceans Etc"
+                  }
+              }
+          },
+          "4": {
+              "short": "Dairy & Eggs",
+              "description": "Milk, eggs, honey, and other edible animal products.",
+              "subcategories": {
+                  "401": {
+                      "name": "Milk And Cream, Not Concentrated Or Sweetened"
+                  },
+                  "402": {
+                      "name": "Milk And Cream, Concentrated Or Sweetened"
+                  },
+                  "403": {
+                      "name": "Yogurt; Buttermilk Curdled Milk & Cream Kephir Etc"
+                  },
+                  "404": {
+                      "name": "Whey & Milk Products, Sweetened Etc. Or Not, Nesoi"
+                  },
+                  "405": {
+                      "name": "Butter And Other Fats And Oils Derived From Milk"
+                  },
+                  "406": {
+                      "name": "Cheese And Curd"
+                  },
+                  "407": {
+                      "name": "Birds' Eggs, In Shell, Fresh, Preserved Or Cooked"
+                  },
+                  "408": {
+                      "name": "Birds' Eggs, Not In Shell & Yolks, Fresh, Dry, Etc"
+                  },
+                  "409": {
+                      "name": "Honey, Natural"
+                  },
+                  "410": {
+                      "name": "Insects And Other Edible Prod Of Animal Origin Nes"
+                  }
+              }
+          },
+          "5": {
+              "short": "Other Animal Products",
+              "description": "Animal-derived goods not classified elsewhere.",
+              "subcategories": {
+                  "501": {
+                      "name": "Human Hair, Unworked And Waste Of Human Hair"
+                  },
+                  "502": {
+                      "name": "Hogs' Hair Etc; Badger Hair Etc; Waste Hair Etc."
+                  },
+                  "504": {
+                      "name": "Animal (not Fish) Guts, Bladders, Stomachs & Parts"
+                  },
+                  "505": {
+                      "name": "Bird Skins & Other Feathered Parts And Down"
+                  },
+                  "506": {
+                      "name": "Bones & Horn-cores, Unworked Etc; Powder & Waste"
+                  },
+                  "507": {
+                      "name": "Ivory, Tortoise-shell, Whalebone, Horns Etc, Unwrk"
+                  },
+                  "508": {
+                      "name": "Coral, Shell Of Molluscs Etc Unworked Powder/waste"
+                  },
+                  "510": {
+                      "name": "Ambergris, Castoreum Etc; Glands Etc For Pharmacy"
+                  },
+                  "511": {
+                      "name": "Animal Products Nesoi; Dead Animals, Inedible Etc."
+                  }
+              }
+          }
+      }
+  },
+  "2": {
+      "title": "Vegetable Products",
+      "chapters": {
+          "6": {
+              "short": "Plants & Flowers",
+              "description": "Live plants, bulbs, and cut flowers for decoration or agriculture.",
+              "subcategories": {
+                  "601": {
+                      "name": "Bulbs, Tubers Etc; Chicory Plants & Roots Nesoi"
+                  },
+                  "602": {
+                      "name": "Live Plants Nesoi, Cuttings Etc.; Mushroom Spawn"
+                  },
+                  "603": {
+                      "name": "Cut Flowers & Buds For Bouquets Etc., Prepared"
+                  },
+                  "604": {
+                      "name": "Foliage, Grasses Etc For Bouquets Etc, Prepared"
+                  }
+              }
+          },
+          "7": {
+              "short": "Vegetables",
+              "description": "Edible vegetables, roots, and tubers.",
+              "subcategories": {
+                  "701": {
+                      "name": "Potatoes (except Sweet Potatoes), Fresh Or Chilled"
+                  },
+                  "702": {
+                      "name": "Tomatoes, Fresh Or Chilled"
+                  },
+                  "703": {
+                      "name": "Onions, Shallots, Garlic, Leeks Etc, Fr Or Chilled"
+                  },
+                  "704": {
+                      "name": "Cabbages, Cauliflower, Kale Etc, Fresh Or Chilled"
+                  },
+                  "705": {
+                      "name": "Lettuce And Chicory, Fresh Or Chilled"
+                  },
+                  "706": {
+                      "name": "Carrots, Turnips & Other Edible Roots, Fr Or Chill"
+                  },
+                  "707": {
+                      "name": "Cucumbers And Gherkins, Fresh Or Chilled"
+                  },
+                  "708": {
+                      "name": "Leguminous Vegetables, Shelled Or Not, Fr Or Chill"
+                  },
+                  "709": {
+                      "name": "Vegetables Nesoi, Fresh Or Chilled"
+                  },
+                  "710": {
+                      "name": "Vegetables (raw Or Cooked By Steam Etc), Frozen"
+                  },
+                  "711": {
+                      "name": "Vegetables Provis Preserved Unsuitable For Consum"
+                  },
+                  "712": {
+                      "name": "Vegetables, Dried, Whole, Cut Etc., No Added Prep"
+                  },
+                  "713": {
+                      "name": "Leguminous Vegetables, Dried Shelled"
+                  },
+                  "714": {
+                      "name": "Cassava, Arrowroot Etc, Fresh Or Dry; Sago Pith"
+                  }
+              }
+          },
+          "8": {
+              "short": "Fruit & Nuts",
+              "description": "Edible fruits, nuts, and citrus or melon peels.",
+              "subcategories": {
+                  "801": {
+                      "name": "Coconuts, Brazil Nuts & Cashew Nuts, Fresh Or Dry"
+                  },
+                  "802": {
+                      "name": "Nuts Nesoi, Fresh Or Dried"
+                  },
+                  "803": {
+                      "name": "Bananas, Including Plantains, Fresh Or Dried"
+                  },
+                  "804": {
+                      "name": "Dates, Figs, Pineapples, Avocados Etc, Fr Or Dried"
+                  },
+                  "805": {
+                      "name": "Citrus Fruit, Fresh Or Dried"
+                  },
+                  "806": {
+                      "name": "Grapes, Fresh Or Dried"
+                  },
+                  "807": {
+                      "name": "Melons And Papayas, Fresh"
+                  },
+                  "808": {
+                      "name": "Apples, Pears And Quinces, Fresh"
+                  },
+                  "809": {
+                      "name": "Apricots, Cherries, Peaches, Plums & Sloes, Fresh"
+                  },
+                  "810": {
+                      "name": "Fruit Nesoi, Fresh"
+                  },
+                  "811": {
+                      "name": "Fruit & Nuts (raw Or Cooked By Steam Etc), Frozen"
+                  },
+                  "812": {
+                      "name": "Fruit & Nuts Provis Preservd Unsuitable For Consum"
+                  },
+                  "813": {
+                      "name": "Fruit Dried Nesoi; Mixtures Of Nuts Or Dried Fruit"
+                  },
+                  "814": {
+                      "name": "Peel, Citrus Or Melon, Frsh/frzn/dried/provsl Pres"
+                  }
+              }
+          },
+          "9": {
+              "short": "Coffee, Tea & Spices",
+              "description": "Coffee beans, teas, and spices.",
+              "subcategories": {
+                  "901": {
+                      "name": "Coffee; Coffee Husks Etc; Substitutes With Coffee"
+                  },
+                  "902": {
+                      "name": "Tea, Whether Or Not Flavored"
+                  },
+                  "903": {
+                      "name": "Mate"
+                  },
+                  "904": {
+                      "name": "Pepper, Genus Piper; Genus Capsicum Or Pimenta"
+                  },
+                  "905": {
+                      "name": "Vanilla"
+                  },
+                  "906": {
+                      "name": "Cinnamon And Cinnamon-tree Flowers"
+                  },
+                  "907": {
+                      "name": "Cloves (whole Fruit, Cloves And Stems)"
+                  },
+                  "908": {
+                      "name": "Nutmeg, Mace And Cardamoms"
+                  },
+                  "909": {
+                      "name": "Seeds Anise Badian Fennl Coriandr Etc; Junpr Berrs"
+                  },
+                  "910": {
+                      "name": "Ginger, Saffron, Tumeric, Thyme, Bay Leaves Etc."
+                  }
+              }
+          },
+          "10": {
+              "short": "Cereals",
+              "description": "Wheat, corn, barley, oats, and similar grains.",
+              "subcategories": {
+                  "1001": {
+                      "name": "Wheat And Meslin"
+                  },
+                  "1002": {
+                      "name": "Rye"
+                  },
+                  "1003": {
+                      "name": "Barley"
+                  },
+                  "1004": {
+                      "name": "Oats"
+                  },
+                  "1005": {
+                      "name": "Corn (maize)"
+                  },
+                  "1006": {
+                      "name": "Rice"
+                  },
+                  "1007": {
+                      "name": "Grain Sorghum"
+                  },
+                  "1008": {
+                      "name": "Buckwheat, Millet And Canary Seeds; Other Cereals"
+                  }
+              }
+          },
+          "11": {
+              "short": "Flour & Starch",
+              "description": "Products from milling grains, including starches and gluten.",
+              "subcategories": {
+                  "1101": {
+                      "name": "Wheat Or Meslin Flour"
+                  },
+                  "1102": {
+                      "name": "Cereal Flours, Except Of Wheat Or Of Meslin"
+                  },
+                  "1103": {
+                      "name": "Cereal Groats, Meal And Pellets"
+                  },
+                  "1104": {
+                      "name": "Cereal Grains, Worked Etc Nesoi; Cereal Germs, Wrk"
+                  },
+                  "1105": {
+                      "name": "Flour, Meal Flakes, Granules & Pellets Of Potatoes"
+                  },
+                  "1106": {
+                      "name": "Flour & Meal Of Dry, Legum Vegs, Sago, Fruit Etc."
+                  },
+                  "1107": {
+                      "name": "Malt, Whether Or Not Roasted"
+                  },
+                  "1108": {
+                      "name": "Starches; Inulin"
+                  },
+                  "1109": {
+                      "name": "Wheat Gluten, Whether Or Not Dried"
+                  }
+              }
+          },
+          "12": {
+              "short": "Plants & Flowers",
+              "description": "Live plants, bulbs, and cut flowers for decoration or agriculture.",
+              "subcategories": {
+                  "1201": {
+                      "name": "Soybeans, Whether Or Not Broken"
+                  },
+                  "1202": {
+                      "name": "Peanuts (ground-nuts), Raw"
+                  },
+                  "1204": {
+                      "name": "Flaxseed (linseed), Whether Or Not Broken"
+                  },
+                  "1205": {
+                      "name": "Rape Or Colza Seeds, Whether Or Not Broken"
+                  },
+                  "1206": {
+                      "name": "Sunflower Seeds, Whether Or Not Broken"
+                  },
+                  "1207": {
+                      "name": "Oil Seeds & Oleaginous Fruits Nesoi, Broken Or Not"
+                  },
+                  "1208": {
+                      "name": "Flour & Meal Of Oil Seed & Olea Fruit (no Mustard)"
+                  },
+                  "1209": {
+                      "name": "Seeds, Fruit And Spores, For Sowing"
+                  },
+                  "1210": {
+                      "name": "Hop Cones, Fresh Or Dried; Lupulin"
+                  },
+                  "1211": {
+                      "name": "Plants Etc For Pharmacy, Perfume, Insecticides Etc"
+                  },
+                  "1212": {
+                      "name": "Locust Beans, Seaweed, S Beet & Cane; Fr Pits Etc."
+                  },
+                  "1213": {
+                      "name": "Cereal Straw & Husks Unprep W/n Chop Etc Or Pellet"
+                  },
+                  "1214": {
+                      "name": "Rutabagas, Hay, Clover & Other Forage Products"
+                  }
+              }
+          },
+          "13": {
+              "short": "Gums & Extracts",
+              "description": "Plant resins, saps, and extracts for industrial use.",
+              "subcategories": {
+                  "1301": {
+                      "name": "Lac; Natural Gums, Resins, Gum-resins And Balsams"
+                  },
+                  "1302": {
+                      "name": "Veg Saps & Extracts; Pectates Etc; Agar-agar Etc."
+                  }
+              }
+          },
+          "14": {
+              "short": "Plaiting Materials",
+              "description": "Straw and plant-based materials for weaving or basketry.",
+              "subcategories": {
+                  "1401": {
+                      "name": "Vegetable Plaiting Materials (bamboos, Reeds Etc.)"
+                  },
+                  "1404": {
+                      "name": "Vegetable Products Nesoi"
+                  }
+              }
+          }
+      }
+  },
+  "3": {
+      "title": "Animal or Vegetable Fats and Oils and Their Cleavage Products; Prepared Edible Fats; Animal or Vegetable Waxes",
+      "chapters": {
+          "15": {
+              "short": "Fats & Oils",
+              "description": "Edible and industrial animal or vegetable fats, oils, and waxes.",
+              "subcategories": {
+                  "1501": {
+                      "name": "Pig Fat And Poultry Fat Other Than Head 0209, 1503"
+                  },
+                  "1502": {
+                      "name": "Fats Of Bovines, Sheep/goats Other Than  Head 1503"
+                  },
+                  "1503": {
+                      "name": "Lard Stearin/lard Oil/etc Nt Emulsified Or Preprd"
+                  },
+                  "1504": {
+                      "name": "Fats & Oils, Their Fractions, Fish & Marine Mammal"
+                  },
+                  "1505": {
+                      "name": "Wool Grease & Fatty Substances Derived Therefrom"
+                  },
+                  "1506": {
+                      "name": "Animal Fat & Oil & Fraction Nesoi Nt Chem Modified"
+                  },
+                  "1507": {
+                      "name": "Soybean Oil & Its Fractions, Not Chemic Modified"
+                  },
+                  "1508": {
+                      "name": "Peanut Oil & Its Fractions, Not Chemicaly Modified"
+                  },
+                  "1509": {
+                      "name": "Olive Oil & Its Fractions, Not Chemically Modified"
+                  },
+                  "1510": {
+                      "name": "Olive-residue Oil & Blends (1509&1510) Nt Chem Mod"
+                  },
+                  "1511": {
+                      "name": "Palm Oil & Its Fractions, Not Chemically Modified"
+                  },
+                  "1512": {
+                      "name": "Sunfl-seed, Safflow Or Cottonsd Oil Etc, No Ch Mod"
+                  },
+                  "1513": {
+                      "name": "Coconut, Palm Kernel Or Babassu Oil Etc, No Ch Mod"
+                  },
+                  "1514": {
+                      "name": "Rapeseed, Colza Or Mustard Oil Etc, Not Chem Modif"
+                  },
+                  "1515": {
+                      "name": "Fixed Veg/microbial Fats/oils, Not Chem Mod Nesoi"
+                  },
+                  "1516": {
+                      "name": "Anml,veg,microbial Fat Oil&fraction,hydrogenat Etc"
+                  },
+                  "1517": {
+                      "name": "Margarine;edbl Mx/prp Anml,vg,mcrb Fat/oil Etc Nes"
+                  },
+                  "1518": {
+                      "name": "Anml,veg,microbial Fat Oil&fraction,chem Mod Nesoi"
+                  },
+                  "1520": {
+                      "name": "Glycerol (glycerine), Glycerol Waters And Lyes"
+                  },
+                  "1521": {
+                      "name": "Veg Waxes Nesoi, Beeswax Etc And Spermaceti"
+                  },
+                  "1522": {
+                      "name": "Degras; Residues From Fatty Substncs/anml/veg Waxs"
+                  }
+              }
+          }
+      }
+  },
+  "4": {
+      "title": "Prepared Foodstuffs; Beverages, Spirits and Vinegar; Tobacco and Manufactured Tobacco Substitutes",
+      "chapters": {
+          "16": {
+              "short": "Meat & Offal",
+              "description": "Fresh or processed meat and edible animal organs.",
+              "subcategories": {
+                  "1601": {
+                      "name": "Sausage Etc Of Meat,offal,blood,insects;food Preps"
+                  },
+                  "1602": {
+                      "name": "Prepared/preserved Meat, Offal, Blood, Insects Nes"
+                  },
+                  "1603": {
+                      "name": "Extracts Etc. Of Meat, Fish, Crustaceans, Etc."
+                  },
+                  "1604": {
+                      "name": "Prep Or Pres Fish; Caviar & Caviar Substitutes"
+                  },
+                  "1605": {
+                      "name": "Crustaceans, Molluscs Etc. Prepared Or Preserved"
+                  }
+              }
+          },
+          "17": {
+              "short": "Sugars & Candy",
+              "description": "Raw and processed sugars and sugar-based confectionery.",
+              "subcategories": {
+                  "1701": {
+                      "name": "Cane Or Beet Sugar & Chem Pure Sucrose, Solid Form"
+                  },
+                  "1702": {
+                      "name": "Sugars Nesoi, Incl Chem Pure Lactose Etc; Caramel"
+                  },
+                  "1703": {
+                      "name": "Molasses From The Extraction Or Refining Of Sugar"
+                  },
+                  "1704": {
+                      "name": "Sugar Confection (incl White Chocolate), No Cocoa"
+                  }
+              }
+          },
+          "18": {
+              "short": "Cocoa & Chocolate",
+              "description": "Cocoa beans and chocolate preparations.",
+              "subcategories": {
+                  "1801": {
+                      "name": "Cocoa Beans, Whole Or Broken, Raw Or Roasted"
+                  },
+                  "1802": {
+                      "name": "Cocoa Shells, Husks, Skins And Other Cocoa Waste"
+                  },
+                  "1803": {
+                      "name": "Cocoa Paste, Defatted Or Not"
+                  },
+                  "1804": {
+                      "name": "Cocoa Butter, Fat And Oil"
+                  },
+                  "1805": {
+                      "name": "Cocoa Powder, Not Sweetened"
+                  },
+                  "1806": {
+                      "name": "Chocolate & Other Food Products Containing Cocoa"
+                  }
+              }
+          },
+          "19": {
+              "short": "Cereals",
+              "description": "Wheat, corn, barley, oats, and similar grains.",
+              "subcategories": {
+                  "1901": {
+                      "name": "Malt Ext; Food Prep Of Flour Etc Un 40% Cocoa Etc"
+                  },
+                  "1902": {
+                      "name": "Pasta, Prepared Or Not; Couscous, Prepared Or Not"
+                  },
+                  "1903": {
+                      "name": "Tapioca And Substitutes From Starch In Flakes, Etc"
+                  },
+                  "1904": {
+                      "name": "Foods Prep By Swell Cereal; Cereal Nesoi, Grain Fm"
+                  },
+                  "1905": {
+                      "name": "Bread, Pastry, Cakes Etc; Comm Wafrs, Emp Caps Etc"
+                  }
+              }
+          },
+          "20": {
+              "short": "Plants & Flowers",
+              "description": "Live plants, bulbs, and cut flowers for decoration or agriculture.",
+              "subcategories": {
+                  "2001": {
+                      "name": "Veg, Fruit, Nuts Etc, Prep Or Pres By Vinegar Etc"
+                  },
+                  "2002": {
+                      "name": "Tomatoes Prepared Or Preserved Nesoi"
+                  },
+                  "2003": {
+                      "name": "Mushrooms And Truffles Prepared Or Preserved Nesoi"
+                  },
+                  "2004": {
+                      "name": "Vegetables Nesoi Prepared Or Preserv Nesoi, Frozen"
+                  },
+                  "2005": {
+                      "name": "Vegetables Nesoi Prepared Etc Nesoi, Not Frozen"
+                  },
+                  "2006": {
+                      "name": "Veg/fruit/nuts/fruit-peel Etc, Preserved By Sugar"
+                  },
+                  "2007": {
+                      "name": "Jams, Fruit Jellies, Marmalades Etc, Cooked"
+                  },
+                  "2008": {
+                      "name": "Fruit, Nuts Etc Prepared Or Preserved Nesoi"
+                  },
+                  "2009": {
+                      "name": "Fruit, Nut Or Veg Juices, Unferment, No Add Spirit"
+                  }
+              }
+          },
+          "21": {
+              "short": "Other Food Prep",
+              "description": "Food preparations like sauces, soups, and condiments.",
+              "subcategories": {
+                  "2101": {
+                      "name": "Extracts Etc Of Coffee, Tea Or Mate; Roast Chicory"
+                  },
+                  "2102": {
+                      "name": "Yeasts; Dead Sing-cell Micro-org Nesoi; Bak Powder"
+                  },
+                  "2103": {
+                      "name": "Sauces & Prep; Mixed Condiments, Mustard Flour Etc"
+                  },
+                  "2104": {
+                      "name": "Soups, Broths & Preps; Homogenized Comp Food Preps"
+                  },
+                  "2105": {
+                      "name": "Ice Cream And Other Edible Ice, With Cocoa Or Not"
+                  },
+                  "2106": {
+                      "name": "Food Preparations Nesoi"
+                  }
+              }
+          },
+          "22": {
+              "short": "Beverages",
+              "description": "Alcoholic and non-alcoholic beverages, including vinegar.",
+              "subcategories": {
+                  "2201": {
+                      "name": "Waters, Natural Etc, Not Sweetened Etc; Ice & Snow"
+                  },
+                  "2202": {
+                      "name": "Waters, Sweetened Etc & Oth Nonalc Beverages Nesoi"
+                  },
+                  "2203": {
+                      "name": "Beer Made From Malt"
+                  },
+                  "2204": {
+                      "name": "Wine Of Fresh Grapes; Grape Must Nesoi"
+                  },
+                  "2205": {
+                      "name": "Vermouth & Oth Wine Of Fresh Grapes Spec Flavored"
+                  },
+                  "2206": {
+                      "name": "Fermented Beverages Nesoi (cider, Perry, Mead Etc)"
+                  },
+                  "2207": {
+                      "name": "Ethyl Alcohol, Undenat, Nun80% Alc; Alcohol, Denat"
+                  },
+                  "2208": {
+                      "name": "Ethyl Alcohol, Undenat, Und80% Alc; Spirit Beverag"
+                  },
+                  "2209": {
+                      "name": "Vinegar & Substitutes For Vinegar From Acetic Acid"
+                  }
+              }
+          },
+          "23": {
+              "short": "Oilseeds & Fodder",
+              "description": "Oil seeds, medicinal plants, and animal feed.",
+              "subcategories": {
+                  "2301": {
+                      "name": "Flour, Meal Etc Of Meat Etc, Not For Human; Greavs"
+                  },
+                  "2302": {
+                      "name": "Bran, Sharps Etc From Working Cereals & Leg Plants"
+                  },
+                  "2303": {
+                      "name": "Residues Of Starch Mfr Or Sugar Mfr Or Brewing Etc"
+                  },
+                  "2304": {
+                      "name": "Soybean Oilcake & Oth Solid Residue, Wh/not Ground"
+                  },
+                  "2305": {
+                      "name": "Peanut Oilcake & Oth Solid Residue, Wh/not Ground"
+                  },
+                  "2306": {
+                      "name": "Oilcake Etc Nesoi, From Veg Fats & Oils Nesoi"
+                  },
+                  "2307": {
+                      "name": "Wine Lees; Argol"
+                  },
+                  "2308": {
+                      "name": "Veg Material, Waste Etc For Feeding Animals Nesoi"
+                  },
+                  "2309": {
+                      "name": "Preparations Used In Animal Feeding"
+                  }
+              }
+          },
+          "24": {
+              "short": "Tobacco",
+              "description": "Cigars, cigarettes, raw tobacco, and substitutes.",
+              "subcategories": {
+                  "2401": {
+                      "name": "Tobacco, Unmanufactured; Tobacco Refuse"
+                  },
+                  "2402": {
+                      "name": "Cigars, Cigarettes Etc., Of Tobacco Or Substitutes"
+                  },
+                  "2403": {
+                      "name": "Tobacco & Tobacco Subst Mfrs Nesoi; Tob Proces Etc"
+                  },
+                  "2404": {
+                      "name": "Tobacco Prod For Inhal W/o Comb; Nicotine Products"
+                  }
+              }
+          }
+      }
+  },
+  "5": {
+      "title": "Mineral Products",
+      "chapters": {
+          "25": {
+              "short": "Salt",
+              "description": "Salt, Sulphur, Earths and Stone, Plastering Materials, Lime and Cement",
+              "subcategories": {
+                  "2501": {
+                      "name": "Salt Incl Tbl/dentrd, Pure Sodm Chlor Etc; Sea Wtr"
+                  },
+                  "2502": {
+                      "name": "Unroasted Iron Pyrites"
+                  },
+                  "2503": {
+                      "name": "Sulfur Of All Kinds Nesoi"
+                  },
+                  "2504": {
+                      "name": "Natural Graphite"
+                  },
+                  "2505": {
+                      "name": "Natural Sands Of All Kinds, Except Metal-bearing"
+                  },
+                  "2506": {
+                      "name": "Quartz (other Than Natural Sands); Quartzite"
+                  },
+                  "2507": {
+                      "name": "Kaolin And Other Kaolinic Clays, Incl Calcined"
+                  },
+                  "2508": {
+                      "name": "Clays Nesoi, Andalusite, Kyanite Etc; Mullite Etc"
+                  },
+                  "2509": {
+                      "name": "Chalk"
+                  },
+                  "2510": {
+                      "name": "Natural Calcium (inc Alum Cal) Phosp & Phosp Chalk"
+                  },
+                  "2511": {
+                      "name": "Natural Barium Sulfate; Nat Barium Carbonate Nesoi"
+                  },
+                  "2512": {
+                      "name": "Siliceous Fssl Mls A Erths W Spec Grav Of 1 O Lss"
+                  },
+                  "2513": {
+                      "name": "Pumice; Emery; Natural Corundum And Garnet Etc"
+                  },
+                  "2514": {
+                      "name": "Slate, Crude Or Roughly Trimmed"
+                  },
+                  "2515": {
+                      "name": "Marble, Travertine Etc. And Alabaster, Crude Etc."
+                  },
+                  "2516": {
+                      "name": "Granite, Porphyry, Basalt Etc., Crude Or Cut Etc."
+                  },
+                  "2517": {
+                      "name": "Pebbles, Gravel Etc; Macadam Of Slag, Dross Etc."
+                  },
+                  "2518": {
+                      "name": "Dolomite Inc Rough Trimmed / Cut Blocks/rect Slabs"
+                  },
+                  "2519": {
+                      "name": "Magnesite; Fused Magnesia; D-b Magn; M Oxide Nesoi"
+                  },
+                  "2520": {
+                      "name": "Gypsum; Anhydrite; Plasters (cal Gypsm Or Sulfate)"
+                  },
+                  "2521": {
+                      "name": "Lmestn Flux; Lmstn A Oth Cal Sto Usd Mfr Lime, Cmt"
+                  },
+                  "2522": {
+                      "name": "Quicklime, Slaked Lime And Hydraulic Lime"
+                  },
+                  "2523": {
+                      "name": "Portland Cement, Aluminous Cement, Slag Cement Etc"
+                  },
+                  "2524": {
+                      "name": "Asbestos"
+                  },
+                  "2525": {
+                      "name": "Mica, Including Splittings; Mica Waste"
+                  },
+                  "2526": {
+                      "name": "Natural Steatite, Roughly Trimmed Etc; Talc"
+                  },
+                  "2528": {
+                      "name": "Natural Borates & Conc; Natural Boric Acid Nov 85%"
+                  },
+                  "2529": {
+                      "name": "Feldspar; Leucite; Nepheline, N Syenite; Fluorspar"
+                  },
+                  "2530": {
+                      "name": "Mineral Substances Nesoi"
+                  }
+              }
+          },
+          "26": {
+              "short": "Ores, Slag and Ash",
+              "description": "Ores, Slag and Ash",
+              "subcategories": {
+                  "2601": {
+                      "name": "Iron Ores & Concentrates, Including Roast Pyrites"
+                  },
+                  "2602": {
+                      "name": "Manganese Ores A Concntrts Inc Ferr Mangn Iron Ore"
+                  },
+                  "2603": {
+                      "name": "Copper Ores And Concentrates"
+                  },
+                  "2604": {
+                      "name": "Nickel Ores And Concentrates"
+                  },
+                  "2605": {
+                      "name": "Cobalt Ores And Concentrates"
+                  },
+                  "2606": {
+                      "name": "Aluminum Ores And Concentrates"
+                  },
+                  "2607": {
+                      "name": "Lead Ores And Concentrates"
+                  },
+                  "2608": {
+                      "name": "Zinc Ores And Concentrates"
+                  },
+                  "2609": {
+                      "name": "Tin Ores And Concentrates"
+                  },
+                  "2610": {
+                      "name": "Chromium Ores And Concentrates"
+                  },
+                  "2611": {
+                      "name": "Tungsten Ores And Concentrates"
+                  },
+                  "2612": {
+                      "name": "Uranium Or Thorium Ores And Concentrates"
+                  },
+                  "2613": {
+                      "name": "Molybdenum Ores And Concentrates"
+                  },
+                  "2614": {
+                      "name": "Titanium Ores And Concentrates"
+                  },
+                  "2615": {
+                      "name": "Niobium, Tantalum, Vanadium & Zirconium Ore & Conc"
+                  },
+                  "2616": {
+                      "name": "Precious Metal Ores And Concentrates"
+                  },
+                  "2617": {
+                      "name": "Ores And Concentrates Nesoi"
+                  },
+                  "2618": {
+                      "name": "Granulated Slag Fr Iron Or Steel Manufacture"
+                  },
+                  "2619": {
+                      "name": "Slag, Dross, Scalings A Oth Waste Frm Manu Irn/stl"
+                  },
+                  "2620": {
+                      "name": "Ash & Residues (not Fr Iron Etc Mfr) W Metal Cont"
+                  },
+                  "2621": {
+                      "name": "Ash&slag Nesoi, Inc Seaweed Ash; Ash Fm Muncp Wst"
+                  }
+              }
+          },
+          "27": {
+              "short": "Mineral Fuels, Mineral Oils and Products of Their Distillation",
+              "description": "Mineral Fuels, Mineral Oils and Products of Their Distillation, Bituminous Substances, Mineral Waxes",
+              "subcategories": {
+                  "2701": {
+                      "name": "Coal; Briquettes, Ovoids Etc. Mfr From Coal"
+                  },
+                  "2702": {
+                      "name": "Lignite, Agglomerated Or Not, Excluding Jet"
+                  },
+                  "2703": {
+                      "name": "Peat (including Peat Litter), Incl Agglomrtd"
+                  },
+                  "2704": {
+                      "name": "Coke Etc Of Coal, Lignite Or Peat; Retort Carbon"
+                  },
+                  "2705": {
+                      "name": "Coal Gs,wtr Gs, Prdcr Gs Etc, Ex Pet Gs A Oth Gs H"
+                  },
+                  "2706": {
+                      "name": "Mineral Tars, Including Reconstituted Tars"
+                  },
+                  "2707": {
+                      "name": "Oils Etc From High Temp Coal Tar; Sim Aromatic Etc"
+                  },
+                  "2708": {
+                      "name": "Pitch & Pitch Coke From Coal Tar Or Other Min Tars"
+                  },
+                  "2709": {
+                      "name": "Crude Oil From Petroleum And Bituminous Minerals"
+                  },
+                  "2710": {
+                      "name": "Oil (not Crude) From Petrol & Bitum Mineral Etc."
+                  },
+                  "2711": {
+                      "name": "Petroleum Gases & Other Gaseous Hydrocarbons"
+                  },
+                  "2712": {
+                      "name": "Petroleum Jelly; Mineral Waxes & Similar Products"
+                  },
+                  "2713": {
+                      "name": "Petroleum Coke, Petroleum Bitumen & Other Residues"
+                  },
+                  "2714": {
+                      "name": "Bitumen & Asphalt, Natural; Shale & Tar Sands Etc."
+                  },
+                  "2715": {
+                      "name": "Bit Mix Fr Nat Asph, Nat Bit,pet Bit,min Tar Or Pt"
+                  },
+                  "2716": {
+                      "name": "Electrical Energy"
+                  }
+              }
+          }
+      }
+  },
+  "6": {
+      "title": "Products of the Chemical or Allied Industries",
+      "chapters": {
+          "28": {
+              "short": "Inorganic Chemicals",
+              "description": "Inorganic Chemicals, Organic or Inorganic Compounds of Precious Metals, of Rare-Earth Metals, of Radioactive Elements or of Isotopes",
+              "subcategories": {
+                  "2801": {
+                      "name": "Fluorine, Chlorine, Bromine & Iodine"
+                  },
+                  "2802": {
+                      "name": "Sulfur, Sublimed Or Precipitated; Collodial Sulfur"
+                  },
+                  "2803": {
+                      "name": "Carbon, Nesoi (including Carbon Black)"
+                  },
+                  "2804": {
+                      "name": "Hydrogen, Rare Gases And Other Nonmetals"
+                  },
+                  "2805": {
+                      "name": "Alkali Metals Etc; Rare-earth Metals Etc; Mercury"
+                  },
+                  "2806": {
+                      "name": "Hydrogen Chloride; Chlorosulfuric Acid"
+                  },
+                  "2807": {
+                      "name": "Sulfuric Acid; Oleum"
+                  },
+                  "2808": {
+                      "name": "Nitric Acid, Sulfonitric Acids"
+                  },
+                  "2809": {
+                      "name": "Diphosphorus Pentaoxide; Phosphoric Acid Etc"
+                  },
+                  "2810": {
+                      "name": "Oxides Of Boron; Boric Acids"
+                  },
+                  "2811": {
+                      "name": "Inorganic Acids & Inorganic Oxy Nonmet Comp Nesoi"
+                  },
+                  "2812": {
+                      "name": "Halides & Halide Oxides Of Nonmetals"
+                  },
+                  "2813": {
+                      "name": "Sulfides Of Nonmetals; Commercial Phosp Trisulfide"
+                  },
+                  "2814": {
+                      "name": "Ammonia, Anhydrous Or In Aqueous Solution"
+                  },
+                  "2815": {
+                      "name": "Sodium Hydrox; Potass Hydrox; Sod Or Potass Perox"
+                  },
+                  "2816": {
+                      "name": "Hydrox Etc Of Magnesium; Oxides Etc Strontium Etc"
+                  },
+                  "2817": {
+                      "name": "Zinc Oxide And Zinc Peroxide"
+                  },
+                  "2818": {
+                      "name": "Artfl Corundum W/nt Chem Defnd Alum Oxid/hydroxide"
+                  },
+                  "2819": {
+                      "name": "Chromium Oxides And Hydroxides"
+                  },
+                  "2820": {
+                      "name": "Manganese Oxides"
+                  },
+                  "2821": {
+                      "name": "Iron Oxides & Hydroxides; Earth Colors Nun 70% Ir"
+                  },
+                  "2822": {
+                      "name": "Cobalt Oxide & Hydroxide; Commercial Cobalt Oxides"
+                  },
+                  "2823": {
+                      "name": "Titanium Oxides"
+                  },
+                  "2824": {
+                      "name": "Lead Oxides; Red Lead And Orange Lead"
+                  },
+                  "2825": {
+                      "name": "Hydrazine Etc, Oth Inorg Bases; Metal Oxides Etc"
+                  },
+                  "2826": {
+                      "name": "Fluorides; Fluorosilicates, Fluoroaluminates Etc"
+                  },
+                  "2827": {
+                      "name": "Chlorides Etc; Bromides Etc; Iodides Etc."
+                  },
+                  "2828": {
+                      "name": "Hypochlorites Etc; Chlorites; Hypobromites"
+                  },
+                  "2829": {
+                      "name": "Chlorates Etc; Bromates Etc; Iodates Etc."
+                  },
+                  "2830": {
+                      "name": "Sulfides; Polysulfides"
+                  },
+                  "2831": {
+                      "name": "Dithionites And Sulfoxylates"
+                  },
+                  "2832": {
+                      "name": "Sulfites; Thiosulfates"
+                  },
+                  "2833": {
+                      "name": "Sulfates; Alums; Peroxosulfates (persulfates)"
+                  },
+                  "2834": {
+                      "name": "Nitrites; Nitrates"
+                  },
+                  "2835": {
+                      "name": "Phosphinates, Phosphonates, Phosphates & Polyphosp"
+                  },
+                  "2836": {
+                      "name": "Carbonates; Peroxocarbonates; Comm Amm Carbonate"
+                  },
+                  "2837": {
+                      "name": "Cyanides, Cyanide Oxides And Complex Cyanides"
+                  },
+                  "2839": {
+                      "name": "Silicates; Commercial Alkali Metal Silicates"
+                  },
+                  "2840": {
+                      "name": "Borates; Peroxoborates"
+                  },
+                  "2841": {
+                      "name": "Salts Of Oxometallic Or Peroxometallic Acids"
+                  },
+                  "2842": {
+                      "name": "Salts Of Inorganic Acids Or Peroxoacids Nesoi"
+                  },
+                  "2843": {
+                      "name": "Colloidal Prec Metal; Prec Metal Comp & Amalgrams"
+                  },
+                  "2844": {
+                      "name": "Radioactive Chemical Elements & Isotopes Etc."
+                  },
+                  "2845": {
+                      "name": "Stable Isotopes And Compounds Thereof"
+                  },
+                  "2846": {
+                      "name": "Rare-earth Metal Compounds Of Yttrium Or Scandium"
+                  },
+                  "2847": {
+                      "name": "Hydrogen Peroxide, Whether/not Solidified W/ Urea"
+                  },
+                  "2849": {
+                      "name": "Carbides"
+                  },
+                  "2850": {
+                      "name": "Hydrides, Nitrides, Azides, Silicides & Borides"
+                  },
+                  "2852": {
+                      "name": "Mercury Compounds, Inorganic/organic Exc Amalgalms"
+                  },
+                  "2853": {
+                      "name": "Inorg Cmpds Nesoi;lq/cmprsd Air;amalg Exc Prec Met"
+                  }
+              }
+          },
+          "29": {
+              "short": "Organic Chemicals",
+              "description": "Organic Chemicals",
+              "subcategories": {
+                  "2901": {
+                      "name": "Acyclic Hydrocarbons"
+                  },
+                  "2902": {
+                      "name": "Cyclic Hydrocarbons"
+                  },
+                  "2903": {
+                      "name": "Halogenated Derivatives Of Hydrocarbons"
+                  },
+                  "2904": {
+                      "name": "Hydrocarbon Derivatives, Sulfonated, Nitrated Etc"
+                  },
+                  "2905": {
+                      "name": "Acyclic Alcohols & Halogenat, Sulfonatd Etc Derivs"
+                  },
+                  "2906": {
+                      "name": "Cyclic Alcohols & Halogenatd, Sulfonatd Etc Derivs"
+                  },
+                  "2907": {
+                      "name": "Phenols; Phenol-alcohols"
+                  },
+                  "2908": {
+                      "name": "Phenol Or Phenol-alcohol Deriv, Halog, Sulf Etc"
+                  },
+                  "2909": {
+                      "name": "Ethers, Ether-alcohols, Ether-phenols, Etc"
+                  },
+                  "2910": {
+                      "name": "Epoxides With A 3-memb Ring & Halog, Sulfon Etc"
+                  },
+                  "2911": {
+                      "name": "Acetals And Hemiacetals With Or W/o Oth Oxy Func"
+                  },
+                  "2912": {
+                      "name": "Aldehydes, Its Cyclic Polymers; Paraformaldehyde"
+                  },
+                  "2913": {
+                      "name": "Halogenated, Sulfonated Etc Der Of Aldehyde Compds"
+                  },
+                  "2914": {
+                      "name": "Ketones & Quinones & Halogenatd, Sulfonatd Der Etc"
+                  },
+                  "2915": {
+                      "name": "Sat Acyclic Nonocarbox Acid & Anhyd, Halogon Etc"
+                  },
+                  "2916": {
+                      "name": "Unsat Acyclic & Cyclic Monocarbox Acid & Anhyd Etc"
+                  },
+                  "2917": {
+                      "name": "Polycarboxylic Acids & Anhyd Etc, Halog, Sulf Etc"
+                  },
+                  "2918": {
+                      "name": "Carboxylic Acid, Added Oxygen & Anhy Etc, Hal Etc"
+                  },
+                  "2919": {
+                      "name": "Phosphoric Esters & Salts, Lactophosphates Etc."
+                  },
+                  "2920": {
+                      "name": "Esters Of Inorg Acids & Salts; Their Halog Etc Der"
+                  },
+                  "2921": {
+                      "name": "Amine-function Compounds"
+                  },
+                  "2922": {
+                      "name": "Oxygen-function Amino-compounds"
+                  },
+                  "2923": {
+                      "name": "Quaternary Ammonium Salts Etc; Lecithins Etc."
+                  },
+                  "2924": {
+                      "name": "Carboxyamide-function Comp; Amide-function Com Etc"
+                  },
+                  "2925": {
+                      "name": "Carboxyimide-function Comp; Imine-function Com Etc"
+                  },
+                  "2926": {
+                      "name": "Nitrile-function Compounds"
+                  },
+                  "2927": {
+                      "name": "Diazo-, Azo-, Or Azoxy-compounds"
+                  },
+                  "2928": {
+                      "name": "Organic Derivatives Of Hydrazine Or Hydroxylamine"
+                  },
+                  "2929": {
+                      "name": "Nitrogen Function Compounds Nesoi"
+                  },
+                  "2930": {
+                      "name": "Organo-sulfur Compounds"
+                  },
+                  "2931": {
+                      "name": "Organo-inorganic Compounds Nesoi"
+                  },
+                  "2932": {
+                      "name": "Heterocyclic Compounds, Oxygen Hetero-atom(s) Only"
+                  },
+                  "2933": {
+                      "name": "Heterocyclic Comp, Nit Hetero-atoms Only"
+                  },
+                  "2934": {
+                      "name": "Nucleic Acids & Salts, Heterocyclic Comp Nesoi"
+                  },
+                  "2935": {
+                      "name": "Sulfonamides"
+                  },
+                  "2936": {
+                      "name": "Provitamins And Vitamins & Derivatives & Intermixs"
+                  },
+                  "2937": {
+                      "name": "Hormones; Derivatives & Steriods Used As Hormones"
+                  },
+                  "2938": {
+                      "name": "Glycosides, Natural Or Synth & Salts, Ethers Etc."
+                  },
+                  "2939": {
+                      "name": "Veg Alkaloids, Nat Or Synth & Salts, Ethers Etc."
+                  },
+                  "2940": {
+                      "name": "Sugars, Chem Pure (exc Sucrose, Lactose, Etc)"
+                  },
+                  "2941": {
+                      "name": "Antibiotics"
+                  },
+                  "2942": {
+                      "name": "Organic Compounds Nesoi"
+                  }
+              }
+          },
+          "30": {
+              "short": "Pharmaceutical Products",
+              "description": "Pharmaceutical Products",
+              "subcategories": {
+                  "3001": {
+                      "name": "Glands Etc Dry & Ext; Heparin; Hum Etc Subst Nesoi"
+                  },
+                  "3002": {
+                      "name": "Human Blood; Animal Blood; Antisera, Vaccines Etc"
+                  },
+                  "3003": {
+                      "name": "Medicaments Nesoi Of Mixtures, Not Dosage Etc Form"
+                  },
+                  "3004": {
+                      "name": "Medicaments Nesoi, Mixed Or Not, In Dosage Etc Fm"
+                  },
+                  "3005": {
+                      "name": "Bandages Etc Coated Etc Or In Retail Medic Etc Fm"
+                  },
+                  "3006": {
+                      "name": "Pharmaceutical Goods In Note 4 To Chapter 30"
+                  }
+              }
+          },
+          "31": {
+              "short": "Fertilizers",
+              "description": "Fertilizers",
+              "subcategories": {
+                  "3101": {
+                      "name": "Animal/veg Fertilizer, Mixed/nt/chemically Treated"
+                  },
+                  "3102": {
+                      "name": "Mineral Or Chemical Fertilizers, Nitrogenous"
+                  },
+                  "3103": {
+                      "name": "Mineral Or Chemical Fertilizers, Phosphatic"
+                  },
+                  "3104": {
+                      "name": "Mineral Or Chemical Fertilizers, Potassic"
+                  },
+                  "3105": {
+                      "name": "M Or Ch Fertiliz, Nun2of3el; Fert Nesoi; Fert Pack"
+                  }
+              }
+          },
+          "32": {
+              "short": "Tanning or Dyeing Extracts",
+              "description": "Tanning or Dyeing Extracts, Tannins and Their Derivatives, Dyes, Pigments and Other Coloring Matter, Paints and Varnishes, Putty and Other Mastics, Inks",
+              "subcategories": {
+                  "3201": {
+                      "name": "Tanning Ext Of Veg Origin; Tannins & Its Salts Etc"
+                  },
+                  "3202": {
+                      "name": "Syn Org & Inorg Tanning Subst; Tan Prep; Enz Prep"
+                  },
+                  "3203": {
+                      "name": "Coloring Matter Of Vegetable Or Animal Origin"
+                  },
+                  "3204": {
+                      "name": "Syn Org Coloring Matter & Prep; Syn Org Brit Agent"
+                  },
+                  "3205": {
+                      "name": "Color Lakes; Preparations Based On Color Lakes"
+                  },
+                  "3206": {
+                      "name": "Coloring Matter Nesoi; Coloring Prep Nesoi, Etc."
+                  },
+                  "3207": {
+                      "name": "Prep Pigments Etc For Ceramic Etc Indust; Frit Etc"
+                  },
+                  "3208": {
+                      "name": "Paint & Varnish From Synth Etc Polymers Nonaq, Etc"
+                  },
+                  "3209": {
+                      "name": "Paint & Varnish From Synth Etc Polymers Aqueous Md"
+                  },
+                  "3210": {
+                      "name": "Paints & Varnishes Nesoi; Watr Pigmts For Leather"
+                  },
+                  "3211": {
+                      "name": "Prepared Driers"
+                  },
+                  "3212": {
+                      "name": "Pigments Nonaq Liq Etc For Paint; St Foil; Dye Etc"
+                  },
+                  "3213": {
+                      "name": "Artist Colors Etc In Tablets, Tubes, Jars Etc."
+                  },
+                  "3214": {
+                      "name": "Glaziers Putty, Resin Cements, Caulking Comps Etc"
+                  },
+                  "3215": {
+                      "name": "Ink, Printing, Writing, Drawing Etc, Concen Or Not"
+                  }
+              }
+          },
+          "33": {
+              "short": "Essential Oils and Resinoids",
+              "description": "Essential Oils and Resinoids, Perfumery, Cosmetic or Toilet Preparations",
+              "subcategories": {
+                  "3301": {
+                      "name": "Essent Oils Resinoid; Ext Oleo Terpen By-prods Etc"
+                  },
+                  "3302": {
+                      "name": "Odoriferous Mixture; Raw Mat'l For Indus & Bev Mfg"
+                  },
+                  "3303": {
+                      "name": "Perfumes And Toilet Waters"
+                  },
+                  "3304": {
+                      "name": "Beauty, Make-up & Skin-care Prep; Manicure Etc Prp"
+                  },
+                  "3305": {
+                      "name": "Preparations For Use On The Hair"
+                  },
+                  "3306": {
+                      "name": "Preparations, Oral Dental Hygiene; Dental Floss"
+                  },
+                  "3307": {
+                      "name": "Personal Toilet Etc Prep Nesoi, Shaving, Bath Etc."
+                  }
+              }
+          },
+          "34": {
+              "short": "Soap, Organic Surface-Active Agents, Washing Preparations, Lubricating Preparations, Artificial Waxes, Prepared Waxes, Polishing or Scouring Preparations, Candles and Similar Articles, Modeling Pastes, Dental Wax and Dental Preparations with a Basis of Plaster",
+              "description": "Soap, Organic Surface-Active Agents, Washing Preparations, Lubricating Preparations, Artificial Waxes, Prepared Waxes, Polishing or Scouring Preparations, Candles and Similar Articles, Modeling Pastes, Dental Wax and Dental Preparations with a Basis of Plaster",
+              "subcategories": {
+                  "3401": {
+                      "name": "Soap; Organic Surf-act Prep For Soap Use, Bars Etc"
+                  },
+                  "3402": {
+                      "name": "Organic Surf-act Agents, Preps & Cleaning Preps"
+                  },
+                  "3403": {
+                      "name": "Lubricating Preps, Antirust & Treating Texiles Etc"
+                  },
+                  "3404": {
+                      "name": "Artificial And Prepared Waxes"
+                  },
+                  "3405": {
+                      "name": "Polishes & Creams For Leather, Wood Etc, Scour Prp"
+                  },
+                  "3406": {
+                      "name": "Candles, Tapers And The Like"
+                  },
+                  "3407": {
+                      "name": "Modeling Pastes For Child Etc; Denta Impr Cp Etc"
+                  }
+              }
+          },
+          "35": {
+              "short": "Flour & Starch",
+              "description": "Products from milling grains, including starches and gluten.",
+              "subcategories": {
+                  "3501": {
+                      "name": "Casein, Caseinates And Other Casein Derivatives"
+                  },
+                  "3502": {
+                      "name": "Albumins Incl Whey Proteins & Albumin Derivatives"
+                  },
+                  "3503": {
+                      "name": "Gelatin & Deriv; Isinglass; Glues, Animal Or Nesoi"
+                  },
+                  "3504": {
+                      "name": "Peptones, Other Proteins & Deriv Etc; Hide Powder"
+                  },
+                  "3505": {
+                      "name": "Dextrins Etc; Glues Based On Starches, Dextrin Etc"
+                  },
+                  "3506": {
+                      "name": "Prepared Glues & Adhesives Nesoi; Glue Retail Pack"
+                  },
+                  "3507": {
+                      "name": "Enzymes; Prepared Enzymes Nesoi"
+                  }
+              }
+          },
+          "36": {
+              "short": "Explosives",
+              "description": "Explosives, Pyrotechnic Products, Matches, Pyrophoric Alloys, Certain Combustible Preparations",
+              "subcategories": {
+                  "3601": {
+                      "name": "Propellant Powders"
+                  },
+                  "3602": {
+                      "name": "Prepared Explosives Other Than Propellent Powders"
+                  },
+                  "3603": {
+                      "name": "Safety Fuse;detonating Cord;percussion/det Cap Etc"
+                  },
+                  "3604": {
+                      "name": "Fireworks, Signalling Flares, Rain Rockets Etc."
+                  },
+                  "3605": {
+                      "name": "Matches, Exc Pyrotechnic Articles"
+                  },
+                  "3606": {
+                      "name": "Ferrocerium & Other Pyrophoric Alloys, Etc."
+                  }
+              }
+          },
+          "37": {
+              "short": "Photographic or Cinematographic Goods",
+              "description": "Photographic or Cinematographic Goods",
+              "subcategories": {
+                  "3701": {
+                      "name": "Photo Plates & Film, Flat, Sensitized, Unexposed"
+                  },
+                  "3702": {
+                      "name": "Photo Film In Rolls Sensitized, Unexposed"
+                  },
+                  "3703": {
+                      "name": "Photo Paper, Paperboard & Textiles, Sens, Unexpos"
+                  },
+                  "3704": {
+                      "name": "Photo Plates, Flm, Paper, Etc, Exposed, Nt Develop"
+                  },
+                  "3705": {
+                      "name": "Photo Plates & Still Film, Exposed & Developed"
+                  },
+                  "3706": {
+                      "name": "Motion-picture Film, Exposed And Developed"
+                  },
+                  "3707": {
+                      "name": "Photographic Chemicals; Unmixed Prod Retail Packed"
+                  }
+              }
+          },
+          "38": {
+              "short": "Miscellaneous Chemical Products",
+              "description": "Miscellaneous Chemical Products",
+              "subcategories": {
+                  "3801": {
+                      "name": "Artificial Graphite; Collodial Graphite & Prep Etc"
+                  },
+                  "3802": {
+                      "name": "Activated Carbon Etc.; Animal Black, Inc Spent"
+                  },
+                  "3803": {
+                      "name": "Tall Oil, Whether Or Not Refined"
+                  },
+                  "3804": {
+                      "name": "Residual Lyes From Wood Pulp Mfr (except Tall Oil)"
+                  },
+                  "3805": {
+                      "name": "Turpentine Etc; Crude Dipentene; Pine Oil Etc"
+                  },
+                  "3806": {
+                      "name": "Rosin & Resin Acids Etc; Rosin Spirit Etc; Run Gum"
+                  },
+                  "3807": {
+                      "name": "Wood Tar, Vegetable Pitch Etc & Similar Preps"
+                  },
+                  "3808": {
+                      "name": "Insecticides, Rodenticides; Fungicides Etc, Retail"
+                  },
+                  "3809": {
+                      "name": "Finishing Agents Etc For Textiles, Paper Etc Nesoi"
+                  },
+                  "3810": {
+                      "name": "Pickling Preps For Metal; Soldering Etc Powder Etc"
+                  },
+                  "3811": {
+                      "name": "Antiknock Preps & Other Additives For Mineral Oils"
+                  },
+                  "3812": {
+                      "name": "Prepared Rubber Accelerators; Com Plasticizers Etc"
+                  },
+                  "3813": {
+                      "name": "Prep & Chgs For Fire-extinguishers Etc"
+                  },
+                  "3814": {
+                      "name": "Organic Composite Solvents & Thinners, Nesoi"
+                  },
+                  "3815": {
+                      "name": "Reaction Initiators & Acceler & Catalyt Prep Nesoi"
+                  },
+                  "3816": {
+                      "name": "Refractory Cement,mortar,concrete Etc Excl Hd 3801"
+                  },
+                  "3817": {
+                      "name": "Mixed Alkylbenzenes & Mixed Alkylnaphthalene Nesoi"
+                  },
+                  "3818": {
+                      "name": "Chem Elem Doped, Used In Electron, Discs Wafers Et"
+                  },
+                  "3819": {
+                      "name": "Hydraulic Brake Fluids/liq For Hydraulic Trans Etc"
+                  },
+                  "3820": {
+                      "name": "Antifreezing Prep & Prepared Deicing Fluids"
+                  },
+                  "3821": {
+                      "name": "Prepared Culture Media For Devel Of Microorganisms"
+                  },
+                  "3822": {
+                      "name": "Diag/lab Reagents Incl Kits, Excl Head 3006;crm"
+                  },
+                  "3823": {
+                      "name": "Ind Monocarb Fat Acids; Acid Oil, Ref; Ind Fat Alc"
+                  },
+                  "3824": {
+                      "name": "Binders For Found Molds; Chemical Prod Etc Nesoi"
+                  },
+                  "3825": {
+                      "name": "Residual Products  Of Chem. Or Allied Ind., Nesoi"
+                  },
+                  "3826": {
+                      "name": "Biodiesel And Mixes Contain Lt 70% Petrol Oils Etc"
+                  },
+                  "3827": {
+                      "name": "Mix Cont Halogenat Deriv Of Methane Ethn Propn Nes"
+                  }
+              }
+          }
+      }
+  },
+  "7": {
+      "title": "Plastics and Articles Thereof; Rubber and Articles Thereof",
+      "chapters": {
+          "39": {
+              "short": "Plastics and Articles Thereof",
+              "description": "Plastics and Articles Thereof",
+              "subcategories": {
+                  "3901": {
+                      "name": "Polymers Of Ethylene, In Primary Forms"
+                  },
+                  "3902": {
+                      "name": "Polymers Of Propylene Or Other Olefins, Prim Forms"
+                  },
+                  "3903": {
+                      "name": "Polymers Of Styrene, In Primary Forms"
+                  },
+                  "3904": {
+                      "name": "Polymers Of Vinyl Chloride Etc., In Primary Forms"
+                  },
+                  "3905": {
+                      "name": "Polymers Of Vinyl Acetate & Oth Vinyl Polym, Pr Fm"
+                  },
+                  "3906": {
+                      "name": "Acrylic Polymers In Primary Forms"
+                  },
+                  "3907": {
+                      "name": "Polyethers, Expoxides & Polyesters, Primary Forms"
+                  },
+                  "3908": {
+                      "name": "Polyamides In Primary Forms"
+                  },
+                  "3909": {
+                      "name": "Amino-resins, Phenolics & Polyurethanes, Prim Form"
+                  },
+                  "3910": {
+                      "name": "Silicones, In Primary Forms"
+                  },
+                  "3911": {
+                      "name": "Petro Resins, Polysulfides Etc Nesoi, Primary Form"
+                  },
+                  "3912": {
+                      "name": "Cellulose And Chemical Deriv Nesoi, Primary Forms"
+                  },
+                  "3913": {
+                      "name": "Natural (inc Modified) Polymers Nesoi, Primary Fms"
+                  },
+                  "3914": {
+                      "name": "Ion-exchangers Basd On Plastics, In Primary Forms"
+                  },
+                  "3915": {
+                      "name": "Waste, Parings And Scrap, Of Plastics"
+                  },
+                  "3916": {
+                      "name": "Monofil, Cr-sect Ovimm, Rods, Sticks Etc, Plastics"
+                  },
+                  "3917": {
+                      "name": "Tubes, Pipes & Hoses & Their Fittings, Of Plastics"
+                  },
+                  "3918": {
+                      "name": "Floor Cover (rolls & Tiles) & Wall Cover, Plastics"
+                  },
+                  "3919": {
+                      "name": "Self-adhesive Plates, Sheets, Film Etc Of Plastics"
+                  },
+                  "3920": {
+                      "name": "Plates, Sheets, Film Etc No Ad, Non-cel Etc, Plast"
+                  },
+                  "3921": {
+                      "name": "Plates, Sheets, Film, Foil & Strip Nesoi, Plastics"
+                  },
+                  "3922": {
+                      "name": "Baths, Washbasins, Lavatory Seats Etc Of Plastics"
+                  },
+                  "3923": {
+                      "name": "Containers (boxes, Bags Etc), Closurers Etc, Plast"
+                  },
+                  "3924": {
+                      "name": "Tableware & Other Household Articles Etc, Plastics"
+                  },
+                  "3925": {
+                      "name": "Builders' Ware Of Plastics, Nesoi"
+                  },
+                  "3926": {
+                      "name": "Articles Of Plastics (inc Polymers & Resins) Nesoi"
+                  }
+              }
+          },
+          "40": {
+              "short": "Rubber and Articles Thereof",
+              "description": "Rubber and Articles Thereof",
+              "subcategories": {
+                  "4001": {
+                      "name": "Natural Rubber, Balata, Chicle Etc, Prim Form Etc"
+                  },
+                  "4002": {
+                      "name": "Synth Rubber & Factice, Inc Nat-syn Mix, Pr Fm Etc"
+                  },
+                  "4003": {
+                      "name": "Reclaim Rub In Primary Form/plates, Sheets/strip"
+                  },
+                  "4004": {
+                      "name": "Waste Of Rub, Exc Hd Rub, & Powder Obtain Thereof"
+                  },
+                  "4005": {
+                      "name": "Compounded Rubber, Unvulcanised, Primary Forms Etc"
+                  },
+                  "4006": {
+                      "name": "Unvulc Rubber Forms Nesoi & Unvulc Rubber Articles"
+                  },
+                  "4007": {
+                      "name": "Vulcanized Rubber Thread And Cord"
+                  },
+                  "4008": {
+                      "name": "Plates, Sheets, Profile Shapes Etc, Soft Vulc Rubr"
+                  },
+                  "4009": {
+                      "name": "Tubes, Pipes & Hoses Of Unhard Vulcanized Rubber"
+                  },
+                  "4010": {
+                      "name": "Conveyor Or Transmiss Belts Of Vulcanized Rubber"
+                  },
+                  "4011": {
+                      "name": "New Pneumatic Tires, Of Rubber"
+                  },
+                  "4012": {
+                      "name": "Retread Or Used Pneu Tires, Solid Tires Etc, Rubbr"
+                  },
+                  "4013": {
+                      "name": "Inner Tubes For Tires, Of Rubber"
+                  },
+                  "4014": {
+                      "name": "Hygienic Or Pharm Articles Of Unhard Vulcan Rubber"
+                  },
+                  "4015": {
+                      "name": "Art Of Apparel & Access Of Unhard Vulcanized Rubbr"
+                  },
+                  "4016": {
+                      "name": "Articles Nesoi Of Unharded Vulcanized Rubber"
+                  },
+                  "4017": {
+                      "name": "Hard Rubber In All Forms; Articles Of Hard Rubber"
+                  }
+              }
+          }
+      }
+  },
+  "8": {
+      "title": "Raw Hides and Skins, Leather, Furskins and Articles Thereof; Saddlery and Harness; Travel Goods, Handbags and Similar Containers; Articles of Animal Gut (Other Than Silkworm Gut)",
+      "chapters": {
+          "41": {
+              "short": "Raw Hides and Skins (Other Than Furskins) and Leather",
+              "description": "Raw Hides and Skins (Other Than Furskins) and Leather",
+              "subcategories": {
+                  "4101": {
+                      "name": "Raw Hides & Skins Of Bovine Or Equine Animals"
+                  },
+                  "4102": {
+                      "name": "Raw Skins Of Sheep Or Lambs Nesoi"
+                  },
+                  "4103": {
+                      "name": "Raw Hides And Skins Nesoi (fr Or Pres Not Tan Etc)"
+                  },
+                  "4104": {
+                      "name": "Bovine Or Equine Leather, No Hair Nesoi"
+                  },
+                  "4105": {
+                      "name": "Sheep Or Lamb Skin Leather, No Wool Nesoi"
+                  },
+                  "4106": {
+                      "name": "Other Animal N Leather, No Hair Nesoi"
+                  },
+                  "4107": {
+                      "name": "Leather Furt Prep Aft Tan/crust, No Hair On,nes"
+                  },
+                  "4112": {
+                      "name": "Sheep/lamb Ltr,ft Prp Tan/crus, W/o Wool,nt Hd4114"
+                  },
+                  "4113": {
+                      "name": "Lthr Fthr Perp After Tanning,of Oth Aml, W/o Wl/hr"
+                  },
+                  "4114": {
+                      "name": "Chamois/patent/patent Laminated/metallized Leather"
+                  },
+                  "4115": {
+                      "name": "Comps. Lthr,fbr Slb/sht/srp;lthr Wst/dust/pwd/flou"
+                  }
+              }
+          },
+          "42": {
+              "short": "Articles of Leather",
+              "description": "Articles of Leather, Saddlery and Harness, Travel Goods, Handbags and Similar Containers, Articles of Animal Gut (Other Than Silkworm Gut)",
+              "subcategories": {
+                  "4201": {
+                      "name": "Saddlery, Harness, Traces, Leads Etc, Any Material"
+                  },
+                  "4202": {
+                      "name": "Travel Goods, Handbags, Wallets, Jewelry Cases Etc"
+                  },
+                  "4203": {
+                      "name": "Articles Of Apparel & Access, Leath & Comp Leather"
+                  },
+                  "4205": {
+                      "name": "Articles Of Leather, Nesoi"
+                  },
+                  "4206": {
+                      "name": "Articles Of Gut Nesoi, Of Goldbeater's Skin Etc."
+                  }
+              }
+          },
+          "43": {
+              "short": "Furskins and Artificial Fur",
+              "description": "Furskins and Artificial Fur, Manufactures Thereof",
+              "subcategories": {
+                  "4301": {
+                      "name": "Raw Furskins Nesoi (incl Pcs For Fur Use)"
+                  },
+                  "4302": {
+                      "name": "Tanned Or Dressed Furskins (incl Pcs Etc)"
+                  },
+                  "4303": {
+                      "name": "Articles Of Apparel Etc. Of Furskin"
+                  },
+                  "4304": {
+                      "name": "Artificial Fur And Articles Thereof"
+                  }
+              }
+          }
+      }
+  },
+  "9": {
+      "title": "Wood and Articles of Wood; Wood Charcoal; Cork and Articles of Cork; Manufactures of Straw, of Esparto or of Other Plaiting Materials; Basketware and Wickerwork",
+      "chapters": {
+          "44": {
+              "short": "Wood and Articles of Wood",
+              "description": "Wood and Articles of Wood, Wood Charcoal",
+              "subcategories": {
+                  "4401": {
+                      "name": "Fuel Wood In Logs Etc; Wood In Chips, Etc."
+                  },
+                  "4402": {
+                      "name": "Wood Charcoal, Whether Or Not Agglomerated"
+                  },
+                  "4403": {
+                      "name": "Wood In The Rough, Stripped Or Not Of Sapwood Etc"
+                  },
+                  "4404": {
+                      "name": "Hoopwood; Split Poles; Pickets And Stakes Etc"
+                  },
+                  "4405": {
+                      "name": "Wood Wool (excelsior); Wood Flour"
+                  },
+                  "4406": {
+                      "name": "Railway Or Tramway Sleepers (cross-ties) Of Wood"
+                  },
+                  "4407": {
+                      "name": "Wood Sawn Or Chipped Length, Sliced Etc, Ov6mm Th"
+                  },
+                  "4408": {
+                      "name": "Veneer Sheets Etc, Not Over 6 mm Thick"
+                  },
+                  "4409": {
+                      "name": "Wood, Continuously Shaped (tongued, Grooved Etc.)"
+                  },
+                  "4410": {
+                      "name": "Particle Board & Similar Board Of Wood Etc."
+                  },
+                  "4411": {
+                      "name": "Fiberboard Of Wood Or Other Ligneous Materials"
+                  },
+                  "4412": {
+                      "name": "Plywood, Veneered Panels & Similar Laminated Wood"
+                  },
+                  "4413": {
+                      "name": "Densified Wd Blocks/plates/strips/profile Shapes"
+                  },
+                  "4414": {
+                      "name": "Wooden Frames Paintings, Photographs, Mirrors, Etc"
+                  },
+                  "4415": {
+                      "name": "Packings Etc, Wood; Pallets, Collars Etc, Of Wood"
+                  },
+                  "4416": {
+                      "name": "Casks, Barrels, Vats, Etc. And Parts, Of Wood"
+                  },
+                  "4417": {
+                      "name": "Tools/tool & Broom Bodies Etc Shoe Last/trees Wood"
+                  },
+                  "4418": {
+                      "name": "Builders' Joinery And Carpentry Of Wood"
+                  },
+                  "4419": {
+                      "name": "Tableware And Kitchenware, Of Wood"
+                  },
+                  "4420": {
+                      "name": "Wood Marquetry Etc; Jewel Case Etc & Wd Furn Nesoi"
+                  },
+                  "4421": {
+                      "name": "Articles Of Wood, Nesoi"
+                  }
+              }
+          },
+          "45": {
+              "short": "Cork and Articles of Cork",
+              "description": "Cork and Articles of Cork",
+              "subcategories": {
+                  "4501": {
+                      "name": "Natural Cork, Raw Or Simply Prep; Waste Cork Etc."
+                  },
+                  "4502": {
+                      "name": "Natural Cork Deback/rgh Sqd In Blks/sheets/strips"
+                  },
+                  "4503": {
+                      "name": "Articles Of Natural Cork"
+                  },
+                  "4504": {
+                      "name": "Agglomerated Cork And Articles Thereof"
+                  }
+              }
+          },
+          "46": {
+              "short": "Plaiting Materials",
+              "description": "Straw and plant-based materials for weaving or basketry.",
+              "subcategories": {
+                  "4601": {
+                      "name": "Plaits Etc & Products Of Plaiting Materials"
+                  },
+                  "4602": {
+                      "name": "Basketwork, Wickerwork Of Plaits Etc; Loofa Articl"
+                  }
+              }
+          }
+      }
+  },
+  "10": {
+      "title": "Pulp of Wood or of Other Fibrous Cellulosic Material; Recovered (Waste and Scrap) Paper or Paperboard; Paper and Paperboard and Articles Thereof",
+      "chapters": {
+          "47": {
+              "short": "Animal Feed & Waste",
+              "description": "Animal feed and food industry by-products.",
+              "subcategories": {
+                  "4701": {
+                      "name": "Mechanical Woodpulp"
+                  },
+                  "4702": {
+                      "name": "Chemical Woodpulp, Dissolving Grades"
+                  },
+                  "4703": {
+                      "name": "Chemical Woodpulp, Soda Or Sulfate, Not Dissoly Gr"
+                  },
+                  "4704": {
+                      "name": "Chemical Woodpulp, Sulfite, Not Dissolving Grades"
+                  },
+                  "4705": {
+                      "name": "Woodpulp From Mechanical/chemical Pulp Processes"
+                  },
+                  "4706": {
+                      "name": "Pulps Of Fibers From Recovered ppr, Oth Cell Mat'l"
+                  },
+                  "4707": {
+                      "name": "Waste And Scrap Of Paper Or Paperboard"
+                  }
+              }
+          },
+          "48": {
+              "short": "Paper and Paperboard",
+              "description": "Paper and Paperboard, Articles of Paper Pulp, of Paper or of Paperboard",
+              "subcategories": {
+                  "4801": {
+                      "name": "Newsprint, In Rolls Or Sheets"
+                  },
+                  "4802": {
+                      "name": "Paper, Uncoat, For Writing Etc, Rolls; Hndmd Paper"
+                  },
+                  "4803": {
+                      "name": "Toilet Etc Hshld/santry Stock Paper Roll Or Sheets"
+                  },
+                  "4804": {
+                      "name": "Kraft Paper & Paperboard, Uncoat Nesoi, Rolls Etc"
+                  },
+                  "4805": {
+                      "name": "Paper & Paperboard, Uncoat, Nesoi, Rolls Or Sheets"
+                  },
+                  "4806": {
+                      "name": "Veg Parchment, Greaseproof Papers Etc, Rolls Etc"
+                  },
+                  "4807": {
+                      "name": "Composite Paper & Paperboard, No Surf Coat, Rl Etc"
+                  },
+                  "4808": {
+                      "name": "Paper And Paperboard, Corrugated Etc, Rolls Etc"
+                  },
+                  "4809": {
+                      "name": "Paper, Carbon, Self-copy Etc, Rolls Etc"
+                  },
+                  "4810": {
+                      "name": "Paper & Paperboard, Coated With Kaolin Etc, Rl Etc"
+                  },
+                  "4811": {
+                      "name": "Paper, Paperboard, Wad Etc, Coat Etc Nesoi, Rl Etc"
+                  },
+                  "4812": {
+                      "name": "Filter Blocks, Slabs And Plates, Of Paper Pulp"
+                  },
+                  "4813": {
+                      "name": "Cigarette Paper, Cut To Size Etc Or Not"
+                  },
+                  "4814": {
+                      "name": "Wallpaper Etc.; Window Transparencies Of Paper"
+                  },
+                  "4816": {
+                      "name": "Paper, Carbon, Self-copy Etc Nesoi, Boxed Or Not"
+                  },
+                  "4817": {
+                      "name": "Envelopes, Postcards Etc & Boxes Etc Of Stationary"
+                  },
+                  "4818": {
+                      "name": "Toilet Paper, Towels, Sim hh/hospital Art Of Paper"
+                  },
+                  "4819": {
+                      "name": "Cartons Etc Paper; Office Box Files Etc, Paper Etc"
+                  },
+                  "4820": {
+                      "name": "Registers, Notebooks, Binders, Bus Forms Etc, Papr"
+                  },
+                  "4821": {
+                      "name": "Labels Of Paper Or Paperboard, Printed Or Not"
+                  },
+                  "4822": {
+                      "name": "Bobbins, Spools Etc. Of Pap Pulp, Paper & Paperbd"
+                  },
+                  "4823": {
+                      "name": "Paper, Paperboard, Cellul Wad To Size & Arts Nesoi"
+                  }
+              }
+          },
+          "49": {
+              "short": "Printed Books, Newspapers, Pictures and Other Products of the Printing Industry",
+              "description": "Printed Books, Newspapers, Pictures and Other Products of the Printing Industry, Manuscripts, Typescripts and Plans",
+              "subcategories": {
+                  "4901": {
+                      "name": "Books, Brochures & Similar Printed Matter"
+                  },
+                  "4902": {
+                      "name": "Newspapers, Journals & Periodicals"
+                  },
+                  "4903": {
+                      "name": "Children's Picture, Drawing Or Coloring Books"
+                  },
+                  "4904": {
+                      "name": "Music, Printed Or In Manuscript, Bound Etc Or Not"
+                  },
+                  "4905": {
+                      "name": "Maps & Hydrographic Charts Etc, Atlases Etc"
+                  },
+                  "4906": {
+                      "name": "Plans, Drawings For Architectural, Etc Purposes"
+                  },
+                  "4907": {
+                      "name": "Unused Postage,rev/sim. Stamps,w/ Recogn Face Valu"
+                  },
+                  "4908": {
+                      "name": "Transfers (decalcomanias, Except Toy)"
+                  },
+                  "4909": {
+                      "name": "Printed Or Illust Post Cards, Greeting Cards, Etc."
+                  },
+                  "4910": {
+                      "name": "Calendars, Calendar Blocks Of Any Kind, Printed"
+                  },
+                  "4911": {
+                      "name": "Printed Matter Nesoi, Incl Print Pictures & Photos"
+                  }
+              }
+          }
+      }
+  },
+  "11": {
+      "title": "Textiles and Textile Articles",
+      "chapters": {
+          "50": {
+              "short": "Silk",
+              "description": "Silk",
+              "subcategories": {
+                  "5001": {
+                      "name": "Silkworm Cocoons Suitable For Reeling"
+                  },
+                  "5002": {
+                      "name": "Raw Silk (not Thrown)"
+                  },
+                  "5003": {
+                      "name": "Silk Waste, Including Silk Yarn Waste Etc."
+                  },
+                  "5004": {
+                      "name": "Silk Yarn, Not Spun From Waste, Not Retail Packed"
+                  },
+                  "5005": {
+                      "name": "Yarn Spun From Silk Waste Not Put Up Retail Sale"
+                  },
+                  "5006": {
+                      "name": "Silk Yarn & Yarn From Waste Retail Pk; Silkwm Gut"
+                  },
+                  "5007": {
+                      "name": "Woven Fabrics Of Silk Or Silk Waste"
+                  }
+              }
+          },
+          "51": {
+              "short": "Wool, Fine or Coarse Animal Hair",
+              "description": "Wool, Fine or Coarse Animal Hair, Horsehair Yarn and Woven Fabric",
+              "subcategories": {
+                  "5101": {
+                      "name": "Wool, Not Carded Or Combed"
+                  },
+                  "5102": {
+                      "name": "Fine Or Coarse Animal Hair, Not Carded Or Combed"
+                  },
+                  "5103": {
+                      "name": "Waste Of Wool Or Of Fine Or Coarse Animal Hair"
+                  },
+                  "5104": {
+                      "name": "Garnetted Stock Of Wool/fine Or Coarse Animal Hair"
+                  },
+                  "5105": {
+                      "name": "Wool & Fine Or Coarse Animal Hair, Carded & Combed"
+                  },
+                  "5106": {
+                      "name": "Yarn Of Carded Wool, Not Put Up For Retail Sale"
+                  },
+                  "5107": {
+                      "name": "Yarn Of Combed Wool, Not Put Up For Retail Sale"
+                  },
+                  "5108": {
+                      "name": "Yarn Of Fine Animal Hair, Not For Retail Sale"
+                  },
+                  "5109": {
+                      "name": "Yarn Of Wool Or Fine Animal Hair, For Retail Sale"
+                  },
+                  "5110": {
+                      "name": "Yarn Coarse Animal Hair Put Up Or Not Retail Sale"
+                  },
+                  "5111": {
+                      "name": "Woven Fabrics Of Carded Wool Or Fine Animal Hair"
+                  },
+                  "5112": {
+                      "name": "Woven Fabrics Of Combed Wool Or Fine Animal Hair"
+                  },
+                  "5113": {
+                      "name": "Woven Fabrics Of Coarse Animal Hair Or Horsehair"
+                  }
+              }
+          },
+          "52": {
+              "short": "Cotton",
+              "description": "Cotton",
+              "subcategories": {
+                  "5201": {
+                      "name": "Cotton, Not Carded Or Combed"
+                  },
+                  "5202": {
+                      "name": "Cotton Waste (including Yarn Waste Etc.)"
+                  },
+                  "5203": {
+                      "name": "Cotton, Carded Or Combed"
+                  },
+                  "5204": {
+                      "name": "Cotton Sewing Thread, Retail Packed Or Not"
+                  },
+                  "5205": {
+                      "name": "Cotton Yarn (not Sewing Thread) Nu85%cot No Retail"
+                  },
+                  "5206": {
+                      "name": "Cotton Yarn (not Sewing Thread) Un85%cot No Retail"
+                  },
+                  "5207": {
+                      "name": "Cotton Yarn (not Sewing Thread) Retail Packed"
+                  },
+                  "5208": {
+                      "name": "Woven Cotton Fabrics, Nu 85% Cot, Wt Nov 200 G/m2"
+                  },
+                  "5209": {
+                      "name": "Woven Cotton Fabrics, Nu 85% Cot, Wt Ov 200 G/m2"
+                  },
+                  "5210": {
+                      "name": "Woven Cotton Fabrics, Un85%cot, mmfmix, Nov200g/m2"
+                  },
+                  "5211": {
+                      "name": "Woven Cotton Fabrics, Un85%cot, mmfmix, Ov200g/m2"
+                  },
+                  "5212": {
+                      "name": "Woven Cotton Fabrics Nesoi"
+                  }
+              }
+          },
+          "53": {
+              "short": "Other Vegetable Textile Fibres",
+              "description": "Other Vegetable Textile Fibres, Paper Yarn and Woven Fabrics of Paper Yarn",
+              "subcategories": {
+                  "5301": {
+                      "name": "Flax, Raw Etc But Not Spun; Flax Tow And Waste"
+                  },
+                  "5302": {
+                      "name": "True Hemp, Raw Etc Not Spun; Tr Hemp Tow And Waste"
+                  },
+                  "5303": {
+                      "name": "Jute & Oth Text Bast Fib Nesoi, Raw Etc & Tow Etc"
+                  },
+                  "5305": {
+                      "name": "Coconut, Abaca, Ramie Etc Nesoi, Raw Etc; Tow Etc"
+                  },
+                  "5306": {
+                      "name": "Flax Yarn"
+                  },
+                  "5307": {
+                      "name": "Yarn Of Jute & Other Textile Bast Fibers Nesoi"
+                  },
+                  "5308": {
+                      "name": "Yarn Of Vegetable Textile Fibers Nesoi; Paper Yarn"
+                  },
+                  "5309": {
+                      "name": "Woven Fabrics Of Flax"
+                  },
+                  "5310": {
+                      "name": "Woven Fabrics Of Jute Or Oth Text Bast Fiber Nesoi"
+                  },
+                  "5311": {
+                      "name": "Wov Fab Of Ot Veg Textile Fib Wov Fab Of ppr Yarn"
+                  }
+              }
+          },
+          "54": {
+              "short": "Man-made Filaments",
+              "description": "Man-made Filaments, Strip and the Like of man-made textile materials",
+              "subcategories": {
+                  "5401": {
+                      "name": "Sewing Thread Of Manmade Filaments, Retail Or Not"
+                  },
+                  "5402": {
+                      "name": "Synthetic Filament Yarn (no Sew Thread), No Retail"
+                  },
+                  "5403": {
+                      "name": "Artificial Filament Yarn (no Sew Thred), No Retail"
+                  },
+                  "5404": {
+                      "name": "Syn Monofil Not Un 67 Dec, Cr-sect Nov1mm, Stno5mm"
+                  },
+                  "5405": {
+                      "name": "Art Monof, Nun67dec Crsnov1mm, Strip Etc Nov5mm Wd"
+                  },
+                  "5406": {
+                      "name": "Manmade Filament Yarn (no Sew Thread), Retail Pack"
+                  },
+                  "5407": {
+                      "name": "Woven Fab Of Syn Fil Yn, Incl Monofil 67 Dec Etc"
+                  },
+                  "5408": {
+                      "name": "Woven Fab Of Art Fil Yn, Incl Monofil 67 Dec Etc"
+                  }
+              }
+          },
+          "55": {
+              "short": "Man-made Staple Fibres",
+              "description": "Man-made Staple Fibres",
+              "subcategories": {
+                  "5501": {
+                      "name": "Synthetic Filament Tow"
+                  },
+                  "5502": {
+                      "name": "Artificial Filament Tow"
+                  },
+                  "5503": {
+                      "name": "Synthetic Staple Fibers, Not Carded, Combed Etc."
+                  },
+                  "5504": {
+                      "name": "Artificial Staple Fibers, Not Carded, Combed Etc."
+                  },
+                  "5505": {
+                      "name": "Waste Of Manmade Fibers (including Noils Etc.)"
+                  },
+                  "5506": {
+                      "name": "Synthetic Staple Fibers, Carded, Combed Etc."
+                  },
+                  "5507": {
+                      "name": "Artific Stpl Fiber Crd Cmb Or Othws Prcd For Spng"
+                  },
+                  "5508": {
+                      "name": "Sewing Thread, Manmade Staple Fiber, Retail Or Not"
+                  },
+                  "5509": {
+                      "name": "Yarn (no Sew Thread), Syn Staple Fib, Not Retail"
+                  },
+                  "5510": {
+                      "name": "Yarn (no Sew Thread), Art Staple Fib, Not Retail"
+                  },
+                  "5511": {
+                      "name": "Yarn (no Sew Thread), Manmade Staple Fiber, Retail"
+                  },
+                  "5512": {
+                      "name": "Wov Fabric, Synth Staple Fib Nu 85% Synth St Fiber"
+                  },
+                  "5513": {
+                      "name": "Wov Fabric, Syn St Fib Un85%, Cot Mix, Nov17og/m2"
+                  },
+                  "5514": {
+                      "name": "Wov Fabric, Syn St Fib Un85%, Cot Mix, Ov 170 G/m2"
+                  },
+                  "5515": {
+                      "name": "Woven Fabrics Of Synthetic Staple Fibers Nesoi"
+                  },
+                  "5516": {
+                      "name": "Woven Fabrics Of Artificial Staple Fibers"
+                  }
+              }
+          },
+          "56": {
+              "short": "Wadding, Felt and Nonwovens",
+              "description": "Wadding, Felt and Nonwovens, Special Yarns, Twine, Cordage, Ropes and Cables and Articles Thereof",
+              "subcategories": {
+                  "5601": {
+                      "name": "Text Wadding & Articles; Text Fibers Nov 5 mm, Etc"
+                  },
+                  "5602": {
+                      "name": "Felt, Impregnated, Coated, Etc. Or Not"
+                  },
+                  "5603": {
+                      "name": "Nonwovens, Whether Or Not Impregnated, Coated Etc"
+                  },
+                  "5604": {
+                      "name": "Rub Thred & Cord, Text Cov; Tex Yn Etc Cov Rub Etc"
+                  },
+                  "5605": {
+                      "name": "Metal Yrn Whet O Nt Gimp Tex Yrn O Strip W/metal"
+                  },
+                  "5606": {
+                      "name": "Gimp Yrn & Strip, 5404/5405 Chen Yrn Loop Wale-yrn"
+                  },
+                  "5607": {
+                      "name": "Twine, Cordage, Rope & Cables, Coated Etc Or Not"
+                  },
+                  "5608": {
+                      "name": "Knotted Net Of Twine Etc; Fish Net Etc Of Textiles"
+                  },
+                  "5609": {
+                      "name": "Art O Yrn Like Of Head 5404/5405 Twine O Cable Nes"
+                  }
+              }
+          },
+          "57": {
+              "short": "Carpets and Other Textile Floor Coverings",
+              "description": "Carpets and Other Textile Floor Coverings",
+              "subcategories": {
+                  "5701": {
+                      "name": "Carpets & Other Textile Floor Coverings, Knotted"
+                  },
+                  "5702": {
+                      "name": "Carpets & Oth Text Floor Cover, Woven, No Tuft Etc"
+                  },
+                  "5703": {
+                      "name": "Carpets, Oth Textile Floor Coverings, Turf, Tufted"
+                  },
+                  "5704": {
+                      "name": "Carpets & Oth Text Floor Cover, Felt, No Tuft Etc"
+                  },
+                  "5705": {
+                      "name": "Othr Carpets&othr Tex Floor Cov,whethr/not Made-up"
+                  }
+              }
+          },
+          "58": {
+              "short": "Special Woven Fabrics",
+              "description": "Special Woven Fabrics, Tufted Textile Fabrics, Lace, Tapestries, Trimmings, Embroidery",
+              "subcategories": {
+                  "5801": {
+                      "name": "Woven Pile & Chenille Fabrics Nesoi (no Terry Etc)"
+                  },
+                  "5802": {
+                      "name": "Woven Terry Fabrics Nesoi; Tufted Tex Fabric Nesoi"
+                  },
+                  "5803": {
+                      "name": "Gauze (other Than Narrow Fabrics Not Over 30 Cm)"
+                  },
+                  "5804": {
+                      "name": "Tulles & Other Net Fabrics; Lace In Pc, Etc. Nesoi"
+                  },
+                  "5805": {
+                      "name": "Hand-wov Tapestries Wall Hang Use Only"
+                  },
+                  "5806": {
+                      "name": "Narrow Woven Fabrics Except Labels Etc In Pc Etc"
+                  },
+                  "5807": {
+                      "name": "Labels, Badges Etc Of Textiles, In The Pc Etc"
+                  },
+                  "5808": {
+                      "name": "Braids In Pc; Orn Trim In Pc Etc; Tassels Etc."
+                  },
+                  "5809": {
+                      "name": "Woven Fabrics Of Metal Thread & Metalized Yarn Nec"
+                  },
+                  "5810": {
+                      "name": "Embroidery In The Piece, In Strips Or In Motifs"
+                  },
+                  "5811": {
+                      "name": "Quilt Tex Prod Pc 1&gt; Layr W/pad Stch N/embr H 5810"
+                  }
+              }
+          },
+          "59": {
+              "short": "Impregnated, Coated, Covered or Laminated Textile Fabrics",
+              "description": "Impregnated, Coated, Covered or Laminated Textile Fabrics, Textile Articles of a Kind Suitable for Industrial Use",
+              "subcategories": {
+                  "5901": {
+                      "name": "Textile Book Cov Fab; Trac Cl; Paint Canvas Etc"
+                  },
+                  "5902": {
+                      "name": "Tire Cord Fabric Of High Tenacity Yarn, Nylon Etc"
+                  },
+                  "5903": {
+                      "name": "Textile Fabrics (not Tire Cord) Coat Etc, Plastics"
+                  },
+                  "5904": {
+                      "name": "Linoleum; Floor Cover With Coat Etc On A Text Base"
+                  },
+                  "5905": {
+                      "name": "Textile Wall Coverings"
+                  },
+                  "5906": {
+                      "name": "Rubberized Textile Fabrics, Other Than Tire Cord"
+                  },
+                  "5907": {
+                      "name": "Textl Fabrc,coatd,etc,theatrcl Scenery,back-cloths"
+                  },
+                  "5908": {
+                      "name": "Textile Wicks For Lamps Etc And Gas Mantles Etc"
+                  },
+                  "5909": {
+                      "name": "Textile Hosepiping And Similar Textile Tubing"
+                  },
+                  "5910": {
+                      "name": "Transmsn/convyr Belt,tex Mat,whthr/nt Reinfcd, Ctd"
+                  },
+                  "5911": {
+                      "name": "Textile Prod And Articl For Tech Uses Ch 59 Note 8"
+                  }
+              }
+          },
+          "60": {
+              "short": "Knitted or Crocheted Fabrics",
+              "description": "Knitted or Crocheted Fabrics",
+              "subcategories": {
+                  "6001": {
+                      "name": "Pile Fabrics, Knitted Or Crocheted"
+                  },
+                  "6002": {
+                      "name": "Knitted Or Crocheted Fabrics, Nesoi"
+                  },
+                  "6003": {
+                      "name": "Knit/croh Fabs, Wd&lt;30cm, Nt Of Heads 6001/6002"
+                  },
+                  "6004": {
+                      "name": "Knit/croct Fab. Wd&gt;30 Cm,5%&gt;elasto Yarn Nt Hd 6001"
+                  },
+                  "6005": {
+                      "name": "Warp Knit Fabrics, Other Than Of Headis 6001-6004"
+                  },
+                  "6006": {
+                      "name": "Knitted Or Crocheted Fabrics, Nesoi"
+                  }
+              }
+          },
+          "61": {
+              "short": "Articles of Apparel and Clothing Accessories, Knitted or Crocheted",
+              "description": "Articles of Apparel and Clothing Accessories, Knitted or Crocheted",
+              "subcategories": {
+                  "6101": {
+                      "name": "Men's Or Boys' Overcoats Etc, Knit Or Crochet"
+                  },
+                  "6102": {
+                      "name": "Women's Or Girls' Overcoats Etc, Knit Or Crochet"
+                  },
+                  "6103": {
+                      "name": "Men's Or Boys' Suits, Ensembles Etc, Knit Or Croch"
+                  },
+                  "6104": {
+                      "name": "Women's Or Girls' Suits, Ensemb Etc, Knit Or Croch"
+                  },
+                  "6105": {
+                      "name": "Men's Or Boys' Shirts, Knitted Or Crocheted"
+                  },
+                  "6106": {
+                      "name": "Women's Or Girls' Blouses & Shirts, Knit Or Croch"
+                  },
+                  "6107": {
+                      "name": "Men's Or Boys' Underpants, Pjs, Etc, Knit Or Croch"
+                  },
+                  "6108": {
+                      "name": "Women's Or Girls' Slips, Pjs, Etc, Knit Or Crochet"
+                  },
+                  "6109": {
+                      "name": "T-shirts, Singlets, Tank Tops Etc, Knit Or Crochet"
+                  },
+                  "6110": {
+                      "name": "Sweaters, Pullovers, Vests Etc, Knit Or Crocheted"
+                  },
+                  "6111": {
+                      "name": "Babies' Garments & Accessories, Knit Or Crocheted"
+                  },
+                  "6112": {
+                      "name": "Track Suits, Ski-suits & Swimwear, Knit Or Crochet"
+                  },
+                  "6113": {
+                      "name": "Garments, Knit Etc, Coated Etc Rubber, Plastic Etc"
+                  },
+                  "6114": {
+                      "name": "Garments Nesoi, Knitted Or Crocheted"
+                  },
+                  "6115": {
+                      "name": "Pantyhose, Socks & Other Hosiery, Knit Or Crochet"
+                  },
+                  "6116": {
+                      "name": "Gloves, Mittens And Mitts, Knitted Or Crocheted"
+                  },
+                  "6117": {
+                      "name": "Made-up Clothing Access Nesoi, Parts Etc, Knit Etc"
+                  }
+              }
+          },
+          "62": {
+              "short": "Articles of Apparel and Clothing Accessories, Not Knitted or Crocheted",
+              "description": "Articles of Apparel and Clothing Accessories, Not Knitted or Crocheted",
+              "subcategories": {
+                  "6201": {
+                      "name": "Men's Or Boys' Overcoats Etc, Except Heading 6203"
+                  },
+                  "6202": {
+                      "name": "Women's Or Girls' Overcoats Etc, Except Head 6203"
+                  },
+                  "6203": {
+                      "name": "Men's Or Boys' Suits, Ensembles Etc, Not Knit Etc"
+                  },
+                  "6204": {
+                      "name": "Women's Or Girls' Suits, Ensemb Etc, Not Knit Etc"
+                  },
+                  "6205": {
+                      "name": "Men's Or Boys' Shirts, Not Knitted Or Crocheted"
+                  },
+                  "6206": {
+                      "name": "Women's Or Girls' Blouses, Shirts Etc Not Knit Etc"
+                  },
+                  "6207": {
+                      "name": "Men's Or Boys' Undershirts Etc, Not Knit Or Croch"
+                  },
+                  "6208": {
+                      "name": "Women's Or Girls' Slips Etc, Not Knit Or Crochet"
+                  },
+                  "6209": {
+                      "name": "Babies' Garments & Accessories, Not Knit Or Croch"
+                  },
+                  "6210": {
+                      "name": "Garments, Of Felt Etc, Or Fabric Impregnated Etc"
+                  },
+                  "6211": {
+                      "name": "Track Suits, Ski-suits & Swimwear, Not Knit Etc"
+                  },
+                  "6212": {
+                      "name": "Bras, Girdles, Garters Etc., Knitted Etc Or Not"
+                  },
+                  "6213": {
+                      "name": "Handkerchiefs"
+                  },
+                  "6214": {
+                      "name": "Shawls, Scarves, Mufflers, Mantillas, Veils Etc."
+                  },
+                  "6215": {
+                      "name": "Ties, Bow Ties & Cravats, Not Knitted Or Crocheted"
+                  },
+                  "6216": {
+                      "name": "Gloves, Mittens And Mitts, Not Knit Or Crocheted"
+                  },
+                  "6217": {
+                      "name": "Made-up Cl Access Nesoi, Garment Etc Parts Nesoi"
+                  }
+              }
+          },
+          "63": {
+              "short": "Other Made-up Textile Articles",
+              "description": "Other Made-up Textile Articles, Sets, Worn Clothing and Worn Textile Articles, Rags",
+              "subcategories": {
+                  "6301": {
+                      "name": "Blankets And Traveling Rugs"
+                  },
+                  "6302": {
+                      "name": "Bed Linen, Table Linen, Toilet Linen & Kitch Linen"
+                  },
+                  "6303": {
+                      "name": "Curtains & Interior Blinds; Curtain & Bed Valances"
+                  },
+                  "6304": {
+                      "name": "Furnishing Articles Of Textile Materials Nesoi"
+                  },
+                  "6305": {
+                      "name": "Sacks & Bags Of Textile Material For Packing Goods"
+                  },
+                  "6306": {
+                      "name": "Tarpaulins, Sails, Awnings, Tents, Etc."
+                  },
+                  "6307": {
+                      "name": "Made-up Articles Of Textile Materials Nesoi"
+                  },
+                  "6308": {
+                      "name": "Needlecraft Sets Of Wov Fabric & Yarn, Retail Pack"
+                  },
+                  "6309": {
+                      "name": "Worn Clothing And Other Worn Textile Articles"
+                  },
+                  "6310": {
+                      "name": "Used Or New Rags, Scrap Twine Etc Of Text Material"
+                  }
+              }
+          }
+      }
+  },
+  "12": {
+      "title": "Footwear, Headgear, Umbrellas, Walking-Sticks, Whips, Riding-Crops and Parts Thereof; Prepared Feathers and Articles Made Therewith; Artificial Flowers; Articles of Human Hair",
+      "chapters": {
+          "64": {
+              "short": "Footwear, Gaiters and the Like",
+              "description": "Footwear, Gaiters and the Like, Parts of Such Articles",
+              "subcategories": {
+                  "6401": {
+                      "name": "Waterproof Footwear, Rubber Or Plastics, Bond Sole"
+                  },
+                  "6402": {
+                      "name": "Footwear, Outer Sole & Upper Rubber Or Plast Nesoi"
+                  },
+                  "6403": {
+                      "name": "Footwear, Outer Sole Rub, Plast Or Lea & Upper Lea"
+                  },
+                  "6404": {
+                      "name": "Footwear, Outer Sole Rub, Plast Or Lea & Upper Tex"
+                  },
+                  "6405": {
+                      "name": "Footwear Nesoi"
+                  },
+                  "6406": {
+                      "name": "Parts Of Footwear; Insoles Etc; Gaitors Etc, Parts"
+                  }
+              }
+          },
+          "65": {
+              "short": "Headgear and Parts Thereof",
+              "description": "Headgear and Parts Thereof",
+              "subcategories": {
+                  "6501": {
+                      "name": "Hat Forms/bodies,hoods,plateaux&manchons Of Felt"
+                  },
+                  "6502": {
+                      "name": "Hat Shapes,plaited Or Assembld Strips Any Material"
+                  },
+                  "6504": {
+                      "name": "Hats&othr Hdgr,plaitd/assembld Strips Any Material"
+                  },
+                  "6505": {
+                      "name": "Hats & Headgear, Knit Etc, Lace, Etc In Pc; Hr Net"
+                  },
+                  "6506": {
+                      "name": "Headgear Nesoi, Whether Or Not Lined Or Trimmed"
+                  },
+                  "6507": {
+                      "name": "Hdbands,linings,covers,frames,visors,etc Chinstrap"
+                  }
+              }
+          },
+          "66": {
+              "short": "Umbrellas, Sun Umbrellas, Walking-Sticks, Seat-Sticks, Whips, Riding-Crops and Parts Thereof",
+              "description": "Umbrellas, Sun Umbrellas, Walking-Sticks, Seat-Sticks, Whips, Riding-Crops and Parts Thereof",
+              "subcategories": {
+                  "6601": {
+                      "name": "Umbrellas & Sun Umbrellas & Other Umbrellas"
+                  },
+                  "6602": {
+                      "name": "Walking-sticks, Seat-sticks, Whips, Riding-crops"
+                  },
+                  "6603": {
+                      "name": "Parts Etc For Umbrellas, Walking Sticks, Whips Etc"
+                  }
+              }
+          },
+          "67": {
+              "short": "Prepared Feathers and Down and Articles Made of Feathers or of Down",
+              "description": "Prepared Feathers and Down and Articles Made of Feathers or of Down, Artificial Flowers, Articles of Human Hair",
+              "subcategories": {
+                  "6701": {
+                      "name": "Skins & Oth Parts Of Birds W Feathers Processed"
+                  },
+                  "6702": {
+                      "name": "Artificial Flowers, Foliage & Fruit, Pts & Articls"
+                  },
+                  "6703": {
+                      "name": "Human Hair, Wool/oth Animal Hair, Exc Text For Wig"
+                  },
+                  "6704": {
+                      "name": "Wigs Etc Of Hair Etc; Human Hair Articles Nesoi"
+                  }
+              }
+          }
+      }
+  },
+  "13": {
+      "title": "Articles of Stone, Plaster, Cement, Asbestos, Mica or Similar Materials; Ceramic Products; Glass and Glassware",
+      "chapters": {
+          "68": {
+              "short": "Articles of Stone, Plaster, Cement, Asbestos, Mica or Similar Materials",
+              "description": "Articles of Stone, Plaster, Cement, Asbestos, Mica or Similar Materials",
+              "subcategories": {
+                  "6801": {
+                      "name": "Setts, Curbstones And Flagstones, Of Nat St Ex Slt"
+                  },
+                  "6802": {
+                      "name": "Worked Monument Etc Stone & Art Nesoi; Granule Etc"
+                  },
+                  "6803": {
+                      "name": "Slate, Worked And Articles; Articls Of Agglom Slt"
+                  },
+                  "6804": {
+                      "name": "Millstones Etc For Grinding Etc, Various Materials"
+                  },
+                  "6805": {
+                      "name": "Abrasive Powder Etc On A Base Of Text Material Etc"
+                  },
+                  "6806": {
+                      "name": "Mineral Wools, Expanded Mineral Material & Mixture"
+                  },
+                  "6807": {
+                      "name": "Articles Of Asphalt Or Of Similar Material"
+                  },
+                  "6808": {
+                      "name": "Pnls Brds Etc O Veg Fbr Ag W Cmnt Plstr Etc Bndrs"
+                  },
+                  "6809": {
+                      "name": "Articles Of Plaster Or Items Based On Plaster"
+                  },
+                  "6810": {
+                      "name": "Articles Of Cement, Concrete Or Artificial Stone"
+                  },
+                  "6811": {
+                      "name": "Articles Of Asbestos-cement, Cell Fib Cement Etc"
+                  },
+                  "6812": {
+                      "name": "Fabricated Asbestos Fibers, Items Of Mixtures Etc"
+                  },
+                  "6813": {
+                      "name": "Friction Material & Art Based On Mineral Subst Etc"
+                  },
+                  "6814": {
+                      "name": "Worked Mica & Articles Support On Paper Etc Or Not"
+                  },
+                  "6815": {
+                      "name": "Articles Of Stone Or Other Mineral Substance Nesoi"
+                  }
+              }
+          },
+          "69": {
+              "short": "Ceramic Products",
+              "description": "Ceramic Products",
+              "subcategories": {
+                  "6901": {
+                      "name": "Brcks, Blcks, Tls A Oth Cermc Gds Slcs Earth"
+                  },
+                  "6902": {
+                      "name": "Refractory Bricks & Other Refr Cer Const Art Nesoi"
+                  },
+                  "6903": {
+                      "name": "Refractory Ceramic Goods, Nesoi"
+                  },
+                  "6904": {
+                      "name": "Ceramic Building Bricks, Flooring Blocks, Tile Etc"
+                  },
+                  "6905": {
+                      "name": "Roofing Tiles, Chimney Pots, Cowls, Ch Liners Etc"
+                  },
+                  "6906": {
+                      "name": "Ceramic Pipes, Conduits, Guttering A Pipe Fittings"
+                  },
+                  "6907": {
+                      "name": "Unglazed Ceramic Flags & Paving, Hearth Tiles Etc"
+                  },
+                  "6909": {
+                      "name": "Ceramic Lab Etc Wares, Agr Tubs Etc & Packing Art"
+                  },
+                  "6910": {
+                      "name": "Ceramic Sinks, Washbasins, Water Closet Bowls Etc"
+                  },
+                  "6911": {
+                      "name": "Ceramic Tableware Etc. Of Porcelain Or China"
+                  },
+                  "6912": {
+                      "name": "Ceramic Tablewre, Kitchnwre Etc, Earthenware Etc"
+                  },
+                  "6913": {
+                      "name": "Statuettes And Other Ornamental Ceramic Articles"
+                  },
+                  "6914": {
+                      "name": "Ceramic Articles Nesoi"
+                  }
+              }
+          },
+          "70": {
+              "short": "Glass and Glassware",
+              "description": "Glass and Glassware",
+              "subcategories": {
+                  "7001": {
+                      "name": "Cullet,glass Waste/scrap Exc Crt Of 8549; Gl Mass"
+                  },
+                  "7002": {
+                      "name": "Glass In Balls (not Micros), Rods Or Tubes, Unwork"
+                  },
+                  "7003": {
+                      "name": "Cast & Rolled Glass, In Sheets Or Profiles Etc"
+                  },
+                  "7004": {
+                      "name": "Drawn & Blown Glass, In Sheets Etc"
+                  },
+                  "7005": {
+                      "name": "Float Glass & Surf Ground Or Polished Sheets Etc"
+                  },
+                  "7006": {
+                      "name": "Gls Of 7003-5 Bnt,edg Wkd, Engr,drl,enml Othr Etc"
+                  },
+                  "7007": {
+                      "name": "Safety Glass, Of Tempered Or Laminated Glass"
+                  },
+                  "7008": {
+                      "name": "Multiple-walled Insulating Units Of Glass"
+                  },
+                  "7009": {
+                      "name": "Glass Mirrors, Framed Or Not, Inc Rearview Mirrors"
+                  },
+                  "7010": {
+                      "name": "Glass Containers For Packing Etc & Glass Closures"
+                  },
+                  "7011": {
+                      "name": "Glass Env, Open, Gls Parts W/o Fit For Elec Lamp"
+                  },
+                  "7013": {
+                      "name": "Glassware For Table, Kitchen, Toilet Etc Use Nesoi"
+                  },
+                  "7014": {
+                      "name": "Signal Glassware & Glass Optic Elem Nesoi Not Wrkd"
+                  },
+                  "7015": {
+                      "name": "Clock Etc Glasses; Spect Glasses Not Opt Work, Etc"
+                  },
+                  "7016": {
+                      "name": "Glass Paving Blocks Etc; Gl Cubes, Lead Window Etc"
+                  },
+                  "7017": {
+                      "name": "Glassware For Lab, Hygienic Or Pharmaceutical Use"
+                  },
+                  "7018": {
+                      "name": "Glass Beads Etc & Articles Nesoi, Lw Glass Orn Etc"
+                  },
+                  "7019": {
+                      "name": "Glass Fiber Incl Glass Wool And Articles Thereof"
+                  },
+                  "7020": {
+                      "name": "Articles Of Glass, Nesoi"
+                  }
+              }
+          }
+      }
+  },
+  "14": {
+      "title": "Natural or Cultured Pearls, Precious or Semi-Precious Stones, Precious Metals, Metals Clad with Precious Metal and Articles Thereof; Imitation Jewelry; Coin",
+      "chapters": {
+          "71": {
+              "short": "Natural or Cultured Pearls, Precious or Semi-Precious Stones, Precious Metals, Metals Clad with Precious Metal and Articles Thereof",
+              "description": "Natural or Cultured Pearls, Precious or Semi-Precious Stones, Precious Metals, Metals Clad with Precious Metal and Articles Thereof, Imitation Jewelry, Coin",
+              "subcategories": {
+                  "7101": {
+                      "name": "Pearls, Natural Or Cultured, Not Strung Or Set Etc"
+                  },
+                  "7102": {
+                      "name": "Diamonds, Worked Or Not, Not Mounted Or Set"
+                  },
+                  "7103": {
+                      "name": "Precious Nesoi & Semiprec Stones, Not Strung Etc"
+                  },
+                  "7104": {
+                      "name": "Synth Prec Or Semiprec Stones Etc, Not Strung Etc"
+                  },
+                  "7105": {
+                      "name": "Dust & Powder Of Nat Or Synth Prec Or Semipr Stone"
+                  },
+                  "7106": {
+                      "name": "Silver (incl Prec Plated), Unwr, Semimfr Or Powder"
+                  },
+                  "7107": {
+                      "name": "Base Mtls Cld W Silvr Nt Frth Wkd Thn Smmnfctrd"
+                  },
+                  "7108": {
+                      "name": "Gold (incl Plat Plated), Unwr, Semimfr Or Powder"
+                  },
+                  "7109": {
+                      "name": "Bs Mtl Or Slr Cld W Gld Nt Frtr Wkd Th Smmnfctrd"
+                  },
+                  "7110": {
+                      "name": "Platinum, Unwrought, Semimfr Forms Or In Powder Fm"
+                  },
+                  "7111": {
+                      "name": "Bs Mtl A Slv A Gld Cld W Plat Nt Fr Wkd Th Smnfctd"
+                  },
+                  "7112": {
+                      "name": "Waste & Scrap Of Prec Metal Or Other Cont Prec Mtl"
+                  },
+                  "7113": {
+                      "name": "Articles Of Jewelry & Pts, Of Prec Metal Or Clad"
+                  },
+                  "7114": {
+                      "name": "Articles Of Goldsmith/silversmith Wares, Prec Metl"
+                  },
+                  "7115": {
+                      "name": "Articles Of Or Clad With Precious Metal Nesoi"
+                  },
+                  "7116": {
+                      "name": "Articles Of Nat Or Cult Pearls, Prec/semprc Stones"
+                  },
+                  "7117": {
+                      "name": "Imitation Jewelry"
+                  },
+                  "7118": {
+                      "name": "Coin"
+                  }
+              }
+          }
+      }
+  },
+  "15": {
+      "title": "Base Metals and Articles of Base Metal",
+      "chapters": {
+          "72": {
+              "short": "Iron and Steel",
+              "description": "Iron and Steel",
+              "subcategories": {
+                  "7201": {
+                      "name": "Pig Iron & Spiegeleisen In Pigs, Blocks Etc."
+                  },
+                  "7202": {
+                      "name": "Ferroalloys"
+                  },
+                  "7203": {
+                      "name": "Spongy Ferrous Prod & Iron 99.94% Pure, Lumps Etc"
+                  },
+                  "7204": {
+                      "name": "Ferrous Waste & Scrap; Remelt Scr Iron/steel Ingot"
+                  },
+                  "7205": {
+                      "name": "Pig Iron, Spiegel, Iron Or Steel Granules & Powder"
+                  },
+                  "7206": {
+                      "name": "Iron & Nonalloy Steel In Ingots Etc Nesoi"
+                  },
+                  "7207": {
+                      "name": "Semifinished Products Of Iron Or Nonalloy Steel"
+                  },
+                  "7208": {
+                      "name": "Fl-rl Iron & Na Steel Nun600mm Wd Hot-rl, Not Clad"
+                  },
+                  "7209": {
+                      "name": "Fl-rl Iron & Na Steel Nun600mm Wd Cold-rl, No Clad"
+                  },
+                  "7210": {
+                      "name": "Fl-rl Iron & Na Steel Nun600mm Wd, Clad Etc"
+                  },
+                  "7211": {
+                      "name": "Fl-rl Iron & Na Steel Un 600mm Wd, Not Clad Etc"
+                  },
+                  "7212": {
+                      "name": "Fl-rl Iron & Na Steel Un 600mm Wd, Clad Etc"
+                  },
+                  "7213": {
+                      "name": "Bars & Rods, Iron & Na Steel, H-r Irreg Coils"
+                  },
+                  "7214": {
+                      "name": "Bars & Rods, Iron & Na Steel Nesoi, H-r Etc"
+                  },
+                  "7215": {
+                      "name": "Bars & Rods, Iron & Na Steel Nesoi"
+                  },
+                  "7216": {
+                      "name": "Angles, Shapes & Sections Of Iron & Nonalloy Steel"
+                  },
+                  "7217": {
+                      "name": "Wire Of Iron & Nonalloy Steel"
+                  },
+                  "7218": {
+                      "name": "Stainless Steel In Ingots Etc & Semifin Products"
+                  },
+                  "7219": {
+                      "name": "Fl-rl Stainless Steel Products, Not Und 600mm Wide"
+                  },
+                  "7220": {
+                      "name": "Fl-rl Stainless Steel Products, Under 600mm Wide"
+                  },
+                  "7221": {
+                      "name": "Bars And Rods, Stnls Stl, Ht-rld, Irreg Coils"
+                  },
+                  "7222": {
+                      "name": "Bars & Rods, St Steel Nesoi; Angles Etc, St Steel"
+                  },
+                  "7223": {
+                      "name": "Wire Of Stainless Steel"
+                  },
+                  "7224": {
+                      "name": "Alloy Steel Nesoi In Ingots, Oth Pr Frm & Semif Pr"
+                  },
+                  "7225": {
+                      "name": "Fl-rl Alloy Steel Nesoi Nun 600mm Wide"
+                  },
+                  "7226": {
+                      "name": "Fl-rl Alloy Steel Nesoi Un 600mm Wide"
+                  },
+                  "7227": {
+                      "name": "Bars & Rods Alloy Steel Nesoi, H-r Irreg Coils"
+                  },
+                  "7228": {
+                      "name": "Al Steel Nesoi Bars, Ang Etc; Hol Dr St Bars Etc"
+                  },
+                  "7229": {
+                      "name": "Wire Of Alloy Steel Nesoi"
+                  }
+              }
+          },
+          "73": {
+              "short": "Articles of Iron or Steel",
+              "description": "Articles of Iron or Steel",
+              "subcategories": {
+                  "7301": {
+                      "name": "Sheet Piling, Welded Angles Etc Of Iron Or Steel"
+                  },
+                  "7302": {
+                      "name": "Railway Etc Track Construct Material, Iron & Steel"
+                  },
+                  "7303": {
+                      "name": "Tubes, Pipes And Hollow Profiles Of Cast Iron"
+                  },
+                  "7304": {
+                      "name": "Tubes, Pipes Etc, Seamless, Iron Nesoi & Steel"
+                  },
+                  "7305": {
+                      "name": "Tubes & Pipes Nesoi, Ext Dia Ov406-4mm, Ir & Steel"
+                  },
+                  "7306": {
+                      "name": "Tubes, Pipes & Hollow Profiles Nesoi, Iron & Steel"
+                  },
+                  "7307": {
+                      "name": "Tube Or Pipe Fittings, Of Iron Or Steel"
+                  },
+                  "7308": {
+                      "name": "Structures Nesoi & Parts Thereof, Of Iron Or Steel"
+                  },
+                  "7309": {
+                      "name": "Tanks Etc, Over 300 Liter Capacity, Iron Or Steel"
+                  },
+                  "7310": {
+                      "name": "Tanks Etc, Nov 300 Liter Capacity, Iron Or Steel"
+                  },
+                  "7311": {
+                      "name": "Contnrs Fr Cmprssd O Lqfd Gas Of Iron O Steel"
+                  },
+                  "7312": {
+                      "name": "Stranded Wire, Ropes Etc, No Elec Ins, Ir Or Steel"
+                  },
+                  "7313": {
+                      "name": "Barbed Wire And Twisted Wire For Fencing, Iron/stl"
+                  },
+                  "7314": {
+                      "name": "Cloth, Grill Etc Ir Or St; Expand Metal, Ir Or St"
+                  },
+                  "7315": {
+                      "name": "Chain & Parts, Of Iron Or Steel"
+                  },
+                  "7316": {
+                      "name": "Anchors, Grapnels And Parts Thereof, Of Iron/steel"
+                  },
+                  "7317": {
+                      "name": "Nails, Tacks, Drawing Pins Etc Of Iron Or Steel"
+                  },
+                  "7318": {
+                      "name": "Screws, Bolts, Nuts, Washers Etc, Iron Or Steel"
+                  },
+                  "7319": {
+                      "name": "Needles, Sew & Knit, Bodkins Etc, Pins Etc Ir & St"
+                  },
+                  "7320": {
+                      "name": "Springs & Leaves For Springs, Iron Or Steel"
+                  },
+                  "7321": {
+                      "name": "Stoves, Ranges Etc, Nonel Domest & Pts, Ir & Steel"
+                  },
+                  "7322": {
+                      "name": "Radiators, Air Heaters Etc, Nonel & Pt, Ir & Steel"
+                  },
+                  "7323": {
+                      "name": "Household Art & Pts, Ir & St; Ir Or Steel Wool Etc"
+                  },
+                  "7324": {
+                      "name": "Sanitary Ware & Parts, Iron Or Steel"
+                  },
+                  "7325": {
+                      "name": "Cast Articles Nesoi, Of Iron Or Steel"
+                  },
+                  "7326": {
+                      "name": "Articles Of Iron Or Steel, Nesoi"
+                  }
+              }
+          },
+          "74": {
+              "short": "Copper and Articles Thereof",
+              "description": "Copper and Articles Thereof",
+              "subcategories": {
+                  "7401": {
+                      "name": "Copper Mattes; Cement Copper (precipitated Copper)"
+                  },
+                  "7402": {
+                      "name": "Unrefnd Cppr; Cppr Anods F Elctroltc Refining"
+                  },
+                  "7403": {
+                      "name": "Refined Copper & Alloys (no Mast Alloy), Unwrought"
+                  },
+                  "7404": {
+                      "name": "Copper Waste And Scrap"
+                  },
+                  "7405": {
+                      "name": "Master Alloys Of Copper"
+                  },
+                  "7406": {
+                      "name": "Copper Powders And Flakes"
+                  },
+                  "7407": {
+                      "name": "Copper Bars, Rods And Profiles"
+                  },
+                  "7408": {
+                      "name": "Copper Wire"
+                  },
+                  "7409": {
+                      "name": "Copper Plates, Sheets & Strip, Over 0.15MM Thick"
+                  },
+                  "7410": {
+                      "name": "Copper Foil (backed Or Not) Nov .15mm Th (ex Back)"
+                  },
+                  "7411": {
+                      "name": "Copper Tubes And Pipes"
+                  },
+                  "7412": {
+                      "name": "Copper Tube Or Pipe Fittings"
+                  },
+                  "7413": {
+                      "name": "Stranded Wire, Cable Etc Of Copper, Not Elec Insul"
+                  },
+                  "7415": {
+                      "name": "Nails, Tacks Etc Of Copper Etc, Screws Etc, Copper"
+                  },
+                  "7418": {
+                      "name": "Household Art & Pts, Cop; Pot Scourers Etc, Copper"
+                  },
+                  "7419": {
+                      "name": "Articles Of Copper Nesoi"
+                  }
+              }
+          },
+          "75": {
+              "short": "Nickel and Articles Thereof",
+              "description": "Nickel and Articles Thereof",
+              "subcategories": {
+                  "7501": {
+                      "name": "Nickle Mattes, Nickle Oxide Sinters, Oth Int Prod"
+                  },
+                  "7502": {
+                      "name": "Nickle, Unwrought"
+                  },
+                  "7503": {
+                      "name": "Nickel Waste And Scrap"
+                  },
+                  "7504": {
+                      "name": "Nickel Powders And Flakes"
+                  },
+                  "7505": {
+                      "name": "Nickel Bars, Rods, Profiles And Wire"
+                  },
+                  "7506": {
+                      "name": "Nickle Plates, Sheets, Strip And Foil"
+                  },
+                  "7507": {
+                      "name": "Nickle Tubes, Pipes And Tube Or Pipe Fittings"
+                  },
+                  "7508": {
+                      "name": "Articles Of Nickel, Nesoi"
+                  }
+              }
+          },
+          "76": {
+              "short": "Aluminum and Articles Thereof",
+              "description": "Aluminum and Articles Thereof",
+              "subcategories": {
+                  "7601": {
+                      "name": "Aluminum, Unwrought"
+                  },
+                  "7602": {
+                      "name": "Aluminum Waste And Scrap"
+                  },
+                  "7603": {
+                      "name": "Aluminum Powders And Flakes"
+                  },
+                  "7604": {
+                      "name": "Aluminum Bars, Rods And Profiles"
+                  },
+                  "7605": {
+                      "name": "Aluminum Wire"
+                  },
+                  "7606": {
+                      "name": "Aluminum Plates, Sheets & Strip Over .2mm Thick"
+                  },
+                  "7607": {
+                      "name": "Aluminum Foil (back Or Not) Nov .2mm Th (ex Back)"
+                  },
+                  "7608": {
+                      "name": "Aluminum Tubes And Pipes"
+                  },
+                  "7609": {
+                      "name": "Aluminum Tube Or Pipe Fittings"
+                  },
+                  "7610": {
+                      "name": "Aluminum Structures Nesoi (no Prefab) & Parts Of"
+                  },
+                  "7611": {
+                      "name": "Tanks Etc, Over 300 Liter Capacity, Aluminum"
+                  },
+                  "7612": {
+                      "name": "Aluminum Casks, Cans Etc Nov 300 Liter Capacity"
+                  },
+                  "7613": {
+                      "name": "Aluminum Containers For Compressed Or Liquefid Gas"
+                  },
+                  "7614": {
+                      "name": "Stranded Wire, Cables Etc, Aluminum, No Elec Insul"
+                  },
+                  "7615": {
+                      "name": "Household Art Etc, Pot Scour Etc, San Wr, Aluminum"
+                  },
+                  "7616": {
+                      "name": "Articles Of Aluminum Nesoi"
+                  }
+              }
+          },
+          "78": {
+              "short": "Lead and Articles Thereof",
+              "description": "Lead and Articles Thereof",
+              "subcategories": {
+                  "7801": {
+                      "name": "Lead, Unwrought"
+                  },
+                  "7802": {
+                      "name": "Lead Waste And Scrap"
+                  },
+                  "7804": {
+                      "name": "Lead Plates, Sheets, Strip, Foil, Powder & Flakes"
+                  },
+                  "7806": {
+                      "name": "Articles Of Lead, Nesoi"
+                  }
+              }
+          },
+          "79": {
+              "short": "Zinc and Articles Thereof",
+              "description": "Zinc and Articles Thereof",
+              "subcategories": {
+                  "7901": {
+                      "name": "Zinc, Unwrought"
+                  },
+                  "7902": {
+                      "name": "Zinc Waste And Scrap"
+                  },
+                  "7903": {
+                      "name": "Zinc Dust, Powders And Flakes"
+                  },
+                  "7904": {
+                      "name": "Zinc Bars, Rods, Profiles And Wire"
+                  },
+                  "7905": {
+                      "name": "Zinc Plates, Sheet, Strip And Foil"
+                  },
+                  "7907": {
+                      "name": "Articles Of Zinc Nesoi"
+                  }
+              }
+          },
+          "80": {
+              "short": "Tin and Articles Thereof",
+              "description": "Tin and Articles Thereof",
+              "subcategories": {
+                  "8001": {
+                      "name": "Tin, Unwrought"
+                  },
+                  "8002": {
+                      "name": "Tin Waste And Scrap"
+                  },
+                  "8003": {
+                      "name": "Tin Bars, Rods, Profiles And Wire"
+                  },
+                  "8007": {
+                      "name": "Articles Of Tin, Nesoi"
+                  }
+              }
+          },
+          "81": {
+              "short": "Other Base Metals",
+              "description": "Other Base Metals, Cermets, Articles Thereof",
+              "subcategories": {
+                  "8101": {
+                      "name": "Tungsten (wolfram) & Articles, Incl Waste & Scrap"
+                  },
+                  "8102": {
+                      "name": "Molybdenum & Articles Thereof, Incl Waste & Scrap"
+                  },
+                  "8103": {
+                      "name": "Tantalum & Articles Thereof, Includ Waste & Scrap"
+                  },
+                  "8104": {
+                      "name": "Magnesium & Articles Thereof, Incl Waste & Scrap"
+                  },
+                  "8105": {
+                      "name": "Cobalt Mattes Etc, Cobalt & Art, Inc Waste & Scrap"
+                  },
+                  "8106": {
+                      "name": "Bismuth An Artls, Incld Waste And Scrap"
+                  },
+                  "8108": {
+                      "name": "Titanium & Articles Thereof, Includ Waste & Scrap"
+                  },
+                  "8109": {
+                      "name": "Zirconium & Articles Thereof, Includ Waste & Scrap"
+                  },
+                  "8110": {
+                      "name": "Antimony And Artcls Throf Incl Waste And Scrap"
+                  },
+                  "8111": {
+                      "name": "Manganese And Artcles Thereof, Inc Waste And Scrap"
+                  },
+                  "8112": {
+                      "name": "Beryllium,chromium,hafnium,rhenium Etc & Articles"
+                  },
+                  "8113": {
+                      "name": "Cermets And Articles Thereof, Inc Waste And Scrap"
+                  }
+              }
+          },
+          "82": {
+              "short": "Tools, Implements, Cutlery, Spoons and Forks, of Base Metal",
+              "description": "Tools, Implements, Cutlery, Spoons and Forks, of Base Metal, Parts Thereof of Base Metal",
+              "subcategories": {
+                  "8201": {
+                      "name": "Handtools & Tools Used In Agricult Etc, B Met Pts"
+                  },
+                  "8202": {
+                      "name": "Handsaws & Met Pts; Saw Blades; Base Mtl Saw Parts"
+                  },
+                  "8203": {
+                      "name": "Files, Rasps, Pliers, Metalcut Shears Etc, B Mt Pt"
+                  },
+                  "8204": {
+                      "name": "Hand-operated Spanners & Wrenches Etc, B Met Parts"
+                  },
+                  "8205": {
+                      "name": "Handtools Nesoi; Blow Torches Etc; Anvils Etc"
+                  },
+                  "8206": {
+                      "name": "Tools Of 2 Om Of Hdg 8202-8205, Sts Fr Rtail Sale"
+                  },
+                  "8207": {
+                      "name": "Interchange Tools For Hand- Or Machine-tools, Bmpt"
+                  },
+                  "8208": {
+                      "name": "Knives & Blades For Machines & Appliances, B Mt Pt"
+                  },
+                  "8209": {
+                      "name": "Plates, Sticks Tips Etc F Tools Unmntd Of Cermets"
+                  },
+                  "8210": {
+                      "name": "Hnd-op Mech Appl 10kg Or Lss,fd/drk Prp/con/srv Pt"
+                  },
+                  "8211": {
+                      "name": "Knives With Blades & Blades For Knives Nesoi, Bmpt"
+                  },
+                  "8212": {
+                      "name": "Razors & Razor Blades (incl Blade Blanks), B Mt Pt"
+                  },
+                  "8213": {
+                      "name": "Scssrs,tlrs A Smlr Shrs, Blds A Oth Bs Mtl Pts"
+                  },
+                  "8214": {
+                      "name": "Articles Of Cutlery Nesoi; Manicure Sets Etc, Bmpt"
+                  },
+                  "8215": {
+                      "name": "Tableware Etc Of Base Metal, & Base Metal Parts"
+                  }
+              }
+          },
+          "83": {
+              "short": "Miscellaneous Articles of Base Metal",
+              "description": "Miscellaneous Articles of Base Metal",
+              "subcategories": {
+                  "8301": {
+                      "name": "Padlocks, Locks & Keys & Parts, Of Base Metal"
+                  },
+                  "8302": {
+                      "name": "Hardware, Fixtures, Castors Etc & Parts, Base Metl"
+                  },
+                  "8303": {
+                      "name": "Safes, Cash Or Deed Boxes Etc A Prts, Base Metal"
+                  },
+                  "8304": {
+                      "name": "Office And Desk Equip A Prts, Of Base Metal"
+                  },
+                  "8305": {
+                      "name": "Looseleaf Binder Etc Fittings, Paper Clips Etc Bmp"
+                  },
+                  "8306": {
+                      "name": "Bells Etc (nonelec), Ornaments, Ph Frames Etc Bmpt"
+                  },
+                  "8307": {
+                      "name": "Flexible Tubing Of Base Metal"
+                  },
+                  "8308": {
+                      "name": "Clasps, Buckles, Hooks Etc, Beads & Spang, B Metal"
+                  },
+                  "8309": {
+                      "name": "Stoppers, Caps & Lids, Seals Etc & Pts, Base Metal"
+                  },
+                  "8310": {
+                      "name": "Sgn Plts Nos A Smbls Et Bm Excpt Of Hdg 9405"
+                  },
+                  "8311": {
+                      "name": "Wire, Rods Etc For Soldering Etc & Met Spray, Bmpt"
+                  }
+              }
+          }
+      }
+  },
+  "16": {
+      "title": "Machinery and Mechanical Appliances; Electrical Equipment; Parts Thereof",
+      "chapters": {
+          "84": {
+              "short": "Nuclear Reactors, Boilers, Machinery and Mechanical Appliances",
+              "description": "Nuclear Reactors, Boilers, Machinery and Mechanical Appliances, Parts Thereof",
+              "subcategories": {
+                  "8401": {
+                      "name": "Nuclear Reactors; Fuel Elem (n-i); Mach Isotop Sep"
+                  },
+                  "8402": {
+                      "name": "Steam Etc Generating Boilers Nesoi; Sup W Boilers"
+                  },
+                  "8403": {
+                      "name": "Central Heat Boilers Nesoi, And Parts"
+                  },
+                  "8404": {
+                      "name": "Auxiliary Plant Used With Boilers; Condensers; Pts"
+                  },
+                  "8405": {
+                      "name": "Producer Gas, Acetylene Gas Etc Generators & Parts"
+                  },
+                  "8406": {
+                      "name": "Steam Turbines & Other Vapor Turbines, Parts"
+                  },
+                  "8407": {
+                      "name": "Spark-ignition Recip Or Rotary Int Comb Piston Eng"
+                  },
+                  "8408": {
+                      "name": "Compression-ignition Internal Comb Piston Engines"
+                  },
+                  "8409": {
+                      "name": "Parts For Engines Of Heading 8407 Or 8408"
+                  },
+                  "8410": {
+                      "name": "Hydraulic Turbines, Water Wheels & Regulators, Pts"
+                  },
+                  "8411": {
+                      "name": "Turbojets, Turbopropellers & Oth Gas Turbines, Pts"
+                  },
+                  "8412": {
+                      "name": "Engines And Motors Nesoi, And Parts Thereof"
+                  },
+                  "8413": {
+                      "name": "Pumps For Liquids; Liquid Elevators; Parts Thereof"
+                  },
+                  "8414": {
+                      "name": "Air/vacuum Pumps, Fans; Vent Hoods Etc; Parts"
+                  },
+                  "8415": {
+                      "name": "Air Conditioning Machines (temp & Hum Change), Pts"
+                  },
+                  "8416": {
+                      "name": "Furnace Burners; Mechanical Stokers Etc, Parts"
+                  },
+                  "8417": {
+                      "name": "Industrial Or Lab Furnaces & Ovens, Nonelect, Pts"
+                  },
+                  "8418": {
+                      "name": "Refrigerators, Freezers Etc; Heat Pumps Nesoi, Pts"
+                  },
+                  "8419": {
+                      "name": "Machinery Etc For Temp Chang Treat Mat; W Heat, Pt"
+                  },
+                  "8420": {
+                      "name": "Calendering Machines Etc Nesoi & Cylinders, Parts"
+                  },
+                  "8421": {
+                      "name": "Centrifuges; Filter Etc Mach For Liq Or Gases; Pts"
+                  },
+                  "8422": {
+                      "name": "Machines, Dishwash, Clean Etc Cont & Fill, Pak Etc"
+                  },
+                  "8423": {
+                      "name": "Weighing Machines & Weighing Machine Weights; Pts"
+                  },
+                  "8424": {
+                      "name": "Mech Appl To Disperse Liq Etc; Sand Etc Blast Mach"
+                  },
+                  "8425": {
+                      "name": "Pulley Tackle & Hoists (exc Skip); Winch Etc; Jaks"
+                  },
+                  "8426": {
+                      "name": "Ship's Derricks; Cranes; Mobile Lifting Frames Etc"
+                  },
+                  "8427": {
+                      "name": "Fork-lift Trucks; Oth Works Trucks With Lifts Etc."
+                  },
+                  "8428": {
+                      "name": "Lifting, Handling, Loading & Unload Machines Nesoi"
+                  },
+                  "8429": {
+                      "name": "Self-propelled Bulldozers, Graders, Scrapers Etc"
+                  },
+                  "8430": {
+                      "name": "Mach Nesoi, Moving, Grad Etc; Pile-dr; Snoplow Etc"
+                  },
+                  "8431": {
+                      "name": "Parts For Machinery Of Headings 8425 To 8430"
+                  },
+                  "8432": {
+                      "name": "Agricult Etc Mach For Soil Etc; Lawn Rollers; Pts"
+                  },
+                  "8433": {
+                      "name": "Harvest Etc Machines, Cleaning Eggs Etc Nesoi, Pts"
+                  },
+                  "8434": {
+                      "name": "Milking Machines & Dairy Machinery & Parts"
+                  },
+                  "8435": {
+                      "name": "Presses Etc For Wine, Cider, Fruit Juice Etc, Pts"
+                  },
+                  "8436": {
+                      "name": "Agri Etc & Poultry Etc Equip, Inc Incubators, Pts"
+                  },
+                  "8437": {
+                      "name": "Mach For Cleaning Seed Etc & Work Cereal Etc, Pts"
+                  },
+                  "8438": {
+                      "name": "Machinery For Indust Prep/manuf Of Food/drink Nes"
+                  },
+                  "8439": {
+                      "name": "Machinery For Making Pulp & Making Etc Paper, Pts"
+                  },
+                  "8440": {
+                      "name": "Bookbinding Machinery, Incl Book-sewing, Parts"
+                  },
+                  "8441": {
+                      "name": "Mach For Making Up Pulp & Paper, Inc Cutters, Pts"
+                  },
+                  "8442": {
+                      "name": "Mach Etc Nesoi For Typeset, Making Pr Plates Etc"
+                  },
+                  "8443": {
+                      "name": "Print Mach Incl Ink-jet Mach Ancil T Prnt Pt Nesoi"
+                  },
+                  "8444": {
+                      "name": "Machines Extruding, Drawing Etc Manmade Textiles"
+                  },
+                  "8445": {
+                      "name": "Machines For Preparing Textile Fibers & Yarns"
+                  },
+                  "8446": {
+                      "name": "Weaving Machines (looms)"
+                  },
+                  "8447": {
+                      "name": "Machines, Knitting, Stitch-bond, Lace, Net Etc."
+                  },
+                  "8448": {
+                      "name": "Auxiliary Machinery For Use With Textile Machines"
+                  },
+                  "8449": {
+                      "name": "Mach F Manuf Or Finish Nonwovens;hat Blocks; Parts"
+                  },
+                  "8450": {
+                      "name": "Washing Machines, Household- Or Laundry-type, Pts"
+                  },
+                  "8451": {
+                      "name": "Machinery (not Laundry) For Cleaning, Drying Etc"
+                  },
+                  "8452": {
+                      "name": "Sewing Machines (not Book-sew), Cover Etc; Needles"
+                  },
+                  "8453": {
+                      "name": "Machinery For Work Leather Etc & Footwear Etc, Pts"
+                  },
+                  "8454": {
+                      "name": "Converters, Ladles, Ingot Molds & Casting Mach, Pt"
+                  },
+                  "8455": {
+                      "name": "Metal-rolling Mills And Rolls Therefor; Parts"
+                  },
+                  "8456": {
+                      "name": "Machine Tools For Material Removal By Laser Etc"
+                  },
+                  "8457": {
+                      "name": "Machining Centers, Unit Const Mach Etc Work Metal"
+                  },
+                  "8458": {
+                      "name": "Lathes For Removing Metal, Incl Turning Centers"
+                  },
+                  "8459": {
+                      "name": "Machine Tools For Drilling, Boring, Milling Etc"
+                  },
+                  "8460": {
+                      "name": "Machine Tools For Honing Or Finishing Metal Etc"
+                  },
+                  "8461": {
+                      "name": "Machine Tools For Shaping, Slotting, Gear Cut Etc"
+                  },
+                  "8462": {
+                      "name": "Mach Tool & Press For Metal/carbide Forging Etc"
+                  },
+                  "8463": {
+                      "name": "Machine Tools For Working Metal, Nesoi"
+                  },
+                  "8464": {
+                      "name": "Machine Tools For Working Stone, Etc & Glass"
+                  },
+                  "8465": {
+                      "name": "Machine Tools For Working Wood, Cork, Bone Etc"
+                  },
+                  "8466": {
+                      "name": "Parts Etc For Machine Tools Of Head 8456 To 8465"
+                  },
+                  "8467": {
+                      "name": "Tools For Working In The Hand, Pneum Hyd Etc, Pts"
+                  },
+                  "8468": {
+                      "name": "Machines, Solder Etc; Gas Surf Temper Machines, Pt"
+                  },
+                  "8470": {
+                      "name": "Calculating & Account Machines, Cash Registers Etc"
+                  },
+                  "8471": {
+                      "name": "Automatic Data Process Machines; Magn Reader Etc"
+                  },
+                  "8472": {
+                      "name": "Office Machines Nesoi (hectograph, Addressing Etc)"
+                  },
+                  "8473": {
+                      "name": "Parts Etc For Typewriters & Other Office Machines"
+                  },
+                  "8474": {
+                      "name": "Machinery For Sorting Screening Etc Minerals, Pts"
+                  },
+                  "8475": {
+                      "name": "Machines For Assemb Elec Tubes Etc & Glass Mfr, Pt"
+                  },
+                  "8476": {
+                      "name": "Automatic Goods-vending Machines, Parts"
+                  },
+                  "8477": {
+                      "name": "Machinery For Working Rubber & Plast Etc Nesoi, Pt"
+                  },
+                  "8478": {
+                      "name": "Machinery For Tobacco Preparation Nesoi, Parts"
+                  },
+                  "8479": {
+                      "name": "Machines Etc Having Individual Functions Nesoi, Pt"
+                  },
+                  "8480": {
+                      "name": "Molding Boxes For Metal Foundry; Mold Bases Etc"
+                  },
+                  "8481": {
+                      "name": "Taps, Cocks, Valves Etc For Pipes, Tanks Etc, Pts"
+                  },
+                  "8482": {
+                      "name": "Ball Or Roller Bearings And Parts"
+                  },
+                  "8483": {
+                      "name": "Transmission Shafts, Bearings, Gears Etc; Parts"
+                  },
+                  "8484": {
+                      "name": "Gaskets & Similar Joints Of Metal Sheeting"
+                  },
+                  "8485": {
+                      "name": "Machines For Additive Manufacturing"
+                  },
+                  "8486": {
+                      "name": "Mach,app Manuf Semicon Boules Etc;c84 Nt 11(c);pt"
+                  },
+                  "8487": {
+                      "name": "Machinery Parts, Not Cont Electic Con, Etc,nes"
+                  }
+              }
+          },
+          "85": {
+              "short": "Electrical Machinery and Equipment and Parts Thereof",
+              "description": "Electrical Machinery and Equipment and Parts Thereof, Sound Recorders and Reproducers, Television Image and Sound Recorders and Reproducers, and Parts",
+              "subcategories": {
+                  "8501": {
+                      "name": "Electric Motors And Generators (no Sets)"
+                  },
+                  "8502": {
+                      "name": "Electric Generating Sets And Rotary Converters"
+                  },
+                  "8503": {
+                      "name": "Parts Of Electric Motors, Generators & Sets"
+                  },
+                  "8504": {
+                      "name": "Elec Trans, Static Conv & Induct, Adp Pwr Supp, Pt"
+                  },
+                  "8505": {
+                      "name": "Electromagnets, Permanent Magnets Etc & Parts"
+                  },
+                  "8506": {
+                      "name": "Primary Cells & Batteries, Parts"
+                  },
+                  "8507": {
+                      "name": "Electric Storage Batteries, Incl Separators, Parts"
+                  },
+                  "8508": {
+                      "name": "Vacuum Cleaners; Parts Thereof"
+                  },
+                  "8509": {
+                      "name": "Electromech Domestic Appliances; Parts"
+                  },
+                  "8510": {
+                      "name": "Electric Shavers, Hair Clippers & Remov App; Pts"
+                  },
+                  "8511": {
+                      "name": "Electric Ignition Etc Equip; Generators; Parts"
+                  },
+                  "8512": {
+                      "name": "Electric Light Etc Equip; Windsh Wipers Etc, Parts"
+                  },
+                  "8513": {
+                      "name": "Portable Elec Lamps Function By Own Energy Source"
+                  },
+                  "8514": {
+                      "name": "Industrial Or Lab Elec Furnaces Etc, Parts"
+                  },
+                  "8515": {
+                      "name": "Electric, Laser Or Oth Light Or Photon Beam Etc"
+                  },
+                  "8516": {
+                      "name": "Elec Water, Space & Soil Heaters; Hair Etc Dry, Pt"
+                  },
+                  "8517": {
+                      "name": "Phone Sets; Oth Apparat Trans/recep Voice/img/data"
+                  },
+                  "8518": {
+                      "name": "Microphones; Loudspeakers; Sound Amplifier Etc, Pt"
+                  },
+                  "8519": {
+                      "name": "Turntables, Record & Cassette Players Etc."
+                  },
+                  "8521": {
+                      "name": "Video Recrdng/reproduc Appar Wheth/nt Video Tuner"
+                  },
+                  "8522": {
+                      "name": "Parts & Accessories For Use W/ App Of 8519 Or 8521"
+                  },
+                  "8523": {
+                      "name": "Prepared Unrecorded Media (no Film) For Sound Etc."
+                  },
+                  "8524": {
+                      "name": "Flat Panel Display Modules, Wh/not Touch-sensitive"
+                  },
+                  "8525": {
+                      "name": "Trans Appar For Radiotele Etc; Tv Camera & Rec"
+                  },
+                  "8526": {
+                      "name": "Radar Apparatus, Radio Navig Aid & Remote Cont App"
+                  },
+                  "8527": {
+                      "name": "Reception Apparatus For Radiotelephony Etc"
+                  },
+                  "8528": {
+                      "name": "Tv Recvrs, Incl Video Monitors & Projectors"
+                  },
+                  "8529": {
+                      "name": "Parts For Television, Radio And Radar Apparatus"
+                  },
+                  "8530": {
+                      "name": "Electric Signal, Safety Or Traffic Control Equip"
+                  },
+                  "8531": {
+                      "name": "Electric Sound Or Visual Signaling Apparatus, Pts"
+                  },
+                  "8532": {
+                      "name": "Electric Capacitors, Fixed, Var Or Adj (preset) Pt"
+                  },
+                  "8533": {
+                      "name": "Electrical Resistors Except Heating Resistors, Pts"
+                  },
+                  "8534": {
+                      "name": "Printed Circuits"
+                  },
+                  "8535": {
+                      "name": "Electrical Apparatus For Switching Etc, Ov 1000 V"
+                  },
+                  "8536": {
+                      "name": "Electrical Apparatus For Switching Etc, Nov 1000 V"
+                  },
+                  "8537": {
+                      "name": "Boards, Panels Etc Elec Switch And N/c Appar Etc."
+                  },
+                  "8538": {
+                      "name": "Parts For Elec Appar Etc Of Head 8535, 8536 & 8537"
+                  },
+                  "8539": {
+                      "name": "Electric Filament Or Discharge Lamps, Parts"
+                  },
+                  "8540": {
+                      "name": "Thermionic, Cold Cathode Or Photocathode Tubes, Pt"
+                  },
+                  "8541": {
+                      "name": "Semicon Dev;photosens;led;mount Piezoelec Crys;pts"
+                  },
+                  "8542": {
+                      "name": "Electronic Integrated Circuits & Microassembl, Pts"
+                  },
+                  "8543": {
+                      "name": "Electrical Mach Etc, With Ind Functions Nesoi, Pts"
+                  },
+                  "8544": {
+                      "name": "Insulated Wire, Cable Etc; Opt Sheath Fib Cables"
+                  },
+                  "8545": {
+                      "name": "Carbon Electrodes & Brushes, Lamp Carbons Etc"
+                  },
+                  "8546": {
+                      "name": "Electrical Insulators Of Any Material"
+                  },
+                  "8547": {
+                      "name": "Insulating Fittings For Assembly Nesoi"
+                  },
+                  "8548": {
+                      "name": "Electrical Parts Of Machinery Or Apparatus, Nesoi"
+                  },
+                  "8549": {
+                      "name": "Electrical And Electronic Waste And Scrap"
+                  }
+              }
+          }
+      }
+  },
+  "17": {
+      "title": "Vehicles, Aircraft, Vessels and Associated Transport Equipment",
+      "chapters": {
+          "86": {
+              "short": "Railway or Tramway Locomotives, Rolling Stock and Parts Thereof",
+              "description": "Railway or Tramway Locomotives, Rolling Stock and Parts Thereof, Railway or Tramway Track Fixtures and Fittings and Parts Thereof, Mechanical (Including Electromagnetic) Traffic Signaling Equipment of All Kinds",
+              "subcategories": {
+                  "8601": {
+                      "name": "Rail Locomotives, Elect (battery Or Extern Source)"
+                  },
+                  "8602": {
+                      "name": "Rail Locomotives, Nonelect Nesoi; Locomot Tenders"
+                  },
+                  "8603": {
+                      "name": "Self-propelled Railway Etc Coaches, Vans Etc Nesoi"
+                  },
+                  "8604": {
+                      "name": "Railway Or Tramway Maintenance Or Service Vehicles"
+                  },
+                  "8605": {
+                      "name": "Railwy, Tramwy Pass Etc Coaches Not Self-propelld"
+                  },
+                  "8606": {
+                      "name": "Railway Or Tramway Freight Cars, Not Self-propelld"
+                  },
+                  "8607": {
+                      "name": "Parts Of Railway Or Tramway Locomotives Or R Stock"
+                  },
+                  "8608": {
+                      "name": "Railway Fixtures; Mech Signaling, Safety, Etc, Eq"
+                  },
+                  "8609": {
+                      "name": "Containers For One Or More Modes Of Transport"
+                  }
+              }
+          },
+          "87": {
+              "short": "Vehicles Other Than Railway or Tramway Rolling Stock, and Parts and Accessories Thereof",
+              "description": "Vehicles Other Than Railway or Tramway Rolling Stock, and Parts and Accessories Thereof",
+              "subcategories": {
+                  "8701": {
+                      "name": "Tractors (other Than Works Trucks Of Heading 8709)"
+                  },
+                  "8702": {
+                      "name": "Motor Vehicle F Trnspt &gt;ten Persons Includ Driver"
+                  },
+                  "8703": {
+                      "name": "Motor Cars & Vehicles For Transporting Persons"
+                  },
+                  "8704": {
+                      "name": "Motor Vehicles For Transport Of Goods"
+                  },
+                  "8705": {
+                      "name": "Special Purpose Motor Vehicles Nesoi"
+                  },
+                  "8706": {
+                      "name": "Chas W Eng F Trac, Mtr Veh F Pass/gd & Special Pur"
+                  },
+                  "8707": {
+                      "name": "Bodies (including Cabs), For Specif Motor Vehicles"
+                  },
+                  "8708": {
+                      "name": "Parts & Access For Motor Vehicles (head 8701-8705)"
+                  },
+                  "8709": {
+                      "name": "Works Trucks, Self-prop, No Lift; Stat Tractrs; Pt"
+                  },
+                  "8710": {
+                      "name": "Tank & Ot Armored Fight Veh, Motorized; And Parts"
+                  },
+                  "8711": {
+                      "name": "Motorcycles (incl Mopeds) & Cycles With Aux Motor"
+                  },
+                  "8712": {
+                      "name": "Bicycles & Oth Cycles (inc Del Tricycle) No Motor"
+                  },
+                  "8713": {
+                      "name": "Carriages For Disabled Persons,motorized Or Not"
+                  },
+                  "8714": {
+                      "name": "Parts & Access For Cycles & Invalid Carriages"
+                  },
+                  "8715": {
+                      "name": "Baby Carriages (inc Strollers) And Parts Thereof"
+                  },
+                  "8716": {
+                      "name": "Trailers Etc; Other Vehicles, Not Mech Propeld, Pt"
+                  }
+              }
+          },
+          "88": {
+              "short": "Aircraft, Spacecraft, and Parts Thereof",
+              "description": "Aircraft, Spacecraft, and Parts Thereof",
+              "subcategories": {
+                  "8800": {
+                      "name": "Civilian Aircraft, Engines, And Parts"
+                  },
+                  "8801": {
+                      "name": "Balloons & Dirigibles; Gliders Etc"
+                  },
+                  "8802": {
+                      "name": "Aircraft, Powered; Spacecraft & Launch Vehicles"
+                  },
+                  "8804": {
+                      "name": "Parachutes (including Dirigible Parachutes) Rotoch"
+                  },
+                  "8805": {
+                      "name": "Aircraft Launch Gear; Deck-arrest; Gr Fl Train; Pt"
+                  },
+                  "8806": {
+                      "name": "Unmanned Aircraft"
+                  },
+                  "8807": {
+                      "name": "Parts Of Goods Of Heading 8801, 8802 Or 8806"
+                  }
+              }
+          },
+          "89": {
+              "short": "Ships, Boats and Floating Structures",
+              "description": "Ships, Boats and Floating Structures",
+              "subcategories": {
+                  "8901": {
+                      "name": "Vessels For The Transport Of Persons Or Goods"
+                  },
+                  "8902": {
+                      "name": "Fishing Vessels;factory Ships & Shps,ves, Nesoi"
+                  },
+                  "8903": {
+                      "name": "Yachts & Other Vessels For Pleas Etc; Row Boat Etc"
+                  },
+                  "8904": {
+                      "name": "Tugs And Pusher Craft"
+                  },
+                  "8905": {
+                      "name": "Light-vessels, Fire-floats Etc; Fl Docks & Platfms"
+                  },
+                  "8906": {
+                      "name": "Vessels Nesoi Incl Warshp/lifebt Ex Row Boats"
+                  },
+                  "8907": {
+                      "name": "Floating Structures Nesoi, Rafts, Tanks, Buoys Etc"
+                  },
+                  "8908": {
+                      "name": "Vessels And Floating Structures For Scrapping"
+                  }
+              }
+          }
+      }
+  },
+  "18": {
+      "title": "Optical, Photographic, Cinematographic, Measuring, Checking, Precision, Medical or Surgical Instruments and Apparatus; Clocks and Watches; Musical Instruments; Parts and Accessories Thereof",
+      "chapters": {
+          "90": {
+              "short": "Optical, Photographic, Cinematographic, Measuring, Checking, Precision, Medical or Surgical Instruments and Apparatus",
+              "description": "Optical, Photographic, Cinematographic, Measuring, Checking, Precision, Medical or Surgical Instruments and Apparatus, Parts and Accessories Thereof",
+              "subcategories": {
+                  "9001": {
+                      "name": "Opt Fibers & Bund Etc; Pol Sheets; Unmoun Opt Elem"
+                  },
+                  "9002": {
+                      "name": "Optical Elements, Mounted; Parts & Accessories"
+                  },
+                  "9003": {
+                      "name": "Frames & Mountings For Spectacles, Goggles Etc, Pt"
+                  },
+                  "9004": {
+                      "name": "Spectacles, Goggles Etc, Correct, Protect Etc"
+                  },
+                  "9005": {
+                      "name": "Optical Telescopes & Mount; Astro Inst & Mount, Pt"
+                  },
+                  "9006": {
+                      "name": "Photographic Still Cameras, Flash Apparatus Etc"
+                  },
+                  "9007": {
+                      "name": "Cinematographic Cameras & Projectors, Parts Etc"
+                  },
+                  "9008": {
+                      "name": "Image Projectors, Still; Enlargers Etc, Still; Pts"
+                  },
+                  "9010": {
+                      "name": "Apparatus Etc For Photo Labs Etc Nesoi; Parts Etc"
+                  },
+                  "9011": {
+                      "name": "Compound Optical Microscopes; Parts & Accessories"
+                  },
+                  "9012": {
+                      "name": "Microscopes, Except Optical; Diffract Appar; Parts"
+                  },
+                  "9013": {
+                      "name": "Lasers, Other Than Diodes; Optic App,instrum Nesoi"
+                  },
+                  "9014": {
+                      "name": "Direction Finding Compasses & Navig Inst Etc, Pts"
+                  },
+                  "9015": {
+                      "name": "Survey, Hydrogr, Meteoro Etc Inst; Rangef Etc, Pts"
+                  },
+                  "9016": {
+                      "name": "Balances, Sensitivity &gt;=5 Cg, W Or W/o Wgt, & Pts"
+                  },
+                  "9017": {
+                      "name": "Drawing, Math, Measuring Inst Etc Nesoi, Parts"
+                  },
+                  "9018": {
+                      "name": "Medical, Surgical, Dental Or Vet Inst, No Elec, Pt"
+                  },
+                  "9019": {
+                      "name": "Mech-ther, Massage, Psych Test, Ozone App Etc, Pts"
+                  },
+                  "9020": {
+                      "name": "Breathing Appliances & Gas Masks Nesoi; Parts Etc"
+                  },
+                  "9021": {
+                      "name": "Orthopedic Appl; Artif Body Pts; Hear Aid; Pts Etc"
+                  },
+                  "9022": {
+                      "name": "X-rays,alpha,beta,gamma Etc; Parts And Accessories"
+                  },
+                  "9023": {
+                      "name": "Inst, Appts&models,for Demonstrational Use& Parts"
+                  },
+                  "9024": {
+                      "name": "Machines Etc For Testing Mech Prop Of Material, Pt"
+                  },
+                  "9025": {
+                      "name": "Hydrometers, Thermometers, Pyrometers Etc; Pts Etc"
+                  },
+                  "9026": {
+                      "name": "Inst Etc Measure Or Check Flow, Level Etc, Pts Etc"
+                  },
+                  "9027": {
+                      "name": "Inst Etc For Physical Etc Anal Etc; Microtome; Pts"
+                  },
+                  "9028": {
+                      "name": "Gas, Liquid Or Electric Supply Etc Meters, Parts"
+                  },
+                  "9029": {
+                      "name": "Revolution & Production Count, Taximeters Etc, Pts"
+                  },
+                  "9030": {
+                      "name": "Oscilloscopes, Spectrum Analyzers Etc, Parts Etc"
+                  },
+                  "9031": {
+                      "name": "Machines, Nesoi In Chapter 90; Profile Project, Pt"
+                  },
+                  "9032": {
+                      "name": "Automatic Regulating Or Control Instruments; Parts"
+                  },
+                  "9033": {
+                      "name": "Pts, Nesoi For Machines,appln,inst/appts Of Chap90"
+                  }
+              }
+          },
+          "91": {
+              "short": "Clocks and Watches and Parts Thereof",
+              "description": "Clocks and Watches and Parts Thereof",
+              "subcategories": {
+                  "9101": {
+                      "name": "Watches, Wrist, Pocket Etc, Prec Metal Or Cld Case"
+                  },
+                  "9102": {
+                      "name": "Watches, Wrist, Pocket Etc, Case Not Prec Nor Clad"
+                  },
+                  "9103": {
+                      "name": "Clocks With Watch Movt, Excluding Inst Panel Clock"
+                  },
+                  "9104": {
+                      "name": "Inst Panel Clk & Clk Simlr,for Vehicle,aircrft,etc"
+                  },
+                  "9105": {
+                      "name": "Clocks, With Clock Mvts Oth Than Inst Panel Etc"
+                  },
+                  "9106": {
+                      "name": "Time Of Day Recording Appar Etc, With Clock Etc Mt"
+                  },
+                  "9107": {
+                      "name": "Time Switches W Clk/wtch Movemnt/synchronous Motor"
+                  },
+                  "9108": {
+                      "name": "Watch Movements, Complete & Assembled"
+                  },
+                  "9109": {
+                      "name": "Clock Movements, Complete & Assembled"
+                  },
+                  "9110": {
+                      "name": "Comp Watch Or Clock Mvt; Incom Watch Or Clock Mvt"
+                  },
+                  "9111": {
+                      "name": "Watch Cases And Parts"
+                  },
+                  "9112": {
+                      "name": "Clock Cases & Cases For Other Goods Etc; Parts"
+                  },
+                  "9113": {
+                      "name": "Watch Straps, Watch Bands And Watch Bracelets, Pts"
+                  },
+                  "9114": {
+                      "name": "Clock Or Watch Parts, Nesoi"
+                  }
+              }
+          },
+          "92": {
+              "short": "Musical Instruments",
+              "description": "Musical Instruments, Parts and Accessories of Such Articles",
+              "subcategories": {
+                  "9201": {
+                      "name": "Pianos, Harpsichords & Other Keyboard String Instr"
+                  },
+                  "9202": {
+                      "name": "String Musical Instruments Nesoi (violins Etc.)"
+                  },
+                  "9205": {
+                      "name": "Wind Musical Instruments Nesoi"
+                  },
+                  "9206": {
+                      "name": "Percussion Musical Instruments Drums Etc.)"
+                  },
+                  "9207": {
+                      "name": "Musical Instruments With Sound Electric Prod Etc"
+                  },
+                  "9208": {
+                      "name": "Musical Boxes, Fairground Organs Etc, Whistles Etc"
+                  },
+                  "9209": {
+                      "name": "Parts Etc Of Musical Instr; Metronones, T Fork Etc"
+                  }
+              }
+          }
+      }
+  },
+  "19": {
+      "title": "Arms and Ammunition; Parts and Accessories Thereof",
+      "chapters": {
+          "93": {
+              "short": "Arms and Ammunition",
+              "description": "Arms and Ammunition, Parts and Accessories Thereof",
+              "subcategories": {
+                  "9301": {
+                      "name": "Military Weapons Ex Revolvers Pistols Lances Etc"
+                  },
+                  "9302": {
+                      "name": "Revolvers & Pistols, Designed To Fire Live Ammo"
+                  },
+                  "9303": {
+                      "name": "Sport Shotguns & Rifles Etc, Very Pistols Etc"
+                  },
+                  "9304": {
+                      "name": "Arms Nesoi, Other Than Side Arms And Similar Arms"
+                  },
+                  "9305": {
+                      "name": "Parts & Accessories Of Arms Of Head 9301 To 9304"
+                  },
+                  "9306": {
+                      "name": "Bombs, Grenades Etc; Cartridges Etc And Parts"
+                  },
+                  "9307": {
+                      "name": "Swords, Cutlasses, Bayonets, & Siml Arms & Parts"
+                  }
+              }
+          }
+      }
+  },
+  "20": {
+      "title": "Miscellaneous Manufactured Articles",
+      "chapters": {
+          "94": {
+              "short": "Furniture",
+              "description": "Furniture, Bedding, Mattresses, Mattress Supports, Cushions and Similar Stuffed Furnishings, Lamps and Lighting Fittings, Not Elsewhere Specified or Included, Illuminated Signs, Illuminated Nameplates and the Like, Prefabricated Buildings",
+              "subcategories": {
+                  "9401": {
+                      "name": "Seats (except Barber, Dental, Etc), And Parts"
+                  },
+                  "9402": {
+                      "name": "Medical, Surgical, Dental Or Veterinary Furn Etc"
+                  },
+                  "9403": {
+                      "name": "Furniture Nesoi And Parts Thereof"
+                  },
+                  "9404": {
+                      "name": "Mattress Supports; Articles Of Bedding Etc."
+                  },
+                  "9405": {
+                      "name": "Lighting Fittings, Parts;illumiinated Signs, Parts"
+                  },
+                  "9406": {
+                      "name": "Prefabricated Buildings"
+                  }
+              }
+          },
+          "95": {
+              "short": "Toys, Games and Sports Requisites",
+              "description": "Toys, Games and Sports Requisites, Parts and Accessories Thereof",
+              "subcategories": {
+                  "9503": {
+                      "name": "Toys Nesoi; Scale Models Etc; Puzzles; Parts Etc"
+                  },
+                  "9504": {
+                      "name": "Video Game Consoles, Mach, Table/parlor Games Etc"
+                  },
+                  "9505": {
+                      "name": "Festive, Carnival Or Other Entertainment Art, Pts"
+                  },
+                  "9506": {
+                      "name": "Artls & Equip F Genrl Physcl Exerc Etc; Pools; Pts"
+                  },
+                  "9507": {
+                      "name": "Fishing Rods & Tackle; Nets; Decoys Etc; Parts Etc"
+                  },
+                  "9508": {
+                      "name": "Trav Circus, Menagerie; Amus Park Rides Etc; Parts"
+                  }
+              }
+          },
+          "96": {
+              "short": "Miscellaneous Manufactured Articles",
+              "description": "Miscellaneous Manufactured Articles",
+              "subcategories": {
+                  "9601": {
+                      "name": "Worked Ivory, Bone Etc & Articles Thereof"
+                  },
+                  "9602": {
+                      "name": "Veg Molded Resin Etc Carving Material, Nesoi"
+                  },
+                  "9603": {
+                      "name": "Brooms, Brushes, Mops, Feather Dusters Etc"
+                  },
+                  "9604": {
+                      "name": "Hand Sieves And Hand Riddles"
+                  },
+                  "9605": {
+                      "name": "Travel Sets For Personal Toilet,etc"
+                  },
+                  "9606": {
+                      "name": "Buttons, Press Studs Etc, Button Mold & Blanks Etc"
+                  },
+                  "9607": {
+                      "name": "Slide Fasteners And Parts Thereof"
+                  },
+                  "9608": {
+                      "name": "Pens (ball Point, S Tip Etc), Mech Pencils Etc, Pt"
+                  },
+                  "9609": {
+                      "name": "Pencils (lead Encased), Crayons, Leads, Chalks Etc"
+                  },
+                  "9610": {
+                      "name": "Slates & Boards,with Writing Or Drawing Surfaces"
+                  },
+                  "9611": {
+                      "name": "Date Sealing Or Numbering Stamps,etc For Hand Oper"
+                  },
+                  "9612": {
+                      "name": "Typewriter Etc Ribbons, Inked Or Prep; Ink Pads"
+                  },
+                  "9613": {
+                      "name": "Cigarette Lighters & Other Lighters; Parts Nesoi"
+                  },
+                  "9614": {
+                      "name": "Smoking Pipes & Bowls, Cigar Etc Holders, & Parts"
+                  },
+                  "9615": {
+                      "name": "Combs, Hair-slides Etc; Hairpins, Curling Pins Etc"
+                  },
+                  "9616": {
+                      "name": "Scent & Similar Sprayers Etc; Powder Puffs & Pads"
+                  },
+                  "9617": {
+                      "name": "Vacuum Flasks, Oth Vacuum Vessels, Complete; Parts"
+                  },
+                  "9618": {
+                      "name": "Tailors' Dummies & Othr Mannequins For Display"
+                  },
+                  "9619": {
+                      "name": "Sanitary Pads, Tampons, Diapers, Diaper Liners Etc"
+                  },
+                  "9620": {
+                      "name": "Monopods, Bipods, Tripods And Similar Articles"
+                  }
+              }
+          }
+      }
+  },
+  "21": {
+      "title": "Works of Art, Collectors' Pieces and Antiques",
+      "chapters": {
+          "97": {
+              "short": "Works of Art, Collectors' Pieces and Antiques",
+              "description": "Works of Art, Collectors' Pieces and Antiques",
+              "subcategories": {
+                  "9701": {
+                      "name": "Paintings, Drawings Etc By Hand As Art; Collag Etc"
+                  },
+                  "9702": {
+                      "name": "Original Engravings, Prints & Lithographs"
+                  },
+                  "9703": {
+                      "name": "Original Sculptures And Statuary, In Any Material"
+                  },
+                  "9704": {
+                      "name": "Postage Or Revenue Stamps, Firstday Covers"
+                  },
+                  "9705": {
+                      "name": "Collect, Arch, Ethno, Hist, Zoolog, Etc Interest"
+                  },
+                  "9706": {
+                      "name": "Antiques Of An Age Exceeding One Hundred Years"
+                  }
+              }
+          },
+          "98": {
+              "short": "Special Classification Provisions",
+              "description": "Special Classification Provisions",
+              "subcategories": {
+                  "9801": {
+                      "name": "Expts Of Repaired Impts; Impts Of Returned Expts"
+                  },
+                  "9802": {
+                      "name": "Expts Charity Nesoi; Impts Return Articls, Advancd"
+                  },
+                  "9803": {
+                      "name": "Exports Military Apparel & Military Equip Not Iden"
+                  },
+                  "9808": {
+                      "name": "Importations Of The United States Government"
+                  },
+                  "9810": {
+                      "name": "Imports Of Religious, Education, Scient Etc Inst"
+                  },
+                  "9812": {
+                      "name": "Imports Duty Free Under Bond For Permanent Exhibit"
+                  },
+                  "9817": {
+                      "name": "Imports Duty Free Under Spec Classif Prov Nesoi"
+                  },
+                  "9818": {
+                      "name": "Equip/pts Incl Boats Purchsd Fr O Repair Pts, Etc."
+                  },
+                  "9870": {
+                      "name": "Special Canadian Classifications, Nesoi"
+                  },
+                  "9880": {
+                      "name": "Low Value Exp Shp; Canadian. Est Late Receipts"
+                  }
+              }
+          },
+          "99": {
+              "short": "Temporary legisaltion, and modifications proclaimed pursuant to trade aggrements legislation",
+              "description": "Temporary legisaltion, and modifications proclaimed pursuant to trade aggrements legislation",
+              "subcategories": {
+                  "9999": {
+                      "name": "Salvage;estimate Of Low Valued Import Transactions"
+                  }
+              }
+          }
+      }
+  }
+}

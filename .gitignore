@@ -1,0 +1,8 @@
+# Ignore all .md files
+*.md
+
+# Except README.md
+!README.md
+
+# Ignore large JSON files
+data/trade_data/SHORT_hs_trade_data_combined*.json

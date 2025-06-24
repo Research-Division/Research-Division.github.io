@@ -1,0 +1,44 @@
+<!--This is where we select the country without using the maps. This example only does continents-->
+
+
+<div id="modal-country-search" class="modal">
+  <div class="modal-content card">
+    <button class="modal-close" onclick="tariffModals.closeModal('modal-country-search')"><img src="assets/fontawesome/xmark.svg" alt="Close" class="close-icon"></button>
+    <div class="modal-header">
+      <h2>Country Product Level Tariff</h2>
+      <div class="separator"></div>
+      <p>
+        <strong>How to use this page:</strong>
+      </p>
+      <ol style="text-align: left; margin-top: 5px; padding-left: 20px;">
+        <li>Click the <strong>▶</strong> next to a continent to see its countries</li>
+        <li>Select one or more countries by checking the boxes</li>
+        <li>Click the arrow at the bottom right to continue</li>
+      </ol>
+      <p style="margin-top: 5px; font-size: 0.9em;">
+        <em>Tip: You can also select countries directly from the world map</em>
+      </p>
+      <div class="separator"></div>
+      <div style="display: flex; justify-content: center; margin-top: 10px;">
+        <button id="select-all-countries" class="receipt-btn">Select All Countries</button>
+      </div>
+    </div>
+    <div class="modal-body">
+      <!--<div style="display: flex; justify-content: center; margin: 10px 0; " > -->
+        <div style="display: none;" >
+        <input type="text" id="country-search-input" placeholder="Search for a country..."
+          style="width: 100%; max-width: 300px; padding: 4px; border: 2px solid var(--borderColor); background-color: var(--background-color); text-align: left; color: var(--text-color)">
+      </div>
+      <!-- This is where the collapsible country list will be injected -->
+      <div id="continent-list"></div>
+    </div>
+    <div class="modal-footer">
+      <div id="next-button-container" style="position: relative; display: flex; justify-content: flex-end; margin-top: 20px;">
+        <button onclick="tariffModals.goToNextStep()" style="background: none; border: none; cursor: pointer;">
+          <img src="assets/fontawesome/forward.svg" alt="Next" style="width: 24px; height: 24px;">
+        </button>
+      </div>
+    </div>
+  </div>
+</div> 
+

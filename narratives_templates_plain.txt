@@ -1,0 +1,129 @@
+# TRADE NARRATIVES TEMPLATES (PLAIN TEXT)
+
+Variables appear as ${variable_name} and should be preserved.
+
+## 1. MAIN TRADE NARRATIVE
+
+### Basic Trade Statistics
+
+As of ${latestYear}, ${countryName} ranked ${tradeRank_latest} among all U.S. trading partners by total goods trade — up from ${tradeRank_initial} in ${initialYear}. It is currently the ${importRank_latest} largest source of imports and the ${exportRank_latest} largest destination for exports.
+
+Imports from ${countryName} make up ${importShare} of total U.S. imports, and exports account for ${exportShare} of total U.S. exports. The U.S. currently runs a trade deficit of ${bilateralDeficit}, ranking ${deficitRank_latest} among all bilateral deficits.
+
+### Trade Balance Text (3 variants)
+
+VARIANT 1 (Always deficit):
+The U.S. has consistently run a trade deficit with ${countryName} since 1992.
+
+VARIANT 2 (Always surplus):
+The U.S. has consistently maintained a trade surplus with ${countryName}.
+
+VARIANT 3 (Mixed history):
+The U.S. ran trade surpluses with ${countryName} in the following years: ${years_list}.
+
+### Recent Changes
+
+More recently, over the past 5 years, imports ${import_5yr_change} and exports ${export_5yr_change}. In the last year, exports ${export_1yr_change} and imports ${import_1yr_change}.
+
+Note: The ${import_change} and ${export_change} will use one of these formats:
+- "rose by X%" (for positive values)
+- "fell by X%" (for negative values)
+- "remained unchanged" (for zero values)
+
+
+## 2. TIME SERIES NARRATIVE
+
+### Import Changes (3 variants)
+
+VARIANT 1 (Both growing and shrinking sectors):
+Over the full period (1994-2024), imports from ${name} have seen notable growth in ${growing_sectors}, while some traditional sectors have lost ground, including ${shrinking_sectors}. These rankings reflect ${name}'s position among all countries exporting to the U.S. in each sector.
+
+VARIANT 2 (Only growing sectors):
+Since 1994, imports from ${name} have shown notable growth, particularly in ${growing_sectors}. These rankings reflect ${name}'s position among all countries exporting to the U.S. in each sector.
+
+VARIANT 3 (Only shrinking sectors):
+Over the past three decades, some traditional import sectors from ${name} have lost ground, including ${shrinking_sectors}. These rankings reflect ${name}'s position among all countries exporting to the U.S. in each sector.
+
+### Export Changes (3 variants)
+
+VARIANT 1 (Both growing and shrinking sectors):
+For U.S. exports to ${name}, the long-term trend shows several sectors gaining prominence, such as ${growing_sectors}, though certain categories have seen their significance diminish, notably ${shrinking_sectors}. These rankings reflect ${name}'s position among all destinations for U.S. exports in each sector.
+
+VARIANT 2 (Only growing sectors):
+U.S. export trends to ${name} since 1994 show several sectors gaining prominence, such as ${growing_sectors}. These rankings reflect ${name}'s position among all destinations for U.S. exports in each sector.
+
+VARIANT 3 (Only shrinking sectors):
+Over the past three decades, certain U.S. export categories to ${name} have seen their significance diminish, notably ${shrinking_sectors}. These rankings reflect ${name}'s position among all destinations for U.S. exports in each sector.
+
+### Chart Reference Text
+
+Figures 1, 2, and 3 respectively display the trade balance, value of imports, and value of exports between the U.S. and ${name}. The commodity groups displayed are grouped into four broader categories (select the dropdown to change categories).
+
+
+## 3. TARIFF EXPLANATION TEXT
+
+These statutory tariff rates do not include additional measures such as Section 232 (national security tariffs), Section 301 (retaliatory tariffs related to unfair trade practices), or anti-dumping duties. For comprehensive up-to-date information, users are encouraged to consult resources such as the Peterson Institute or the Yale Budget Lab.
+
+Figure 1 displays the average effective statutory tariff rates imposed by the United States on ${currentCountry.name} and vice versa.
+
+Figure 2 Shows commodity level statutory tariff rates in 2021 across the 21 Harmonized System (HS) sections.
+
+Figure 3 presents a time series of statutory tariff rates from 1995 to 2021, broken out by HS section. Solid lines represent tariffs imposed by the United States on imports from ${currentCountry.name}, while dashed lines represent ${currentCountry.name}'s tariffs on U.S. imports. HS sections are grouped into four broader categories, Agricultural, Industrial, Manufacturing, and Raw Materials. Currently displaying:
+
+### Special Case Tariff Text (for specific countries)
+
+FOR TAIWAN:
+Taiwan is excluded from some trade statistics due to its complex diplomatic status, but bilateral trade data is still tracked by the U.S. International Trade Commission.
+
+FOR LIECHTENSTEIN:
+Liechtenstein forms a customs union with Switzerland, so its tariff data may be reported under Switzerland in some statistics.
+
+FOR MAYOTTE:
+Mayotte is an overseas department and region of France, so its tariff and trade data may be reported under France in some statistics.
+
+
+## 4. PRODUCT NARRATIVE
+
+### Top Products Section
+
+Top Products
+
+In ${currentYear}, the top products imported from ${countryName} were: ${top_imports_list}. ${importTrend}
+
+Meanwhile, the top U.S. exports to ${countryName} were: ${top_exports_list}. ${exportTrend}
+
+### Import Trends (3 variants)
+
+VARIANT 1 (Increase):
+Overall, imports from ${countryName} have increased by ${importGrowth} since ${baseYear}.
+
+VARIANT 2 (Decrease):
+Overall, imports from ${countryName} have decreased by ${importGrowth} since ${baseYear}.
+
+VARIANT 3 (No change):
+Overall, imports from ${countryName} have remained relatively stable since ${baseYear}.
+
+### Export Trends (3 variants)
+
+VARIANT 1 (Increase):
+Overall, exports to ${countryName} have increased by ${exportGrowth} since ${baseYear}.
+
+VARIANT 2 (Decrease):
+Overall, exports to ${countryName} have decreased by ${exportGrowth} since ${baseYear}.
+
+VARIANT 3 (No change):
+Overall, exports to ${countryName} have remained relatively stable since ${baseYear}.
+
+### Product List Format
+
+Each product is listed in this format: Product Name (Value)
+
+
+## 5. FORMAT HELPERS
+
+### Oxford Comma List Format
+
+Lists of items use Oxford comma format:
+- Single item: "A"
+- Two items: "A and B" 
+- Three or more items: "A, B, and C"

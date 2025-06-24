@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Tariff Integration</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .controls {
+      margin-bottom: 20px;
+      padding: 15px;
+      background-color: var(--background-color);
+      border: var(--borderWidth) solid var(--borderColor);
+      border-radius: var(--borderRadius);
+    }
+    .form-group {
+      margin-bottom: 10px;
+    }
+    label {
+      display: inline-block;
+      width: 100px;
+      font-weight: bold;
+    }
+    select, input {
+      padding: 8px;
+      border-radius: var(--borderRadius);
+      border: 1px solid var(--borderColor);
+      background-color: var(--background-color);
+      color: var(--text-color);
+      min-width: 200px;
+    }
+    button {
+      padding: 8px 15px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .output {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: var(--background-color);
+      border: var(--borderWidth) solid var(--borderColor);
+      border-radius: var(--borderRadius);
+    }
+    .status-bar {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: var(--background-color);
+      border: var(--borderWidth) solid var(--borderColor);
+      border-radius: var(--borderRadius);
+    }
+    #status-message {
+      font-weight: bold;
+    }
+    pre {
+      background-color: var(--background-color);
+      border: var(--borderWidth) solid var(--borderColor);
+      color: var(--text-color);
+      padding: 10px;
+      border-radius: var(--borderRadius);
+      overflow-x: auto;
+      margin-top: 10px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+    
+    .modal-content {
+      position: relative;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      margin: 5% auto;
+      padding: 20px;
+      border: var(--borderWidth) solid var(--borderColor);
+      width: 80%;
+      max-width: 800px;
+      max-height: 90vh;
+      overflow-y: auto;
+      border-radius: var(--borderRadius);
+    }
+    
+    .modal-close {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      font-size: 20px;
+    }
+    
+    .modal-header {
+      margin-bottom: 20px;
+    }
+    
+    .separator {
+      height: 1px;
+      background-color: #ddd;
+      margin: 15px 0;
+    }
+    
+    .receipt-btn {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    
+    /* Tariff container styles */
+    .tariff-container {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 10px 0;
+      width: 100%;
+    }
+    
+    .popup-row-modal {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+    
+    .popup-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+    
+    .input-group {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+    
+    .popup-input {
+      width: 80px;
+      padding: 6px 18px 6px 6px;
+      border: 1px solid var(--borderColor);
+      border-radius: var(--borderRadius);
+      background-color: var(--background-color);
+      color: var(--text-color);
+      text-align: right;
+    }
+    
+    .popup-input.original-tariff {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    
+    .popup-input.current-tariff {
+      border-color: var(--excellenceOrange);
+      color: var(--excellenceOrange);
+    }
+    
+    .popup-input.tariff-change {
+      border-color: #4CAF50;
+    }
+    
+    .popup-input.pass-through {
+      border-color: #FF9800;
+    }
+    
+    .percent-symbol {
+      position: absolute;
+      right: 6px;
+      pointer-events: none;
+    }
+    
+    /* Status indicators */
+    .direct-badge, .calculated-badge, .tariff-badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.7em;
+      margin-left: 8px;
+    }
+    
+    .direct-badge {
+      background-color: #e3f2fd;
+      color: #1976d2;
+      border: 1px solid #bbdefb;
+    }
+    
+    .calculated-badge {
+      background-color: #f3e5f5;
+      color: #7b1fa2;
+      border: 1px solid #e1bee7;
+    }
+    
+    .tariff-badge {
+      background-color: #fff3e0;
+      color: #e65100;
+      font-weight: bold;
+      border: 1px solid #ffe0b2;
+    }
+    
+    /* Hierarchical structure styling */
+    .section-item, .chapter-item, .hs4-item {
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: var(--borderRadius);
+      cursor: pointer;
+      border: 1px solid var(--borderColor);
+    }
+    
+    .section-item {
+      background-color: var(--background-color);
+    }
+    
+    .chapter-container {
+      margin-left: 20px;
+      display: none;
+    }
+    
+    .chapter-item {
+      background-color: var(--background-color);
+    }
+    
+    .hs4-container {
+      margin-left: 20px;
+      display: none;
+    }
+    
+    .hs4-item {
+      background-color: var(--background-color);
+    }
+    
+    .item-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .toggle-icon {
+      margin-right: 5px;
+      display: inline-block;
+      width: 15px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Simple Tariff Integration</h1>
+    
+    <div class="controls">
+      <div class="form-group">
+        <label for="country-select">Country:</label>
+        <select id="country-select">
+          <!-- Will be populated dynamically -->
+        </select>
+      </div>
+      
+      <button id="open-modal-btn">Open Tariff Editor</button>
+      <button id="toggle-mode-btn" style="background-color: #2196F3; margin-left: 10px;">Toggle Input Mode</button>
+    </div>
+    
+    <div class="output">
+      <h2>Output Data</h2>
+      <pre id="data-output">No data yet. Open the tariff editor and submit tariff changes to see data.</pre>
+    </div>
+    
+    <div class="status-bar">
+      <div id="status-message">Ready</div>
+    </div>
+  </div>
+  
+  <!-- Tariff Editor Modal -->
+  <div id="modal-product-list" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('modal-product-list')">✖</button>
+      <div class="modal-header">
+        <h2>Country Product Level Tariff</h2>
+        <div class="separator"></div>
+        <p>
+          <strong>How to change tariffs:</strong>
+        </p>
+        <div style="margin: 10px 0 15px 0;">
+          <p style="margin-bottom: 10px;"><strong>Option 1: Change tariffs on ALL industries</strong></p>
+          <ol style="text-align: left; margin-left: 20px; margin-bottom: 15px;">
+            <li>Enter a value in the "Additional Tariffs" box: this is the amount the tariff rate will increase</li>
+            <li>Enter an expected "Pass-through Rate" (Standard rate is 100%)</li>
+          </ol>
+
+          <p style="margin-bottom: 10px;"><strong>Option 2: Change tariffs on SPECIFIC industries</strong></p>
+          <ol style="text-align: left; margin-left: 20px;">
+            <li>Click the <strong>▶</strong> next to an industry to see more options</li>
+            <li>Enter tariff percentages for the industries you want to change</li>
+          </ol>
+          <div style="background-color: var(--background-color); border: var(--borderWidth) solid var(--borderColor); padding: 10px; border-radius: var(--borderRadius); margin-top: 15px;">
+            <p style="font-size: 0.9em; margin-bottom: 5px;"><strong>Input Mode Toggle:</strong></p>
+            <p style="font-size: 0.85em;">
+              You can switch between two input modes using the button on the main page:
+            </p>
+            <ul style="font-size: 0.85em; margin-left: 20px; margin-top: 5px;">
+              <li><strong>Tariff Change / Pass Through</strong> (default): Enter the change in tariff and how much is passed through to prices.</li>
+              <li><strong>Original / Current Tariffs</strong>: Enter the baseline (original) and new (current) tariff values directly.</li>
+            </ul>
+          </div>
+        </div>
+        <p style="margin-top: 10px; font-size: 0.9em;">
+          <em>Tip: Click "Submit Tariff" at the bottom when you're done to see the price effects</em>
+        </p>
+        
+        <div class="separator"></div>
+      </div>
+      <div class="modal-body">
+        <div id="tariff-all-goods">
+            <div style="text-align: center; font-weight: bold; margin-bottom: 10px;">
+                TARIFFS ON ALL INDUSTRIES
+            </div>
+            <label for="tariff-all-input">Additional Tariffs:</label>
+            <div class="popup-row">
+              <div class="input-group">
+                <input 
+                    id="tariff-all-input"
+                    class="popup-input percent"
+                    type="number"
+                    step="5"
+                    min="0"
+                    max="100"
+                    value="0.00"
+                />
+                <span class="percent-symbol">%</span>
+              </div>
+            </div>
+            <label for="tariff-all-passthrough">Pass-through Rate:</label>
+            <div class="popup-row">
+              <div class="input-group">
+                <input 
+                    id="tariff-all-passthrough"
+                    class="popup-input percent"
+                    type="number"
+                    step="5"
+                    min="0"
+                    max="100"
+                    value="100"
+                />
+                <span class="percent-symbol">%</span>
+              </div>
+            </div>
+            <div class="separator"></div>
+        </div>
+        <div style="text-align: center; font-weight: bold; margin-bottom: 10px;">
+            TARIFFS ON SPECIFIC INDUSTRIES
+        </div>
+        <div id="tariff-tree"></div>
+      </div>
+      <div class="modal-footer" style="position: sticky; bottom: 0; background-color: var(--background-color); padding-top: 10px; z-index: 100;">
+        <div class="separator"></div>
+        <div style="display: flex; justify-content: flex-end; margin-top: 20px;">
+          <button id="tariffSubmit" class="receipt-btn">Submit Tariff</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script type="module" src="simple_tariff_integration.js"></script>
+</body>
+</html>

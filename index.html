@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- To test online, host local server with python3 -m http.server, which points to port 8000, then do ngrok http http://localhost:8000 for more check out "https://dashboard.ngrok.com/get-started/setup/linux"-->
+        <meta charset="utf-8">
+        <title>Sparks Graph Function Testing Environment</title>
+        <!-- Link to Leaflet scripts and CSS-->
+        <link rel="stylesheet" href="leaflet/leaflet.css">
+        <script src="leaflet/leaflet.js"></script>
+
+        <!-- Link to External CSS Files -->
+        <link rel="stylesheet" href="assets/fonts/optimized/optimized-fonts.css"/>
+        <link rel="stylesheet" href="styles/frba_color_vars.css"/>
+        <link rel="stylesheet" href="styles/style.css" />
+        <link rel="stylesheet" href="styles/modal.css"/>
+        <link rel="stylesheet" href="styles/map.css"/>
+        <link rel="stylesheet" href="styles/receipt.css"/>
+        <link rel="stylesheet" href="styles/header.css"/>
+        <link rel="stylesheet" href="styles/footer.css"/>
+        <link rel="stylesheet" href="styles/popup.css"/>
+        <link rel="stylesheet" href="styles/form-elements.css"/>
+        <!-- Add our main Sparks Graph Styles -->
+        <link rel="stylesheet" href="styles/sparksGraphStyles.css"/>
+        <!-- Add Combined Charts Styles -->
+        <link rel="stylesheet" href="styles/combinedSparksCharts.css"/>
+        <!-- Add Help Info Modal Styles -->
+        <link rel="stylesheet" href="styles/help_info_modal.css"/>
+    </head>
+    <body>
+        <!-- HEADER: Future Navigation or Branding-->
+        <header id="site-header">
+            <!-- FRB Atlanta Placeholder Assets-->
+            <img src="assets/frba/FRBA_Logos_ForExternalUse/FRBA-Logos/Reverse White Logos/png/FRBAlogo-Column-1Line.png" alt="Federal Reserve Bank of Atlanta Logo." class="logo logo-dark">
+            <img src="assets/frba/FRBA_Logos_ForExternalUse/FRBA-Logos/Color Logos/png/FRBAlogo_Box_1Line.png" alt="Federal Reserve Bank of Atlanta Logo." class="logo logo-light">
+            <!-- Testing Environment Name-->
+            <div id="header-right">
+                <img src="assets/fontawesome/chart-line-solid.svg" alt="Sparks Graph Charts" class="chart-icon" id="show-multi-chart-panel">
+                <img src="assets/fontawesome/globe-solid.svg" alt="Global Trade Charts" class="industry-icon" id="show-global-trade-panel">
+                <img src = "assets/fontawesome/circle-question-solid.svg" alt = "Help and Information" class="help-info-icon" id="show-help-panel">
+                <img src="assets/fontawesome/settings.svg" alt="Developer Tools" class="settings-icon">
+            </div>
+        </header>
+        
+        <!-- MAIN CONTENT: Divide page into primary areas-->
+        <main id="main-content">
+            <h1 class = 'sr-only'> Tariff Tool Name Temporary</h1>
+        
+            <!-- Map section-->
+            <section id="map-section" class="card">
+            </section>
+
+            <!-- Receipt section-->
+            <div id="receipt-section-plhld">
+            </div>
+ 
+        </main>
+        <!-- Footer: Optional Additional Information -->
+        <footer id="site-footer">
+            <p>PLACEHOLDER FOOTER: 2025 Federal Reserve Bank of Atlanta. All rights reserved. TESTING ENVIRONMENT.</p>
+        </footer>
+        
+        <!--Insert Modal-->
+        <div id="modal-container"></div>
+
+        <!-- External Javascript files-->
+        <!-- Load essential utilities first - note the careful ordering -->
+        <script src="src/utils/formatUtils.js"></script>
+        <!-- Load data paths for centralized data file locations -->
+        <script src="code/data_paths.js"></script>
+        
+        <!-- Load Sparks Core Components -->
+        <script src="src/utils/chartUtilsFunctions/sparksChartConfigManager.js"></script>
+        <script src="src/utils/chartUtilsFunctions/sparksColorUtils.js"></script>
+        <script src="src/utils/chartUtilsFunctions/sparksCreateChartUtils.js"></script>
+        <script src="src/utils/chartUtilsFunctions/sparksLayoutManager.js"></script>
+        <script src="src/utils/chartUtilsFunctions/sparksTooltipManager.js"></script>
+        <script src="src/utils/chartUtilsFunctions/sparksAnimationUtils.js"></script>
+        <script src="src/utils/chartUtilsFunctions/sparksUpdateChartUtils.js"></script>
+
+        <script src="src/utils/chartUtils.js"></script>
+        
+        <!-- Load Core Components -->
+        <script src="src/core/components/sparksStyleManager.js"></script>
+        <script src="src/core/components/sparksAxisComponent.js"></script>
+        <script src="src/core/components/sparksDataComponent.js"></script>
+        <script src="src/core/components/sparksDecorationComponent.js"></script>
+        <script src="src/core/components/sparksUIComponent.js"></script>
+        <script src="src/core/sparksGraphingCore.js"></script>
+        <script src="src/core/sparksGraphingInit.js"></script>
+        
+        <!-- Load Chart Renderers -->
+        <script src="src/renderers/sparksLineChart.js"></script>
+        <script src="src/renderers/sparksBarChart.js"></script>
+        <script src="src/renderers/sparksCompressedTreemap.js"></script>
+        
+        <!-- Load CompressedTreemap JS files - ensure they're loaded in the correct order -->
+        <!-- First create namespace container -->
+        <script>
+            window.CompressedTreemap = window.CompressedTreemap || {};
+        </script>
+        
+        <!-- Load components in dependency order -->
+        <script src="src/utils/dataUtils/CompressedTreemap/metadataProvider.js"></script>
+        <script src="src/utils/dataUtils/CompressedTreemap/treemapNode.js"></script>
+        <script src="src/utils/dataUtils/CompressedTreemap/treemapLayout.js"></script>
+        <script src="src/utils/dataUtils/CompressedTreemap/treemapRenderer.js"></script>
+        <script src="src/utils/dataUtils/CompressedTreemap/compressedDataAdapter.js"></script>
+        <script src="src/utils/dataUtils/CompressedTreemap/drillDownManager.js"></script>
+        
+        <!-- Load main implementation index file -->
+        
+        <!-- Load wrapper file after all components are loaded -->
+        <script src="src/utils/dataUtils/compressedTreemap.js"></script>
+        
+        <!-- Load Auxiliary Graph Types -->
+        <script src="src/auxiliaryGraphTypes/countryTimeSeriesChart.js"></script>
+        <script src="src/auxiliaryGraphTypes/countryBilatTariffRates.js"></script>
+        <script src="src/auxiliaryGraphTypes/countryBilatTradeRelats.js"></script>
+        <script src="src/auxiliaryGraphTypes/industryTariffsBarChart.js"></script>
+        <script src="src/auxiliaryGraphTypes/industryTariffsTimeSeries.js"></script>
+        <script src="src/auxiliaryGraphTypes/compressedCountryTreemap.js"></script>
+        <!-- New section analysis charts -->
+        <script src="src/auxiliaryGraphTypes/sectionTimeSeries.js"></script>
+        <script src="src/auxiliaryGraphTypes/countrySectionTimeSeries.js"></script>
+        <script src="src/auxiliaryGraphTypes/sectionBilateralTradeChart.js"></script>
+        <!-- Old treemap implementations removed -->
+
+        <!-- Load Modal System -->
+        <script src="src/devTools/devTools.js"></script>
+
+
+
+        <!-- Main application script -->
+        <script src="app.js"></script>
+        <script src="code/components/calculations/calculations.js"></script>
+        <script src="code/components/calculations/tariff_pre_calculations.js"></script>
+        
+        <!-- UI Components -->
+        <script src="code/components/tariffModals/countryList/countryList.js"></script>
+        <script src="code/components/tariffModals/countryList/countrySelection.js"></script>
+        <script src="code/components/tariffModals/productList/tariffs/simpleTariffPropagation.js"></script>
+        <script src="code/components/tariffModals/productList/MDS_helper_functions.js"></script>
+        <script src="code/components/tariffModals/productList.js"></script>
+        <script src="code/components/tariffModals/globalTariff.js"></script>
+        <script src="code/components/tariffModals/tariffModalIntegration.js"></script>
+        <script src="code/components/receipt/receipt.js"></script>
+        <script src="code/components/map/map.js"></script>
+        <script src="code/components/help_and_info/help_and_info.js"></script>
+
+
+        <!-- Load Required Chart Components -->
+        <script src="src/dataAux/barChartData.js"></script>
+        <script src="src/renderers/sparksBarChart.js"></script>
+        
+        <!-- Load Combined Chart Layouts -->
+        <script src="combined_charts/01_trade_area_charts.js"></script>
+        <script src="combined_charts/tariff_comparison_chart.js"></script>
+        <script src="combined_charts/02_effects_and_rates.js"></script>
+        <script src="combined_charts/00_Global_Trade_Charts.js"></script>
+        
+        <!-- Initialize when document is loaded -->
+        <script src="testing_environment.js"></script>
+        
+        <style>
+        </style>
+    </body>
+</html>

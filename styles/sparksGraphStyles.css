@@ -1,0 +1,1139 @@
+/**
+ * Sparks Graphing Library - CSS Styles
+ * Centralized styling for all chart components and visualizations
+ * 
+ * This stylesheet relies on:
+ * 1. Color variables defined in frba_color_vars.css
+ * 2. Color utilities implemented in sparksColorUtils.js
+ * 3. Font and other base styles from the parent application
+ * 
+ * Note: This file should be included after frba_color_vars.css and the application's base styles
+ */
+
+/* ===== CHART CONTAINERS ===== */
+/* Common styling for all chart containers */
+.sparks-chart-container {
+    height: auto;
+    margin-top: 20px;
+    border: 2px solid var(--borderColor);
+    border-radius: var(--borderRadius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    overflow: visible;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+/* Chart container for modals */
+.modal-chart-container {
+    min-height: 400px;
+    width: 800px !important; /* Force consistent width */
+    height: auto;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    border: 2px dashed var(--borderColor);
+    border-radius: var(--borderRadius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    overflow: visible;
+    background-color: var(--background-color);
+}
+
+/* Placeholder for charts before data is loaded */
+.visualization-placeholder {
+    color: var(--alt-text-color);
+    font-style: italic;
+    text-align: center;
+    font-family: var(--font-family-monospace);
+    padding: 30px;
+    border: 1px dashed var(--borderColor);
+    border-radius: var(--borderRadius);
+    margin: 20px;
+    background-color: rgba(0, 0, 0, 0.01);
+}
+
+/* Error message styling */
+.chart-error {
+    padding: 20px;
+    color: var(--respectRed);
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    font-family: var(--font-family-monospace);
+    margin: 20px;
+}
+
+.chart-error h3 {
+    margin-top: 0;
+    font-weight: 600;
+}
+
+/* Loading message */
+.chart-loading {
+    text-align: center;
+    padding: 20px;
+    color: var(--alt-text-color);
+    font-family: var(--font-family-monospace);
+}
+
+/* ===== CHART LAYOUT & COMPONENTS ===== */
+.tariff-chart-container {
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+    font-family: var(--font-family-monospace);
+}
+
+.chart-title {
+    font-family: var(--font-family-monospace);
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
+
+.chart-y-title-horizontal {
+    display: none;
+    text-align: left;
+    padding-left: 10px;
+    font-weight: normal;
+    margin-top: 10px;
+    font-size: 14px;
+    font-family: var(--font-family-monospace);
+    color: var(--text-color);
+}
+
+.chart-visualization {
+    flex: 1;
+    width: 100%;
+    min-height: 350px;
+    position: relative;
+    padding-bottom: 0.5em;
+}
+
+.chart-visualization-container {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    padding: 0 5%;
+    width: 90%;
+}
+
+.chart-notes {
+    margin-top: 0.4em;
+    margin-bottom: 0.4em;
+    line-height: 1.4;
+    width: 100%;
+    font-size: 12px;
+    color: var(--alt-text-color);
+    text-align: left;
+    padding-left: 10px;
+}
+
+.chart-notes p {
+    margin: 5px 0;
+    font-family: var(--font-family-monospace);
+    font-size: 12px;
+    color: var(--alt-text-color);
+}
+
+.chart-notes a {
+    color: var(--alt-text-color);
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.chart-notes a:hover {
+    text-decoration: underline;
+}
+
+/* SVG styling */
+.chart-visualization svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+/* Legend styling */
+.chart-legend {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 0.3em auto;
+    padding: 0.3em 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Hide empty chart legends to prevent white space */
+.chart-legend:empty {
+    display: none;
+    margin: 0;
+    padding: 0;
+    height: 0;
+    border: none;
+}
+
+
+.legend-rows {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.legend-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 25px;
+    margin-bottom: 12px;
+}
+
+.legend-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0;
+    margin: 0;
+    font-family: var(--font-family-monospace);
+    font-size: 13px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    user-select: none;
+    text-align: left;
+    white-space: nowrap;
+    gap: 4px; /* Tighter spacing between color box and text */
+}
+
+.legend-item:hover {
+    opacity: 0.9;
+}
+
+.legend-color {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin: 0 5px 0 0;
+    padding: 0;
+    border: none;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+}
+
+.legend-label {
+    font-family: var(--font-family-monospace);
+    font-size: 13px;
+    color: var(--text-color);
+}
+
+/* ===== CHART DATA ELEMENTS ===== */
+/* SVG animation styles */
+.animated-path {
+    transition: stroke-dashoffset 0.8s ease-in-out, opacity 0.3s ease, stroke-width 0.3s ease;
+}
+
+.data-point {
+    transition: r 0.2s ease, stroke-width 0.2s ease, opacity 0.3s ease;
+    cursor: pointer;
+}
+
+.hover-target {
+    cursor: pointer;
+}
+
+/* Tooltip styles */
+.chart-tooltip {
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+}
+
+.tooltips-container {
+    pointer-events: none;
+}
+
+/* Axis styles */
+.axis line {
+    stroke: var(--text-color);
+    stroke-opacity: 0.2;
+}
+
+.axis path {
+    stroke: var(--text-color);
+    stroke-width: 1.5;
+}
+
+.axis-label, .y-axis-title-vertical {
+    font-family: var(--font-family-monospace);
+    font-size: 14px;
+    fill: var(--text-color);
+}
+
+.tick-label {
+    font-family: var(--font-family-monospace);
+    font-size: 12px;
+    fill: var(--text-color);
+}
+
+.x-axis-line, .y-axis-line {
+    stroke: var(--text-color);
+    stroke-width: 2;
+}
+
+.x-axis-tick, .y-axis-tick {
+    stroke: var(--text-color);
+    stroke-width: 1;
+}
+
+/* Chart Wiz Style Specific Rules */
+.chart-style-chartWiz .chart-title {
+    text-align: left;
+    padding-left: 10px;
+    font-weight: normal;
+}
+
+.chart-style-chartWiz .chart-notes {
+    text-align: left;
+    padding-left: 10px;
+}
+
+.chart-style-chartWiz .chart-y-title-horizontal {
+    display: block;
+    margin-top: 15px;
+    padding-bottom: 10px;
+}
+
+.chart-style-chartWiz .y-axis-title-vertical {
+    opacity: 0;
+}
+
+.chart-style-chartWiz .y-axis-line {
+    opacity: 0;
+}
+
+.chart-style-chartWiz .y-axis-tick {
+    opacity: 0;
+}
+
+.chart-style-chartWiz .chart-legend {
+    justify-content: center;
+}
+
+/* Standard Style Specific Rules */
+.chart-style-standard .chart-title {
+    text-align: center;
+    font-weight: bold;
+}
+
+.chart-style-standard .chart-notes {
+    text-align: left;
+}
+
+.chart-style-standard .chart-y-title-horizontal {
+    display: none;
+}
+
+.chart-style-standard .chart-legend {
+    justify-content: center;
+}
+
+/* ===== MODAL STYLES ===== */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* semi-transparent overlay */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    overflow-y: auto;
+    padding: 30px 0;
+}
+
+.modal-header {
+    position: relative;
+    padding-bottom: 15px;
+    margin-bottom: 10px;
+}
+
+.modal-content {
+    background: var(--background-color);
+    color: var(--text-color);
+    padding: 25px;
+    border-radius: var(--borderRadius);
+    max-width: 500px;
+    max-height: 80vh;
+    width: 90%;
+    position: relative;
+    overflow-y: auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Wider modal for bilateral tariff rates and industry breakdown */
+.modal-content.bilateral-modal {
+    max-width: 90%;
+    width: 1000px; /* Ensure enough space for 800px charts plus padding */
+    margin: auto; /* Center the modal */
+    position: relative;
+    align-self: center;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    color: var(--text-color);
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+}
+
+.close-icon {
+    width: 16px;
+    height: 16px;
+    color: var(--text-color);
+    transition: transform 0.2s ease;
+}
+
+.close-icon:hover {
+    transform: scale(1.1);
+}
+
+/* ===== TABS STYLING ===== */
+.tabs-container {
+    display: flex;
+    border-bottom: 2px dashed var(--borderColor);
+    margin-bottom: 20px;
+    padding-bottom: 3px;
+    position: relative;
+}
+
+.tab {
+    padding: 14px 25px;
+    margin-right: 12px;
+    cursor: pointer;
+    position: relative;
+    border-bottom: 4px solid transparent;
+    transition: all 0.2s ease;
+    font-family: var(--font-family-monospace);
+    font-size: 1.05rem;
+    color: var(--alt-text-color);
+}
+
+.tab:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -6px;
+    top: 20%;
+    height: 60%;
+    width: 2px;
+    border-right: 2px dashed var(--borderColor);
+}
+
+.tab.active {
+    color: var(--text-color);
+    border-bottom: 4px solid var(--primary);
+    font-weight: 600;
+}
+
+.tab:hover:not(.active) {
+    background-color: rgba(0, 0, 0, 0.03);
+    color: var(--text-color);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Single chart content container */
+.chart-content-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+}
+
+/* Dark Theme Overrides */
+.dark_theme .chart-visualization svg text {
+    fill: var(--text-color);
+}
+
+.dark_theme .chart-tooltip rect {
+    fill: var(--charcoal);
+    stroke: var(--lightGray);
+}
+
+.dark_theme .chart-tooltip text {
+    fill: var(--text-color);
+}
+
+/* Bottom Space for Charts with Angled Labels */
+.chart-bottom-space {
+    width: 100%;
+    clear: both;
+}
+
+/* Data Bars for Bar Charts */
+.data-bar {
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+}
+
+.data-bar:hover {
+    opacity: 0.8;
+}
+
+/* ===== AXIS LABELS ===== */
+.tick-label-x {
+    cursor: default;
+}
+
+/* ===== TREEMAP STYLES ===== */
+.treemap-container {
+    width: 100%;
+    height: 600px;
+    margin-top: 15px;
+    border: 1px solid var(--borderColor);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.sparks-treemap {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+}
+
+/* Treemap controls */
+.treemap-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 0px 20px 20px 20px;
+    padding: 15px;
+    border: 1px solid var(--borderColor);
+    border-radius: var(--borderRadius);
+    background-color: var(--background-color);
+}
+
+.treemap-control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 200px;
+    flex: 1;
+}
+
+.treemap-control-label {
+    font-weight: 500;
+    font-family: var(--font-family-monospace);
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+/* We removed the country dropdown */
+
+/* Radio button controls */
+.treemap-radio-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.radio-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.radio-container input[type="radio"] {
+    opacity: 0;
+    position: absolute;
+    width: 0;
+    height: 0;
+}
+
+.radio-icon {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.radio-container:hover .radio-icon {
+    transform: scale(1.1);
+}
+
+.radio-on {
+    display: none;
+}
+
+.radio-off {
+    display: inline-block;
+}
+
+.radio-container input[type="radio"]:checked ~ .radio-on {
+    display: inline-block;
+}
+
+.radio-container input[type="radio"]:checked ~ .radio-off {
+    display: none;
+}
+
+.sparks-treemap rect {
+    fill-opacity: 1 !important;
+    stroke: #fff;
+    stroke-width: 1px;
+    transition: opacity 0.3s ease-out, stroke-width 0.2s ease;
+}
+
+.sparks-treemap g:hover rect {
+    stroke-width: 2px;
+    opacity: 0.9;
+}
+
+/* DOM-based tooltips for complex visualizations */
+.sparks-dom-tooltip {
+    font-family: var(--font-family-monospace);
+    font-size: 12px;
+    line-height: 1.5;
+    z-index: 9999;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+    max-width: 300px;
+    pointer-events: none;
+    /* Smoother animation with no layout shifts - no transition for position to follow cursor tightly */
+    transition: opacity 0.15s ease, visibility 0s linear 0.15s;
+    will-change: opacity, visibility, transform, left, top;
+    position: absolute;
+    background-color: var(--background-color);
+    padding: 10px 12px;
+    border: 1px solid var(--borderColor);
+    border-radius: var(--borderRadius);
+}
+
+/* Legacy class name for backward compatibility - inherits from sparks-dom-tooltip */
+.treemap-tooltip {
+    /* Inherit all properties from sparks-dom-tooltip */
+    font-family: var(--font-family-monospace);
+    font-size: 12px;
+    line-height: 1.5;
+    z-index: 9999;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+    max-width: 300px;
+    pointer-events: none;
+    transition: opacity 0.15s ease, visibility 0s linear 0.15s;
+    will-change: opacity, visibility, transform, left, top;
+    position: absolute;
+    background-color: var(--background-color);
+    padding: 10px 12px;
+    border: 1px solid var(--borderColor);
+    border-radius: var(--borderRadius);
+}
+
+/* Tooltip content styling classes */
+.treemap-tooltip-title {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: var(--text-color);
+    font-family: var(--font-family-monospace);
+    text-align: center;
+}
+
+.treemap-tooltip-row {
+    margin-bottom: 5px;
+    color: var(--text-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.treemap-tooltip-label {
+    font-weight: 500;
+    color: var(--alt-text-color);
+}
+
+.treemap-tooltip-value {
+    font-weight: 400;
+    color: var(--text-color);
+    margin-left: 10px;
+}
+
+/* First definition of treemap-rect styles */
+
+.treemap-label {
+    pointer-events: none;
+    user-select: none;
+}
+
+.treemap-title {
+    font-family: var(--font-family-monospace);
+    font-weight: bold;
+    fill: var(--text-color);
+}
+
+.treemap-subtitle {
+    font-family: var(--font-family-monospace);
+    fill: var(--alt-text-color);
+    opacity: 0.9;
+}
+
+/* ===== TEST ENVIRONMENT CONTROLS ===== */
+.test-buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.test-button {
+    padding: 8px 15px;
+    background-color: var(--primary-color, #0056b3);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: var(--font-family-monospace);
+    font-size: 14px;
+    margin: 5px;
+}
+
+.test-button:hover {
+    background-color: var(--primary-color-dark, #003d7a);
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* ===== COMPRESSED TREEMAP STYLES ===== */
+
+/* Treemap visualization container */
+.treemap-visualization-container {
+  width: 100%;
+  height: 100%; /* Use 100% height as preferred */
+  position: relative;
+  margin-bottom: 20px; /* Add space below for legend */
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 
+ * IMPORTANT FIX: When a treemap-visualization-container is present inside a chart-visualization div,
+ * we need to make the chart-visualization expand to fit the treemap's actual size.
+ * 
+ * The problem:
+ * 1. The chart-visualization div has a default height or is constrained by other factors
+ * 2. When we place the treemap-visualization-container inside it, that container gets squeezed
+ * 3. The SVG inside the container uses overflow:visible, so visually the content appears outside
+ * 4. But DOM layout flow is based on the actual elements' dimensions, not visual overflow
+ * 5. This causes the legend and notes to be positioned based on the small container height (112px)
+ *    rather than the full visual height of the treemap
+ */
+.chart-visualization:has(.treemap-visualization-container) {
+  height: auto !important; /* Force to auto-height when containing a treemap */
+  min-height: 500px; /* Ensure enough space for treemap content */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Base treemap styles */
+.treemap-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  z-index: 10; /* Ensure treemap SVG renders above legend */
+}
+
+/* Multi-chart container styles */
+.multi-chart-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.chart-row {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  width: 100%;
+}
+
+/* Chart container - this is the outer container */
+.chart-container {
+  flex: 1;
+  min-height: 600px; /* Increase minimum height */
+  height: auto;
+  border: 1px dashed var(--borderColor);
+  border-radius: var(--borderRadius);
+  padding: 20px;
+  background-color: var(--background-color);
+  width: auto !important;
+  box-sizing: border-box;
+  overflow: visible;
+  margin-bottom: 30px; /* Add space between rows */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Fix for tariff-chart-container - the inner container created by the chart functions */
+.chart-container .tariff-chart-container {
+  width: 100% !important;
+  height: auto !important;
+  min-height: 500px;
+  border: none !important; /* Remove inner border */
+  padding: 0 !important; /* Remove padding */
+  margin: 0 !important; /* Remove margin */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Fix for chart-visualization which contains the SVG */
+.chart-container .chart-visualization {
+  flex: 1;
+  min-height: 350px;
+  width: 100%;
+}
+
+/* Fix for chart-legend that appears below the chart */
+.chart-container .chart-legend {
+  width: 100%;
+  height: auto;
+  margin-top: 30px;
+  padding: 0;
+}
+
+/* Ensure legend rows are properly spaced */
+.chart-container .legend-row {
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+/* Make notes section work properly */
+.chart-container .chart-notes {
+  width: 100%;
+  margin-top: 0px;
+  margin-bottom: 15px;
+}
+
+/* Single chart row for centered charts */
+.single-chart-row {
+  justify-content: center;
+}
+
+.centered-chart {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Country dropdown in multi-chart panel */
+.multi-chart-title-container {
+  position: relative;
+  flex: 1;
+}
+
+.multi-chart-panel-header h2 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-family: var(--font-family-monospace);
+  color: var(--text-color, #333);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.country-dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.dropdown-icon {
+  width: 12px;
+  height: 12px;
+  transition: transform 0.3s ease;
+}
+
+.country-dropdown-toggle.active .dropdown-icon {
+  transform: rotate(180deg);
+}
+
+.country-name, .country-iso {
+  font-weight: bold;
+  color: var(--primary, #0066cc);
+}
+
+.country-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--background-color, white);
+  border: 1px solid var(--borderColor, #ddd);
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 20;
+  display: none;
+  margin-top: 5px;
+  padding: 8px 0;
+}
+
+.country-dropdown.active {
+  display: block;
+}
+
+.dropdown-placeholder {
+  padding: 10px 15px;
+  color: var(--alt-text-color, #777);
+  font-style: italic;
+}
+
+.country-option {
+  padding: 8px 15px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.country-option:hover {
+  background-color: var(--hover-bg-color, #f5f5f5);
+}
+
+/* For smaller screens, stack charts vertically */
+@media (max-width: 1200px) {
+  .chart-row {
+    flex-direction: column;
+  }
+  
+  .centered-chart {
+    max-width: 100%;
+  }
+}
+
+/* Consolidated treemap rectangle styles */
+.treemap-rect {
+  fill-opacity: 1 !important;
+  stroke: #fff;
+  stroke-width: 1px;
+  transition: all 0.0s ease-in-out, opacity 0.0s ease-out, stroke-width 0.0s ease, fill-opacity 0.0s;
+  /* IMPORTANT: Disable browser tooltips for treemap rectangles */
+  pointer-events: visiblePainted; /* Ensures tooltips don't show while keeping mouse events */
+}
+
+.treemap-rect:hover {
+  fill-opacity: 1;
+  stroke-width: 2px;
+  filter: brightness(1.1);
+  opacity: 0.9;
+}
+
+.treemap-label {
+  pointer-events: none;
+  font-family: var(--font-family-monospace);
+  font-weight: 500;
+}
+
+.treemap-value {
+  pointer-events: none;
+  font-family: var(--font-family-monospace);
+  opacity: 0.9;
+}
+
+/* Legend styles */
+.treemap-legend {
+  margin-top: 35px;
+  padding: 0px;
+  max-height: 200px;
+  overflow-y: auto;
+  width: 100%;
+  height: 80%;
+  position: relative;
+  clear: both;
+}
+
+.treemap-legend-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.treemap-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.treemap-legend-item:hover {
+  background-color: var(--hover-bg-color, #f5f5f5);
+}
+
+.treemap-legend-item.highlight {
+  background-color: var(--hover-bg-color, #f5f5f5);
+}
+
+/* Tooltip styles */
+.treemap-tooltip-container {
+  background-color: var(--tooltip-bg-color, rgba(255, 255, 255, 0.9));
+  border: 1px solid var(--border-color, #ddd);
+  border-radius: 4px;
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.1));
+  padding: 8px 12px;
+  pointer-events: none;
+  z-index: 1000;
+  max-width: 250px;
+}
+
+.tooltip-header {
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.tooltip-value {
+  font-size: 14px;
+  color: var(--text-color, #333);
+}
+
+.tooltip-description {
+  font-size: 12px;
+  color: var(--text-color-secondary, #666);
+  margin-top: 4px;
+}
+
+/* Breadcrumb styles */
+.treemap-breadcrumb {
+  margin: 5px 0 15px;
+  font-size: 14px;
+}
+
+.treemap-breadcrumb a {
+  color: var(--link-color, #0078d4);
+  text-decoration: none;
+}
+
+.treemap-breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+/* Animation */
+.treemap-rect-animated {
+  transition: x 0.3s, y 0.3s, width 0.3s, height 0.3s;
+}
+
+/* Error state */
+.treemap-error {
+  padding: 20px;
+  text-align: center;
+  color: var(--text-color, #333);
+}
+
+/* Already defined in COMPRESSED TREEMAP STYLES section */
+
+/* Update button for compressed treemap */
+.update-button {
+  padding: 8px 16px;
+  background-color: var(--primary, #0078d4);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: var(--font-family-monospace);
+  font-size: 14px;
+  margin-top: 20px;
+  transition: background-color 0.2s;
+}
+
+.update-button:hover {
+  background-color: var(--primary-dark, #0063b1);
+}
+
+/* Checkbox styles for compressed treemap */
+.treemap-checkbox-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.checkbox-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.checkbox-container input[type="checkbox"] {
+  opacity: 0;
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.checkbox-icon {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.checkbox-container:hover .checkbox-icon {
+  transform: scale(1.1);
+}
+
+.checkbox-on {
+  display: none;
+}
+
+.checkbox-off {
+  display: inline-block;
+}
+
+.checkbox-container input[type="checkbox"]:checked ~ .checkbox-on {
+  display: inline-block;
+}
+
+.checkbox-container input[type="checkbox"]:checked ~ .checkbox-off {
+  display: none;
+}

@@ -1,0 +1,62 @@
+<div class="popup-container">
+    <h4 class="popup-title">
+        <span class="country-name-clickable" style="color: var(--orange1); font-family: var(--font-family-monospace); cursor: pointer; display: flex; align-items: center;" data-iso="{{countryIso}}">
+            {{countryName}}
+            <img src="{{chartLineIcon}}" alt="View country trade data charts" class="chart-line-icon" aria-label="Click to open trade explorer for this country" style="width: 16px; height: 16px; margin-left: 8px; filter: var(--icon-filter, none);" />
+        </span>
+    </h4>
+
+    <div class="popup-row">
+        <label for="currentTariffInput">Current Tariff:</label>
+        <div class="input-group">
+            <input 
+                id="currentTariffInput"
+                class="popup-input percent original-tariff"
+                type="number"
+                step="0.1"
+                min="0"
+                max="100"
+                value="{{currentTariffPercent}}"
+            />
+            <span class="percent-symbol">%</span>
+        </div>
+    </div>
+    <div class="popup-row">
+        <label for="newTariffInput">New Tariff:</label>
+        <div class="input-group">
+            <input 
+                id="newTariffInput"
+                class="popup-input percent current-tariff"
+                type="number"
+                step="0.1"
+                min="0"
+                max="100"
+                value="{{currentTariffPercent}}"
+            />
+            <span class="percent-symbol">%</span>
+        </div>
+    </div>
+    <div class="popup-row">
+        <label for="passThroughInput">Pass-Through:</label>
+        <div class="input-group">
+            <input 
+                id="passThroughInput"
+                class="popup-input percent pass-through"
+                type="number"
+                step="5"
+                min="0"
+                max="100"
+                value="{{defaultPassThrough}}"
+            />
+            <span class="percent-symbol">%</span>
+        </div>
+    </div>
+    <div class="popup-buttons">
+        <button id="tariffSubmit" class="btn-global">Apply Tariff</button>
+        <div class="separator"></div>
+        <button id="productTariffBtn" class="btn-product">Product-Specific Tariff</button>
+    </div>
+</div>
+<span id="help-icon-container">
+    <img src="assets/fontawesome/triangle-warning.svg" class="help-icon" alt="Help Icon. Explains the input prompts.">
+</span>

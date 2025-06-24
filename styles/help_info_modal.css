@@ -1,0 +1,90 @@
+/**
+ * Help Info Modal CSS
+ * Styles for the help and information modal
+ */
+
+/* Modal container */
+.help-info-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Modal content */
+.help-info-modal .modal-content {
+    width: 800px; /* Width */
+    height: 500px; /* Explicit height */
+    max-width: 90%;
+    max-height: 80%;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: var(--borderWidth) solid var(--borderColor);
+    border-radius: var(--borderRadius);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 0; /* Remove any default padding */
+    margin: 0; /* Remove any default margins */
+    font-family: var(--font-family-monospace);
+}
+
+/* Modal header */
+.help-info-modal .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: var(--background-color);
+    z-index: 10;
+    border-bottom: var(--separatorLightSize) solid var(--borderColor);
+}
+
+.help-info-modal .modal-header h2 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--text-color);
+    font-family: var(--font-family-monospace);
+}
+
+/* We're using the panel-close-button styles from combinedSparksCharts.css */
+.help-info-modal .panel-close-button {
+    padding: 3.5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.help-info-modal .panel-close-button img {
+    width: 24px;
+    height: 24px;
+    filter: var(--icon-filter);
+}
+
+/* Modal body */
+.help-info-modal .modal-body {
+    padding: 20px;
+    overflow-y: auto;
+    background-color: var(--background-color);
+    flex: 1;
+}
+
+/* Help options */
+.help-option {
+    border: var(--borderWidth) solid var(--borderColor);
+    background-color: var(--background-color);
+}
+
+.help-option strong {
+    color: var(--primary);
+}

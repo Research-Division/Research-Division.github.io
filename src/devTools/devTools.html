@@ -1,0 +1,119 @@
+<div id="modal" class="modal">
+    <div class="modal-content card">
+        <style>
+            .color-preview-container {
+                display: inline-block;
+                vertical-align: middle;
+                margin-left: 10px;
+            }
+            #bar-highlight-color {
+                min-width: 180px;
+            }
+            .dev-option {
+                display: flex;
+                align-items: center;
+                margin-bottom: 12px;
+            }
+            .dev-option label {
+                min-width: 180px;
+            }
+        </style>
+        <button class="modal-close" onclick="devTools.close()"><img src="assets/fontawesome/xmark.svg" alt="Close" class="close-icon"></button>
+        <div class="modal-header">
+            <h2>Settings</h2>
+        </div>
+        <div class="dev-options">
+            <div class="settings-category">Appearance</div>
+            <div class="dev-option toggle-container">
+                <label for="dark-mode-toggle">Dark Mode</label>
+                <input type="checkbox" id="dark-mode-toggle" onclick="devTools.toggleDark(this.checked)">
+            </div>
+            
+            <div class="settings-category">Display Options</div>
+            <div class="dev-option toggle-container">
+                <label for="receipt-toggle">Force Show Receipt</label>
+                <input type="checkbox" id="receipt-toggle" onclick="devTools.toggleReceipt(this.checked)">
+            </div>
+            <div class="dev-option toggle-container">
+                <label for="effects-toggle">Collapsible Effect Details</label>
+                <input type="checkbox" id="effects-toggle" checked onclick="devTools.toggleEffectDetails(this.checked)">
+            </div>
+            <div class="dev-option">
+                <label>Toggle Icon Style</label>
+                <div class="icon-toggle-buttons">
+                    <button id="chevron-toggle" class="icon-toggle-btn active" onclick="devTools.toggleIconStyle('chevron')">
+                        <img src="assets/fontawesome/chevron-right-solid.svg" alt="Chevron" class="icon-toggle-img">
+                    </button>
+                    <button id="plus-toggle" class="icon-toggle-btn" onclick="devTools.toggleIconStyle('plus')">
+                        <img src="assets/fontawesome/plus-solid.svg" alt="Plus" class="icon-toggle-img">
+                    </button>
+                </div>
+            </div>
+            
+            <div class="settings-category">SparksGraph Settings</div>
+            <div class="dev-option">
+                <label for="chart-animation-duration">Chart Animation Duration (sec)</label>
+                <div class="range-input-container">
+                    <input type="range" id="chart-animation-duration" min="0.2" max="3" step="0.1" value="0.8" 
+                           oninput="
+                              // Update the display value immediately 
+                              document.getElementById('animation-duration-display').textContent = this.value + 's';
+                              
+                              // Update the gradient immediately
+                              const min = 0.2;
+                              const max = 3.0;
+                              const valuePercent = ((parseFloat(this.value) - min) / (max - min)) * 100;
+                              const isDarkMode = document.body.classList.contains('dark_theme');
+                              const borderColor = isDarkMode ? '#444' : '#a0a0a0';
+                              this.style.background = `linear-gradient(to right, #009EC1 0%, #009EC1 ${valuePercent}%, ${borderColor} ${valuePercent}%, ${borderColor} 100%)`;
+                              
+                              // Call the function to update global settings
+                              devTools.updateAnimationDuration(this.value);
+                           " 
+                           style="background: linear-gradient(to right, #009EC1 0%, #009EC1 25%, #a0a0a0 25%, #a0a0a0 100%);">
+                    <span id="animation-duration-display">0.8s</span>
+                </div>
+            </div>
+            <div class="dev-option">
+                <label for="bar-highlight-color">Bar Highlight Color</label>
+                <div style="display: flex; align-items: center;">
+                    <select id="bar-highlight-color" class="form-select" onchange="devTools.setBarHighlightColor(this.value)">
+                        <option value="plot-color" selected>Plot Color (Match Series)</option>
+                        <option value="--blue1">Blue</option>
+                        <option value="--green1">Green</option>
+                        <option value="--yellow1">Yellow</option>
+                        <option value="--orange1">Orange</option>
+                        <option value="--teal1">Teal</option>
+                        <option value="--pink1">Pink</option>
+                        <option value="--purple1">Purple</option>
+                        <option value="--maroon1">Maroon</option>
+                    </select>
+                    <div class="color-preview-container">
+                        <div id="highlight-color-preview" style="width: 20px; height: 20px; background-color: var(--blue1); border-radius: 4px; margin-left: 10px;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="dev-option toggle-container">
+                <label for="bar-outline-toggle">Bar Outline Style</label>
+                <input type="checkbox" id="bar-outline-toggle" onclick="devTools.toggleBarOutlineStyle(this.checked);">
+            </div>
+            
+            <div class="dev-option toggle-container">
+                <label for="lightning-bolt-toggle">Show Lightning Bolt</label>
+                <input type="checkbox" id="lightning-bolt-toggle" checked onclick="if(window.toggleLightningBolt) window.toggleLightningBolt(this.checked);">
+            </div>
+            
+            <div class="dev-option toggle-container">
+                <label for="chart-wiz-style-toggle">Chart Wiz Style</label>
+                <input type="checkbox" id="chart-wiz-style-toggle" onclick="devTools.toggleChartWizStyle(this.checked);">
+            </div>
+            
+            <div class = "settings-category"> Price Basket Choice</div>
+            <div class='dev-option toggle-container'>
+                <label for="price-basket-toggle"> Total vs. Consumer Basket</label>
+                <input type = "checkbox" id = "price-basket-toggle" onclick = "devTools.toggleBasket(this.checked);">
+            </div>
+            </div>
+        </div>
+    </div>
+</div>

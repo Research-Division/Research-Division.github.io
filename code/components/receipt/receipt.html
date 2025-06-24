@@ -1,0 +1,110 @@
+
+<aside id = "receipt-section" class = "card">
+    <!-- Receipt header-->
+    <div id = "receipt-header">
+        <h2>TARIFF RECEIPT</h2>
+    </div>
+    <div class="separator"></div>
+    <div class="separator"></div>
+    <div class="receipt-date-line">DATE:&nbsp;&nbsp;<span id="receipt-date">04-01-2025</span></div>
+    <div class="separator"></div>
+    <!-- Receipt content-->
+    <div id = "receipt-content">
+        <div id = 'placeholder-message' style="text-align: center;">
+            <!-- This will be loaded from placeholder_message.html -->
+        </div>
+        <div id="receipt-items">
+            <!-- Country entries will be added here dynamically -->
+        </div>
+    </div>
+    <!-- Receipt Footer-->
+    <div id = "receipt_totals" style="display: none;">
+        <div class="separator"></div>
+        <div id="subtotal-row" class="receipt-item">
+            <div class="receipt-item-left">
+                <div>
+                    <div class="country-row-title">
+                        <span>Subtotal</span>
+                        <span class="toggle-icon receipt-chevron" data-target="subtotal-effects-detail">
+                            <img src="assets/fontawesome/chevron-right-solid.svg" alt="Expand" class="toggle-plus">
+                            <img src="assets/fontawesome/chevron-down-solid.svg" alt="Collapse" class="toggle-minus" style="display: none;">
+                        </span>
+                    </div>
+                    <div id="subtotal-effects-detail" class="country-effects-detail" style="display: none; margin-top: -14px">
+                        <span> <br>
+                            <span class="effect-label">Direct Effect: </span><span id="subtotal-direct-effect" class="effect-value">0.00%</span><br>
+                            <span class="effect-label">Indirect Effect: </span><span id="subtotal-indirect-effect" class="effect-value">0.00%</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <span id="subtotal-value">0.00%</span>
+            </div>
+        </div>
+            
+        <div id="global-tariff-row" class="receipt-item">
+            <div class="receipt-item-left">
+                <div>
+                    <div class="country-row-title">
+                        <span>Rest of World</span>
+                        <span id="global-toggle-icon" class="toggle-icon receipt-chevron" data-target="global-effects-detail" style="display: none;">
+                            <img src="assets/fontawesome/chevron-right-solid.svg" alt="Expand" class="toggle-plus">
+                            <img src="assets/fontawesome/chevron-down-solid.svg" alt="Collapse" class="toggle-minus" style="display: none;">
+                        </span>
+                    </div>
+                    <div id="global-effects-detail" class="country-effects-detail" style="display: none; margin-top: -14px">
+                        <span> <br>
+                            <span class="effect-label">Direct Effect: </span><span id="global-direct-effect" class="effect-value">0.00%</span><br>
+                            <span class="effect-label">Indirect Effect: </span><span id="global-indirect-effect" class="effect-value">0.00%</span>
+                        </span>
+                    </div>
+                    <div class="popup-row-receipt" style="margin-top: 5px;">
+                        <label for="global-row-input">Tariff Change:</label>
+                        <div class="input-group-receipt">
+                            <input 
+                                id="global-row-input"
+                                class="popup-input-receipt percent"
+                                type="number"
+                                step="5"
+                                min="0"
+                                max="100"
+                                value="0.00"
+                            />
+                            <span class="percent-symbol">%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <span id="global-row-value">0.00%</span>
+            </div>
+        </div>
+        <div class="separator"></div>
+        <div id="total-effect-row" class="receipt-item">
+            <div class="receipt-item-left">
+                <div>
+                    <div class="country-row-title">
+                        <span id="total-price-effect-text" style="cursor: pointer;">Total Price Effect</span>
+                        <span class="toggle-icon receipt-chevron" data-target="total-effects-detail">
+                            <img src="assets/fontawesome/chevron-right-solid.svg" alt="Expand" class="toggle-plus">
+                            <img src="assets/fontawesome/chevron-down-solid.svg" alt="Collapse" class="toggle-minus" style="display: none;">
+                        </span>
+                    </div>
+                    <div id="total-effects-detail" class="country-effects-detail" style="display: none; margin-top: -14px">
+                        <span> <br>
+                            <span class="effect-label">Direct Effect: </span><span id="total-direct-effect" class="effect-value">0.00%</span><br>
+                            <span class="effect-label">Indirect Effect: </span><span id="total-indirect-effect" class="effect-value">0.00%</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <span id="total-effect">0.00%</span>
+            </div>
+        </div>
+        <div id="receipt-footer">
+            <button id="clear-btn" class="receipt-btn" onclick="clearCountries()"> Clear History</button>
+        </div>
+    </div>
+</aside>

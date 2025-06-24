@@ -1,0 +1,434 @@
+{
+  "chartTypes": {
+    "treemap": {
+      "metrics": {
+        "default": {
+          "title": "Tree Map Visualization",
+          "title_chartWiz": "Tree Map",
+          "note": "This chart shows proportional relationships using nested rectangles.",
+          "formatter": "number"
+        },
+        "currency": {
+          "title": "Value Distribution Tree Map",
+          "title_chartWiz": "Value Tree Map",
+          "note": "This tree map shows the distribution of values across categories.",
+          "formatter": "currency"
+        },
+        "percentage": {
+          "title": "Percentage Distribution Tree Map",
+          "title_chartWiz": "Share Tree Map",
+          "note": "This tree map shows the distribution of percentages across categories.",
+          "formatter": "percentage",
+          "isPercentage": true
+        }
+      },
+      "defaults": {
+        "source": "Data visualization",
+        "legendLines": false,
+        "legendItemsPerRow": 5,
+        "legendMaxRows": 3,
+        "margin": {
+          "top": 20,
+          "right": 20,
+          "bottom": 30,
+          "left": 20
+        },
+        "svgHeight": 450,
+        "showLegend": true,
+        "tooltipFormat": "{name}: {formattedValue}",
+        "postRender": {
+          "enabled": true,
+          "bottomSpaceHeight": "40px",
+          "applyTransform": true,
+          "enforceHeight": true
+        }
+      }
+    },
+    "country": {
+      "metrics": {
+        "impVal": {
+          "title": "Import Value from Top Trading Partners",
+          "title_chartWiz": "US Import Value",
+          "yAxisTitle": "Import Value (USD)",
+          "yAxisTitle_chartWiz": "Value (USD)",
+          "note": "This chart shows the historical import values of the top {{numTop}} trading partners with the US.",
+          "formatter": "currency"
+        },
+        "impShare": {
+          "title": "Import Share from Top Trading Partners",
+          "title_chartWiz": "US Import Share",
+          "yAxisTitle": "Import Share (%)",
+          "yAxisTitle_chartWiz": "Share (%)",
+          "note": "This chart shows the historical import shares of the top {{numTop}} trading partners with the US.",
+          "formatter": "percentage",
+          "isPercentage": true
+        },
+        "expVal": {
+          "title": "Export Value to Top Trading Partners",
+          "title_chartWiz": "US Export Value",
+          "yAxisTitle": "Export Value (USD)",
+          "yAxisTitle_chartWiz": "Value (USD)",
+          "note": "This chart shows the historical export values to the top {{numTop}} trading partners of the US.",
+          "formatter": "currency"
+        },
+        "expShare": {
+          "title": "Export Share to Top Trading Partners",
+          "title_chartWiz": "US Export Share",
+          "yAxisTitle": "Export Share (%)",
+          "yAxisTitle_chartWiz": "Share (%)",
+          "note": "This chart shows the historical export shares to the top {{numTop}} trading partners of the US.",
+          "formatter": "percentage",
+          "isPercentage": true
+        },
+        "trade_deficit": {
+          "title": "Trade Balance with Top Trading Partners",
+          "title_chartWiz": "US Trade Balance",
+          "yAxisTitle": "Trade Balance (USD)",
+          "yAxisTitle_chartWiz": "Balance (USD)",
+          "note": "This chart shows the historical trade balance with the top {{numTop}} trading partners of the US.",
+          "formatter": "currency"
+        }
+      },
+      "defaults": {
+        "source": "US Census Bureau's USA Trade Online",
+        "xAxisTitle": "Year",
+        "legendLines": true,
+        "legendItemsPerRow": 5,
+        "legendMaxRows": 2
+      }
+    },
+    "bilat-trade": {
+      "metrics": {
+        "value": {
+          "title": "Bilateral Trade Values",
+          "title_chartWiz": "Bilateral Trade",
+          "yAxisTitle": "Trade Value (USD)",
+          "yAxisTitle_chartWiz": "Value (USD)",
+          "note": "This chart shows the historical bilateral trade values between the US and {{selectedCountryName}}.",
+          "formatter": "currency",
+          "tooltipFormat": "{seriesName}: {formattedValue} ({xValue})"
+        },
+        "share": {
+          "title": "Bilateral Trade Shares",
+          "title_chartWiz": "Bilateral Trade",
+          "yAxisTitle": "Trade Share (%)",
+          "yAxisTitle_chartWiz": "Share (%)",
+          "note": "This chart shows the historical bilateral trade shares between the US and {{selectedCountryName}}.",
+          "formatter": "percentage",
+          "isPercentage": true,
+          "tooltipFormat": "{seriesName}: {formattedValue} ({xValue})"
+        }
+      },
+      "defaults": {
+        "source": "US Census Bureau's USA Trade Online",
+        "xAxisTitle": "Year",
+        "xAxis": {
+          "type": "number",
+          "ticksVisible": true
+        },
+        "yAxis": {
+          "type": "number",
+          "min": 0
+        },
+        "legendLines": true,
+        "legendItemsPerRow": 2,
+        "legendMaxRows": 1,
+        "legendConfig": {
+          "offsetLeft": 80
+        }
+      }
+    },
+    "bilat-tariff": {
+      "methods": {
+        "unweighted": {
+          "title": "Bilateral Tariff Rates (Unweighted)",
+          "title_chartWiz": "Bilateral Tariff Rates",
+          "description": "unweighted average",
+          "note": "This chart shows the bilateral tariff rates between the US and {{country}} using the unweighted average calculation method."
+        },
+        "weighted": {
+          "title": "Bilateral Tariff Rates (Trade-Weighted)",
+          "title_chartWiz": "Bilateral Tariff Rates",
+          "description": "trade-weighted average",
+          "note": "This chart shows the bilateral tariff rates between the US and {{country}} using the trade-weighted average calculation method."
+        },
+        "unweighted_winsorized": {
+          "title": "Bilateral Tariff Rates (Unweighted Winsorized)",
+          "title_chartWiz": "Bilateral Tariff Rates",
+          "description": "unweighted winsorized average",
+          "note": "This chart shows the bilateral tariff rates between the US and {{country}} using the unweighted winsorized average calculation method."
+        },
+        "weighted_winsorized": {
+          "title": "Bilateral Tariff Rates (Trade-Weighted Winsorized)",
+          "title_chartWiz": "Bilateral Tariff Rates",
+          "description": "trade-weighted winsorized average",
+          "note": "This chart shows the bilateral tariff rates between the US and {{country}} using the trade-weighted winsorized average calculation method."
+        }
+      },
+      "metrics": {
+        "default": {
+          "tooltipFormat": "{seriesName}: {formattedValue} ({xValue})"
+        }
+      },
+      "defaults": {
+        "source": "Feodora Teti's Global Tariff Database (v_beta1-2024-12) from Teti (2024)",
+        "xAxisTitle": "Year",
+        "yAxisTitle": "Tariff Rate (%)",
+        "yAxisTitle_chartWiz": "Tariff Rate (%)",
+        "xAxis": {
+          "type": "number",
+          "ticksVisible": true
+        },
+        "yAxis": {
+          "type": "number",
+          "min": 0
+        },
+        "percentageConfig": {
+          "valuesArePercentages": true
+        },
+        "formatter": "percentage",
+        "legendLines": true,
+        "legendItemsPerRow": 2,
+        "legendMaxRows": 1,
+        "legendConfig": {
+          "offsetLeft": 80
+        }
+      }
+    },
+    "bilat-tariff-time-series": {
+      "defaults": {
+        "title": "Industry Tariff Rates Over Time ({{tariffMethod}})",
+        "source": "Feodora Teti's Global Tariff Database (v_beta1-2024-12) from Teti (2024)",
+        "xAxisTitle": "Year",
+        "yAxisTitle": "Tariff Rate (%)",
+        "yAxisTitle_chartWiz": "Tariff Rate (%)",
+        "note": "This chart shows the historical bilateral {{tariffMethod}} tariff rates on all industries between the US and {{country}}. These rates are not inclusive of anti-dumping, non-tariff measures, or section 232 and 301 tariffs.",
+        "tooltipFormat": "{seriesName}: {formattedValue} ({xValue})",
+        "xAxis": {
+          "type": "number",
+          "ticksVisible": true
+        },
+        "yAxis": {
+          "title": "Tariff Rate (%)",
+          "type": "number",
+          "min": 0
+        },
+        "percentageConfig": {
+          "valuesArePercentages": true
+        },
+        "formatter": "percentage",
+        "legendLines": true,
+        "legendItemsPerRow": 5,
+        "legendMaxRows": 9,
+        "legendConfig": {
+          "offsetLeft": 80
+        }
+      },
+      "aggregation": {
+        "isic": {
+          "title": "US - {{country}} Tariff Rates by ISIC Over Time ({{tariffMethod}})",
+          "note": "This chart shows the historical bilateral tariff rates on ISIC industries between the US and {{country}}. Data is sourced from Feodora Teti's Global Tariff Database.",
+          "legendItemsPerRow": 4,
+          "legendMaxRows": 9
+        },
+        "gtap": {
+          "title": "US - {{country}} Tariff Rates by GTAP Over Time ({{tariffMethod}})",
+          "note": "This chart shows the historical bilateral tariff rates on GTAP sectors between the US and {{country}}. Data is sourced from Feodora Teti's Global Tariff Database.",
+          "legendItemsPerRow": 4,
+          "legendMaxRows": 9
+        },
+        "section": {
+          "title": "<strong>Figure 3.</strong> US - {{country}} Tariff Rates by HS-Section Over Time",
+          "note": "This chart shows the historical bilateral {{tariffMethod}} tariff rates on all HS sections between the US and {{country}}.",
+          "legendItemsPerRow": 5,
+          "legendMaxRows": 9
+        }
+      }
+    },
+    "industry": {
+      "metrics": {
+        "impVal": {
+          "title": "Import Value by Industry",
+          "title_chartWiz": "Industry Imports",
+          "yAxisTitle": "Import Value (USD)",
+          "yAxisTitle_chartWiz": "Value (USD)",
+          "note": "This chart shows the historical import values for the top {{numTop}} US industries.",
+          "formatter": "currency"
+        },
+        "impShare": {
+          "title": "Import Share by Industry",
+          "title_chartWiz": "Industry Import Share",
+          "yAxisTitle": "Import Share (%)",
+          "yAxisTitle_chartWiz": "Share (%)",
+          "note": "This chart shows the historical import shares for the top {{numTop}} US industries.",
+          "formatter": "percentage",
+          "isPercentage": true
+        }
+      },
+      "defaults": {
+        "source": "US Census Bureau's USA Trade Online",
+        "xAxisTitle": "Year",
+        "legendLines": true,
+        "legendItemsPerRow": 4,
+        "legendMaxRows": 2
+      }
+    },
+    "bilat-tariff-bar":{
+      "defaults": {
+        "legendLines": false,
+        "legendItemsPerRow": 2,
+        "legendMaxRows": 1,
+        "legendConfig": {
+          "offsetLeft": 80
+        },
+        "formatter": "percentage",
+        "tooltipFormat": "{seriesName}: {formattedValue} ({xValue})",
+        "xAxis": {
+          "type": "string",
+          "labelAngle": -35,
+          "labelOffset": 15,
+          "position": "bottom",
+          "titleVisible": true,
+          "titlePadding": 20,
+          "ticksVisible": true
+        },
+        "yAxis": {
+          "title": "Tariff Rate (%)",
+          "type": "number",
+          "min": 0
+        },
+        "percentageConfig": {
+          "valuesArePercentages": true
+        },
+        "preserveXOrder": true,
+        "margin": {
+          "bottom": 120,
+          "left": 100,
+          "right": 50,
+          "top": 30
+        },
+        "transform": "translate(100,30)",
+        "barConfig": {
+          "groupPadding": 0.2,
+          "barPadding": 0.1
+        },
+        "svgHeight": 400,
+        "postRender": {
+          "enabled": true,
+          "bottomSpaceHeight": "40px",
+          "applyTransform": true,
+          "enforceHeight": true
+        }
+      },
+      "aggregation" :{
+        "isic":{
+          "title":"US - {{country}} Tariff Rates by ISIC ({{year}})",
+          "xAxisTitle": "",
+          "formatter": "percentage",
+          "tooltipFormat": "{seriesName}: {formattedValue} ({xValue})",
+          "legendLines": false,
+          "legendItemsPerRow": 2,
+          "legendMaxRows": 1,
+          "preserveXOrder": true,
+          "note": "This chart shows the tariff rate between the US and {{country}} by ISIC code. Data is sourced from Feodora Teti's Global Tariff Database.",
+          "source": "Feodora Teti's Global Tariff Database (v_beta1-2024-12) from Teti (2024)",
+          "postRender": {
+            "bottomSpaceHeight": "40px"
+          }
+        },
+        "gtap":{
+          "title":"US - {{country}} Tariff Rates by GTAP ({{year}})",
+          "xAxisTitle": "",
+          "formatter": "percentage",
+          "tooltipFormat": "{seriesName}: {formattedValue} ({xValue})",
+          "legendLines": false,
+          "legendItemsPerRow": 2,
+          "legendMaxRows": 1,
+          "preserveXOrder": true,
+          "note": "This chart shows the tariff rate between the US and {{country}} by GTAP code. Data is sourced from Feodora Teti's Global Tariff Database.",
+          "source": "Feodora Teti's Global Tariff Database (v_beta1-2024-12) from Teti (2024)",
+          "postRender": {
+            "bottomSpaceHeight": "40px"
+          }
+        },
+        "section":{
+          "title":"<strong>Figure 2.</strong> US - {{country}} Tariff Rates by HS-Section ({{year}})",
+          "xAxisTitle": "",
+          "formatter": "percentage",
+          "tooltipFormat": "{seriesName}: {formattedValue} ({xValue})",
+          "legendLines": false,
+          "legendItemsPerRow": 2,
+          "legendMaxRows": 1,
+          "preserveXOrder": true,
+          "note": "This chart shows the statutory tariff rate between the US and {{country}} by section code.",
+          "source": "Feodora Teti's Global Tariff Database (v_beta1-2024-12) from Teti (2024)",
+          "postRender": {
+            "bottomSpaceHeight": "40px"
+          }
+        }
+      }
+    },
+    "bar-test": {
+      "defaults": {
+        "title": "Bar Chart Test",
+        "note": "Testing the bar chart renderer with the shared code from sparksGraphingCore.",
+        "source": "Test data for demonstration purposes",
+        "legendLines": false,
+        "legendItemsPerRow": 3,
+        "legendMaxRows": 2,
+        "transform": "translate(100,30)",
+        "svgHeight": 400,
+        "tooltipFormat": "{seriesName}: {formattedValue} ({xValue})",
+        "postRender": {
+          "enabled": true,
+          "bottomSpaceHeight": "40px",
+          "applyTransform": true,
+          "enforceHeight": true
+        },
+        "xAxis": {
+          "type": "string",
+          "labelAngle": -35,
+          "ticksVisible": true
+        }
+      }
+    }
+  },
+  "formatters": {
+    "currency": {
+      "function": "formatCurrency",
+      "decimals": 0,
+      "prefix": "$",
+      "suffix": ""
+    },
+    "percentage": {
+      "function": "formatNumber",
+      "decimals": 1,
+      "prefix": "",
+      "suffix": "%"
+    },
+    "number": {
+      "function": "formatNumber",
+      "decimals": 0,
+      "prefix": "",
+      "suffix": ""
+    }
+  },
+  "colors": {
+    "default": [
+      "var(--blue1)",
+      "var(--green1)",
+      "var(--yellow1)",
+      "var(--blue2)",
+      "var(--orange1)",
+      "var(--teal1)",
+      "var(--pink1)",
+      "var(--purple1)",
+      "var(--maroon1)",
+      "var(--blue3)"
+    ],
+    "bilateral": [
+      "var(--primary)",
+      "var(--excellenceOrange)"
+    ]
+  }
+}

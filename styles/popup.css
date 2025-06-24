@@ -1,0 +1,162 @@
+@import url(frba_color_vars.css);
+
+
+/* Popup Specific variables*/
+:root{
+    --input-width: 80px; /* Increased from 68px to accommodate 100.00% */
+}
+
+
+/*Main Popup Section*/
+.popup-container {
+    min-width: 250px; /* Increased from 230px to accommodate wider inputs */
+    position: relative;
+    font-family: sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    padding: 8px; /* Added padding */
+    font-size: 1.02em; /* Slightly larger text */
+}
+.popup-title {
+    margin: 0 0 8px 0; /* Increased bottom margin */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2em; /* Adjusted from 1.25em */
+    font-weight: bold;
+}
+
+.country-name-clickable {
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.chart-line-icon {
+    transition: transform 0.2s ease;
+}
+
+.country-name-clickable:hover .chart-line-icon {
+    transform: scale(1.15);
+}
+.popup-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px; /* Increased from 8px */
+}
+.input-group {
+    position: relative;
+    width: var(--input-width); /* Wider input boxes */
+}
+.popup-input.percent {
+    text-align: left;
+    box-sizing: border-box;
+    width: 100%;
+    border: var(--borderWidth) solid var(--borderColor);
+    background-color: var(--input-box-color);
+    color: var(--text-color);
+    padding: 5px 20px 5px 8px; /* Added right padding to keep space for % symbol */
+    font-size: 0.95em; /* Adjusted text size */
+    height: 28px; /* Adjusted height */
+}
+
+.percent-symbol {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--light-gray);
+    font-size: 90%;
+}
+.popup-buttons {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 6px;
+}
+
+#tariffSubmit, .btn-product {
+    padding: 8px 15px;
+    border-radius: 12px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: 1px solid var(--borderColor);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 0.95em;
+    width: 100%;
+}
+
+#tariffSubmit:hover, .btn-product:hover {
+    /*background-color: rgba(0, 0, 0, 0.1);*/
+}
+
+.popup-buttons .separator {
+    margin: 8px 0;
+    border-bottom: 1px dashed var(--alt-text-color);
+}
+
+/* Overwrite Leaflet popup style guidelines*/
+.leaflet-popup-content-wrapper {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    padding: 8px 12px; /* Added padding */
+    font-size: 1.05em; /* Slightly larger text */
+}
+
+.leaflet-popup-tip {
+    background-color: var(--background-color);
+}
+
+/* Tool Tip Section*/
+
+#help-icon-container{
+    cursor: pointer;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+.help-icon{
+    color: var(--marbleColumn);
+    width: 20px; /* Increased from 16px */
+    height: 20px; /* Increased from 16px */
+    cursor: pointer;
+    transition:transform 0.2s ease;
+}
+.help-icon:hover{
+    transform: scale(1.1);
+}
+body.dark_theme .help-icon{
+    filter: brightness(0) invert(1);
+}
+
+
+.custom-tooltip {
+    position: absolute;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    padding: 6px 10px;
+    border-radius: 5px;
+    font-size: 11px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    max-width: 180px;
+    text-align: left;
+}
+.tooltip-divider {
+    border-top: 1px dashed var(--text-color);
+    margin: 5px 0;
+}
+.tooltip-text {
+    font-size: 0.95em;
+    line-height: 1.4;
+}
+.tooltip-link {
+    color: var(--excellenceOrange);
+    text-decoration: underline;
+    font-size: 0.95em;
+}

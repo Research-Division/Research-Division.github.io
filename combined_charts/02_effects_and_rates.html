@@ -1,0 +1,103 @@
+<div class="multi-chart-panel-content">
+    <div class="multi-chart-panel-header">
+        <div class="multi-chart-title-container">
+            <h2>Tariff Effects Breakdown</h2>
+        </div>
+        <button class="panel-close-button" id="panel-close-button">
+            <img src="assets/fontawesome/xmark.svg" alt="Close" class="close-icon">
+        </button>
+    </div>
+    <div class="multi-chart-panel-content-header">
+        <div class="tabs-container" id="chart-tabs-container">
+            <div class="tab active" data-tab="total-effects" id="total-effects-tab">
+                <span>Total Effects</span>
+            </div>
+            <div class="tab" data-tab="direct-effects" id="direct-effects-tab">
+                <span>Direct Effects</span>
+            </div>
+            <div class="tab" data-tab="indirect-effects" id="indirect-effects-tab">
+                <span>Indirect Effects</span>
+            </div>
+        </div>
+    </div>
+    <div class="multi-chart-panel-body">
+        <!-- Total Effects Tab Content -->
+        <div class="tab-content total-effects-content active">
+            <div class="split-section">
+                <div class="split-full">
+                    <h3 class="section-header">Total Price Effects by Economic Sector</h3>
+                    <div class="chart-container-with-actions">
+                        <div class="chart-actions">
+                            <button id="reset-treemap-button-total" class="chart-action-button" title="Reset Treemap">
+                                <img src="assets/fontawesome/circle-dot-solid.svg" alt="Reset" class="action-icon">
+                                Reset Treemap
+                            </button>
+                        </div>
+                        <div class="chart-container" id="total-effects-treemap"></div>
+                    </div>
+                    <div class="text-section">
+                        <p>
+                            This treemap visualizes the total price effects of tariffs across different economic sectors. 
+                            The size of each box represents the magnitude of the price effect in that sector.
+                        </p>
+                        <p>
+                            <strong>Hover</strong> over a sector to see details and <strong>click</strong> to drill down into sub-sectors.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Direct Effects Tab Content -->
+        <div class="tab-content direct-effects-content">
+            <div class="split-section">
+                <div class="split-full">
+                    <h3 class="section-header">Direct Price Effects by Economic Sector</h3>
+                    <div class="chart-container-with-actions">
+                        <div class="chart-actions">
+                            <button id="reset-treemap-button-direct" class="chart-action-button" title="Reset Treemap">
+                                <img src="assets/fontawesome/circle-dot-solid.svg" alt="Reset" class="action-icon">
+                                Reset Treemap
+                            </button>
+                        </div>
+                        <div class="chart-container" id="direct-effects-treemap"></div>
+                    </div>
+                    <div class="text-section">
+                        <p>
+                            Direct effects show the immediate impact on prices due to tariffs on imports used directly in production or consumption.
+                        </p>
+                        <p>
+                            <strong>Hover</strong> over a sector to see details and <strong>click</strong> to drill down into sub-sectors.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Indirect Effects Tab Content -->
+        <div class="tab-content indirect-effects-content">
+            <div class="split-section">
+                <div class="split-full">
+                    <h3 class="section-header">Indirect Price Effects by Economic Sector</h3>
+                    <div class="chart-container-with-actions">
+                        <div class="chart-actions">
+                            <button id="reset-treemap-button-indirect" class="chart-action-button" title="Reset Treemap">
+                                <img src="assets/fontawesome/circle-dot-solid.svg" alt="Reset" class="action-icon">
+                                Reset Treemap
+                            </button>
+                        </div>
+                        <div class="chart-container" id="indirect-effects-treemap"></div>
+                    </div>
+                    <div class="text-section">
+                        <p>
+                            Indirect effects show the downstream impact on prices due to tariffs on inputs used in intermediate production.
+                        </p>
+                        <p>
+                            <strong>Hover</strong> over a sector to see details and <strong>click</strong> to drill down into sub-sectors.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

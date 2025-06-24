@@ -1,0 +1,811 @@
+/**
+ * Combined Sparks Charts CSS
+ * Styles for multi-chart panels and dashboard layouts
+ */
+
+/* Multi-chart panel container */
+.multi-chart-panel-container, .trade-area-panel-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Panel content */
+.multi-chart-panel-content, .trade-area-panel-content {
+    width: 95%;
+    height: 95%;
+    background-color: var(--background-color, white);
+    border-radius: var(--borderRadius, 8px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Panel header */
+.multi-chart-panel-header, .trade-area-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 2px solid var(--borderColor, #ddd);
+    background-color: var(--background-color, white);
+    z-index: 10;
+}
+
+/* Tab container styles */
+.multi-chart-panel-content-header {
+    display: flex;
+    justify-content: flex-start;
+    padding: 0;
+    background-color: var(--background-color, white);
+    width: 100%;
+    position: relative;
+}
+
+.tabs-container, #chart-tabs-container {
+    display: flex;
+    border-bottom: 1px dashed var(--borderColor, var(--medGray, #d0d0d0));
+    margin-bottom: 0;
+    background-color: var(--background-color, var(--marbleColumn, #F6F6F6));
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.tab {
+    padding: 12px 20px;
+    cursor: pointer;
+    font-family: var(--font-family-monospace);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-color-secondary, var(--darkGray, #6F6F6F));
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.tab:hover {
+    background-color: var(--hover-color, var(--medGray, #d0d0d0));
+    color: var(--text-color, var(--charcoal, #1A1A1A));
+}
+
+.tab.active {
+    color: var(--primary, #3581b4);
+    border-bottom: 3px solid var(--primary, #3581b4);
+    background-color: var(--background-color, transparent);
+}
+
+/* Tab content styles */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Title container and header styles */
+.multi-chart-title-container {
+    flex: 1;
+}
+
+.multi-chart-panel-header h2 {
+    margin: 0;
+    font-size: 1.4rem;
+    font-family: var(--font-family-monospace, monospace);
+    color: var(--text-color, #333);
+}
+
+/* Panel body with scrolling */
+.multi-chart-panel-body, .trade-area-panel-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Close button */
+.panel-close-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.panel-close-button img {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.2s ease;
+}
+
+.panel-close-button:hover img {
+    transform: scale(1.1);
+    color: var(--atlRed800, #b11921);
+    filter: invert(15%) sepia(98%) saturate(4904%) hue-rotate(350deg) brightness(76%) contrast(93%); /* atlRed800 filter */
+}
+
+/* Dark mode special case for the close button */
+body.dark_theme .panel-close-button img {
+    filter: brightness(0) invert(1); /* Default white in dark mode */
+}
+
+body.dark_theme .panel-close-button:hover img {
+    color: var(--atlRed700, #c53139); /* Brighter red for dark mode */
+    filter: invert(50%) sepia(98%) saturate(4904%) hue-rotate(350deg) brightness(100%) contrast(93%); /* atlRed700 filter for dark mode */
+}
+
+.close-icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* Country selection dropdown */
+.country-dropdown-toggle {
+    display: inline-block;
+    cursor: pointer;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.dropdown-icon {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.2s ease;
+    filter: var(--icon-filter, none); /* Apply color inversion in dark mode */
+}
+
+.country-dropdown-toggle.active .dropdown-icon {
+    transform: rotate(-180deg);
+}
+
+.country-dropdown {
+    position: fixed;
+    transform: translateX(-50%);
+    background-color: var(--background-color);
+    border: 1px solid var(--borderColor, #ddd);
+    border-radius: var(--borderRadius);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    display: none;
+    z-index: 1100; /* Higher z-index to appear above other elements */
+    max-height: 400px;
+    width: 300px;
+    overflow-y: auto;
+    padding: 5px 0;
+}
+
+.country-dropdown.active {
+    display: block;
+}
+
+.country-option {
+    padding: 8px 15px;
+    cursor: pointer;
+    font-family: var(--font-family-monospace);
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.country-option:hover {
+    background-color: var(--borderColor);
+}
+
+.country-group-header {
+    padding: 8px 4px;
+    font-weight: bold;
+    border-bottom: 1px solid var(--borderColor);
+    margin-top: 8px;
+    background-color: var(--background-color);
+    color: var(--excellenceOrange);
+}
+
+.dropdown-loading, .dropdown-error {
+    padding: 10px;
+    text-align: center;
+    color: var(--text-color);
+}
+
+.country-name, .country-iso {
+    font-weight: 600;
+}
+
+/* Panel-specific chart adjustments */
+.multi-chart-panel-body .chart-row {
+    margin-bottom: 30px;
+}
+
+.multi-chart-panel-body .chart-container {
+    /* Ensure chart containers in the panel are sized properly */
+    min-height: 600px;
+    margin-bottom: 0; /* Remove bottom margin inside the panel */
+}
+
+/* Trade Area Charts Layout */
+.panel-section {
+    margin-bottom: 40px;
+    width: 100%;
+}
+
+.centered-chart-container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+    min-height: 400px;
+    display: block;
+}
+
+.text-section {
+    padding: 10px 20px;
+    font-family: var(--font-family-monospace);
+    color: var(--text-color, #333);
+    line-height: 1.6;
+}
+
+.text-section p {
+    margin-bottom: 15px;
+}
+
+.text-section strong {
+    font-weight: 600;
+    color: var(--primary, #0066cc);
+}
+
+/* Make strong tags in chart titles use the standard text color instead of primary color */
+.chart-title strong {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+/* Higher specificity rules to ensure chart notes strong tags use the alt-text-color */
+.multi-chart-panel-body .chart-container .chart-notes strong,
+.multi-chart-panel-body .tariff-chart-container .chart-notes strong,
+.multi-chart-panel-body .split-section .chart-notes strong,
+.multi-chart-panel-body .chart-visualization-container .chart-notes strong,
+.tab-content .chart-notes strong {
+    font-weight: 600;
+    color: var(--alt-text-color);
+}
+
+.split-section {
+    display: flex;
+    gap: 30px;
+}
+
+.split-left {
+    flex: 1;
+    min-width: 450px;
+    min-height: 400px;
+}
+
+.split-right {
+    flex: 1;
+    min-width: 450px;
+}
+
+.split-full {
+    flex: 1;
+    width: 100%;
+    min-height: 400px;
+}
+
+.section-header {
+    font-family: var(--font-family-monospace);
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: var(--text-color, #333);
+    border-bottom: 1px solid var(--borderColor, #ddd);
+    padding-bottom: 10px;
+}
+
+/* Chart container with action buttons */
+.chart-container-with-actions {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.chart-actions {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+    display: flex;
+    gap: 8px;
+}
+
+.chart-action-button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px 8px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.chart-action-button:hover {
+    background-color: #f5f5f5;
+    border-color: #ccc;
+}
+
+.chart-action-button .action-icon {
+    width: 12px;
+    height: 12px;
+    filter: var(--icon-filter, none); /* Apply color inversion in dark mode */
+    transition: transform 0.2s ease;
+}
+
+/* Reset treemap button specific styles */
+.reset-treemap-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    z-index: 10;
+}
+
+.reset-treemap-button:hover {
+    transform: scale(1.2);
+}
+
+.reset-treemap-button:hover .reset-icon {
+    transform: rotate(-20deg);
+}
+
+.reset-treemap-button:active .reset-icon {
+    animation: spin-full 0.5s ease;
+}
+
+.reset-treemap-button .reset-icon {
+    width: 18px;
+    height: 18px;
+    filter: var(--icon-filter, none); /* Apply color inversion in dark mode */
+    transition: transform 0.2s ease;
+}
+
+@keyframes spin-full {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+}
+
+.reset-treemap-button .tooltip {
+    position: absolute;
+    background-color: var(--background-color, white);
+    color: var(--text-color, #333);
+    padding: 5px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-family: var(--font-family-monospace, monospace);
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    top: -30px;
+    right: 0; /* Anchor from right side */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--borderColor, #ddd);
+    z-index: 9999; /* Highest possible z-index */
+    pointer-events: none;
+}
+
+.reset-treemap-button:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+.centered-header {
+    text-align: center;
+}
+
+.tariff-charts {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Responsive adjustments for split sections */
+@media (max-width: 1200px) {
+    .split-section {
+        flex-direction: column;
+    }
+    
+    .split-left, .split-right {
+        width: 100%;
+    }
+}
+
+/* Responsive charts layout */
+@media (max-width: 1200px) {
+    .multi-chart-panel-content {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
+    
+    .multi-chart-panel-body {
+        padding: 10px;
+    }
+}
+
+/* Global charts controls container */
+.global-charts-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+/* Common dropdown display elements */
+.year-display, .metric-display, .country-count-display, .sector-group-display, .narrative-sector-group-display, .hs-section-display {
+    color: var(--orange1);
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+/* Common dropdown toggle elements */
+.year-dropdown-toggle, .metric-dropdown-toggle, .country-count-dropdown-toggle, .sector-group-dropdown-toggle, .narrative-sector-group-dropdown-toggle, .hs-section-dropdown-toggle {
+    display: inline-block;
+    margin-left: -2px; /* Pull it slightly closer to the text */
+    cursor: pointer;
+    /*vertical-align: middle; */
+}
+
+.year-dropdown-toggle img, .metric-dropdown-toggle img, .country-count-dropdown-toggle img, .sector-group-dropdown-toggle img, .narrative-sector-group-dropdown-toggle img, .hs-section-dropdown-toggle img {
+    height: 12px;
+    width: 12px;
+    filter: var(--icon-filter, none); /* Apply color inversion in dark mode */
+    transition: transform 0.2s ease;
+    /*vertical-align: middle; */
+    margin-bottom: 1px;
+    opacity: 0.8; /* Slightly more subtle */
+}
+
+.year-dropdown-toggle.active img, 
+.metric-dropdown-toggle.active img,
+.country-count-dropdown-toggle.active img,
+.sector-group-dropdown-toggle.active img,
+.narrative-sector-group-dropdown-toggle.active img,
+.hs-section-dropdown-toggle.active img {
+    transform: rotate(-180deg);
+}
+
+/* Dropdown containers */
+.year-dropdown, .metric-dropdown, .country-count-dropdown, .sector-group-dropdown, .narrative-sector-group-dropdown, .hs-section-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--background-color);
+    border: 1px solid var(--borderColor, #ddd);
+    border-radius: var(--borderRadius);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    display: none;
+    z-index: 1100; /* Higher z-index to appear above other elements */
+    max-height: 300px;
+    width: 100px;
+    overflow-y: auto;
+    padding: 5px 0;
+}
+
+/* Set width for specific dropdowns */
+.sector-group-dropdown, .narrative-sector-group-dropdown, .hs-section-dropdown {
+    width: 200px;
+}
+
+/* For inline text placement */
+.text-section p .year-dropdown,
+.text-section p .metric-dropdown,
+.text-section p .country-count-dropdown,
+.text-section p .sector-group-dropdown,
+.text-section p .narrative-sector-group-dropdown,
+.text-section p .hs-section-dropdown {
+    margin-top: 10px; /* Provides spacing below the text line */
+}
+
+/* Prevent wrapping within text */
+.text-section p .year-selector-container,
+.text-section p .metric-selector-container,
+.text-section p .country-count-selector-container,
+.text-section p .sector-group-selector-container,
+.text-section p .narrative-sector-group-selector-container,
+.text-section p .hs-section-selector-container {
+    display: inline-block;
+    white-space: nowrap;
+    line-height: 1;
+}
+
+.year-dropdown.active, .metric-dropdown.active, .country-count-dropdown.active, .sector-group-dropdown.active, .narrative-sector-group-dropdown.active, .hs-section-dropdown.active {
+    display: block;
+}
+
+/* Dropdown options */
+.year-option, .metric-option, .country-count-option, .sector-group-option, .narrative-sector-group-option, .hs-section-option {
+    padding: 8px 15px;
+    cursor: pointer;
+    font-family: var(--font-family-monospace);
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.year-option:hover, .metric-option:hover, .country-count-option:hover, .sector-group-option:hover, .narrative-sector-group-option:hover, .hs-section-option:hover {
+    background-color: var(--borderColor);
+}
+
+.year-option.active, .metric-option.active, .country-count-option.active, .sector-group-option.active, .narrative-sector-group-option.active, .hs-section-option.active {
+    background-color: var(--primary, #3581b4);
+    color: white;
+}
+
+/* Selector containers - prevent line breaks */
+.year-selector-container, .metric-selector-container, .country-count-selector-container, .sector-group-selector-container, .narrative-sector-group-selector-container, .hs-section-selector-container {
+    display: inline-block;
+    align-items: center;
+    gap: 0;
+    position: relative;
+    white-space: nowrap;
+    vertical-align: middle;
+    margin-right: 1px; /* Small space after the dropdown */
+    z-index: 200; /* Ensure it's above other elements */
+}
+
+/* Chart loading and error states */
+.chart-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    background-color: var(--medGray);
+    color: var(--medGray);
+    font-family: var(--font-family-monospace, sans-serif);
+    border-radius: 8px;
+    font-style: italic;
+    position: relative;
+    overflow: hidden;
+}
+
+.chart-loading::after {
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--primary, #3581b4), transparent);
+    animation: loading-pulse 1.5s ease-in-out infinite;
+    bottom: 20px;
+}
+
+@keyframes loading-pulse {
+    0% { left: -50px; width: 50px; }
+    50% { width: 100px; }
+    100% { left: 100%; width: 50px; }
+}
+
+.chart-error {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    background-color: #fff0f0;
+    color: var(--respectRed);
+    font-family: var(--font-family-monospace, sans-serif);
+    border-radius: 8px;
+    border: 1px solid var(--borderColor);
+    padding: 20px;
+    text-align: center;
+}
+
+/* Section selector for section analysis tab */
+.section-selector-container {
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    margin-left: 5px;
+}
+
+.section-display {
+    font-weight: bold;
+    margin-right: 5px;
+    color: var(--primary-highlight);
+}
+
+.section-dropdown-toggle {
+    cursor: pointer;
+    padding: 2px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+.section-dropdown-toggle:hover,
+.section-dropdown-toggle.active {
+    background-color: var(--hover-background);
+}
+
+.section-dropdown-toggle .dropdown-icon {
+    width: 12px;
+    height: 12px;
+    transition: transform 0.2s;
+}
+
+.section-dropdown-toggle.active .dropdown-icon {
+    transform: rotate(180deg);
+}
+
+.section-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--panel-background);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s, opacity 0.3s;
+    opacity: 0;
+    z-index: 1000;
+    width: 200px;
+    display: none;
+}
+
+.section-dropdown.active {
+    max-height: 300px;
+    opacity: 1;
+    display: block;
+}
+
+.section-option {
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.section-option:hover,
+.section-option.active {
+    background-color: var(--hover-background);
+}
+
+/* Section control panel */
+.section-control-panel {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.section-selector-wrapper {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    margin-left: 10px;
+}
+
+/* Selection note in narrative */
+p.selection-note {
+    font-style: italic;
+    font-size: 0.9em;
+    margin-top: 15px;
+    color: var(--secondary-text);
+}
+
+/* Side-by-side chart and text layout (alternative to split-section) */
+.chart-text-container {
+    display: flex;
+    gap: 30px;
+    margin: 30px 0;
+    align-items: stretch;
+}
+
+.chart-left {
+    flex-direction: row;
+}
+
+.chart-right {
+    flex-direction: row-reverse;
+}
+
+.chart-text-container .chart-area {
+    flex: 1;
+    min-height: 400px;
+    background-color: var(--marbleColumn);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-style: italic;
+}
+
+.chart-text-container .text-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.chart-insights {
+    padding: 15px;
+    background-color: var(--marbleColumn);
+    border-left: 4px solid var(--primary);
+    margin: 20px 0;
+}
+
+.insights-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: var(--dark);
+}
+
+/* Narrative section styles */
+.narrative-section {
+    margin-bottom: 40px;
+}
+
+.narrative-title {
+    font-size: 28px;
+    color: var(--dark);
+    margin-bottom: 15px;
+}
+
+.narrative-subtitle {
+    font-size: 20px;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.narrative-text {
+    margin-bottom: 20px;
+}
+
+.country-selector {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+}
+
+/* Additional responsive adjustments */
+@media (max-width: 768px) {
+    .chart-text-container {
+        flex-direction: column;
+    }
+    
+    .chart-text-container .chart-area,
+    .chart-text-container .text-area {
+        width: 100%;
+    }
+}

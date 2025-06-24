@@ -1,0 +1,276 @@
+/* Global Variables for standard (light) and dark modes. */
+:root{
+    --background-color: var(--marbleColumn); /* Dark mode:#2b2b2b*/
+    --background-color2: var(--medGray); /* Dark mode: #1c1c1c*/
+    --background-color3: var(--lightGray); 
+    --text-color: #212529;  /*Dark mode: #ffffff*/
+    --receipt-bg: var(--marbleColumn); /*Dark Mode: #1c1c1c*/
+    --alt-text-color: var(--darkGray);
+    --map-bg: var(--atlBlue100);
+    --header-bg: var(--background-color);
+    --footer-bg: var(--background-color);
+    --input-box-color: var(--light-grey);
+    --icon-filter: none; /* No filter needed in light mode */
+    
+    --cardMargin: 10px;
+    --borderWidth: 2px;
+    --borderRadius: 5px;
+    --borderColor: #a0a0a0; /* Dark Mode: #444*/
+    --separatorSize: 3px;
+    --separatorLightSize: 1px;
+
+    --font-family-sans-serif: 'IBM Plex Sans', sans-serif; 
+    --font-family-monospace: 'IBM Plex Mono', monospace;
+    --font-family-serif: 'IBM Plex Serif', serif;
+
+    --map_flex: 2;
+    --receipt_flex: 1;
+
+    --header_size_font: 3rem;
+    
+    /* Scrollbar Colors - Light Theme */
+    --scrollbar-track: var(--background-color);
+    --scrollbar-thumb: var(--lightGray);
+    --scrollbar-thumb-hover: var(--darkGray);
+}
+.dark_theme{
+    --background-color: #2b2b2b;
+    --background-color2: #1c1c1c; 
+    --background-color3: #444; 
+    --input-box-color: var(--med-grey);
+    --text-color: var(--marbleColumn);
+    --alt-text-color: var(--lightGray);
+    --receipt-bg: #1c1c1c;
+    --map-bg: #1c1c1c;
+    --header-bg: #2b2b2b;
+    --footer-bg: #2b2b2b;
+    --borderColor: #444;
+    --icon-filter: brightness(0) invert(1); /* Invert colors for SVG icons in dark mode */
+    
+    /* Scrollbar Colors - Dark Theme */
+    --scrollbar-track: var(--background-color);
+    --scrollbar-thumb: var(--darkGray);
+    --scrollbar-thumb-hover: var(--lightGray);
+}
+.card{
+    margin: var(--cardMargin);
+    border: var(--borderWidth) solid var(--borderColor);
+    border-radius: var(--borderRadius);
+    padding: var(--cardMargin);
+}
+/* Global Styles */
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'IBM Plex Sans', sans-serif;
+
+    height:100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Fix for cursor not showing pointer on clickable elements */
+button, 
+a, 
+.btn-toggle, 
+.radio-container, 
+select, 
+.icon-toggle-btn, 
+.continent-header, 
+.node-header, 
+.level-btn, 
+.test-btn, 
+.run-all-btn, 
+.stop-tests-btn, 
+.legend-item {
+    cursor: pointer !important;
+}
+
+.sr-only, .visually-hidden {
+    border:0;
+    clip: rect(0,0,0);
+    height:1px;
+    margin:-1px;
+    overflow:hidden;
+    padding:0;
+    position:absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+/* Placeholder Styling */
+.placeholder{
+    border: 2px dashed #999; /* PLACEHOLDER */
+    padding: 20px;
+    text-align: center;
+    font-size: 1.2em;
+    color: #2b2b2b; /* PLACEHOLDER */
+}
+
+
+/* Exit Button Styling */
+#exit-icon-container{
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+.help-icon{
+    color: var(--marbleColumn);
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    transition:transform 0.2s ease;
+}
+.exit-icon:hover{
+    transform: scale(1.1);
+}
+body.dark_theme .exit-icon{
+    filter: brightness(0) invert(1);
+}
+
+/* Button Styling */
+#btn-global {
+    margin-top: 10px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: 1px solid var(--borderColor);
+    padding: 5px 10px;
+    cursor: pointer;
+}
+#btn-global:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* Slightly darker or lighter depending on the theme */
+}
+
+
+/* Global Settings for Browsers */ 
+/* Chrome, Safari, Edge, and Opera*/
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Hide spinners in Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* Custom Scrollbar Styles - Firefox style inspiration */
+/* For Webkit browsers (Chrome, Safari, Edge) - Light Mode */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--marbleColumn);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--lightGray);
+    border-radius: 4px;
+    border: 2px solid var(--marbleColumn);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--darkGray);
+}
+
+::-webkit-scrollbar-corner {
+    background: var(--marbleColumn);
+}
+
+/* Dark Mode Scrollbars - Webkit */
+.dark_theme ::-webkit-scrollbar-track {
+    background: var(--background-color);
+}
+
+.dark_theme ::-webkit-scrollbar-thumb {
+    background: var(--background-color);
+    border: 2px solid var(--charcoal);
+}
+
+.dark_theme ::-webkit-scrollbar-thumb:hover {
+    background: var(--lightGray);
+}
+
+.dark_theme ::-webkit-scrollbar-corner {
+    background: var(--charcoal);
+}
+
+/* For Firefox - Light Mode */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--lightGray) var(--marbleColumn);
+}
+
+/* For Firefox - Dark Mode */
+.dark_theme * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--darkGray) var(--background-color);
+}
+
+/* Custom Toggle Switch Styling */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-switch .toggle-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s ease;
+}
+
+.toggle-switch .toggle-icon img {
+    width: 100%;
+    height: 100%;
+    filter: var(--toggle-filter, none);
+    transition: transform 0.2s ease;
+}
+
+.toggle-switch:hover .toggle-icon img {
+    transform: scale(1.05);
+}
+
+.toggle-switch:active .toggle-icon img {
+    transform: scale(0.95);
+}
+
+.dark_theme .toggle-switch .toggle-icon img {
+    filter: brightness(0) invert(1);
+}
+
+/* Focus styles for accessibility */
+.toggle-switch input:focus + .toggle-icon {
+    outline: 2px solid var(--borderColor);
+    border-radius: 4px;
+}
+
+/* The container that houses a toggle switch and its label */
+.toggle-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.toggle-container label {
+    flex: 1;
+    margin-right: 10px;
+}

@@ -1,0 +1,183 @@
+<div class="multi-chart-panel-content">
+    <div class="multi-chart-panel-header">
+        <div class="multi-chart-title-container">
+            <h2>Trade Data Explorer: <span class="country-name">China</span> (<span class="country-iso">CHN</span>)
+                <span class="country-dropdown-toggle">
+                    <img src="assets/fontawesome/chevron-down-solid.svg" alt="Select Country" class="dropdown-icon">
+                </span>
+            </h2>
+            <div class="country-dropdown" id="country-dropdown">
+                <!-- Placeholder for country options - will be populated with all countries from our data -->
+                <div id="country-dropdown-content">
+                    <!-- Loading spinner -->
+                    <div class="dropdown-loading">Loading countries...</div>
+                </div>
+            </div>
+        </div>
+        <button class="panel-close-button" id="panel-close-button">
+            <img src="assets/fontawesome/xmark.svg" alt="Close" class="close-icon">
+        </button>
+    </div>
+    <div class="multi-chart-panel-content-header">
+        <div class="tabs-container" id="chart-tabs-container">
+            <div class="tab active" data-tab="trade-relations" id="trade-relations-tab">
+                <span>Trade Relations</span>
+            </div>
+            <div class="tab" data-tab="tariff-relationships" id="tariff-relationships-tab">
+                <span>Tariff Relationships</span>
+            </div>
+            <div class="tab" data-tab="section-analysis" id="section-analysis-tab">
+                <span>Section Analysis</span>
+            </div>
+        </div>
+    </div>
+    <div class="multi-chart-panel-body">
+        <!-- Trade Relations Tab Content -->
+        <div class="tab-content trade-relations-content">
+            <div class="split-section">
+              <div class="split-left">
+                <h3 class="section-header">Trade Trends Over Time</h3>
+                <div class="text-section">
+                 <p> PLACEHOLDER FOR TRADE TIME SERIES NARRATIVE</p>
+                </div>
+              </div>
+              <div class="split-right">
+                <div id="bilateral-trade-container" class="chart-container"></div>
+              </div>
+            </div>        
+            <div class="split-section">
+                <div class="split-left">
+                    <h2 class="section-header">Product Level Trade Relations</h2>
+                    <div class="text-section">
+                        <p> PLACEHOLDER TEXT FOR PRODUCT LEVEL NARRATIVE</p>                          
+                    </div>
+                    <div class="chart-container-with-actions">
+                        <div class="chart-actions">
+                            <button id="reset-treemap-button-exports" class="reset-treemap-button" title="Reset Treemap" aria-label="Reset treemap">
+                                <img src="assets/fontawesome/arrow-rotate-left.svg" alt="" class="reset-icon">
+                                <span class="tooltip">Click to reset treemap</span>
+                            </button>
+                        </div>
+                        <div id="compressed-treemap-container-exports" class="chart-container"></div>
+                    </div>
+                </div>
+                <div class="split-right">
+                    <div class="chart-container-with-actions">
+                        <div class="chart-actions">
+                            <button id="reset-treemap-button-imports" class="reset-treemap-button" title="Reset Treemap" aria-label="Reset treemap">
+                                <img src="assets/fontawesome/arrow-rotate-left.svg" alt="" class="reset-icon">
+                                <span class="tooltip">Click to reset treemap</span>
+                            </button>
+                        </div>
+                        <div id="compressed-treemap-container-imports" class="chart-container"></div>
+                        <div class="text-section">
+                            <p> PLACEHOLDER TEXT FOR PRODUCT LEVEL NARRATIVE</p>                          
+                        </div>    
+                    </div>
+                </div>
+            </div>
+            <div class="split-section">
+                <div class="split-right">
+                    
+                </div>
+                <div class="split-right">
+
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tariff Relationships Tab Content -->
+        <div class="tab-content tariff-relationships-content">
+            <h3 class="section-header">Tariffs between the United States and <span class="country-name"></span></h3>
+            <div class = 'text-section'>
+                ## THE OUTPUT fOR  LINES 2803 and 2804
+
+            </div>
+            <div class="split-section">
+                <div class="split-right">
+                    <div id="bilateral-tariff-container" class="chart-container"></div>
+                </div>
+                <div class="split-left">
+                    <div class="text-section">
+                        ## OUTPUT FOR THE OTHER updateTariffExplanationText function
+                        <!-- This content will be dynamically replaced by the updateTariffExplanationText function -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="split-section">
+                <div class="split-right">
+                    <div id="industry-tariffs-bar-container" class="chart-container"></div>
+                </div>
+                <div class="split-left">
+                    <div class="text-section">
+                        <div id="industry-tariffs-time-container" class="chart-container"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section Analysis Tab Content -->
+        <div class="tab-content section-analysis-content">
+            <h3 class="section-header">Section-Level Analysis for <span class="country-name"></span></h3>
+            <div class="text-section">
+            </div>
+            <div class="split-section">
+                <div class="split-left">
+                    <!-- Section Selector Dropdown -->                    
+                    <!-- Container for imports metric -->
+                    <div id="country-section-time-series-container-trade_deficit" class="chart-container"></div>
+                </div>
+                
+                <div class="split-right">
+                    <h3 class="section-header">Section Level Analysis</h3>
+                    <div class="text-section">
+                        <!-- Time series narrative will be rendered here -->
+                    </div>
+                </div>
+            </div>
+            <div class="split-section">
+                <div class="split-left">
+                    <div class="text-section">
+                    </div>
+                    <!-- Container for imports metric -->
+                    <div id="country-section-time-series-container-impVal_section" class="chart-container"></div>
+                </div>
+                <div class="split-right">
+                    <div class="text-section">
+                    </div>
+                    <!-- Container for exports metric -->
+                    <div id="country-section-time-series-container-expVal_section" class="chart-container"></div>
+                    
+                    <!-- Legacy container for backward compatibility -->
+                    <div id="country-section-time-series-container" class="chart-container" style="display:none;"></div>
+                </div>
+            </div>
+            
+            
+            
+            <div class="split-section">
+                <div class="split-full">
+                    <h3 class="section-header">Section Bilateral Trade</h3>
+                    <div class="text-section">
+                        <p>
+                            <b> Figure 4 </b> visualizes the bilateral trade relationship between the two countries over time for <span class="hs-section-selector-container">
+                                <span class="hs-section-display" data-section="1">HS Section 1</span>
+                                <span class="hs-section-dropdown-toggle">
+                                    <img src="assets/fontawesome/chevron-down-solid.svg" alt="Select HS Section" class="dropdown-icon">. 
+                                </span>
+                                <div class="hs-section-dropdown" id="hs-section-dropdown">
+                                    <div id="hs-section-dropdown-content">
+                                        <!-- HS Section options will be populated dynamically -->
+                                    </div>
+                                </div>
+                            </span>
+                        </p>
+                        <p class="selection-note">Note: Use the dropdown to view different HS sections in the charts.</p>
+                    </div>
+                    <div id="section-bilateral-trade-container" class="chart-container"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

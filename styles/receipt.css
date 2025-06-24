@@ -1,0 +1,417 @@
+/* Receipt Section Styling */
+#receipt-section{
+    flex: var(--receipt_flex);
+    background-color: var(--receipt-bg); /* PLACEHOLDER */
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: left;
+    font-family: var(--font-family-monospace);
+    max-height: 100vh; /* Limit height to viewport height */
+    overflow: hidden; /* Hide overflow for the entire receipt */
+}
+#receipt-section-plhld{
+    flex: var(--receipt_flex);
+    background-color: var(--background-color); /* PLACEHOLDER */
+    display: flex;
+    flex-direction:column;
+    align-items: left;
+    justify-content: left;
+    font-family: var(--font-family-monospace);
+}
+/*Receipt Header Styling */
+#receipt-header{
+    font-weight: bold;
+    font-size: 1.35rem;
+    padding:0px;
+    text-align: center;
+}
+
+.receipt-date-line {
+    font-family: var(--font-family-monospace);
+    padding: 0 10px;
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Custom Receipt Order Dropdown Styles */
+.receipt-sort-container {
+    font-family: var(--font-family-monospace);
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+.sort-dropdown-container {
+    position: relative;
+    display: inline-block;
+}
+
+.sort-dropdown-toggle {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.sort-dropdown-toggle.active {
+    color: var(--alt-text-color);
+}
+
+.sort-selection {
+    margin-right: 5px;
+    font-size: 0.85em;
+}
+
+.sort-value {
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.sort-alphabetical {
+    font-weight: bold;;
+    color: var(--excellenceOrange);
+}
+
+.dropdown-icon {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.2s ease;
+    filter: var(--icon-filter, none);
+}
+
+.sort-dropdown-btn {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: 1px solid var(--borderColor);
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 0.85em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 110px;
+}
+
+.sort-dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    background-color: var(--background-color);
+    min-width: 110px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 100;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--borderColor);
+    right: 0;
+    margin-top: 2px;
+}
+
+.sort-dropdown-container.active .sort-dropdown-content {
+    display: block;
+}
+
+.sort-option {
+    color: var(--text-color);
+    padding: 8px 12px;
+    text-decoration: none;
+    display: block;
+    font-size: 0.85em;
+    cursor: pointer;
+}
+
+.sort-option:hover {
+    background-color: var(--background-color3);
+}
+
+.sort-option.selected {
+    font-weight: bold;
+    background-color: var(--borderColor);
+}
+.separator{
+    border-bottom: var(--separatorSize) dashed var(--text-color);
+    margin: 5px 0; 
+}
+
+.separator_light{
+    border-bottom: var(--separatorLightSize) dashed var(--alt-text-color);
+    margin: 5px 0; 
+}
+
+
+.receipt-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0px;
+    padding: 8px;
+    border-radius: 4px;
+    background-color: var(--receipt-bg);
+}
+
+.receipt-item-left {
+    display: flex;
+    align-items: flex-start;
+}
+
+.receipt-item span:first-child {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 3px;
+}
+
+.receipt-item div > span:last-of-type {
+    font-weight: bold;
+}
+
+.receipt-item .remove-btn {
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    margin-right: 8px;
+    margin-top: 2px;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.receipt-item:hover .remove-btn {
+    opacity: 0.6;
+}
+
+.receipt-item .remove-btn:hover {
+    opacity: 1;
+}
+
+.trash-icon {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+}
+
+.dark_theme .trash-icon,
+.dark_theme .effects-icon {
+    filter: brightness(0) invert(1);
+}
+
+.receipt-total{
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.placeholder-message{
+    margin-top: 2em;
+    font-size: 1.1em;
+    color: var(--text-color);
+    background-color: var(--receipt-bg);
+}
+
+#receipt-content{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    min-height: 0; /* Important for nested scrolling to work */
+    overflow: hidden; /* Hide overflow at this level */
+}
+
+#receipt-items {
+    flex: 1;
+    overflow-y: auto; /* Make this section scrollable */
+    padding-right: 5px; /* Add some space for the scrollbar */
+    margin-bottom: 0px;
+    max-height: 60vh; /* Limit height to portion of viewport */
+}
+
+
+/* Make country name clickable in receipt */
+.receipt-item span.clickable {
+    cursor: pointer;
+    text-decoration: none; /* Remove underline */
+    color: var(--text-color);
+}
+
+.receipt-item span.clickable:hover {
+    color: var(--alt-text-color);
+}
+
+.loading, .error, .empty-state {
+    padding: 15px;
+    text-align: center;
+    font-style: italic;
+    color: var(--alt-text-color);
+}
+
+.error {
+    color: #d9534f; /* Bootstrap danger/red */
+}
+#receipt_totals {
+    position: sticky;
+    bottom: 0;
+    background-color: var(--receipt-bg); /* Ensure background matches receipt */
+    z-index: 10; /* Make sure it appears above scrolling content */
+}
+
+#receipt-footer{
+    padding:10px;
+    text-align:left;
+    align-content:space-between;
+}
+
+.row-tariff{
+    margin-left: 10px; 
+    font-size: 0.65em; 
+    color: var(--text-color); 
+    margin-top: 4px;
+}
+
+/* Styles for receipt popup-like inputs */
+.popup-row-receipt {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.input-group-receipt {
+    position: relative;
+    width: 80px; /* Increased from 68px to match popup inputs */
+}
+
+.popup-input-receipt.percent {
+    text-align: left;
+    box-sizing: border-box;
+    width: 100%;
+    border: var(--borderWidth) solid var(--borderColor);
+    background-color: var(--input-box-color);
+    color: var(--text-color);
+    padding: 5px 20px 5px 8px; /* Added right padding for % symbol */
+    font-size: 0.95em;
+    height: 28px;
+}
+
+.row-title, .country-row-title {
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* Receipt toggle icons */
+.receipt-item .toggle-icon {
+    margin-left: 8px;
+    cursor: pointer;
+    font-size: 0.9em;
+    user-select: none;
+    position: static !important; /* Prevent absolute positioning */
+}
+
+/* Country toggle specific styles */
+.receipt-item .toggle-icon.country-toggle,
+.receipt-chevron {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    top: auto !important;
+    left: auto !important;
+    z-index: 1 !important;
+    /* Contain the toggle icon within the receipt */
+    overflow: visible !important;
+    float: none !important;
+    position: relative !important;
+}
+
+.receipt-item .toggle-plus, 
+.receipt-item .toggle-minus,
+.receipt-chevron .toggle-plus,
+.receipt-chevron .toggle-minus {
+    width: 10px !important;
+    height: 10px !important;
+    transition: transform 0.2s ease;
+    opacity: 0.75;
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    max-width: 10px !important;
+}
+
+.dark_theme .toggle-plus, 
+.dark_theme .toggle-minus {
+    filter: brightness(0) invert(1);
+}
+
+.toggle-icon:hover .toggle-plus,
+.toggle-icon:hover .toggle-minus {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+/* Styling for the global toggle icon (Rest of World) */
+#global-toggle-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* Styling for effects detail sections */
+.country-effects-detail {
+    margin-left: 0;
+    font-size: 0.75em;
+    color: var(--alt-text-color);
+    margin-top: 4px;
+}
+
+#global-effects-detail {
+    margin-bottom: 4px;
+    margin-top: -10px;
+}
+
+.effect-label {
+    font-weight: normal;
+    color: var(--alt-text-color);
+}
+
+.effect-value, 
+#global-direct-effect, 
+#global-indirect-effect {
+    font-weight: normal !important;
+    color: var(--alt-text-color);
+}
+
+/* Receipt Button Options*/
+.receipt-btn {
+    margin: 10px auto;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: 1px solid var(--borderColor);
+    padding: 10px 10px;
+    border-radius: 12px;  /* Rounded corners for a soft touch */
+    cursor: pointer;
+    display: block;
+    width: fit-content;
+    transition: background-color 0.3s ease;
+}
+
+.receipt-btn:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}

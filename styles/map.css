@@ -1,0 +1,49 @@
+/* Main Content Layout */
+:root{
+    --map-border-color: var(--charcoal);
+    --map-fill-opacity: 0.1;
+    
+    /* Default map colors */
+    --map-default-fill: #6F6F6F;
+    --map-default-opacity: 0.2;
+    /* Computed default visible color (accounting for opacity) */
+    --map-default-visible: #C9C9C9;
+    
+    /* Diverging color scale for country effect visualization */
+    --effect-color-positive: var(--excellenceOrange);  /* Color for positive effect (price increase) */
+    --effect-color-negative: var(--excellenceOrange);        /* Color for negative effect (price decrease) */
+    --effect-color-neutral: #FFFFFF;             /* Color for zero effect */
+}
+.dark_theme{
+    --map-border-color: var(--marbleColumn);
+    --map-fill-opacity:0.2;
+    
+    /* Computed default visible color for dark theme */
+    --map-default-visible: #464646;
+    
+    /* Adjusted colors for dark theme */
+    --effect-color-positive: var(--respectRedLight);
+    --effect-color-negative: var(--tealLight);
+    --effect-color-neutral: #2A2A2A;
+}
+
+#main-content{
+    display:flex;
+    height: calc(100vh - 100px);
+}
+
+/* Map Section Styling */
+#map-section{
+    flex: var(--map_flex);
+    background-color: var(--map-bg); /* PLACEHOLDER */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Add transition for country fill color changes */
+.leaflet-interactive {
+    transition: fill 0.5s ease-in-out, fill-opacity 0.5s ease-in-out;
+}
+
+

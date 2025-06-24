@@ -1,0 +1,57 @@
+/* Header*/
+#site-header{
+    background: var(--header-bg);
+    font-size: var(--header_size_font);
+    color: var(--text-color);
+    height: var(--header_size_font);
+
+    justify-content:space-between;
+    align-items: left;
+    text-align: left;
+
+    display: flex;
+    width:auto;
+    padding: 20px;
+
+}
+.header-left{
+    display:flex;
+    align-items:center;
+}
+#header-right{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.settings-icon,
+.chart-icon,
+.industry-icon,
+.help-info-icon {
+    color: var(--marbleColumn);
+    width: 29px;
+    height: 29px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+.settings-icon:hover,
+.chart-icon:hover,
+.industry-icon:hover,
+.help-info-icon:hover {
+    transform: scale(1.1);
+}
+.logo-dark{
+    display:none
+}
+body.dark_theme .logo-light{
+    display:none
+}
+body.dark_theme .settings-icon,
+body.dark_theme .chart-icon,
+body.dark_theme .industry-icon,
+body.dark_theme .help-info-icon {
+    filter: brightness(0) invert(1);
+}
+body.dark_theme .logo-dark{
+    display:block;
+}
+

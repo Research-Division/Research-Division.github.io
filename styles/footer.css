@@ -1,0 +1,7 @@
+/* Footer */
+#site-footer{
+    background: var(--header-bg);
+    color: var(--text-color);
+    text-align: center;
+    padding: 20px;
+}

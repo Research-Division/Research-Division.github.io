@@ -1,0 +1,308 @@
+
+/* Universal dropdown styling - apply to all select elements */
+select {
+    padding: 6px 10px 8px; /* Increased vertical padding, especially at the bottom */
+    border: 1px solid var(--borderColor, #ccc);
+    border-radius: var(--borderRadius, 4px);
+    background-color: var(--background-color, #fff);
+    color: var(--text-color, #333);
+    font-family: var(--font-family-sans-serif, 'IBM Plex Sans', sans-serif);
+    font-size: 14px;
+    cursor: pointer;
+    min-width: 100px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    height: 34px; /* Increased height to accommodate text */
+    box-sizing: border-box;
+    /* Create a custom arrow */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.5rem center;
+    background-size: 16px 12px;
+    padding-right: 2rem; /* Space for background arrow */
+    appearance: none; /* Remove default arrow */
+    -webkit-appearance: none; /* Ensure consistent appearance on Safari */
+    -moz-appearance: none;
+    text-align: left; /* Ensure text is always left-aligned */
+    white-space: nowrap; /* Prevent text from wrapping */
+    text-overflow: ellipsis; /* Add ellipsis for overflowing text */
+    overflow: hidden; /* Hide overflow text */
+    line-height: 1.2; /* Proper line height for text */
+}
+
+/* This targets dropdown options with proper vertical spacing */
+select option {
+    padding: 8px;
+    line-height: 1.4;
+    min-height: 1.4em;
+    font-size: 14px; /* Ensure consistent font size */
+}
+
+/* Firefox-specific fix for option appearance */
+@-moz-document url-prefix() {
+    select {
+        text-indent: 0;
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+    
+    select option {
+        padding: 8px 4px;
+    }
+}
+
+/* Specific dropdown types with standardized widths */
+.form-select,
+.dropdown-select,
+.countries-select {
+    /* These classes inherit all select styles */
+}
+
+/* Country dropdowns - wider for country names */
+.country-dropdown,
+#country-select,
+#industry-country-select,
+#bilateral-trade-country-select,
+#tariff-country-select {
+    width: 200px;
+}
+
+/* Aggregation type dropdowns */
+.aggregation-dropdown,
+#aggregation-type-select {
+    width: 160px;
+}
+
+/* Year dropdowns */
+.year-dropdown,
+#industry-year-select {
+    width: 80px;
+}
+
+/* Metric type dropdowns */
+#trade-metric-select,
+#metric-select,
+#top-countries-select,
+#tariff-type-select {
+    width: 180px;
+}
+
+/* Hover state */
+select:hover {
+    border-color: var(--teal, #009EC1);
+}
+
+/* Focus state */
+select:focus {
+    outline: none;
+    border-color: var(--primary, #0060A0);
+    box-shadow: 0 0 0 2px rgba(0, 96, 160, 0.25);
+}
+
+/* Disabled state */
+select:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: var(--lightGray, #f0f0f0);
+}
+
+/* Invalid state */
+select.is-invalid {
+    border-color: var(--respectRed, #dc3545);
+}
+
+/*
+ * Form control sizes - consistent with bootstrap sizing
+ */
+select.form-select-sm,
+select.dropdown-select-sm {
+    padding: 4px 20px 6px 8px; /* Improved padding for text display */
+    font-size: 12px;
+    height: 30px; /* Increased from 26px for better text display */
+    background-size: 14px 10px; /* Smaller arrow */
+    line-height: 1.2;
+}
+
+select.form-select-lg,
+select.dropdown-select-lg {
+    padding: 8px 24px 10px 12px; /* Improved vertical padding */
+    font-size: 16px;
+    height: 42px; /* Increased from 38px */
+    background-size: 18px 14px; /* Larger arrow */
+    line-height: 1.4;
+}
+
+/*
+ * OPTION ROWS
+ * Consistent styling for option rows in forms
+ */
+.option-row {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* For horizontal layouts in some contexts */
+.option-row.horizontal {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Section label for option groups */
+.option-row label.section-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* Option controls container for grouped controls */
+.option-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 450px;
+}
+
+/* For number selectors */
+.option-controls select {
+    padding: 5px;
+    cursor: pointer;
+}
+
+/* Analysis type controls special styling */
+.analysis-type-controls {
+    flex-wrap: wrap;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.analysis-type-row {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 25px;
+    margin-bottom: 10px;
+}
+
+/* Dropdown size for number selectors */
+#top-countries-select {
+    width: 65px;
+}
+
+/* Tariff method grid setup */
+.tariff-type-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 15px;
+}
+
+/*
+ * RADIO BUTTONS
+ * Consistent styling for radio button groups
+ */
+.radio-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.radio-icon {
+    width: 16px;
+    height: 16px;
+}
+
+/*
+ * CHECKBOXES
+ * Consistent styling for checkbox elements
+ */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.checkbox-icon {
+    width: 16px;
+    height: 16px;
+}
+
+/*
+ * LABELS
+ * Consistent styling for form labels
+ */
+.form-label {
+    display: inline-block;
+    margin-bottom: 4px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+/*
+ * INPUT GROUPS
+ * Styling for input groups with labels
+ */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.input-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+/* 
+ * BUTTONS
+ * Consistent styling for form buttons
+ */
+.form-button,
+.primary-button {
+    padding: 5px 12px;
+    background-color: var(--primary, #265da6);
+    color: white;
+    border: none;
+    border-radius: var(--borderRadius);
+    font-family: var(--font-family-sans-serif);
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    height: 28px; /* Match dropdown height for alignment */
+}
+
+.form-button:hover,
+.primary-button:hover {
+    background-color: var(--primaryDark, #1e4c8a);
+}
+
+.form-button:active,
+.primary-button:active {
+    background-color: var(--primaryDarker, #19427a);
+}
+
+.secondary-button {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: 1px solid var(--borderColor);
+}
+
+.secondary-button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.secondary-button:active {
+    background-color: rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,656 @@
+/* Core Modal Stylings */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* semi-transparent overlay */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    overflow-y: auto;
+    padding: 30px 0;
+}
+.modal-header {
+    position: relative;
+    padding-bottom: 15px;
+    margin-bottom: 10px;
+}
+
+.modal-header h2 {
+    font-size: 1.5rem;
+    margin: 0;
+    font-weight: 600;
+    color: var(--text-color);
+}
+.modal-body {
+    margin-top: 15px;
+}
+.modal-content {
+    background: var(--background-color, #fff);
+    color: var(--text-color, #333);
+    padding: 25px;
+    border-radius: var(--borderRadius, 8px);
+    max-width: 500px;
+    max-height: 80vh;
+    width: 90%;
+    position: relative;
+    overflow-y: auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Wider modal for bilateral tariff rates and industry breakdown */
+.modal-content.bilateral-modal,
+.modal-content.industry-modal {
+    max-width: 80%;
+    width: 900px; /* Reduced from 1000px to make charts skinnier */
+    margin: auto; /* Center the modal */
+    position: relative;
+    align-self: center;
+}
+.modal-footer{
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    background-color: transparent !important;
+}
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    color: var(--text-color);
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+}
+
+.close-icon {
+    width: 16px;
+    height: 16px;
+    color: var(--text-color);
+    transition: transform 0.2s ease;
+}
+
+.close-icon:hover {
+    transform: scale(1.1);
+}
+
+body.dark_theme .close-icon {
+    filter: brightness(0) invert(1);
+}
+
+
+.section-item, .chapter-item, .hs4-item {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.section-item {
+    background-color: var(--background-color);
+}
+.chapter-container {
+    margin-left: 20px;
+    display: none;
+}
+.chapter-item {
+    background-color:var(--background-color2);
+}
+.hs4-container {
+    margin-left: 20px;
+    display: none;
+}
+.hs4-item {
+    background-color: var(--background-color3);
+}
+.popup-input {
+    width: 80px;
+    padding: 6px 18px 6px 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: right;
+}
+.popup-input.original-tariff {
+    border-color: var(--primary) !important;
+    color: var(--primary) !important; 
+}
+.popup-input.current-tariff {
+    border-color: var(--excellenceOrange) !important;
+    color: var(--excellenceOrange) !important;
+}
+
+
+/* Modal Option 1: DEVTOOLS (developer tooling)*/
+.dev-options {
+    margin-top: 10px;
+    padding: 0;
+}
+
+.dev-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 12px 15px;
+    border-radius: var(--borderRadius);
+    background-color: var(--background-color);
+    border: 1px solid var(--borderColor);
+    transition: background-color 0.2s ease;
+}
+
+.dev-option:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.dev-option label {
+    flex: 1;
+    color: var(--text-color);
+    font-family: var(--font-family-monospace);
+    font-size: 1rem;
+    margin-right: 15px;
+    font-weight: 500;
+}
+
+/* Ensure toggle switches appear correctly in dev options */
+.dev-option .toggle-switch {
+    flex-shrink: 0;
+}
+
+/* Icon toggle buttons */
+.icon-toggle-buttons {
+    display: flex;
+    gap: 4px;
+}
+
+.icon-toggle-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 4px;
+    border: 1px solid var(--borderColor);
+    background-color: var(--background-color);
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.icon-toggle-btn .icon-toggle-img {
+    width: 16px;
+    height: 16px;
+    filter: var(--icon-toggle-filter, brightness(0.5));
+}
+
+.dark_theme .icon-toggle-btn .icon-toggle-img {
+    filter: brightness(0) invert(0.7);
+}
+
+.icon-toggle-btn.active {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.icon-toggle-btn.active .icon-toggle-img {
+    filter: brightness(0) invert(1);
+}
+
+.icon-toggle-btn:not(.active) {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    opacity: 0.8;
+}
+
+.icon-toggle-btn:not(.active) .icon-toggle-img {
+    filter: brightness(0) invert(1);
+}
+
+.icon-toggle-btn:hover {
+    transform: scale(1.05);
+    opacity: 1;
+}
+
+/* Settings category header */
+.settings-category {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 25px 0 15px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--borderColor);
+    color: var(--text-color);
+}
+
+/* Range slider styling */
+.range-input-container {
+    display: flex;
+    align-items: center;
+    color: var(--text-color);
+    gap: 10px;
+    width: 200px;
+}
+
+#chart-animation-duration {
+    flex: 1;
+    -webkit-appearance: none;
+    height: 8px;
+    border-radius: 4px;
+    background: var(--borderColor);
+    outline: none;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Default styling with a fallback gradient that will work without JS */
+:root #chart-animation-duration {
+    background: linear-gradient(to right, var(--teal) 0%, var(--teal) 25%, var(--borderColor) 25%, var(--borderColor) 100%);
+}
+
+/* Dark theme specific styling */
+.dark_theme #chart-animation-duration {
+    background: linear-gradient(to right, var(--teal) 0%, var(--teal) 25%, var(--darkGray) 25%, var(--darkGray) 100%);
+}
+
+#chart-animation-duration::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--excellenceOrange);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+#chart-animation-duration::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+    background: var(--excellenceOrangeLight);
+}
+
+.dark_theme #chart-animation-duration::-webkit-slider-thumb {
+    background: var(--excellenceOrange);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+#chart-animation-duration::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--excellenceOrange);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+#chart-animation-duration::-moz-range-thumb:hover {
+    transform: scale(1.1);
+    background: var(--excellenceOrangeLight);
+}
+
+.dark_theme #chart-animation-duration::-moz-range-thumb {
+    background: var(--excellenceOrange);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+#animation-duration-display {
+    min-width: 30px;
+    text-align: right;
+    font-family: monospace;
+    font-weight: bold;
+}
+
+/* Animation style toggle */
+.animation-style-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.animation-style-toggle .radio-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-left: 20px;
+}
+
+
+/* Tariff Modal Options */
+/* Removed problematic positioning from #next-button-container */
+#next-button-container{
+    cursor: pointer;
+    position: relative;
+    margin: 10px 0;
+}
+.next-button{
+    color: var(--marbleColumn);
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+.next-button:hover{
+    transform: scale(1.1);
+}
+body.dark_theme .next-button{
+    filter: brightness(0) invert(1);
+}
+
+
+/* Country List Stylings*/
+.continent-block{
+    margin: 10px 0;
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--borderRadius);
+}
+.continent-header{
+    background-color: var(--background-color);
+    color: var(--text-color);
+    padding: 8px 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+}
+.continent-header .title{
+    flex-grow: 1;
+    font-weight: bold;
+    margin-left: 5px;
+    font-size: 1.05em;
+}
+/* Dropdown triangles and icons for continent and product lists */
+.dropdown-triangle {
+    margin-right: 10px;
+    user-select: none;
+    position: static !important; /* Ensure no absolute positioning */
+    display: inline-block !important;
+    width: auto !important;
+    height: auto !important;
+    text-align: center;
+    top: auto !important;
+    left: auto !important;
+    font-size: 16px;
+    line-height: 1;
+}
+
+.toggle-icon-img {
+    width: 12px;
+    height: 12px;
+    filter: var(--icon-filter, none); /* Apply color inversion in dark mode */
+}
+.country-list{
+    list-style: none;
+    padding-left: 20px;
+    margin:0;
+}
+.country-item{
+    margin:5px 0;
+    display: flex;
+    align-items: center;
+}
+.country-item label{
+    margin-left: 8px;
+    cursor: pointer; 
+    font-size: 1em;
+}
+.country-item input[type="checkbox"], 
+.continent-header input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: var(--borderColor);
+}
+
+
+/* Product List Stylings*/
+/* Container for each node */
+.tariff-node {
+    border: 1px solid var(--background-color);
+    padding: 5px;
+    margin: 4px 0;
+}
+
+  /* Header for each node */
+.node-header {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+}
+
+.popup-row-modal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.tariff-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px 0;
+    width: 100%;
+}
+
+/* Toggle icon styling */
+.toggle-icon {
+    margin-right: 5px;
+    display: inline-block;
+    width: 15px;
+    text-align: center;
+}
+
+.dark_theme .toggle-icon img {
+    filter: brightness(0) invert(1);
+}
+
+.toggle-switch:hover .toggle-icon img {
+    transform: scale(1.05);
+}
+
+.toggle-switch:active .toggle-icon img {
+    transform: scale(0.95);
+}
+
+  /* Title styling */
+.node-title {
+    margin-right: 10px;
+}
+
+  /* Tariff input styling */
+.tariff-input {
+    width: 120px;
+    padding: 2px;
+    margin-left: 4px;
+}
+
+  /* Container for children nodes */
+.node-children {
+    margin-left: 20px;
+    border-left: 2px solid var(--borderColor);
+    padding-left: 10px;
+}
+
+
+/* Effect Details Modal specific styles */
+.effect-details-list {
+    width: 100%;
+}
+
+.level-selector {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.level-btn {
+    padding: 5px 10px;
+    font-size: 0.85em;
+    background-color: var(--background-color);
+    border: 1px solid var(--borderColor);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.level-btn.active {
+    background-color: var(--marbleColumn);
+    color: white;
+    border-color: var(--marbleColumn);
+}
+
+.effect-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 5px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    font-size: 0.9em;
+    align-items: center;
+}
+
+.effect-item:hover {
+    background-color: rgba(0,0,0,0.02);
+}
+
+.effect-item.header {
+    font-weight: bold;
+    border-bottom: 2px solid var(--borderColor);
+    background-color: var(--background-color);
+    margin-bottom: 5px;
+}
+
+.effect-item.header:hover {
+    background-color: var(--background-color);
+}
+
+.effect-item-title {
+    flex: 2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: normal;
+}
+
+.effect-item.header .effect-item-title {
+    font-weight: bold;
+}
+
+.effect-item-code {
+    flex: 1;
+    color: var(--alt-text-color);
+    font-size: 0.9em;
+    text-align: right;
+    padding-right: 10px;
+}
+
+.effect-item-value {
+    text-align: right;
+    flex: 1;
+    font-weight: bold;
+}
+
+.effect-item-share {
+    text-align: right;
+    flex: 1;
+    color: var(--alt-text-color);
+    font-size: 0.9em;
+}
+
+.loading, .error, .empty-state {
+    padding: 15px;
+    text-align: center;
+    font-style: italic;
+    color: var(--alt-text-color);
+}
+
+.error {
+    color: #d9534f; /* Bootstrap danger/red */
+}
+/* Styles for Summary Effects Modal */
+.effects-modal {
+    max-width: 900px; /* Increased from 800px to accommodate the new column */
+    margin: auto;
+    position: relative;
+    align-self: center;
+}
+
+.effects-info {
+    margin-bottom: 20px;
+    font-size: 1.1em;
+}
+
+.country-code {
+    font-size: 0.9rem;
+    color: var(--alt-text-color);
+    margin-top: -5px;
+    font-style: italic;
+}
+
+.effects-total {
+    font-weight: bold;
+    font-family: monospace;
+}
+
+.effects-table-container {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid var(--borderColor);
+    border-radius: var(--borderRadius);
+}
+
+.effects-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: monospace;
+}
+
+.effects-table th,
+.effects-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid var(--borderColor);
+}
+
+.effects-table th {
+    background-color: var(--background-color);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    border-bottom: 2px solid var(--borderColor);
+}
+
+.effects-table tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.dark_theme .effects-table tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.effects-table tr:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.dark_theme .effects-table tr:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.no-effects {
+    text-align: center;
+    font-style: italic;
+    color: var(--alt-text-color);
+    padding: 20px;
+}
