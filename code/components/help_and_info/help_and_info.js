@@ -609,7 +609,7 @@ class SparksGuidedTourV2 {
             {
                 target: '#currentTariffInput',
                 title: 'Current Tariff Rate',
-                content: '<p>This field shows the existing tariff rate currently applied to imports from this country. The baseline current tariff is the average statutory tariff rate in 2021 from Teti (2024).</p> <p> The statutory tariff rates from Teti (2024) are not inclusive of Section 232 (national security) or Section 301 (unfair trade practices) tariffs, or anti-dumping duties.</p> <p><b> This value is only a baseline. Users are encouraged to update the baseline tariff levels to current effective rates in their estimations.</b></p>',
+                content: '<p>This field shows the existing tariff rate currently applied to imports from this country. The baseline current tariff is the average statutory tariff rate in 2021.</p> <p> The statutory tariff rates are from the Global Tariff Database (Teti 2024) are not inclusive of Section 232 (national security) or Section 301 (unfair trade practices) tariffs, or anti-dumping duties.</p> <p><b> This value is only a baseline. Users are encouraged to update the baseline tariff levels to current effective rates in their estimations.</b></p>',
                 position: 'right',
                 targetPopup: true
             },

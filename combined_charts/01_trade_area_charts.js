@@ -595,10 +595,10 @@ window.multiChartPanel = (function() {
             </p>
     
             <p>
-                Imports from <strong>${countryName}</strong> make up ${importShare} of total <strong>U.S.</strong> imports, 
-                and exports account for ${exportShare} of total <strong>U.S.</strong> exports. The <strong>U.S.</strong> currently 
+                Imports from <strong>${countryName}</strong> make up ${importShare} of total <strong>U.S.</strong> imports and is the 
+                destination for ${exportShare} of total <strong>U.S.</strong> exports. The <strong>U.S.</strong> currently 
                 runs a trade deficit of ${bilateralDeficit}, ranking 
-                ${deficitRank_latest} among all bilateral deficits.
+                ${deficitRank_latest} among all bilateral trade deficits.
             </p>
     
             <p>${balanceText}</p>                
@@ -2739,7 +2739,7 @@ window.multiChartPanel = (function() {
                     ? `U.S. imports from ${currentCountry.name} by HS commodity section. `
                     : `U.S. exports to ${currentCountry.name} by HS commodity section. `,
                 // Add source information
-                source: 'U.S. Census Bureau USA Trade Online',
+                source: "U.S. Census Bureau's USA Trade Online",
                 onSuccess: function(config) {
                     // No need to update the title here as it's already set correctly in the options
                 },
@@ -2771,7 +2771,7 @@ window.multiChartPanel = (function() {
                 : `U.S. exports to ${currentCountry.name} by HS commodity section. Export values defined as the total value of the goods for export at the U.S. port of export.`;
                 
             // Add source information
-            options.source = 'U.S. Census Bureau USA Trade Online';
+            options.source = "U.S. Census Bureau's USA Trade Online";
             
             // Create the chart with the specified metric and options
             window.countrySectionTimeSeriesChart.createChart(

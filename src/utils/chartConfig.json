@@ -171,7 +171,7 @@
         }
       },
       "defaults": {
-        "source": "Feodora Teti's Global Tariff Database (v_beta1-2024-12) from Teti (2024)",
+        "source": "Global Tariff Database (Teti 2024)",
         "xAxisTitle": "Year",
         "yAxisTitle": "Tariff Rate (%)",
         "yAxisTitle_chartWiz": "Tariff Rate (%)",
@@ -198,7 +198,7 @@
     "bilat-tariff-time-series": {
       "defaults": {
         "title": "Industry Tariff Rates Over Time ({{tariffMethod}})",
-        "source": "Feodora Teti's Global Tariff Database (v_beta1-2024-12) from Teti (2024)",
+        "source": "Global Tariff Database (Teti 2024)",
         "xAxisTitle": "Year",
         "yAxisTitle": "Tariff Rate (%)",
         "yAxisTitle_chartWiz": "Tariff Rate (%)",
@@ -331,7 +331,7 @@
           "legendMaxRows": 1,
           "preserveXOrder": true,
           "note": "This chart shows the tariff rate between the US and {{country}} by ISIC code. Data is sourced from Feodora Teti's Global Tariff Database.",
-          "source": "Feodora Teti's Global Tariff Database (v_beta1-2024-12) from Teti (2024)",
+          "source": "Global Tariff Database (Teti 2024)",
           "postRender": {
             "bottomSpaceHeight": "40px"
           }
@@ -346,7 +346,7 @@
           "legendMaxRows": 1,
           "preserveXOrder": true,
           "note": "This chart shows the tariff rate between the US and {{country}} by GTAP code. Data is sourced from Feodora Teti's Global Tariff Database.",
-          "source": "Feodora Teti's Global Tariff Database (v_beta1-2024-12) from Teti (2024)",
+          "source": "Global Tariff Database (Teti 2024)",
           "postRender": {
             "bottomSpaceHeight": "40px"
           }
@@ -361,7 +361,7 @@
           "legendMaxRows": 1,
           "preserveXOrder": true,
           "note": "This chart shows the statutory tariff rate between the US and {{country}} by section code.",
-          "source": "Feodora Teti's Global Tariff Database (v_beta1-2024-12) from Teti (2024)",
+          "source": "Global Tariff Database (Teti 2024)",
           "postRender": {
             "bottomSpaceHeight": "40px"
           }

@@ -283,7 +283,7 @@
     "hs_section": "1",
     "hs_section_title": "Live Animals & Products",
     "metric": "trade_deficit",
-    "display_metric": "Trade Deficit",
+    "display_metric": "Trade Balance",
     "data": [
       {
         "year": 1992,
@@ -703,7 +703,7 @@
     "hs_section": "2",
     "hs_section_title": "Vegetable Products",
     "metric": "trade_deficit",
-    "display_metric": "Trade Deficit",
+    "display_metric": "Trade Balance",
     "data": [
       {
         "year": 1992,
@@ -1123,7 +1123,7 @@
     "hs_section": "3",
     "hs_section_title": "Fats & Oils",
     "metric": "trade_deficit",
-    "display_metric": "Trade Deficit",
+    "display_metric": "Trade Balance",
     "data": [
       {
         "year": 1992,
@@ -1543,7 +1543,7 @@
     "hs_section": "4",
     "hs_section_title": "Food, Bev. & Tobacco",
     "metric": "trade_deficit",
-    "display_metric": "Trade Deficit",
+    "display_metric": "Trade Balance",
     "data": [
       {
         "year": 1992,
@@ -1963,7 +1963,7 @@
     "hs_section": "5",
     "hs_section_title": "Minerals",
     "metric": "trade_deficit",
-    "display_metric": "Trade Deficit",
+    "display_metric": "Trade Balance",
     "data": [
       {
         "year": 1992,
@@ -2383,7 +2383,7 @@
     "hs_section": "6",
     "hs_section_title": "Chemicals",
     "metric": "trade_deficit",
-    "display_metric": "Trade Deficit",
+    "display_metric": "Trade Balance",
     "data": [
       {
         "year": 1992,
@@ -2803,7 +2803,7 @@
     "hs_section": "7",
     "hs_section_title": "Plastics & Rubber",
     "metric": "trade_deficit",
-    "display_metric": "Trade Deficit",
+    "display_metric": "Trade Balance",
     "data": [
       {
         "year": 1992,
@@ -3223,7 +3223,7 @@
     "hs_section": "8",
     "hs_section_title": "Leather & Fur",
     "metric": "trade_deficit",
-    "display_metric": "Trade Deficit",
+    "display_metric": "Trade Balance",
     "data": [
       {
         "year": 1992,
@@ -3643,7 +3643,7 @@
     "hs_section": "9",
     "hs_section_title": "Wood Products",
     "metric": "trade_deficit",
-    "display_metric": "Trade Deficit",
+    "display_metric": "Trade Balance",
     "data": [
       {
         "year": 1992,
@@ -4063,7 +4063,7 @@
     "hs_section": "10",
     "hs_section_title": "Paper & Pulp",
     "metric": "trade_deficit",
-    "display_metric": "Trade Deficit",
+    "display_metric": "Trade Balance",
     "data": [
       {
         "year": 1992,
@@ -4483,7 +4483,7 @@
     "hs_section": "11",
     "hs_section_title": "Textiles",
     "metric": "trade_deficit",
-    "display_metric": "Trade Deficit",
+    "display_metric": "Trade Balance",
     "data": [
       {
         "year": 1992,
@@ -4903,7 +4903,7 @@
     "hs_section": "12",
     "hs_section_title": "Footwear & Acc.",
     "metric": "trade_deficit",
-    "display_metric": "Trade Deficit",
+    "display_metric": "Trade Balance",
     "data": [
       {
         "year": 1992,
@@ -5323,7 +5323,7 @@
     "hs_section": "13",
     "hs_section_title": "Stone & Ceramics",
     "metric": "trade_deficit",
-    "display_metric": "Trade Deficit",
+    "display_metric": "Trade Balance",
     "data": [
       {
         "year": 1992,
@@ -5743,7 +5743,7 @@
     "hs_section": "14",
     "hs_section_title": "Jewelry & Gems",
     "metric": "trade_deficit",
-    "display_metric": "Trade Deficit",
+    "display_metric": "Trade Balance",
     "data": [
       {
         "year": 1992,
@@ -6163,7 +6163,7 @@
     "hs_section": "15",
     "hs_section_title": "Metals",
     "metric": "trade_deficit",
-    "display_metric": "Trade Deficit",
+    "display_metric": "Trade Balance",
     "data": [
       {
         "year": 1992,
@@ -6583,7 +6583,7 @@
     "hs_section": "16",
     "hs_section_title": "Machinery",
     "metric": "trade_deficit",
-    "display_metric": "Trade Deficit",
+    "display_metric": "Trade Balance",
     "data": [
       {
         "year": 1992,
@@ -7003,7 +7003,7 @@
     "hs_section": "17",
     "hs_section_title": "Transportation",
     "metric": "trade_deficit",
-    "display_metric": "Trade Deficit",
+    "display_metric": "Trade Balance",
     "data": [
       {
         "year": 1992,
@@ -7423,7 +7423,7 @@
     "hs_section": "18",
     "hs_section_title": "Precision Instruments",
     "metric": "trade_deficit",
-    "display_metric": "Trade Deficit",
+    "display_metric": "Trade Balance",
     "data": [
       {
         "year": 1992,
@@ -7843,7 +7843,7 @@
     "hs_section": "19",
     "hs_section_title": "Arms & Ammun.",
     "metric": "trade_deficit",
-    "display_metric": "Trade Deficit",
+    "display_metric": "Trade Balance",
     "data": [
       {
         "year": 1992,
@@ -8263,7 +8263,7 @@
     "hs_section": "20",
     "hs_section_title": "Misc. Manufactured",
     "metric": "trade_deficit",
-    "display_metric": "Trade Deficit",
+    "display_metric": "Trade Balance",
     "data": [
       {
         "year": 1992,
@@ -8683,7 +8683,7 @@
     "hs_section": "21",
     "hs_section_title": "Art & Antiques",
     "metric": "trade_deficit",
-    "display_metric": "Trade Deficit",
+    "display_metric": "Trade Balance",
     "data": [
       {
         "year": 1992,

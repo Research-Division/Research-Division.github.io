@@ -163,7 +163,7 @@ window.countryBilatTariffRates = (function() {
                     itemsPerRow: 2,
                     maxRows: 1
                 },
-                sourceNote: "Feodora Teti's Global Tariff Database (v_beta1-2024-12) from Teti (2024)"
+                sourceNote: "Global Tariff Database (Teti 2024)"
             };
             
             // Pass skipDots option from effectiveOptions to chartConfig

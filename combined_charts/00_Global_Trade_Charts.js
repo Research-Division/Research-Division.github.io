@@ -299,7 +299,7 @@ window.globalTradeCharts = (function() {
         }
         
         // Setup dropdowns - metric dropdown removed as it's now fixed
-        setupYearDropdown();
+        //setupYearDropdown();
         setupCountryCountDropdown();
         setupTradeTypeDropdown();
         
@@ -348,7 +348,7 @@ window.globalTradeCharts = (function() {
     /**
      * Setup the year dropdown
      */
-    function setupYearDropdown() {
+    /*    function setupYearDropdown() {
         const dropdownToggle = document.querySelector('.year-dropdown-toggle');
         const dropdown = document.getElementById('year-dropdown');
         const yearDisplay = document.querySelector('.year-display');
@@ -397,7 +397,7 @@ window.globalTradeCharts = (function() {
             }
         });
     }
-    
+    */
     // Metric dropdown functionality removed - using fixed values
     
     /**
@@ -492,6 +492,7 @@ window.globalTradeCharts = (function() {
      * Populate dropdown with year options
      * @param {HTMLElement} dropdown - The dropdown element
      */
+    /*
     function populateYearDropdown(dropdown) {
         const dropdownContent = dropdown.querySelector('#year-dropdown-content');
         if (!dropdownContent) return;
@@ -513,7 +514,7 @@ window.globalTradeCharts = (function() {
             dropdownContent.appendChild(option);
         });
     }
-    
+    */
     // Metric dropdown population removed - using fixed values
     
     /**
