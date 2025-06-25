@@ -42,30 +42,33 @@ window.formatUtils = (function() {
             return settings.includePrefix ? '$0' : '0';
         }
         
-        // Create the prefix
-        const prefix = settings.includePrefix ? '$' : '';
+        // Check if the value is negative
+        const isNegative = num < 0;
+        const absNum = Math.abs(num);
+        
+        // Create the prefix (only for positive values, negative handled specially)
+        const prefix = settings.includePrefix && !isNegative ? '$' : '';
         
         // If using suffixes
         if (settings.useSuffix) {
             // Determine the appropriate suffix based on magnitude
-            const absNum = Math.abs(num);
             let formatted;
             let suffix = '';
             
             if (absNum >= 1e12) { // Trillion
-                formatted = (num / 1e12);
+                formatted = (absNum / 1e12);
                 suffix = 'T';
             } else if (absNum >= 1e9) { // Billion
-                formatted = (num / 1e9);
+                formatted = (absNum / 1e9);
                 suffix = 'B';
             } else if (absNum >= 1e6) { // Million
-                formatted = (num / 1e6);
+                formatted = (absNum / 1e6);
                 suffix = 'M';
             } else if (absNum >= 1e3) { // Thousand
-                formatted = (num / 1e3);
+                formatted = (absNum / 1e3);
                 suffix = 'K';
             } else {
-                formatted = num;
+                formatted = absNum;
             }
             
             // Format the number with the specified number of decimal places
@@ -87,12 +90,17 @@ window.formatUtils = (function() {
                 formatted = parts.join('.');
             }
             
-            return `${prefix}${formatted}${suffix}`;
+            // Handle negative values: -$X instead of $-X
+            if (isNegative) {
+                return settings.includePrefix ? `-$${formatted}${suffix}` : `-${formatted}${suffix}`;
+            } else {
+                return `${prefix}${formatted}${suffix}`;
+            }
         } 
         // If not using suffixes, just use commas
         else {
             // Format with commas
-            let formatted = num.toFixed(settings.decimals);
+            let formatted = absNum.toFixed(settings.decimals);
             
             // Remove trailing zeros if not forcing decimals
             if (!settings.forceDecimals) {
@@ -107,7 +115,12 @@ window.formatUtils = (function() {
                 formatted = parts.join('.');
             }
             
-            return `${prefix}${formatted}`;
+            // Handle negative values: -$X instead of $-X
+            if (isNegative) {
+                return settings.includePrefix ? `-$${formatted}` : `-${formatted}`;
+            } else {
+                return `${prefix}${formatted}`;
+            }
         }
     }
     

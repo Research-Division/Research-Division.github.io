@@ -578,7 +578,7 @@ window.multiChartPanel = (function() {
     
         const balanceText = (() => {
             if (features.deficitToSurplus === "NO") return `The <strong>U.S.</strong> has consistently run a trade deficit with <strong>${countryName}</strong> since 1992.`;
-            if (features.deficitToSurplus === "ALWAYS SURPLUS") return `The <strong>U.S.</strong> has consistently maintained a trade surplus with <strong>${countryName}</strong>.`;
+            if (features.deficitToSurplus === "ALWAYS SURPLUS") return `The <strong>U.S.</strong> has consistently maintained a trade surplus with <strong>${countryName}</strong> since 1992.`;
             return `The <strong>U.S.</strong> ran trade surpluses with <strong>${countryName}</strong> in the following years: ${features.deficitToSurplus.join(", ")}.`;
         })();
     
@@ -815,7 +815,7 @@ window.multiChartPanel = (function() {
         }
         
         function ordinal(n) {
-          const s = ["th", "st", "nd", "rd"], v = n % 100;
+          const s = ["<sup>th</sup>", "<sup>st</sup>", "<sup>nd</sup>", "<sup>rd</sup>"], v = n % 100;
           return n + (s[(v - 20) % 10] || s[v] || s[0]);
         }
       
@@ -843,15 +843,15 @@ window.multiChartPanel = (function() {
           if (majorExports.length && majorDestinations.length) {
             // Both exports and destinations - combine into one paragraph
             const topExports = majorExports.slice(0, 4);
-            detailedContent += `<p><strong>${name}</strong> serves as a major supplier to the U.S. across several key sectors, including ${getTitlesOnly(topExports).join(", ")}. Conversely, <strong>${name}</strong> represents an important destination for U.S. exports, particularly in ${getTitlesOnly(majorDestinations).join(" and ")}.</p>`;
+            detailedContent += `<p><strong>${name}</strong> serves as a major supplier to the <strong>U.S.</strong> across several key sectors, including ${getTitlesOnly(topExports).join(", ")}. Conversely, <strong>${name}</strong> represents an important destination for U.S. exports, particularly in ${getTitlesOnly(majorDestinations).join(" and ")}.</p>`;
           } else if (majorExports.length) {
             const topExports = majorExports.slice(0, 4);
-            detailedContent += `<p><strong>${name}</strong> serves as a major supplier to the U.S. across several key sectors, including ${getTitlesOnly(topExports).join(", ")}.</p>`;
+            detailedContent += `<p><strong>${name}</strong> serves as a major supplier to the <strong>U.S.</strong> across several key sectors, including ${getTitlesOnly(topExports).join(", ")}.</p>`;
           } else {
-            detailedContent += `<p><strong>${name}</strong> represents an important destination for U.S. exports, particularly in ${getTitlesOnly(majorDestinations).join(" and ")}.</p>`;
+            detailedContent += `<p><strong>${name}</strong> represents an important destination for <strong>U.S.</strong> exports, particularly in ${getTitlesOnly(majorDestinations).join(" and ")}.</p>`;
           }
         } else {
-          detailedContent += `<p><strong>${name}</strong> does not rank among the top trading partners for the U.S. in any specific HS category.</p>`;
+          detailedContent += `<p><strong>${name}</strong> does not rank among the top trading partners for the <strong>U.S.</strong> in any specific HS category.</p>`;
         }
     
         // Show significant changes from both long-term and recent periods
@@ -893,11 +893,11 @@ window.multiChartPanel = (function() {
         if (impG.length || impS.length) {
             let importParagraph = "";
             if (impG.length && impS.length) {
-              importParagraph = `<p>Over the full period (1994-2024), imports from <strong>${name}</strong> have seen notable growth in ${joinWithOxfordComma(impG)}, while some traditional sectors have lost ground, including ${joinWithOxfordComma(impS)}. These rankings reflect <strong>${name}</strong>'s position among all countries exporting to the <strong>U.S.</strong> in each sector.</p>`;
+              importParagraph = `<p>From 1994 to 2024, imports from <strong>${name}</strong> have seen notable growth in ${joinWithOxfordComma(impG)}. Over the same period, some sectors have lost ground, including ${joinWithOxfordComma(impS)}. These rankings reflect <strong>${name}'s</strong> position among all countries exporting to the <strong>U.S.</strong> in each sector.</p>`;
             } else if (impG.length) {
-              importParagraph = `<p>Since 1994, imports from <strong>${name}</strong> have shown notable growth, particularly in ${joinWithOxfordComma(impG)}. These rankings reflect <strong>${name}</strong>'s position among all countries exporting to the <strong>U.S.</strong> in each sector.</p>`;
+              importParagraph = `<p>Since 1994, imports from <strong>${name}</strong> have shown notable growth, particularly in ${joinWithOxfordComma(impG)}. These rankings reflect <strong>${name}'s</strong> position among all countries exporting to the <strong>U.S.</strong> in each sector.</p>`;
             } else {
-              importParagraph = `<p>Over the past three decades, some traditional import sectors from <strong>${name}</strong> have lost ground, including ${joinWithOxfordComma(impS)}. These rankings reflect <strong>${name}</strong>'s position among all countries exporting to the <strong>U.S.</strong> in each sector.</p>`;
+              importParagraph = `<p>Over the past three decades, some import sectors from <strong>${name}</strong> have lost ground, including ${joinWithOxfordComma(impS)}. These rankings reflect <strong>${name}'s</strong> position among all countries exporting to the <strong>U.S.</strong> in each sector.</p>`;
             }
             detailedContent += importParagraph;
           }
@@ -906,11 +906,11 @@ window.multiChartPanel = (function() {
         if (expG.length || expS.length) {
           let exportParagraph = "";
           if (expG.length && expS.length) {
-            exportParagraph = `<p>For <strong>U.S.</strong> exports to <strong>${name}</strong>, the long-term trend shows several sectors gaining prominence, such as ${expG.join(" and ")}, though certain categories have seen their significance diminish, notably ${expS.join(" and ")}. These rankings reflect <strong>${name}</strong>'s position among all destinations for <strong>U.S.</strong> exports in each sector.</p>`;
+            exportParagraph = `<p>For <strong>U.S.</strong> exports to <strong>${name}</strong>, the 30-year trend shows several sectors gaining prominence, such as ${expG.join(", and ")}, though certain categories have seen their significance diminish. Notably ${expS.join(", and ")}. These rankings reflect <strong>${name}'s</strong> position among all destinations for <strong>U.S.</strong> exports in each sector.</p>`;
           } else if (expG.length) {
-            exportParagraph = `<p><strong>U.S.</strong> export trends to <strong>${name}</strong> since 1994 show several sectors gaining prominence, such as ${expG.join(" and ")}. These rankings reflect <strong>${name}</strong>'s position among all destinations for <strong>U.S.</strong> exports in each sector.</p>`;
+            exportParagraph = `<p><strong>U.S.</strong> export trends to <strong>${name}</strong> since 1994 show several sectors gaining prominence, such as ${expG.join(", and ")}. These rankings reflect <strong>${name}'s</strong> position among all destinations for <strong>U.S.</strong> exports in each sector.</p>`;
           } else {
-            exportParagraph = `<p>Over the past three decades, certain <strong>U.S.</strong> export categories to <strong>${name}</strong> have seen their significance diminish, notably ${expS.join(" and ")}. These rankings reflect <strong>${name}</strong>'s position among all destinations for <strong>U.S.</strong> exports in each sector.</p>`;
+            exportParagraph = `<p>Over the past three decades, certain <strong>U.S.</strong> export categories to <strong>${name}</strong> have seen their significance diminish, notably ${expS.join(", and ")}. These rankings reflect <strong>${name}'s</strong> position among all destinations for <strong>U.S.</strong> exports in each sector.</p>`;
           }
           detailedContent += exportParagraph;
         }
@@ -929,7 +929,7 @@ window.multiChartPanel = (function() {
                                     </div>
                                 </div>
                             </span></p>`
-        detailedContent += `        <p class="selection-note">Note: Use the dropdown to view different categories in the charts.</p>`;
+        detailedContent += `        <p class="selection-note">Note: Use the dropdown to view different categories in the chart.</p>`;
     
         // Return both parts as an object
         return {
@@ -1569,7 +1569,7 @@ window.multiChartPanel = (function() {
                     sectorText += `, with remaining sectors each below 15%`;
                 }
             } else {
-                sectorText += `, with all other sectors below 15%`;
+                sectorText += `, with imports from {countryName} in other sectors making up less than 15% of U.S. imports`;
             }
             
             return sectorText + ".";
@@ -1625,7 +1625,7 @@ window.multiChartPanel = (function() {
             
             return majors.length === 1
                 ? `The <strong>U.S.</strong> concentrates exports to <strong>${countryName}</strong> primarily in ${topProducts[0]}.`
-                : `The <strong>U.S.</strong> has concentrated export ties to <strong>${countryName}</strong> across at least ${majors.list} HS-4 categories, notably ${topProducts.join(", ")}${majors.length > 3 ? ` and ${majors.length - 3} others` : ""}.`;
+                : `The <strong>U.S.</strong> has concentrated export ties to <strong>${countryName}</strong> across at least ${majors.length} HS-4 categories, notably ${topProducts.join(", ")}${majors.length > 3 ? ` and ${majors.length - 3} others` : ""}.`;
         };
     
         // Helper function for trade similarity
@@ -1646,19 +1646,30 @@ window.multiChartPanel = (function() {
         const similarityText = getTradeSimilarity(sim, countryName);
     
         // Main narrative HTML
-        const firstHtml = `
+        /* OLD VERSIONconst firstHtml = `
     <div class="text-section">
-      <p>
-        The sections above visualize <strong>U.S.</strong> trade with <strong>${countryName}</strong> at the HS section and HS-2 levels. Data sourced from the <strong>U.S.</strong> Census Bureau's USATradeOnline tool. For global trade perspectives, visit the <span class="global-icon-wrapper" style="display: inline-flex; align-items: center; cursor: pointer;" title="Open Global Trade Explorer"><img src="${DataPaths.assets.fontawesome.globeSolid}" alt="Global Trade Explorer Icon" style="width: 16px; height: 16px; transition: transform 0.2s ease;" class="global-trade-icon" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"></span><strong>Global Trade Explorer</strong>.
-      </p>
-      
-      <p>The <strong>U.S.</strong> maintains a ${tradeScope} with <strong>${countryName}</strong>. ${sectoralText}</p>
-      
-      <p>${importText}</p>
-      
-      <p>${exportText}</p>
-      
+    
+        <p>
+            The sections above visualize <strong>U.S.</strong> trade with <strong>${countryName}</strong> at the HS section and HS-2 levels. Data sourced from the <strong>U.S.</strong> Census Bureau's USATradeOnline tool. For global trade perspectives, visit the <span class="global-icon-wrapper" style="display: inline-flex; align-items: center; cursor: pointer;" title="Open Global Trade Explorer"><img src="${DataPaths.assets.fontawesome.globeSolid}" alt="Global Trade Explorer Icon" style="width: 16px; height: 16px; transition: transform 0.2s ease;" class="global-trade-icon" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"></span><strong>Global Trade Explorer</strong>.
+        </p>
+        
+        <p>The <strong>U.S.</strong> maintains a ${tradeScope} with <strong>${countryName}</strong>. ${sectoralText}</p>
+        
+        <p>${importText}</p>
+        
+        <p>${exportText}</p>
+        
+    </div>`;*/
+    const firstHtml = `
+    <div class="text-section">
+        <p>The <strong>U.S.</strong> maintains a ${tradeScope} with <strong>${countryName}</strong>. ${sectoralText}</p>
+        
+        <p>${importText}</p>
+        
+        <p>${exportText}</p>
+        
     </div>`;
+
     
         const secondHtml = ``; // Keep empty as in original
     
@@ -2806,11 +2817,12 @@ window.multiChartPanel = (function() {
             return;
         }
 
-        // First paragraph that goes to the introductory text section
+        // First paragraph that goes to the introductory text section 
+        // (Section 232 (national security tariffs), Section 301 (retaliatory tariffs related to unfair trade practices))
         const introText = `
         <p>
-        These statutory tariff rates do not include additional measures such as Section 232 (national security tariffs), Section 301 (retaliatory tariffs related to unfair trade practices), or anti-dumping duties. 
-        For comprehensive up-to-date information, users are encouraged to consult resources such as the <a href="https://www.piie.com/research/piie-charts/2019/us-china-trade-war-tariffs-date-chart" target="_blank" style="color: var(--hyperlink); text-decoration: underline;">Peterson Institute</a> or the <a href="https://budgetlab.yale.edu/topic/trade" target="_blank" style="color: var(--hyperlink); text-decoration: underline;">Yale Budget Lab</a>.
+        These statutory tariff rates do not include additional measures such as Section 232 (national security) tariffs, Section 301 (unfair trade practices) tariffs, or anti-dumping duties. 
+        For comprehensive up-to-date information, users are encouraged to consult resources such as the <a href="https://www.piie.com/research/piie-charts/2019/us-china-trade-war-tariffs-date-chart" target="_blank" style="color: var(--hyperlink); text-decoration: underline;">Peterson Institute</a>, the <a href="https://budgetlab.yale.edu/topic/trade" target="_blank" style="color: var(--hyperlink); text-decoration: underline;">Yale Budget Lab</a>, or the <a href=https://www.tradecomplianceresourcehub.com/2025/06/17/trump-2-0-tariff-tracker/" target ="_blank" style="color: var(--hyperlink); text-decoration: underline;"> Trade Compliance Resource Hub</a>.
         </p>
         `;
         
@@ -2819,7 +2831,7 @@ window.multiChartPanel = (function() {
         <p>
         <b>Figure 1</b> displays the average effective statutory tariff rates imposed by the <strong>United States</strong> on <strong>${currentCountry.name}</strong> and vice versa.
         </p>
-        <p><b>Figure 2</b> Shows commodity level statutory tariff rates in 2021 across the 21 Harmonized System (HS) sections.
+        <p><b>Figure 2</b> shows commodity level statutory tariff rates in 2021 across the 21 HS sections.
         </p><p> <b>Figure 3</b> presents a time series of statutory tariff rates from 1995 to 2021, broken out by HS section. Solid lines represent tariffs imposed by the <strong>United States</strong> on imports from <strong>${currentCountry.name}</strong>, while dashed lines represent <strong>${currentCountry.name}'s</strong> tariffs on <strong>U.S.</strong> imports. HS sections are grouped into four broader categories, Agricultural, Industrial, Manufacturing, and Raw Materials. Currently displaying: 
         <span class="sector-group-selector-container">
             <span class="sector-group-display">Agricultural Sectors</span>
@@ -2846,32 +2858,30 @@ window.multiChartPanel = (function() {
                 <p>
                 The presented rates are statutory tariff rates, defined as 
                 the minimum between the preferential tariff rate and the most-favored-nation (MFN) tariff rate. 
-                The MFN rate is the default rate applied to imports from all World Trade Organization (WTO) members, while preferential rates lower rates extended to select countries or regions.
+                The MFN rate is the default rate applied to imports from all World Trade Organization (WTO) members, while preferential rates are lower rates extended to select countries or regions.
                 </p>
                 <p>
-                The UN does not disseminate trade statistics referring to Taiwan. Therefore, CEPII's BACI dataset does not have any trade data for Taiwan as such, though it uses "Asia, not elsewhere specified" (iso 490) as a proxy. Because of this, Teti (2024) could not assign trade weights for Taiwan, so the values are calculated differently.
-                </p>
-            `;
+                The United Nations does not disseminate trade statistics referring to <strong>Taiwan</strong>. Therefore, the Global Tariff Dataset (Teti 2024) does not create trade-weighted rates for <strong>Taiwan</strong>. The rates presented are the result of unweighted tariff rates winsorized at the 95<sup>th</sup> percentile to reduce the influence of ouliers.
+                </p>`;
         } else if (currentCountry.iso === 'LIE') {
             additionalText = `
                 <p>
                 The presented rates are statutory tariff rates, defined as 
                 the minimum between the preferential tariff rate and the most-favored-nation (MFN) tariff rate. 
-                The MFN rate is the default rate applied to imports from all World Trade Organization (WTO) members, while preferential rates lower rates extended to select countries or regions.
+                The MFN rate is the default rate applied to imports from all World Trade Organization (WTO) members, while preferential rates are lower rates extended to select countries or regions.
                 </p>
                 <p>
-                Liechtenstein forms a customs union with Switzerland, so its tariff data is reported under Switzerland in CEPII's BACI dataset. Because of this, Teti (2024) could not assign trade weights for Liechtenstein, so the values are calculated differently.
-                </p>
+                <strong>Liechtenstein</strong> forms a customs union with Switzerland, so its trade data is reported under Switzerland in the Global Tariff Database's (Teti 2024) underlying trade data. There is accordingly no trade weighted tariff rates for <strong>Liechtenstein</strong> in the Global Tariff Database. The statutory rates here are produced from unweighted tariff rates winsorized at the 95<sup>th</sup> percentile to reduce the influence of outliers. </p>
             `;
         } else if (currentCountry.iso === 'MYT') {
             additionalText = `
                 <p>
                 The presented rates are statutory tariff rates, defined as 
                 the minimum between the preferential tariff rate and the most-favored-nation (MFN) tariff rate. 
-                The MFN rate is the default rate applied to imports from all World Trade Organization (WTO) members, while preferential rates lower rates extended to select countries or regions.
+                The MFN rate is the default rate applied to imports from all World Trade Organization (WTO) members, while preferential rates are lower rates extended to select countries or regions.
                 </p>
                 <p>
-                Mayotte is an overseas department and region of France, so its tariff and trade data is reported under France in CEPII's BACI dataset. Because of this, Teti (2024) could not assign trade weights for Mayotte, so the values are calculated differently.
+                <strong>Mayotte</strong> is an overseas department and region of France, with its tariff and trade data is reported under France. Because of this, the Global Tariff Database (Teti 2024) could not create trade-weighted tariff rates for <strong>Mayotte</strong>. The statutory rates here are produced from unweighted tariff rates winsorized at the 95<sup> percentile to reduce the influence of outliers.
                 </p>
             `;
         } else {
@@ -2879,9 +2889,9 @@ window.multiChartPanel = (function() {
                 <p>
                 The presented rates are statutory tariff rates, defined as 
                 the minimum between the preferential tariff rate and the most-favored-nation (MFN) tariff rate. 
-                The MFN rate is the default rate applied to imports from all World Trade Organization (WTO) members, while preferential rates lower rates extended to select countries or regions.
+                The MFN rate is the default rate applied to imports from all World Trade Organization (WTO) members, while preferential rates are lower rates extended to select countries or regions.
                 
-                For <strong>${currentCountry.name}</strong>, the statutory tariff rate is calculated based on trade-weighted MFN and preferential rates winsorized at the 95th percentile to reduce the influence of outliers.
+                For <strong>${currentCountry.name}</strong>, the statutory tariff rate is calculated based on trade-weighted MFN and preferential rates winsorized at the 95<sup>th</sup> percentile to reduce the influence of outliers.
                 </p>
             `;
         }
@@ -2890,7 +2900,7 @@ window.multiChartPanel = (function() {
         const sectorGroupSelector = `<p></p>`;
 
         // Update the introductory text section with just the intro text
-        introTextSection.innerHTML = introText + additionalText;
+        introTextSection.innerHTML = additionalText + introText ;
         
         // Update the detailed text section with the additionalText, detailText, and sector dropdown
         detailTextSection.innerHTML = detailText + sectorGroupSelector;

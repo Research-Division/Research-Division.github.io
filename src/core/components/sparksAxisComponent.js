@@ -119,6 +119,17 @@ window.sparksAxisComponent = (function() {
             return value.toFixed(1);
         }
         
+        // Special handling for trade_deficit metric which can have negative values
+        // Format negative values as -$Value instead of $-Value
+        if (config.metric === 'trade_deficit' && value < 0) {
+            const absValue = Math.abs(value);
+            const formattedAbs = window.formatUtils.formatCurrency(absValue, { 
+                useSuffix: true, 
+                includePrefix: true
+            });
+            return '-' + formattedAbs; // Correctly format negative values as -$Value
+        }
+        
         // Check if we have a formatter defined in the chart config
         let formatterName = null;
         if (config.formatter) {
@@ -155,10 +166,17 @@ window.sparksAxisComponent = (function() {
         
         // Fall back to default formatting if formatter wasn't found or applied
         const axisTitle = config.yAxis.title.toLowerCase();
-        if (axisTitle.includes('currency') || axisTitle.includes('value') || 
-            axisTitle.includes('usd') || axisTitle.includes('$')) {
+        if (axisTitle.includes('balance') || // Added "balance" to catch trade balance specifically
+           axisTitle.includes('currency') || axisTitle.includes('value') || 
+           axisTitle.includes('usd') || axisTitle.includes('$')) {
             // Currency formatting
-            return window.formatUtils.formatCurrency(value, { useSuffix: true, decimals: 1 });
+            // Handle negative values for trade balance
+            if (value < 0 && axisTitle.includes('balance')) {
+                const absValue = Math.abs(value);
+                return '-' + window.formatUtils.formatCurrency(absValue, { useSuffix: true, decimals: 1 });
+            } else {
+                return window.formatUtils.formatCurrency(value, { useSuffix: true, decimals: 1 });
+            }
         } else if (axisTitle.includes('percent') || axisTitle.includes('share') || 
                    axisTitle.includes('rate') || axisTitle.includes('%')) {
             // Percentage formatting
