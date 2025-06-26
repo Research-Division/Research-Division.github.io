@@ -240,8 +240,10 @@ async function handleCountryClick(feature, e) {
             .replace(/{{defaultPassThrough}}/g, defaultPassThrough.toFixed(2))
             .replace(/{{chartLineIcon}}/g, DataPaths.assets.fontawesome.chartLineSolid);
         
-        // Remove any existing popups
+        // Remove any existing popups and tooltips
         map.closePopup();
+        // Remove any tooltips that might be open
+        removeAllTooltips();
         // Default offdset: [0, -7]
         // Uposide down offset: [0, 390]
         // Create and show the popup
@@ -286,8 +288,27 @@ function attachTooltip() {
     const helpIcon = document.getElementById("help-icon-container");
     if (!helpIcon) return;
     
-    helpIcon.addEventListener("mouseover", async function(event) {
+    // Remove any existing event listeners to prevent duplicates
+    const oldHelpIcon = helpIcon.cloneNode(true);
+    helpIcon.parentNode.replaceChild(oldHelpIcon, helpIcon);
+    
+    // Get the new reference
+    const newHelpIcon = document.getElementById("help-icon-container");
+    
+    // Track if tooltip is already open
+    let tooltipActive = false;
+    
+    newHelpIcon.addEventListener("mouseover", async function(event) {
+        // Prevent multiple tooltips
+        if (tooltipActive) return;
+        
         try {
+            // First remove any existing tooltips
+            removeAllTooltips();
+            
+            // Flag that tooltip is active
+            tooltipActive = true;
+            
             // Load the tooltip template
             const response = await fetch(DataPaths.components.map.tariffTooltip);
             if (!response.ok) {
@@ -299,6 +320,7 @@ function attachTooltip() {
             // Create tooltip element
             const tooltip = document.createElement("div");
             tooltip.classList.add("custom-tooltip");
+            tooltip.id = "map-help-tooltip"; // Add an ID for easier reference
             tooltip.innerHTML = tooltipHtml;
             document.body.appendChild(tooltip);
             
@@ -315,18 +337,20 @@ function attachTooltip() {
             tooltip.addEventListener("mouseleave", () => {
                 tooltip.isHovered = false;
                 setTimeout(() => {
-                    if (!tooltip.isHovered && !helpIcon.isHovered) {
+                    if (!tooltip.isHovered && !newHelpIcon.isHovered) {
                         tooltip.remove();
+                        tooltipActive = false;
                     }
                 }, 300);
             });
             
-            helpIcon.isHovered = true;
-            helpIcon.addEventListener("mouseleave", () => {
-                helpIcon.isHovered = false;
+            newHelpIcon.isHovered = true;
+            newHelpIcon.addEventListener("mouseleave", () => {
+                newHelpIcon.isHovered = false;
                 setTimeout(() => {
-                    if (!tooltip.isHovered && !helpIcon.isHovered) {
+                    if (!tooltip.isHovered && !newHelpIcon.isHovered) {
                         tooltip.remove();
+                        tooltipActive = false;
                     }
                 }, 300);
             });
@@ -336,8 +360,22 @@ function attachTooltip() {
                 tooltip.style.top = `${e.pageY + 10}px`;
                 tooltip.style.left = `${e.pageX + 10}px`;
             });
+            
+            // Clean up tooltips when the map is clicked
+            map.addEventListener('click', function onMapClick() {
+                removeAllTooltips();
+                tooltipActive = false;
+                map.removeEventListener('click', onMapClick);
+            });
+            
+            // Clean up tooltips when popup is closed
+            map.on('popupclose', function() {
+                removeAllTooltips();
+                tooltipActive = false;
+            });
         } catch (error) {
             console.error("Error loading tooltip:", error);
+            tooltipActive = false;
         }
     });
 }
@@ -738,3 +776,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Start observing the body element for class changes
     bodyObserver.observe(document.body, { attributes: true });
 });
+
+// Function to remove all tooltips from the document
+function removeAllTooltips() {
+    const tooltips = document.querySelectorAll('.custom-tooltip');
+    tooltips.forEach(tooltip => {
+        tooltip.remove();
+    });
+}
+
+// Make the function globally available
+window.removeAllTooltips = removeAllTooltips;

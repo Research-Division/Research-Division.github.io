@@ -461,7 +461,7 @@ body.dark_theme .panel-close-button:hover img {
 }
 
 /* Common dropdown display elements */
-.year-display, .metric-display, .country-count-display, .sector-group-display, .narrative-sector-group-display, .hs-section-display {
+.year-display, .metric-display, .country-count-display, .sector-group-display, .narrative-sector-group-display, .hs-section-display, .trade-type-display {
     color: var(--orange1);
     font-weight: bold;
     cursor: pointer;
@@ -471,14 +471,14 @@ body.dark_theme .panel-close-button:hover img {
 }
 
 /* Common dropdown toggle elements */
-.year-dropdown-toggle, .metric-dropdown-toggle, .country-count-dropdown-toggle, .sector-group-dropdown-toggle, .narrative-sector-group-dropdown-toggle, .hs-section-dropdown-toggle {
+.year-dropdown-toggle, .metric-dropdown-toggle, .country-count-dropdown-toggle, .sector-group-dropdown-toggle, .narrative-sector-group-dropdown-toggle, .hs-section-dropdown-toggle, .trade-type-dropdown-toggle {
     display: inline-block;
     margin-left: -2px; /* Pull it slightly closer to the text */
     cursor: pointer;
     /*vertical-align: middle; */
 }
 
-.year-dropdown-toggle img, .metric-dropdown-toggle img, .country-count-dropdown-toggle img, .sector-group-dropdown-toggle img, .narrative-sector-group-dropdown-toggle img, .hs-section-dropdown-toggle img {
+.year-dropdown-toggle img, .metric-dropdown-toggle img, .country-count-dropdown-toggle img, .sector-group-dropdown-toggle img, .narrative-sector-group-dropdown-toggle img, .hs-section-dropdown-toggle img, .trade-type-dropdown-toggle img {
     height: 12px;
     width: 12px;
     filter: var(--icon-filter, none); /* Apply color inversion in dark mode */
@@ -493,12 +493,13 @@ body.dark_theme .panel-close-button:hover img {
 .country-count-dropdown-toggle.active img,
 .sector-group-dropdown-toggle.active img,
 .narrative-sector-group-dropdown-toggle.active img,
-.hs-section-dropdown-toggle.active img {
+.hs-section-dropdown-toggle.active img,
+.trade-type-dropdown-toggle.active img {
     transform: rotate(-180deg);
 }
 
 /* Dropdown containers */
-.year-dropdown, .metric-dropdown, .country-count-dropdown, .sector-group-dropdown, .narrative-sector-group-dropdown, .hs-section-dropdown {
+.year-dropdown, .metric-dropdown, .sector-group-dropdown, .narrative-sector-group-dropdown, .hs-section-dropdown {
     position: absolute;
     top: 100%;
     left: 0;
@@ -514,9 +515,54 @@ body.dark_theme .panel-close-button:hover img {
     padding: 5px 0;
 }
 
+/* Special z-index for country count dropdown - appears in front */
+.country-count-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--background-color);
+    border: 1px solid var(--borderColor, #ddd);
+    border-radius: var(--borderRadius);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    display: none;
+    z-index: 1200; /* Higher z-index than other dropdowns */
+    max-height: 300px;
+    width: 100px;
+    overflow-y: auto;
+    padding: 5px 0;
+}
+
+/* Special z-index for trade type dropdown */
+.trade-type-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--background-color);
+    border: 1px solid var(--borderColor, #ddd);
+    border-radius: var(--borderRadius);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    display: none;
+    z-index: 1150; /* Between standard dropdowns and country count */
+    max-height: 300px;
+    width: 100px;
+    overflow-y: auto;
+    padding: 5px 0;
+}
+
 /* Set width for specific dropdowns */
 .sector-group-dropdown, .narrative-sector-group-dropdown, .hs-section-dropdown {
     width: 200px;
+}
+
+/* Custom widths for country-count and trade-type dropdowns */
+.country-count-dropdown {
+    width: 80px; /* Narrower width */
+    min-width: 80px;
+}
+
+.trade-type-dropdown {
+    width: 120px; /* Wider to accommodate 'imports'/'exports' */
+    min-width: 120px;
 }
 
 /* For inline text placement */
@@ -541,12 +587,12 @@ body.dark_theme .panel-close-button:hover img {
     line-height: 1;
 }
 
-.year-dropdown.active, .metric-dropdown.active, .country-count-dropdown.active, .sector-group-dropdown.active, .narrative-sector-group-dropdown.active, .hs-section-dropdown.active {
+.year-dropdown.active, .metric-dropdown.active, .country-count-dropdown.active, .sector-group-dropdown.active, .narrative-sector-group-dropdown.active, .hs-section-dropdown.active, .trade-type-dropdown.active {
     display: block;
 }
 
 /* Dropdown options */
-.year-option, .metric-option, .country-count-option, .sector-group-option, .narrative-sector-group-option, .hs-section-option {
+.year-option, .metric-option, .country-count-option, .sector-group-option, .narrative-sector-group-option, .hs-section-option, .trade-type-option {
     padding: 8px 15px;
     cursor: pointer;
     font-family: var(--font-family-monospace);
@@ -554,25 +600,51 @@ body.dark_theme .panel-close-button:hover img {
     color: var(--text-color);
 }
 
-.year-option:hover, .metric-option:hover, .country-count-option:hover, .sector-group-option:hover, .narrative-sector-group-option:hover, .hs-section-option:hover {
+.year-option:hover, .metric-option:hover, .country-count-option:hover, .sector-group-option:hover, .narrative-sector-group-option:hover, .hs-section-option:hover, .trade-type-option:hover {
     background-color: var(--borderColor);
 }
 
-.year-option.active, .metric-option.active, .country-count-option.active, .sector-group-option.active, .narrative-sector-group-option.active, .hs-section-option.active {
+.year-option.active, .metric-option.active, .country-count-option.active, .sector-group-option.active, .narrative-sector-group-option.active, .hs-section-option.active, .trade-type-option.active {
     background-color: var(--primary, #3581b4);
     color: white;
 }
 
 /* Selector containers - prevent line breaks */
-.year-selector-container, .metric-selector-container, .country-count-selector-container, .sector-group-selector-container, .narrative-sector-group-selector-container, .hs-section-selector-container {
+.year-selector-container, .metric-selector-container, .sector-group-selector-container, .narrative-sector-group-selector-container, .hs-section-selector-container {
     display: inline-block;
     align-items: center;
     gap: 0;
     position: relative;
     white-space: nowrap;
     vertical-align: middle;
-    margin-right: 1px; /* Small space after the dropdown */
+    margin-right: 5px; /* More space after the dropdown */
     z-index: 200; /* Ensure it's above other elements */
+}
+
+/* Special z-index for country count container */
+.country-count-selector-container {
+    display: inline-block;
+    align-items: center;
+    gap: 0;
+    position: relative;
+    white-space: nowrap;
+    vertical-align: middle;
+    margin-right: 5px; /* More space after the dropdown */
+    margin-left: 2px; /* Add some spacing before */
+    z-index: 1200; /* Match its dropdown z-index */
+}
+
+/* Special z-index for trade type container */
+.trade-type-selector-container {
+    display: inline-block;
+    align-items: center;
+    gap: 0;
+    position: relative;
+    white-space: nowrap;
+    vertical-align: middle;
+    margin-right: 5px; /* More space after the dropdown */
+    margin-left: 2px; /* Add some spacing before */
+    z-index: 1150; /* Match its dropdown z-index */
 }
 
 /* Chart loading and error states */

@@ -143,6 +143,12 @@ window.globalTradeCharts = (function() {
                     // Render time series charts with a slight additional delay
                     setTimeout(() => {
                         renderTimeSeriesCharts();
+                        
+                        // Initialize the trade direction text based on the current trade type
+                        const tradeDirection = document.getElementById('trade-direction');
+                        if (tradeDirection) {
+                            tradeDirection.textContent = currentTradeType === 'imports' ? 'from' : 'to';
+                        }
                     }, 300);
                 }, 100);
             })
@@ -332,13 +338,22 @@ window.globalTradeCharts = (function() {
                 document.querySelector('.trade-type-display')
             ];
             
+            const containers = [
+                document.querySelector('.year-selector-container'),
+                document.querySelector('.country-count-selector-container'),
+                document.querySelector('.trade-type-selector-container')
+            ];
+            
             dropdowns.forEach((dropdown, index) => {
                 if (dropdown && dropdown.classList.contains('active') && 
                     !dropdown.contains(e.target) && 
                     (toggles[index] && !toggles[index].contains(e.target)) &&
-                    (displays[index] && !displays[index].contains(e.target))) {
+                    (displays[index] && !displays[index].contains(e.target)) &&
+                    (containers[index] && !containers[index].contains(e.target))) {
+                    
                     dropdown.classList.remove('active');
                     if (toggles[index]) toggles[index].classList.remove('active');
+                    if (containers[index]) containers[index].classList.remove('active');
                 }
             });
         };
@@ -447,7 +462,25 @@ window.globalTradeCharts = (function() {
                     dropdownToggle.classList.remove('active');
                     
                     // Update all visualizations
+                    // First save the current scroll position
+                    const scrollPosition = window.pageYOffset;
+                    
+                    // Define a function to restore scroll position
+                    function forceScrollPosition() {
+                        window.scrollTo(0, scrollPosition);
+                    }
+                    
+                    // Update the visualizations
                     updateAllVisualizations();
+                    
+                    // Use requestAnimationFrame for better timing and multiple restoration attempts
+                    requestAnimationFrame(() => {
+                        forceScrollPosition();
+                        // Additional checks with setTimeout at various intervals
+                        setTimeout(forceScrollPosition, 50);
+                        setTimeout(forceScrollPosition, 150);
+                        setTimeout(forceScrollPosition, 300);
+                    });
                 }
             }
         });
@@ -468,9 +501,13 @@ window.globalTradeCharts = (function() {
             if (container) {
                 // Position relative to the container for better alignment
                 const containerRect = container.getBoundingClientRect();
-                dropdown.style.position = 'absolute';
+                
+                // Use fixed positioning with transform for more reliable positioning
+                dropdown.style.position = 'fixed';
                 dropdown.style.left = (containerRect.left + (containerRect.width/2)) + 'px';
                 dropdown.style.top = (containerRect.bottom + 5) + 'px';
+                dropdown.style.transform = 'translateX(-50%)'; // Center it
+                dropdown.style.zIndex = '1000';
                 
                 // Toggle active classes for all relevant elements
                 dropdown.classList.toggle('active');
@@ -479,11 +516,80 @@ window.globalTradeCharts = (function() {
             } else {
                 // Fallback to display-based positioning if container not found
                 const displayRect = display.getBoundingClientRect();
-                dropdown.style.position = 'absolute';
+                dropdown.style.position = 'fixed';
                 dropdown.style.left = (displayRect.left + displayRect.width/2) + 'px';
                 dropdown.style.top = (displayRect.bottom + 5) + 'px';
+                dropdown.style.transform = 'translateX(-50%)'; // Center it
+                dropdown.style.zIndex = '1000';
                 dropdown.classList.toggle('active');
                 toggle.classList.toggle('active');
+            }
+        }
+    }
+    
+    /**
+     * Toggle trade type dropdown visibility
+     * @param {boolean} forceState - Optional state to force (true to show, false to hide)
+     */
+    function toggleTradeTypeDropdown(forceState) {
+        const tradeTypeDropdown = document.getElementById('trade-type-dropdown');
+        const tradeTypeToggle = document.querySelector('.trade-type-dropdown-toggle');
+        const tradeTypeContainer = document.querySelector('.trade-type-selector-container');
+        
+        if (tradeTypeDropdown && tradeTypeToggle && tradeTypeContainer) {
+            // Get container's position information for more accurate positioning
+            const containerRect = tradeTypeContainer.getBoundingClientRect();
+            
+            // Calculate scroll offsets
+            const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Position dropdown under the container, centered
+            tradeTypeDropdown.style.position = 'fixed';
+            tradeTypeDropdown.style.left = (containerRect.left + (containerRect.width/2)) + 'px';
+            tradeTypeDropdown.style.top = (containerRect.bottom + 5) + 'px';
+            tradeTypeDropdown.style.transform = 'translateX(-50%)'; // Center it
+            tradeTypeDropdown.style.zIndex = '1000';
+            
+            // Toggle active class or set to forced state
+            let isExpanded;
+            if (forceState !== undefined) {
+                isExpanded = forceState;
+                if (forceState) {
+                    tradeTypeDropdown.classList.add('active');
+                    tradeTypeToggle.classList.add('active');
+                    tradeTypeContainer.classList.add('active');
+                    
+                    // Also populate the dropdown when showing
+                    populateTradeTypeDropdown(tradeTypeDropdown);
+                } else {
+                    tradeTypeDropdown.classList.remove('active');
+                    tradeTypeToggle.classList.remove('active');
+                    tradeTypeContainer.classList.remove('active');
+                }
+            } else {
+                // Toggle the dropdown visibility
+                isExpanded = tradeTypeDropdown.classList.toggle('active');
+                tradeTypeToggle.classList.toggle('active');
+                tradeTypeContainer.classList.toggle('active');
+                
+                // Populate the dropdown when showing
+                if (isExpanded) {
+                    populateTradeTypeDropdown(tradeTypeDropdown);
+                }
+            }
+            
+            // Update ARIA attributes
+            tradeTypeToggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+            
+            // If opening the dropdown, focus the first option after a short delay
+            if (isExpanded) {
+                setTimeout(() => {
+                    const firstOption = tradeTypeDropdown.querySelector('.trade-type-option');
+                    if (firstOption) {
+                        firstOption.focus();
+                    }
+                }, 50);
             }
         }
     }
@@ -547,11 +653,13 @@ window.globalTradeCharts = (function() {
      * Setup the trade type dropdown (imports/exports)
      */
     function setupTradeTypeDropdown() {
+        // Clean up any existing listeners to prevent duplicates
         const dropdownToggle = document.querySelector('.trade-type-dropdown-toggle');
         const dropdown = document.getElementById('trade-type-dropdown');
         const tradeTypeDisplay = document.querySelector('.trade-type-display');
+        const tradeTypeContainer = document.querySelector('.trade-type-selector-container');
         
-        if (!dropdownToggle || !dropdown || !tradeTypeDisplay) {
+        if (!dropdownToggle || !dropdown || !tradeTypeDisplay || !tradeTypeContainer) {
             console.error('Trade type dropdown elements not found');
             return;
         }
@@ -559,47 +667,209 @@ window.globalTradeCharts = (function() {
         // Set initial trade type display
         tradeTypeDisplay.textContent = currentTradeType;
         
-        // Setup toggle click handler
-        dropdownToggle.addEventListener('click', function(e) {
-            e.stopPropagation();
-            toggleDropdown(dropdown, dropdownToggle, tradeTypeDisplay);
-            populateTradeTypeDropdown(dropdown);
-        });
+        // Add accessibility attributes
+        dropdownToggle.setAttribute('tabindex', '0');
+        dropdownToggle.setAttribute('role', 'button');
+        dropdownToggle.setAttribute('aria-haspopup', 'true');
+        dropdownToggle.setAttribute('aria-expanded', 'false');
+        dropdownToggle.setAttribute('aria-label', 'Select trade type');
         
-        // Also trigger on trade type display click for better UX
-        tradeTypeDisplay.addEventListener('click', function(e) {
-            e.stopPropagation();
-            toggleDropdown(dropdown, dropdownToggle, tradeTypeDisplay);
-            populateTradeTypeDropdown(dropdown);
-        });
+        // Make the entire container clickable
+        tradeTypeContainer.style.cursor = 'pointer';
         
-        // Handle option selection
-        dropdown.addEventListener('click', function(e) {
-            const option = e.target.closest('.trade-type-option');
-            if (option) {
+        // Make the display text clickable
+        tradeTypeDisplay.style.cursor = 'pointer';
+        
+        // Add click handler to the entire container
+        tradeTypeContainer.addEventListener('click', function(e) {
+            // Only toggle if we're not clicking on the dropdown itself
+            if (!e.target.closest('.trade-type-dropdown')) {
                 e.stopPropagation();
-                const value = option.getAttribute('data-value');
-                
-                if (value && value !== currentTradeType) {
-                    // Update selected trade type
-                    currentTradeType = value;
-                    tradeTypeDisplay.textContent = value;
-                    
-                    // Update chart title
-                    const chartTitle = document.getElementById('trade-chart-title');
-                    if (chartTitle) {
-                        chartTitle.textContent = value === 'imports' ? 'Import Trends' : 'Export Trends';
-                    }
-                    
-                    // Hide dropdown
-                    dropdown.classList.remove('active');
-                    dropdownToggle.classList.remove('active');
-                    
-                    // Update time series chart
-                    renderTimeSeriesCharts();
-                }
+                toggleTradeTypeDropdown();
             }
         });
+        
+        // Add keyboard listener
+        tradeTypeContainer.addEventListener('keydown', function(e) {
+            // Toggle on Enter or Space
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleTradeTypeDropdown();
+            }
+        });
+        
+        // Initialize active option
+        if (tradeTypeDisplay && dropdown) {
+            const currentText = tradeTypeDisplay.textContent.trim();
+            // Find the matching option and mark it as active
+            populateTradeTypeDropdown(dropdown);
+            const options = dropdown.querySelectorAll('.trade-type-option');
+            options.forEach(option => {
+                if (option.textContent.trim() === currentText) {
+                    option.classList.add('active');
+                    option.setAttribute('aria-selected', 'true');
+                } else {
+                    option.classList.remove('active');
+                    option.setAttribute('aria-selected', 'false');
+                }
+            });
+        }
+        
+        // Setup dropdown options
+        if (dropdown) {
+            // Add role for accessibility
+            dropdown.setAttribute('role', 'listbox');
+            
+            // Handle option selection
+            dropdown.addEventListener('click', function(e) {
+                const option = e.target.closest('.trade-type-option');
+                if (option) {
+                    e.stopPropagation();
+                    const value = option.getAttribute('data-value');
+                    const displayText = option.textContent.trim();
+                    
+                    if (value && value !== currentTradeType) {
+                        // Update selected trade type
+                        currentTradeType = value;
+                        tradeTypeDisplay.textContent = displayText;
+                        
+                        // Update chart title
+                        const chartTitle = document.getElementById('trade-chart-title');
+                        if (chartTitle) {
+                            chartTitle.textContent = value === 'imports' ? 'Import Trends' : 'Export Trends';
+                        }
+                        
+                        // Update the trade direction text (from/to)
+                        const tradeDirection = document.getElementById('trade-direction');
+                        if (tradeDirection) {
+                            tradeDirection.textContent = value === 'imports' ? 'from' : 'to';
+                        }
+                        
+                        // Update active state on options
+                        const allOptions = dropdown.querySelectorAll('.trade-type-option');
+                        allOptions.forEach(opt => {
+                            opt.classList.remove('active');
+                            opt.setAttribute('aria-selected', 'false');
+                        });
+                        option.classList.add('active');
+                        option.setAttribute('aria-selected', 'true');
+                        
+                        // Close the dropdown
+                        toggleTradeTypeDropdown(false);
+                        
+                        // Update time series chart
+                        // First save the current scroll position
+                        const scrollPosition = window.pageYOffset;
+                        
+                        // Define a function to restore scroll position
+                        function forceScrollPosition() {
+                            window.scrollTo(0, scrollPosition);
+                        }
+                        
+                        // Update the chart
+                        renderTimeSeriesCharts();
+                        
+                        // Use requestAnimationFrame for better timing and multiple restoration attempts
+                        requestAnimationFrame(() => {
+                            forceScrollPosition();
+                            // Additional checks with setTimeout at various intervals
+                            setTimeout(forceScrollPosition, 50);
+                            setTimeout(forceScrollPosition, 150);
+                            setTimeout(forceScrollPosition, 300);
+                        });
+                    }
+                }
+            });
+            
+            // Keyboard navigation for dropdown
+            dropdown.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    // Close dropdown on Escape
+                    toggleTradeTypeDropdown(false);
+                    if (tradeTypeContainer) {
+                        tradeTypeContainer.focus(); // Return focus to container
+                    }
+                } else if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+                    // Navigate options with arrow keys
+                    e.preventDefault();
+                    
+                    const options = Array.from(dropdown.querySelectorAll('.trade-type-option'));
+                    if (options.length === 0) return;
+                    
+                    // Find currently focused option
+                    const focusedOption = document.activeElement.closest('.trade-type-option');
+                    let nextIndex = 0;
+                    
+                    if (focusedOption) {
+                        const currentIndex = options.indexOf(focusedOption);
+                        if (e.key === 'ArrowDown') {
+                            nextIndex = (currentIndex + 1) % options.length;
+                        } else {
+                            nextIndex = (currentIndex - 1 + options.length) % options.length;
+                        }
+                    }
+                    
+                    options[nextIndex].focus();
+                } else if (e.key === 'Enter' || e.key === ' ') {
+                    // Select option with Enter or Space
+                    e.preventDefault();
+                    const option = e.target.closest('.trade-type-option');
+                    if (option) {
+                        const value = option.getAttribute('data-value');
+                        const displayText = option.textContent.trim();
+                        
+                        // Update selected trade type
+                        currentTradeType = value;
+                        tradeTypeDisplay.textContent = displayText;
+                        
+                        // Update chart title
+                        const chartTitle = document.getElementById('trade-chart-title');
+                        if (chartTitle) {
+                            chartTitle.textContent = value === 'imports' ? 'Import Trends' : 'Export Trends';
+                        }
+                        
+                        // Update the trade direction text (from/to)
+                        const tradeDirection = document.getElementById('trade-direction');
+                        if (tradeDirection) {
+                            tradeDirection.textContent = value === 'imports' ? 'from' : 'to';
+                        }
+                        
+                        // Update active state on options
+                        const allOptions = dropdown.querySelectorAll('.trade-type-option');
+                        allOptions.forEach(opt => {
+                            opt.classList.remove('active');
+                            opt.setAttribute('aria-selected', 'false');
+                        });
+                        option.classList.add('active');
+                        option.setAttribute('aria-selected', 'true');
+                        
+                        // Close the dropdown
+                        toggleTradeTypeDropdown(false);
+                        
+                        // Update time series chart
+                        // First save the current scroll position
+                        const scrollPosition = window.pageYOffset;
+                        
+                        // Define a function to restore scroll position
+                        function forceScrollPosition() {
+                            window.scrollTo(0, scrollPosition);
+                        }
+                        
+                        // Update the chart
+                        renderTimeSeriesCharts();
+                        
+                        // Use requestAnimationFrame for better timing and multiple restoration attempts
+                        requestAnimationFrame(() => {
+                            forceScrollPosition();
+                            // Additional checks with setTimeout at various intervals
+                            setTimeout(forceScrollPosition, 50);
+                            setTimeout(forceScrollPosition, 150);
+                            setTimeout(forceScrollPosition, 300);
+                        });
+                    }
+                }
+            });
+        }
     }
     
     /**
@@ -621,6 +891,9 @@ window.globalTradeCharts = (function() {
             const option = document.createElement('div');
             option.className = `trade-type-option${isActive}`;
             option.setAttribute('data-value', type.value);
+            option.setAttribute('role', 'option');
+            option.setAttribute('tabindex', '0');
+            option.setAttribute('aria-selected', isActive ? 'true' : 'false');
             option.style = activeStyle;
             option.textContent = type.label;
             
