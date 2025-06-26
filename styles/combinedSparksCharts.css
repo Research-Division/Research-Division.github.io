@@ -180,7 +180,7 @@ body.dark_theme .panel-close-button:hover img {
     border-radius: var(--borderRadius);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     display: none;
-    z-index: 1100; /* Higher z-index to appear above other elements */
+    z-index: 99999; /* Extremely high z-index to appear above all elements including treemaps */
     max-height: 400px;
     width: 300px;
     overflow-y: auto;

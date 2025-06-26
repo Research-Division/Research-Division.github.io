@@ -749,6 +749,8 @@
   overflow: visible;
   display: flex;
   flex-direction: column;
+  /* Ensure this container doesn't create a stacking context that would interfere with dropdowns */
+  z-index: 1;
 }
 
 /* 
@@ -910,7 +912,7 @@
   width: 250px;
   max-height: 300px;
   overflow-y: auto;
-  z-index: 20;
+  z-index: 999999;
   display: none;
   margin-top: 5px;
   padding: 8px 0;
@@ -1020,7 +1022,7 @@
   box-shadow: var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.1));
   padding: 8px 12px;
   pointer-events: none;
-  z-index: 1000;
+  z-index: 99999;
   max-width: 250px;
 }
 

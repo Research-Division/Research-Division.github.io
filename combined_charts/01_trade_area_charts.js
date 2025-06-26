@@ -2538,6 +2538,8 @@ window.multiChartPanel = (function() {
             // Position dropdown under the toggle
             dropdown.style.left = (toggleRect.left + toggleRect.width/2) + 'px';
             dropdown.style.top = (toggleRect.bottom + 5) + 'px';
+            // Ensure the z-index is extremely high to appear above all other elements, including treemaps
+            dropdown.style.zIndex = "99999";
             
             // Toggle active class
             const isExpanded = dropdown.classList.toggle('active');
