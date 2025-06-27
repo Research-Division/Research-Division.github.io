@@ -495,6 +495,9 @@ var ProductTariffModal = (function() {
      * @param {string} modalId - ID of the modal to close
      * @param {boolean} forceReset - Whether to force reset of all state (default: false)
      */
+    // Track if we're in the process of submitting tariffs
+    let isSubmittingTariff = false;
+    
     function closeModal(modalId, forceReset = false) {
         const modal = document.getElementById(modalId);
         if (modal) {
@@ -503,6 +506,26 @@ var ProductTariffModal = (function() {
             // For global tariff (WLD), ensure it's removed from selectedISOs
             if (selectedCountry === 'WLD' && window.selectedISOs) {
                 window.selectedISOs = window.selectedISOs.filter(iso => iso !== 'WLD');
+            }
+            
+            // IMPORTANT: Clear any unsaved product tariff data when closing without submitting
+            if (!isSubmittingTariff && tariffPropagator && selectedCountry) {
+                // console.log('[TARIFF_VECTOR_DEBUG] Clearing unsaved product tariff data for', selectedCountry);
+                
+                // Clear currentTariffs for this country
+                if (tariffPropagator.currentTariffs && tariffPropagator.currentTariffs[selectedCountry]) {
+                    delete tariffPropagator.currentTariffs[selectedCountry];
+                }
+                
+                // Also clear any pending calculations in the currentTariffData
+                if (window.TariffCalculations && window.TariffCalculations.currentTariffData) {
+                    const tariffData = window.TariffCalculations.currentTariffData;
+                    
+                    // Remove this country from any pending calculations
+                    if (tariffData.tauCForCalculations && tariffData.tauCForCalculations[selectedCountry]) {
+                        delete tariffData.tauCForCalculations[selectedCountry];
+                    }
+                }
             }
             
             // If called with forceReset=true or this isn't a global tariff, do full cleanup
@@ -516,6 +539,9 @@ var ProductTariffModal = (function() {
                 // Just cleanup direct button listeners without resetting state
                 cleanupDirectButtonListeners();
             }
+            
+            // Reset submission flag
+            isSubmittingTariff = false;
         }
     }
     
@@ -1349,15 +1375,20 @@ var ProductTariffModal = (function() {
      * Handle tariff submission
      */
     function handleTariffSubmit() {
+        // Set the submission flag to prevent clearing data when submitting
+        isSubmittingTariff = true;
+        // console.log('[TARIFF_VECTOR_DEBUG] Starting tariff submission, isSubmittingTariff =', isSubmittingTariff);
         
         // Validate that we have a current country
-        if (!selectedCountry&& !isoCode) {
+        if (!selectedCountry && !isoCode) {
             alert('Please select a country first.');
+            isSubmittingTariff = false; // Reset flag on error
             return;
         }
         
         if (!tariffPropagator) {
             alert('Tariff system not ready. Please try again.');
+            isSubmittingTariff = false; // Reset flag on error
             return;
         }
         
@@ -1416,6 +1447,14 @@ var ProductTariffModal = (function() {
             
             // Generate tariff data from the tariff propagator
             const tariffData = tariffPropagator.generateTariffData(selectedCountry);
+            
+            // Mark this data as coming from the product tariff modal
+            tariffData.tariffSource = 'productTariffModal';
+            tariffData.useSectionTariffsFallback = true; // Product tariffs should use section tariffs
+            
+            // Add debug to trace the call stack for product tariff calculation
+            // console.log('[TARIFF_VECTOR_DEBUG] Generating product tariff calculation, call stack:', 
+            //     new Error('Call stack trace').stack);
             
             // Add pass-through rate to the tariff data
             tariffData.passThroughRate = currentPassThroughRate;
@@ -1542,6 +1581,13 @@ var ProductTariffModal = (function() {
                         // Add the weighted vector for this country
                         allWeightedVectors.push(percentChangeVector);
                         tauCForCalculations[countryCode] = percentChangeVector;
+                        
+                        // Log the 21-item tariff vector for tracking
+                        // console.log('[TARIFF_VECTOR_DEBUG] productTariffBtn created vector:', {
+                        //     countryCode,
+                        //     vector: percentChangeVector,
+                        //     source: 'productTariffModal'
+                        // });
                         
                         //console.log(`Applied import weighting successfully for ${countryCode}`);
                     }

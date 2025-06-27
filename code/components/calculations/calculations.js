@@ -280,10 +280,43 @@ var TariffCalculations = (function() {
                         current: { error: 'Failed to collect section tariffs' }
                     };
                 }
-            } else if (currentTariffData.sectionTariffs && currentTariffData.sectionTariffs[iso]) {
-                // Alternative: if the tariff data already contains section tariffs, use those
-                resultObj.sectionTariffs = currentTariffData.sectionTariffs[iso];
-                //console.log(`Using section tariffs from currentTariffData for ${iso}`, resultObj.sectionTariffs);
+            } else if (currentTariffData.useSectionTariffsFallback !== false && 
+                     currentTariffData.sectionTariffs && 
+                     currentTariffData.sectionTariffs[iso]) {
+                // Only use section tariffs fallback if not explicitly disabled
+                // AND the current operation's tariff source matches the expected source
+                // This prevents abandoned product tariffs from affecting uniform tariffs
+                const shouldUseFallback = 
+                    // For uniform popup tariffs, only use fallback if it's also from uniform popup
+                    (currentTariffData.tariffSource === 'uniformPopup' && 
+                     (!currentTariffData.sectionTariffSource || 
+                      currentTariffData.sectionTariffSource === 'uniformPopup')) ||
+                    // For product tariffs, only use fallback if it's also from product tariffs
+                    (currentTariffData.tariffSource === 'productTariffModal' && 
+                     currentTariffData.sectionTariffSource === 'productTariffModal');
+                     
+                if (shouldUseFallback) {
+                    // Use the section tariffs if sources are compatible
+                    resultObj.sectionTariffs = currentTariffData.sectionTariffs[iso];
+                    // console.log('[TARIFF_VECTOR_DEBUG] Using section tariffs fallback:', {
+                    //     iso,
+                    //     tariffSource: currentTariffData.tariffSource || 'unknown',
+                    //     sectionTariffSource: currentTariffData.sectionTariffSource || 'unknown',
+                    //     // Add call stack to trace where this fallback is being triggered from
+                    //     callStack: new Error('Section tariffs fallback call stack').stack
+                    // });
+                } else {
+                    // console.log('[TARIFF_VECTOR_DEBUG] Skipping section tariffs fallback - source mismatch:', {
+                    //     iso,
+                    //     currentSource: currentTariffData.tariffSource || 'unknown',
+                    //     sectionTariffSource: currentTariffData.sectionTariffSource || 'unknown'
+                    // });
+                    // Initialize empty section tariffs
+                    resultObj.sectionTariffs = {
+                        original: {},
+                        current: {}
+                    };
+                }
             }
             
             newResults.push(resultObj);
@@ -326,11 +359,33 @@ var TariffCalculations = (function() {
      * PUBLIC INTERFACE FUNCTIONS
      */
     // Process tariff data from the editor
+    // Keep track of the last processed source to prevent unwanted double processing
+    let lastProcessedSource = null;
+    let lastProcessedTime = 0;
+    
     async function processTariffData(tariffData) {
         if (!tariffData || !tariffData.iso_list || !tariffData.tau_c) {
             console.error('Invalid tariff data format');
             return false;
         }
+        
+        // Get the current source and timestamp
+        const currentSource = tariffData.tariffSource || 'unknown';
+        const currentTime = new Date().getTime();
+        
+        // Check if this is a duplicate or conflicting calculation within a short time window (2 seconds)
+        if (lastProcessedSource && (currentTime - lastProcessedTime < 2000)) {
+            // If we just processed a uniformPopup source, don't allow productTariffModal source
+            // This prevents abandoned product tariffs from being calculated after a uniform tariff
+            if (lastProcessedSource === 'uniformPopup' && currentSource === 'productTariffModal') {
+                // console.log('[TARIFF_VECTOR_DEBUG] Blocking redundant productTariffModal calculation after uniformPopup');
+                return false;
+            }
+        }
+        
+        // Update the last processed info
+        lastProcessedSource = currentSource;
+        lastProcessedTime = currentTime;
         
         try {
             // Store the tariff data
@@ -343,7 +398,9 @@ var TariffCalculations = (function() {
                 countryNames: tariffData.countryNames || {}, // Pass along country names
                 sectionTariffs: tariffData.sectionTariffs || {}, // Store section tariffs
                 tariffSource: tariffData.tariffSource || 'unknown', // Track source of tariff changes
-                tariffMetadata: tariffData.tariffMetadata || {} // Store additional metadata
+                sectionTariffSource: tariffData.tariffSource || 'unknown', // Track source of section tariffs
+                tariffMetadata: tariffData.tariffMetadata || {}, // Store additional metadata
+                useSectionTariffsFallback: tariffData.useSectionTariffsFallback // Option to disable fallback
             };
             
             // Log if section tariffs are available
@@ -378,6 +435,14 @@ var TariffCalculations = (function() {
             const tauC = {};
             currentTariffData.iso_list.forEach((iso, index) => {
                 tauC[iso] = currentTariffData.tau_c[index];
+                
+                // Log which tariff vector is being used for calculation
+                // console.log('[TARIFF_VECTOR_DEBUG] Vector used in calculations:', {
+                //     iso,
+                //     vector: tauC[iso],
+                //     source: currentTariffData.tariffSource || 'unknown',
+                //     metadata: currentTariffData.tariffMetadata || {}
+                // });
             });
             
             // Perform the calculations

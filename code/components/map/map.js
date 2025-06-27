@@ -445,6 +445,7 @@ function attachPopupHandlers(isoCode, countryName, currentTariff) {
                 countryNames: { [isoCode]: countryName },
                 sectionTariffs: {}, // Add section tariffs
                 tariffSource: 'uniformPopup', // Flag indicating tariffs were applied uniformly via popup
+                useSectionTariffsFallback: false, // IMPORTANT: Disable section tariffs fallback for uniform tariffs
                 tariffMetadata: { // Additional metadata about this tariff change
                     originalValue: currentTariffValue,
                     newValue: newTariffValue,
@@ -513,6 +514,13 @@ function attachPopupHandlers(isoCode, countryName, currentTariff) {
                         // Add to tariff data
                         tariffData.tau_c = [weightedVector];
                         tariffData.tauCForCalculations[isoCode] = weightedVector;
+                        
+                        // Log the 21-item tariff vector for tracking
+                        // console.log('[TARIFF_VECTOR_DEBUG] tariffSubmit button created vector:', {
+                        //     isoCode,
+                        //     vector: weightedVector,
+                        //     source: 'tariffSubmit'
+                        // });
                         
                         // Check if TariffCalculations is available
                         if (!window.TariffCalculations || typeof window.TariffCalculations.processTariffData !== 'function') {
