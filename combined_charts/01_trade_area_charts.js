@@ -705,6 +705,16 @@ window.multiChartPanel = (function() {
     function hidePanel() {
         const panel = document.getElementById('multi-chart-panel-container');
         if (panel) {
+            // Clean up any tooltips before hiding the panel
+            const globalTooltip = document.getElementById('treemap-tooltip-container');
+            if (globalTooltip) {
+                globalTooltip.style.visibility = 'hidden';
+                // Optional: completely remove tooltip from DOM for complete cleanup
+                if (globalTooltip.parentNode) {
+                    globalTooltip.parentNode.removeChild(globalTooltip);
+                }
+            }
+            
             panel.style.display = 'none';
             isVisible = false;
             

@@ -186,6 +186,16 @@ window.globalTradeCharts = (function() {
     function hidePanel() {
         const panelContainer = document.getElementById('global-trade-panel-container');
         if (panelContainer) {
+            // Clean up any tooltips before removing the panel
+            const globalTooltip = document.getElementById('treemap-tooltip-container');
+            if (globalTooltip) {
+                globalTooltip.style.visibility = 'hidden';
+                // Optional: completely remove tooltip from DOM for complete cleanup
+                if (globalTooltip.parentNode) {
+                    globalTooltip.parentNode.removeChild(globalTooltip);
+                }
+            }
+            
             // Properly remove the panel from the DOM rather than just hiding it
             document.body.removeChild(panelContainer);
             panelVisible = false;

@@ -260,6 +260,16 @@ window.tariffEffectsPanel = (function() {
     function hidePanel() {
         const panelContainer = document.getElementById('tariff-effects-panel-container');
         if (panelContainer) {
+            // Clean up any tooltips before hiding the panel
+            const globalTooltip = document.getElementById('treemap-tooltip-container');
+            if (globalTooltip) {
+                globalTooltip.style.visibility = 'hidden';
+                // Completely remove tooltip from DOM for complete cleanup
+                if (globalTooltip.parentNode) {
+                    globalTooltip.parentNode.removeChild(globalTooltip);
+                }
+            }
+            
             panelContainer.style.display = 'none';
         }
         isVisible = false;

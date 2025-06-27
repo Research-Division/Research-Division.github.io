@@ -502,6 +502,16 @@ window.tariffComparisonChart = (function() {
      * Close the modal
      */
     function closeModal() {
+        // Clean up any tooltips before removing the panel
+        const globalTooltip = document.getElementById('treemap-tooltip-container');
+        if (globalTooltip) {
+            globalTooltip.style.visibility = 'hidden';
+            // Completely remove tooltip from DOM for complete cleanup
+            if (globalTooltip.parentNode) {
+                globalTooltip.parentNode.removeChild(globalTooltip);
+            }
+        }
+        
         // Find and remove the entire panel container
         const panelContainer = document.getElementById('tariff-comparison-panel-container');
         if (panelContainer) {
