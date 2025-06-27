@@ -280,42 +280,39 @@ var TariffCalculations = (function() {
                         current: { error: 'Failed to collect section tariffs' }
                     };
                 }
-            } else if (currentTariffData.useSectionTariffsFallback !== false && 
-                     currentTariffData.sectionTariffs && 
+            } else if (currentTariffData.sectionTariffs && 
                      currentTariffData.sectionTariffs[iso]) {
-                // Only use section tariffs fallback if not explicitly disabled
-                // AND the current operation's tariff source matches the expected source
-                // This prevents abandoned product tariffs from affecting uniform tariffs
+                
+                // IMPORTANT CHANGE: We'll always include section tariffs in the result object for visualization
+                // purposes, but we'll only USE them for calculations if the fallback is enabled
+                
+                // Always store section tariffs in the result for visualization purposes
+                resultObj.sectionTariffs = currentTariffData.sectionTariffs[iso];
+                
+                // Only use section tariffs for calculations if fallback is explicitly enabled
+                // or if we're explicitly requested to include them in the result
                 const shouldUseFallback = 
-                    // For uniform popup tariffs, only use fallback if it's also from uniform popup
-                    (currentTariffData.tariffSource === 'uniformPopup' && 
-                     (!currentTariffData.sectionTariffSource || 
-                      currentTariffData.sectionTariffSource === 'uniformPopup')) ||
-                    // For product tariffs, only use fallback if it's also from product tariffs
-                    (currentTariffData.tariffSource === 'productTariffModal' && 
-                     currentTariffData.sectionTariffSource === 'productTariffModal');
-                     
-                if (shouldUseFallback) {
-                    // Use the section tariffs if sources are compatible
-                    resultObj.sectionTariffs = currentTariffData.sectionTariffs[iso];
-                    // console.log('[TARIFF_VECTOR_DEBUG] Using section tariffs fallback:', {
+                    // Always include if includeSectionTariffsInResult is true
+                    currentTariffData.includeSectionTariffsInResult === true ||
+                    // Otherwise check detailed fallback conditions
+                    (currentTariffData.useSectionTariffsFallback !== false && 
+                     // For uniform popup tariffs, only use fallback if it's also from uniform popup
+                     ((currentTariffData.tariffSource === 'uniformPopup' && 
+                       (!currentTariffData.sectionTariffSource || 
+                        currentTariffData.sectionTariffSource === 'uniformPopup')) ||
+                      // For product tariffs, only use fallback if it's also from product tariffs
+                      (currentTariffData.tariffSource === 'productTariffModal' && 
+                       currentTariffData.sectionTariffSource === 'productTariffModal')));
+                
+                // Debug logging to help trace what's happening     
+                if (!shouldUseFallback) {
+                    // console.log('[TARIFF_VECTOR_DEBUG] Including section tariffs in result but not using for calculation:', {
                     //     iso,
-                    //     tariffSource: currentTariffData.tariffSource || 'unknown',
-                    //     sectionTariffSource: currentTariffData.sectionTariffSource || 'unknown',
-                    //     // Add call stack to trace where this fallback is being triggered from
-                    //     callStack: new Error('Section tariffs fallback call stack').stack
-                    // });
-                } else {
-                    // console.log('[TARIFF_VECTOR_DEBUG] Skipping section tariffs fallback - source mismatch:', {
-                    //     iso,
+                    //     includeSectionTariffsInResult: currentTariffData.includeSectionTariffsInResult,
+                    //     useSectionTariffsFallback: currentTariffData.useSectionTariffsFallback,
                     //     currentSource: currentTariffData.tariffSource || 'unknown',
                     //     sectionTariffSource: currentTariffData.sectionTariffSource || 'unknown'
                     // });
-                    // Initialize empty section tariffs
-                    resultObj.sectionTariffs = {
-                        original: {},
-                        current: {}
-                    };
                 }
             }
             

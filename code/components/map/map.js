@@ -446,6 +446,7 @@ function attachPopupHandlers(isoCode, countryName, currentTariff) {
                 sectionTariffs: {}, // Add section tariffs
                 tariffSource: 'uniformPopup', // Flag indicating tariffs were applied uniformly via popup
                 useSectionTariffsFallback: false, // IMPORTANT: Disable section tariffs fallback for uniform tariffs
+                includeSectionTariffsInResult: true, // Still include section tariffs for visualization purposes
                 tariffMetadata: { // Additional metadata about this tariff change
                     originalValue: currentTariffValue,
                     newValue: newTariffValue,
