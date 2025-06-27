@@ -397,6 +397,47 @@ function attachPopupHandlers(isoCode, countryName, currentTariff) {
             });
         });
         
+        // Function to validate inputs and enable/disable the submit button
+        function validateTariffInputs() {
+            // Get input values
+            const currentTariffInput = document.getElementById("currentTariffInput");
+            const newTariffInput = document.getElementById("newTariffInput");
+            const passThroughInput = document.getElementById("passThroughInput");
+            
+            if (!currentTariffInput || !newTariffInput || !passThroughInput || !submitBtn) {
+                return; // Exit if elements not found
+            }
+            
+            const currentTariffValue = parseFloat(currentTariffInput.value || 0);
+            const newTariffValue = parseFloat(newTariffInput.value || 0);
+            const passThroughValue = parseFloat(passThroughInput.value || 0);
+            
+            // Check if inputs are valid and if there's an actual change
+            const inputsValid = !isNaN(newTariffValue) && !isNaN(passThroughValue) && passThroughValue > 0;
+            const hasChanged = currentTariffValue !== newTariffValue;
+            
+            // Log validation status for debugging (uncomment if needed)
+            // console.log(`Tariff input validation - Valid: ${inputsValid}, Changed: ${hasChanged}, Values: ${currentTariffValue} -> ${newTariffValue}, PassThrough: ${passThroughValue}`);
+            
+            // Enable/disable submit button based on validation
+            if (inputsValid && hasChanged) {
+                submitBtn.disabled = false;
+                submitBtn.classList.remove("btn-disabled");
+            } else {
+                submitBtn.disabled = true;
+                submitBtn.classList.add("btn-disabled");
+            }
+        }
+        
+        // Add input handlers to validate on change
+        const tariffInputs = document.querySelectorAll("#currentTariffInput, #newTariffInput, #passThroughInput");
+        tariffInputs.forEach(input => {
+            input.addEventListener("input", validateTariffInputs);
+        });
+        
+        // Initial validation
+        validateTariffInputs();
+        
         // Add click handler
         submitBtn.addEventListener("click", function() {
             // Get input values

@@ -94,6 +94,24 @@
     background-color: rgba(0, 0, 0, 0.1);
 }
 
+/* Disabled button styling */
+#tariffSubmit.btn-disabled,
+#tariffSubmit[disabled],
+.btn-product.btn-disabled,
+.btn-product[disabled] {
+    background-color: var(--lightGray, #ccc);
+    color: var(--darkGray, #777);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+#tariffSubmit.btn-disabled:hover,
+#tariffSubmit[disabled]:hover,
+.btn-product.btn-disabled:hover,
+.btn-product[disabled]:hover {
+    background-color: var(--lightGray, #ccc);
+}
+
 .popup-buttons .separator {
     margin: 8px 0;
     border-bottom: 1px dashed var(--alt-text-color);
