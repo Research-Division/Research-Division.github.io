@@ -1,0 +1,390 @@
+/**
+ * Help and Information Styles
+ * Styles for the guided tour and help panel
+ */
+
+/* Tour Overlay System */
+.tour-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.tour-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.overlay-piece {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.7);
+    transition: all 0.3s ease;
+}
+
+/* Tour tooltip */
+.tour-tooltip {
+    position: fixed;
+    background: var(--background-color);
+    color: var(--text-color);
+    border-radius: var(--borderRadius);
+    border: var(--borderWidth) solid var(--borderColor);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    max-width: 600px;
+    min-width: 500px;
+    z-index: 1001;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    max-height: 80vh;
+    overflow-y: auto;
+    font-family: var(--font-family-monospace);
+}
+
+.tour-tooltip.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.tooltip-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    flex-wrap: nowrap;
+}
+
+.tooltip-title {
+    font-weight: 600;
+    font-size: 1.125rem;
+    color: var(--text-color);
+    margin: 0;
+    max-width: 75%;
+    padding-right: 15px;
+}
+
+.close-button {
+    background: transparent;
+    border: none;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    color: var(--excellenceOrange);
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+}
+
+.close-button:hover {
+    text-decoration: underline;
+    transform: scale(1.08);
+}
+
+.tooltip-content {
+    color: var(--text-color);
+    line-height: 1.7;
+    margin-bottom: 24px;
+    font-size: 15px;
+}
+
+/* Add styles for paragraphs within the tooltip content */
+.tooltip-content p {
+    margin-bottom: 16px;
+}
+
+.tooltip-content p:last-child {
+    margin-bottom: 0;
+}
+
+.tooltip-content b, .tooltip-content strong {
+    color: var(--primary);
+}
+
+.keyboard-hint {
+    font-size: 13px;
+    color: var(--alt-text-color);
+    margin-top: 12px;
+    font-style: italic;
+}
+
+.tooltip-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    position: sticky;
+    bottom: 0;
+    background: var(--background-color);
+    padding-top: 10px;
+}
+
+.nav-button {
+    background: transparent;
+    color: var(--primary);
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.nav-button:hover:not(:disabled) {
+    color: var(--dark);
+}
+
+.nav-button:disabled {
+    color: var(--lightGray);
+    cursor: not-allowed;
+}
+
+.progress-dots {
+    display: flex;
+    gap: 8px;
+}
+
+.progress-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--lightGray);
+    transition: background 0.2s;
+}
+
+.progress-dot.active {
+    background: var(--primary);
+}
+
+/* Highlight ring animation */
+.highlight-ring {
+    position: absolute;
+    border: 3px solid var(--primary);
+    border-radius: var(--borderRadius);
+    pointer-events: none;
+    opacity: 0;
+    animation: highlight-pulse 2s infinite;
+    box-shadow: 0 0 0 3px rgba(0, 96, 160, 0.3);
+    transition: opacity 0.2s ease-in-out, left 0.2s ease-out, top 0.2s ease-out, width 0.2s ease-out, height 0.2s ease-out;
+}
+
+@keyframes highlight-pulse {
+    0%, 100% {
+        opacity: 0.7;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.02);
+    }
+}
+
+/* Help modal styles with receipt-like appearance */
+.help-receipt {
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-family-monospace);
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    line-height: 1.6;
+    padding-top: 0;
+    padding-bottom: 20px;
+}
+
+.help-section {
+    padding: 1.75rem;
+    background: var(--background-color);
+}
+
+.help-section h3 {
+    margin: 0 0 0.75rem 0;
+    color: var(--text-color);
+    font-size: 1.25rem;
+    font-weight: 600;
+    font-family: var(--font-family-monospace);
+}
+
+.help-section h4 {
+    margin: 2rem 0 0.75rem 0;
+    color: var(--text-color);
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-family: var(--font-family-monospace);
+}
+
+.help-section p {
+    margin: 0 0 1rem 0;
+    color: var(--alt-text-color);
+    line-height: 1.5;
+    font-family: var(--font-family-monospace);
+    font-weight: 400; /* Regular weight */
+}
+
+.help-section p:last-child {
+    margin-bottom: 0;
+}
+
+.help-section ul {
+    margin: 0.5rem 0;
+    padding-left: 1.5rem;
+    color: var(--text-color);
+    font-family: var(--font-family-monospace);
+    font-weight: 400;
+}
+
+/* Link styles are applied inline for consistency */
+
+.help-section li {
+    margin-bottom: 1rem;
+    line-height: 1.4;
+    font-family: var(--font-family-monospace);
+    font-weight: 400;
+}
+
+.help-section li:last-child {
+    margin-bottom: 0;
+}
+
+.help-section strong {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+/* Receipt-like dashed separator */
+.receipt-separator {
+    width: 100%;
+    height: 1px;
+    border-bottom: 2px dashed var(--borderColor);
+    margin: 1rem 0;
+    opacity: 0.7;
+}
+
+/* Separator class for consistency with other components */
+.separator {
+    width: 100%;
+    height: 1px;
+    border-bottom: 2px dashed var(--borderColor);
+    margin: 1rem 0;
+    opacity: 0.7;
+}
+
+/* Citation box styling - matches chart containers */
+.citation-box {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 1.25rem;
+    background: var(--background-color);
+    border-radius: 8px;
+    border: 2px dashed #666 !important;
+    font-family: var(--font-family-monospace);
+    background-color: rgba(0,0,0,0.01);
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    position: relative;
+    outline: none;
+}
+
+.citation-box h4 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.citation-box p {
+    margin-bottom: 0;
+    font-style: italic;
+    text-align: justify;
+    line-height: 1.6;
+    tab-size: 4;
+    -moz-tab-size: 4;
+    padding: 0 0.5rem;
+}
+
+/* Terms of service styling */
+.terms-content {
+    padding-top: 0.5rem;
+}
+
+.terms-content ol {
+    margin-top: 1rem;
+    padding-left: 2rem;
+    counter-reset: terms-counter;
+}
+
+.terms-content li {
+    margin-bottom: 1rem;
+    text-align: justify;
+    list-style-position: outside;
+}
+
+.terms-content a {
+    color: var(--primary);
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+
+.terms-content a:hover {
+    color: var(--dark);
+}
+
+/* Button container */
+.help-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.help-action-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: var(--borderRadius);
+    cursor: pointer;
+    font-weight: 600;
+    font-family: var(--font-family-monospace);
+    transition: background 0.2s;
+    white-space: nowrap;
+}
+
+.help-action-btn:hover {
+    background: var(--dark);
+}
+
+.help-action-btn.secondary {
+    background: var(--darkGray);
+}
+
+.help-action-btn.secondary:hover {
+    background: var(--charcoal);
+}
+
+/* Dark mode styles for icons */
+.dark_theme .modal-body img {
+    filter: brightness(0) invert(1);
+}
+
+/* Specific style for inline icons used in text content */
+.dark_theme .inline-icon {
+    filter: brightness(0) invert(1) !important;
+}
+
+/* Style for close icon in dark mode */
+.dark_theme .close-icon {
+    filter: brightness(0) invert(1) !important;
+}

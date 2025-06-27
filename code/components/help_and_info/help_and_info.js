@@ -20,7 +20,7 @@ function initializeHelpPanel() {
             <div class="modal-header">
                 <h2>Help & Information</h2>
                 <button class="panel-close-button" id="help-panel-close-button">
-                    <img src="${DataPaths.assets.fontawesome.xmark}" alt="Close" class="close-icon">
+                    <img src="assets/fontawesome/xmark.svg" alt="Close" class="close-icon">
                 </button>
             </div>
             <div class="modal-body" style="overflow-y: auto; max-height: calc(95vh - 60px); padding-top: 0;">
@@ -40,7 +40,7 @@ function initializeHelpPanel() {
                     <!-- Section 2: Getting Started (from final slide of tour) -->
                     <div class="help-section">
                         <h3>Getting Started</h3>
-                        <p>To get started, explore country trade relationships using the Global Trade Explorer <img src="${DataPaths.assets.fontawesome.globe}" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> or the country-level Trade Data Explorer <img src="${DataPaths.assets.fontawesome.chartLine}" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;">. This will help you understand existing trade patterns before implementing policy changes.</p>
+                        <p>To get started, explore country trade relationships using the Global Trade Explorer <img src="assets/fontawesome/globe-solid.svg" alt="Globe icon" class="inline-icon" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> or the country-level Trade Data Explorer <img src="assets/fontawesome/chart-line-solid.svg" alt="Chart icon" class="inline-icon" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;">. This will help you understand existing trade patterns before implementing policy changes.</p>
                         <p>When you're ready to implement tariffs, click on a country to add a country-specific tariff, select a set of countries in the receipt, or add a global tariff that applies to all trading partners.</p>
                     </div>
                     
@@ -51,9 +51,9 @@ function initializeHelpPanel() {
                         <h3>Interface Elements</h3>
                         <p>Look for these consistent elements throughout the application:</p>
                         <ul>
-                            <li>Chevron icons <img src="${DataPaths.assets.fontawesome.chevronDown}" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> indicate expandable information or dropdowns</li>
+                            <li>Chevron icons <img src="assets/fontawesome/chevron-down-solid.svg" alt="Chevron down icon" class="inline-icon" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> indicate expandable information or dropdowns</li>
                             <li><span style="color: var(--excellenceOrange); font-weight: bold;">Orange</span>/<span style="color: var(--primary); font-weight: bold;">blue</span> text near icons indicates clickable elements or dropdowns</li>
-                            <li>Chart icons <img src="${DataPaths.assets.fontawesome.chartLine}" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> show that charts are available for that item</li>
+                            <li>Chart icons <img src="assets/fontawesome/chart-line-solid.svg" alt="Chart icon" class="inline-icon" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> show that charts are available for that item</li>
                             <li>Press the Escape key to close any modal</li>
                             <li>If a tariff calculation seems incorrect, try refreshing the page or check the trade data explorer for that country to verify expected effects</li>
                         </ul>
@@ -61,16 +61,41 @@ function initializeHelpPanel() {
                     
                     <div class="separator receipt-separator"></div>
                     
-                    <!-- Section 4: Acknowledgements -->
+                    <!-- Section 4: Attributions -->
                     <div class="help-section">
-                        <h3>Data Sources & Acknowledgements</h3>
-                        <p>This application uses data from several sources:</p>
+                        <h3>Attributions</h3>
+                        <p>This application is built on several open-source components and datasets:</p>
+                        
+                        <h4>Software Components</h4>
                         <ul>
-                            <li><strong>Trade Data:</strong> Official U.S. international trade data from 2024</li>
-                            <li><strong>Production Data:</strong> Input-output tables from 2022</li>
-                            <li><strong>Tariff Data:</strong> Global Tariff Database (Teti 2024)</li>
-                            <li><strong>Geographic Data:</strong> Natural Earth vector data</li>
+                            <li><strong>Leaflet.js (v1.9.4):</strong> The interactive mapping library used in this application. To learn more about Leaflet, visit <a href="https://leafletjs.com/" target="_blank" style="color: var(--primary); text-decoration: underline;">leafletjs.com</a></li>
+                            
+                            <li><strong>GeoJSON Countries (v1.1):</strong> World map geographic data (modified to 3 decimal point accuracy).<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Data available at: <a href="https://github.com/datasets/geo-countries/" target="_blank" style="color: var(--primary); text-decoration: underline;">github.com/datasets/geo-countries</a></li>
+                            
+                            <li><strong>Country Converter (v1.3):</strong> Used for standardizing country codes and names under GNU General Public License v3.0 (GPLv3).<br>
+                            Citation: Stadler, K. (2017). The country converter coco - a Python package for converting country names between different classification schemes. The Journal of Open Source Software. doi: 10.21105/joss.00332<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Paper available at: <a href="https://joss.theoj.org/papers/10.21105/joss.00332" target="_blank" style="color: var(--primary); text-decoration: underline;">joss.theoj.org/papers/10.21105/joss.00332</a></li>
                         </ul>
+                        
+                        <h4>Data Sources</h4>
+                        <ul>
+                            <li><strong>Tariff Data:</strong> Feodora Teti's Global Tariff Database (v_beta1-2024-12).<br>
+                            Citation: Teti, F. A. (2024). Missing Tariffs. CESifo Working Papers No. 11590.<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Data available at: <a href="https://feodorateti.github.io/data.html" target="_blank" style="color: var(--primary); text-decoration: underline;">feodorateti.github.io/data.html</a></li>
+                            
+                            <li><strong>Trade Data:</strong> U.S. Census Bureau international trade data.<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Data available at: <a href="https://usatrade.census.gov/" target="_blank" style="color: var(--primary); text-decoration: underline;">usatrade.census.gov</a></li>
+                        </ul>
+                        
+                        <p>For detailed information on our methodology, calculations, and frequently asked questions, please visit the <a href="https://atlantafed.org/research/data-and-tools/tariff-price-tool" target="_blank" style="color: var(--primary); text-decoration: underline;">Tariff Price Tool documentation page</a>.</p>
+                        
+                        <div id="citation-section" style="display: flex; flex-direction: column; align-items: center; width: 100%; margin-top: 1.5rem;">
+                            <h4 style="margin-bottom: 0.75rem; text-align: center;">Suggested Citation</h4>
+                            <div id="citation-box" style="max-width: 95%; width: 700px; padding: 0.75rem 2rem 1.25rem 2rem; border-radius: 8px; border: 2px dashed #666; font-family: var(--font-family-monospace); background-color: rgba(0,0,0,0.01); box-shadow: 0 2px 6px rgba(0,0,0,0.05); transition: background-color 0.5s ease;">
+                                <p style="margin-bottom: 0; font-style: italic; text-align: justify; line-height: 1.6;">Michael Dwight Sparks, Salomé Baslandze & Simon Fuchs, <i>The Atlanta Fed's Tariff Price Tool: Methodology</i> (SSRN Working Paper No. #####),<br>&#9;https://ssrn.com/abstract=#####</p>
+                            </div>
+                        </div>
                     </div>
                     
                     <div class="separator receipt-separator"></div>
@@ -218,337 +243,7 @@ function addTourHTML() {
         </div>
     `;
     
-    // Add tour styles if not present
-    if (!document.getElementById('tour-styles')) {
-        const tourStyles = document.createElement('style');
-        tourStyles.id = 'tour-styles';
-        tourStyles.textContent = `
-            /* Tour Overlay System */
-            .tour-overlay {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100vw;
-                height: 100vh;
-                pointer-events: none;
-                z-index: 1000;
-                opacity: 0;
-                transition: opacity 0.3s ease;
-            }
-
-            .tour-overlay.active {
-                opacity: 1;
-                pointer-events: auto;
-            }
-
-            .overlay-piece {
-                position: absolute;
-                background: rgba(0, 0, 0, 0.7);
-                transition: all 0.3s ease;
-            }
-
-            /* Tour tooltip */
-            .tour-tooltip {
-                position: fixed;
-                background: var(--background-color);
-                color: var(--text-color);
-                border-radius: var(--borderRadius);
-                border: var(--borderWidth) solid var(--borderColor);
-                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-                padding: 30px;
-                max-width: 600px;
-                min-width: 500px;
-                z-index: 1001;
-                opacity: 0;
-                transform: translateY(10px);
-                transition: all 0.3s ease;
-                max-height: 80vh;
-                overflow-y: auto;
-                font-family: var(--font-family-monospace);
-            }
-
-            .tour-tooltip.visible {
-                opacity: 1;
-                transform: translateY(0);
-            }
-
-            .tooltip-header {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 16px;
-                flex-wrap: nowrap;
-            }
-
-            .tooltip-title {
-                font-weight: 600;
-                font-size: 1.125rem;
-                color: var(--text-color);
-                margin: 0;
-                max-width: 75%;
-                padding-right: 15px;
-            }
-
-            .close-button {
-                background: transparent;
-                border: none;
-                font-size: 15px;
-                font-weight: bold;
-                cursor: pointer;
-                color: var(--excellenceOrange);
-                padding: 4px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                transition: all 0.2s;
-                letter-spacing: 0.5px;
-                text-decoration: none;
-            }
-
-            .close-button:hover {
-                text-decoration: underline;
-                transform: scale(1.08);
-            }
-
-            .tooltip-content {
-                color: var(--text-color);
-                line-height: 1.7;
-                margin-bottom: 24px;
-                font-size: 15px;
-            }
-            
-            /* Add styles for paragraphs within the tooltip content */
-            .tooltip-content p {
-                margin-bottom: 16px;
-            }
-            
-            .tooltip-content p:last-child {
-                margin-bottom: 0;
-            }
-            
-            .tooltip-content b, .tooltip-content strong {
-                color: var(--primary);
-            }
-            
-            .keyboard-hint {
-                font-size: 13px;
-                color: var(--alt-text-color);
-                margin-top: 12px;
-                font-style: italic;
-            }
-
-            .tooltip-navigation {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-top: 10px;
-                position: sticky;
-                bottom: 0;
-                background: var(--background-color);
-                padding-top: 10px;
-            }
-
-            .nav-button {
-                background: transparent;
-                color: var(--primary);
-                border: none;
-                padding: 8px 16px;
-                cursor: pointer;
-                font-weight: 500;
-                transition: all 0.2s;
-            }
-
-            .nav-button:hover:not(:disabled) {
-                color: var(--dark);
-            }
-
-            .nav-button:disabled {
-                color: var(--lightGray);
-                cursor: not-allowed;
-            }
-
-            .progress-dots {
-                display: flex;
-                gap: 8px;
-            }
-
-            .progress-dot {
-                width: 8px;
-                height: 8px;
-                border-radius: 50%;
-                background: var(--lightGray);
-                transition: background 0.2s;
-            }
-
-            .progress-dot.active {
-                background: var(--primary);
-            }
-
-            /* Highlight ring animation */
-            .highlight-ring {
-                position: absolute;
-                border: 3px solid var(--primary);
-                border-radius: var(--borderRadius);
-                pointer-events: none;
-                opacity: 0;
-                animation: highlight-pulse 2s infinite;
-                box-shadow: 0 0 0 3px rgba(0, 96, 160, 0.3);
-                transition: opacity 0.2s ease-in-out, left 0.2s ease-out, top 0.2s ease-out, width 0.2s ease-out, height 0.2s ease-out;
-            }
-
-            @keyframes highlight-pulse {
-                0%, 100% {
-                    opacity: 0.7;
-                    transform: scale(1);
-                }
-                50% {
-                    opacity: 1;
-                    transform: scale(1.02);
-                }
-            }
-
-            /* Help modal styles with receipt-like appearance */
-            .help-receipt {
-                display: flex;
-                flex-direction: column;
-                font-family: var(--font-family-monospace);
-                width: 100%;
-                max-width: 1000px;
-                margin: 0 auto;
-                line-height: 1.6;
-                padding-top: 0;
-                padding-bottom: 20px;
-            }
-
-            .help-section {
-                padding: 1.5rem;
-                background: var(--background-color);
-            }
-
-            .help-section h3 {
-                margin: 0 0 0.75rem 0;
-                color: var(--text-color);
-                font-size: 1.25rem;
-                font-weight: 600;
-                font-family: var(--font-family-monospace);
-            }
-
-            .help-section p {
-                margin: 0 0 1rem 0;
-                color: var(--alt-text-color);
-                line-height: 1.5;
-                font-family: var(--font-family-monospace);
-                font-weight: 400; /* Regular weight */
-            }
-            
-            .help-section p:last-child {
-                margin-bottom: 0;
-            }
-
-            .help-section ul {
-                margin: 0.5rem 0;
-                padding-left: 1.5rem;
-                color: var(--text-color);
-                font-family: var(--font-family-monospace);
-                font-weight: 400;
-            }
-
-            .help-section li {
-                margin-bottom: 0.75rem;
-                line-height: 1.4;
-                font-family: var(--font-family-monospace);
-                font-weight: 400;
-            }
-            
-            .help-section li:last-child {
-                margin-bottom: 0;
-            }
-
-            .help-section strong {
-                color: var(--primary);
-                font-weight: 600;
-            }
-
-            /* Receipt-like dashed separator */
-            .receipt-separator {
-                width: 100%;
-                height: 1px;
-                border-bottom: 2px dashed var(--borderColor);
-                margin: 0.5rem 0;
-                opacity: 0.7;
-            }
-            
-            /* Separator class for consistency with other components */
-            .separator {
-                width: 100%;
-                height: 1px;
-                border-bottom: 2px dashed var(--borderColor);
-                margin: 0.5rem 0;
-                opacity: 0.7;
-            }
-            
-            /* Terms of service styling */
-            .terms-content {
-                padding-top: 0.5rem;
-            }
-            
-            .terms-content ol {
-                margin-top: 1rem;
-                padding-left: 2rem;
-                counter-reset: terms-counter;
-            }
-            
-            .terms-content li {
-                margin-bottom: 1rem;
-                text-align: justify;
-                list-style-position: outside;
-            }
-            
-            .terms-content a {
-                color: var(--primary);
-                text-decoration: underline;
-                transition: color 0.2s;
-            }
-            
-            .terms-content a:hover {
-                color: var(--dark);
-            }
-            
-            /* Button container */
-            .help-buttons {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 0.75rem;
-                margin-top: 1rem;
-            }
-
-            .help-action-btn {
-                background: var(--primary);
-                color: white;
-                border: none;
-                padding: 10px 20px;
-                border-radius: var(--borderRadius);
-                cursor: pointer;
-                font-weight: 600;
-                font-family: var(--font-family-monospace);
-                transition: background 0.2s;
-                white-space: nowrap;
-            }
-
-            .help-action-btn:hover {
-                background: var(--dark);
-            }
-            
-            .help-action-btn.secondary {
-                background: var(--darkGray);
-            }
-            
-            .help-action-btn.secondary:hover {
-                background: var(--charcoal);
-            }
-        `;
-        document.head.appendChild(tourStyles);
-    }
+    // Styles have been moved to an external stylesheet: styles/help_and_info_styles.css
     
     // Add tour HTML to body
     document.body.insertAdjacentHTML('beforeend', tourHTML);
@@ -615,6 +310,56 @@ document.addEventListener('DOMContentLoaded', function() {
             // Now show the help panel instead of starting the tour directly
             setTimeout(() => {
                 showHelpPanel();
+            }, 100);
+        });
+    }
+    
+    // Citation link in the footer
+    const citationLink = document.getElementById('citation-link');
+    if (citationLink) {
+        citationLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // First clean up any leftover tour elements
+            cleanupLeftoverTourElements();
+            
+            // Show the help panel
+            setTimeout(() => {
+                showHelpPanel();
+                
+                // After panel is visible, scroll to the citation section
+                setTimeout(() => {
+                    const citationSection = document.getElementById('citation-section');
+                    const modalBody = document.querySelector('.modal-body');
+                    
+                    if (citationSection && modalBody) {
+                        // Get the position of the citation section relative to the modal body
+                        const citationPosition = citationSection.offsetTop;
+                        
+                        // Scroll the modal body to the citation section
+                        modalBody.scrollTo({
+                            top: citationPosition - 100, // Subtract some pixels to show a bit of context above
+                            behavior: 'smooth'
+                        });
+                        
+                        // Add a brief highlight effect to just the citation box
+                        const citationBox = document.getElementById('citation-box');
+                        if (citationBox) {
+                            // Highlight with a light blue background
+                            citationBox.style.backgroundColor = 'rgba(0, 118, 182, 0.1)';
+                            
+                            // Slightly enhance the border during highlight
+                            citationBox.style.borderColor = 'var(--primary)';
+                            citationBox.style.borderWidth = '2px';
+                            
+                            // Remove highlight after a short delay
+                            setTimeout(() => {
+                                citationBox.style.backgroundColor = 'rgba(0,0,0,0.01)';
+                                citationBox.style.borderColor = '#666';
+                            }, 1800);
+                        }
+                    }
+                }, 300); // Wait for panel to be fully visible
             }, 100);
         });
     }
@@ -841,13 +586,13 @@ class SparksGuidedTourV2 {
             {
                 target: '#receipt-item-EX1',
                 title: 'Country Entry Row',
-                content: 'Each country entry shows the total price effect on the right. You can use the expand/collapse chevron icon <img src="assets/fontawesome/chevron-down-solid.svg" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> to see the breakdown between direct and indirect effects. The trash icon <img src="assets/fontawesome/trash-solid.svg" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> allows you to remove a country from your analysis. The chart icon <img src="assets/fontawesome/chart-line-solid.svg" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> opens detailed visualizations of the tariff effects for this country.',
+                content: 'Each country entry shows the total price effect on the right. You can use the expand/collapse chevron icon <img src="assets/fontawesome/chevron-down-solid.svg" alt="Chevron icon" class="inline-icon" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> to see the breakdown between direct and indirect effects. The trash icon <img src="assets/fontawesome/trash-solid.svg" alt="Trash icon" class="inline-icon" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> allows you to remove a country from your analysis. The chart icon <img src="assets/fontawesome/chart-line-solid.svg" alt="Chart icon" class="inline-icon" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> opens detailed visualizations of the tariff effects for this country.',
                 position: 'left'
             },
             {
                 target: '#receipt_totals',
                 title: 'Receipt Summary',
-                content: '<p>The receipt footer summarizes your analysis with three key components: the <strong>Subtotal</strong> (sum of all country-specific tariffs), <strong>Rest of World</strong> (adds a constant tariff increase to unselected countries), and the <strong>Total Price Effect</strong> (overall impact on consumer prices across the economy).</p><p>Just like with individual country entries, you can click the chevron icons <img src="assets/fontawesome/chevron-right-solid.svg" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> next to each summary row to decompose the overall effects into their direct and indirect components.</p>',
+                content: '<p>The receipt footer summarizes your analysis with three key components: the <strong>Subtotal</strong> (sum of all country-specific tariffs), <strong>Rest of World</strong> (adds a constant tariff increase to unselected countries), and the <strong>Total Price Effect</strong> (overall impact on consumer prices across the economy).</p><p>Just like with individual country entries, you can click the chevron icons <img src="assets/fontawesome/chevron-right-solid.svg" alt="Chevron right icon" class="inline-icon" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> next to each summary row to decompose the overall effects into their direct and indirect components.</p>',
                 position: 'left'
             },
             {
@@ -859,7 +604,7 @@ class SparksGuidedTourV2 {
             {
                 target: '#show-multi-chart-panel',
                 title: 'Trade Data Explorer',
-                content: '<p>Click on this chart icon to open detailed sector-level visualizations of trade and tariff data. This opens the Trade Area Charts panel showing bilateral trade relationships, allowing you to analyze how specific sectors contribute to overall trade patterns and how tariffs affect these relationships.</p><p>Anywhere you see this icon <img src="assets/fontawesome/chart-line-solid.svg" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;">, there are charts available for view. When clicking a country name, this takes you to sector-specific trade charts, and when in the receipt, it takes you to graphs of the price effects of the tariffs on a given country.</p>',
+                content: '<p>Click on this chart icon to open detailed sector-level visualizations of trade and tariff data. This opens the Trade Area Charts panel showing bilateral trade relationships, allowing you to analyze how specific sectors contribute to overall trade patterns and how tariffs affect these relationships.</p><p>Anywhere you see this icon <img src="assets/fontawesome/chart-line-solid.svg" alt="Chart icon" class="inline-icon" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;">, there are charts available for view. When clicking a country name, this takes you to sector-specific trade charts, and when in the receipt, it takes you to graphs of the price effects of the tariffs on a given country.</p>',
                 position: 'bottom'
             },
             {
@@ -883,14 +628,14 @@ class SparksGuidedTourV2 {
             {
                 target: null,
                 title: 'Getting Started',
-                content: '<p>To get started, explore country trade relationships using the Global Trade Explorer <img src="assets/fontawesome/globe-solid.svg" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> or the country-level Trade Data Explorer <img src="assets/fontawesome/chart-line-solid.svg" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;">. This will help you understand existing trade patterns before implementing policy changes.</p><p>When you\'re ready to implement tariffs, click on a country to add a country-specific tariff, select a set of countries in the receipt, or add a global tariff that applies to all trading partners.</p>',
+                content: '<p>To get started, explore country trade relationships using the Global Trade Explorer <img src="assets/fontawesome/globe-solid.svg" alt="Globe icon" class="inline-icon" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> or the country-level Trade Data Explorer <img src="assets/fontawesome/chart-line-solid.svg" alt="Chart icon" class="inline-icon" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;">. This will help you understand existing trade patterns before implementing policy changes.</p><p>When you\'re ready to implement tariffs, click on a country to add a country-specific tariff, select a set of countries in the receipt, or add a global tariff that applies to all trading partners.</p>',
                 position: 'center',
                 isIntro: true
             },
             {
                 target: null,
                 title: 'Consistent Interface Elements',
-                content: '<p>Look for these consistent elements throughout the application:</p><ul><li>Chevron icons <img src="assets/fontawesome/chevron-down-solid.svg" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> indicate expandable information or dropdowns</li><li><span style="color: var(--excellenceOrange); font-weight: bold;">Orange</span>/<span style="color: var(--primary); font-weight: bold;">blue</span> text near icons indicates clickable elements or dropdowns</li><li>Chart icons <img src="assets/fontawesome/chart-line-solid.svg" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> show that charts are available for that item</li><li>Press the Escape key to close any modal</li><li>If a tariff calculation seems incorrect, try refreshing the page or check the trade data explorer for that country to verify expected effects</li></ul>',
+                content: '<p>Look for these consistent elements throughout the application:</p><ul><li>Chevron icons <img src="assets/fontawesome/chevron-down-solid.svg" alt="Chevron icon" class="inline-icon" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> indicate expandable information or dropdowns</li><li><span style="color: var(--excellenceOrange); font-weight: bold;">Orange</span>/<span style="color: var(--primary); font-weight: bold;">blue</span> text near icons indicates clickable elements or dropdowns</li><li>Chart icons <img src="assets/fontawesome/chart-line-solid.svg" alt="Chart icon" class="inline-icon" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> show that charts are available for that item</li><li>Press the Escape key to close any modal</li><li>If a tariff calculation seems incorrect, try refreshing the page or check the trade data explorer for that country to verify expected effects</li></ul>',
                 position: 'center',
                 isIntro: true
             }

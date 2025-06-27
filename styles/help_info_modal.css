@@ -88,3 +88,12 @@
 .help-option strong {
     color: var(--primary);
 }
+
+/* Dark mode - ensure all icons in help modal get inverted */
+.dark_theme .help-section img,
+.dark_theme .tooltip-content img,
+.dark_theme .help-info-modal img:not(.close-icon),
+.dark_theme .modal-body img[src*="fontawesome"],
+.dark_theme .inline-icon {
+    filter: brightness(0) invert(1) !important;
+}
