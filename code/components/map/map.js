@@ -174,8 +174,35 @@ fetch(DataPaths.geography.map)
 });
 
 
+// Function to force close all popups and clean up
+function forceCloseAllPopups() {
+    // Close any popup using Leaflet's method
+    map.closePopup();
+    
+    // Manually remove any popup DOM elements that might still be around
+    const popupElements = document.querySelectorAll('.leaflet-popup');
+    if (popupElements.length > 0) {
+        console.log(`POPUP DEBUG: Manually removing ${popupElements.length} popup elements`);
+        popupElements.forEach(popup => popup.remove());
+    }
+    
+    // Also remove popup containers and shadows
+    const popupContainers = document.querySelectorAll('.leaflet-popup-pane');
+    popupContainers.forEach(container => {
+        while (container.firstChild) {
+            container.removeChild(container.firstChild);
+        }
+    });
+    
+    // Remove any tooltips
+    removeAllTooltips();
+}
+
 // Handle country click event
 async function handleCountryClick(feature, e) {
+    // First thing: force close all existing popups
+    forceCloseAllPopups();
+    
     if (!feature || !feature.properties || !feature.properties.ISO_A3) {
         console.error("No country data found.");
         alert("Error: Missing country ISO_A3 code.");
@@ -192,8 +219,15 @@ async function handleCountryClick(feature, e) {
     window.isoToCountryName[isoCode] = countryName;
     
     console.log(`Country clicked: ${countryName} (${isoCode})`);
+    console.log(`POPUP DEBUG: New country click detected for ${countryName} (${isoCode})`);
     
     try {
+        // Short delay to ensure all cleanup is complete
+        await new Promise(resolve => setTimeout(resolve, 50));
+        
+        // Remove any tooltips that might be open
+        removeAllTooltips();
+        
         // Get current tariff data for this country
         let currentTariff = 0;
         let defaultPassThrough = 100;
@@ -240,19 +274,14 @@ async function handleCountryClick(feature, e) {
             .replace(/{{defaultPassThrough}}/g, defaultPassThrough.toFixed(2))
             .replace(/{{chartLineIcon}}/g, DataPaths.assets.fontawesome.chartLineSolid);
         
-        // Remove any existing popups and tooltips
-        map.closePopup();
-        // Remove any tooltips that might be open
-        removeAllTooltips();
-        // Default offdset: [0, -7]
-        // Uposide down offset: [0, 390]
         // Create and show the popup
         const popup = L.popup({offset:[0,0]})
             .setLatLng(e.latlng)
             .setContent(popupTemplate)
             .openOn(map);
         
-        // Set up event handlers after popup is created
+        // Set up event handlers after popup is created, with a short delay
+        // to ensure the DOM is fully updated
         setTimeout(() => {
             // Add help tooltip functionality
             attachTooltip();
@@ -276,7 +305,7 @@ async function handleCountryClick(feature, e) {
                     }
                 });
             }
-        }, 0);
+        }, 50); // Increased timeout slightly to ensure DOM is ready
     } catch (err) {
         console.error("Error handling country click:", err);
         alert("Error: Could not load country data. Please try again.");
@@ -385,14 +414,26 @@ function attachPopupHandlers(isoCode, countryName, currentTariff) {
     // Handle the Apply Tariff button
     const submitBtn = document.getElementById("tariffSubmit");
     if (submitBtn) {
+        // Replace the button with a clone to remove any existing event listeners
+        const newSubmitBtn = submitBtn.cloneNode(true);
+        submitBtn.parentNode.replaceChild(newSubmitBtn, submitBtn);
+        
+        // Get the fresh reference after replacement
+        const cleanSubmitBtn = document.getElementById("tariffSubmit");
+        
         // Add Enter key functionality to popup inputs
         const popupInputs = document.querySelectorAll('.popup-input');
         popupInputs.forEach(input => {
-            input.addEventListener('keydown', function(event) {
+            // Clone and replace to ensure clean event listeners
+            const newInput = input.cloneNode(true);
+            input.parentNode.replaceChild(newInput, input);
+            
+            // Add event listener to the new element
+            newInput.addEventListener('keydown', function(event) {
                 if (event.key === 'Enter') {
                     event.preventDefault();
                     console.log('Enter key pressed in map popup input, clicking submit button');
-                    submitBtn.click();
+                    cleanSubmitBtn.click();
                 }
             });
         });
@@ -404,7 +445,7 @@ function attachPopupHandlers(isoCode, countryName, currentTariff) {
             const newTariffInput = document.getElementById("newTariffInput");
             const passThroughInput = document.getElementById("passThroughInput");
             
-            if (!currentTariffInput || !newTariffInput || !passThroughInput || !submitBtn) {
+            if (!currentTariffInput || !newTariffInput || !passThroughInput || !cleanSubmitBtn) {
                 return; // Exit if elements not found
             }
             
@@ -416,16 +457,13 @@ function attachPopupHandlers(isoCode, countryName, currentTariff) {
             const inputsValid = !isNaN(newTariffValue) && !isNaN(passThroughValue) && passThroughValue > 0;
             const hasChanged = currentTariffValue !== newTariffValue;
             
-            // Log validation status for debugging (uncomment if needed)
-            // console.log(`Tariff input validation - Valid: ${inputsValid}, Changed: ${hasChanged}, Values: ${currentTariffValue} -> ${newTariffValue}, PassThrough: ${passThroughValue}`);
-            
             // Enable/disable submit button based on validation
             if (inputsValid && hasChanged) {
-                submitBtn.disabled = false;
-                submitBtn.classList.remove("btn-disabled");
+                cleanSubmitBtn.disabled = false;
+                cleanSubmitBtn.classList.remove("btn-disabled");
             } else {
-                submitBtn.disabled = true;
-                submitBtn.classList.add("btn-disabled");
+                cleanSubmitBtn.disabled = true;
+                cleanSubmitBtn.classList.add("btn-disabled");
             }
         }
         
@@ -439,11 +477,20 @@ function attachPopupHandlers(isoCode, countryName, currentTariff) {
         validateTariffInputs();
         
         // Add click handler
-        submitBtn.addEventListener("click", function() {
+        cleanSubmitBtn.addEventListener("click", function() {
             // Get input values
-            const currentTariffValue = parseFloat(document.getElementById("currentTariffInput").value || 0);
-            const newTariffValue = parseFloat(document.getElementById("newTariffInput").value || 0);
-            const passThroughValue = parseFloat(document.getElementById("passThroughInput").value || 0);
+            const currentTariffInput = document.getElementById("currentTariffInput");
+            const newTariffInput = document.getElementById("newTariffInput");
+            const passThroughInput = document.getElementById("passThroughInput");
+            
+            if (!currentTariffInput || !newTariffInput || !passThroughInput) {
+                console.error("Input elements not found");
+                return;
+            }
+            
+            const currentTariffValue = parseFloat(currentTariffInput.value || 0);
+            const newTariffValue = parseFloat(newTariffInput.value || 0);
+            const passThroughValue = parseFloat(passThroughInput.value || 0);
             
             // Validate inputs
             if (isNaN(newTariffValue) || isNaN(passThroughValue)) {
@@ -457,7 +504,7 @@ function attachPopupHandlers(isoCode, countryName, currentTariff) {
                 return;
             }
             
-            // Close the popup
+            // Close the popup first to clean up all listeners
             map.closePopup();
             
             // Add country to selected countries if not already there
@@ -473,9 +520,6 @@ function attachPopupHandlers(isoCode, countryName, currentTariff) {
                 }
             }
             
-            // Normalize by the trade share... 
-
-
             // Create tariff data object for calculations
             const tariffData = {
                 iso_list: [isoCode],
@@ -557,13 +601,6 @@ function attachPopupHandlers(isoCode, countryName, currentTariff) {
                         tariffData.tau_c = [weightedVector];
                         tariffData.tauCForCalculations[isoCode] = weightedVector;
                         
-                        // Log the 21-item tariff vector for tracking
-                        // console.log('[TARIFF_VECTOR_DEBUG] tariffSubmit button created vector:', {
-                        //     isoCode,
-                        //     vector: weightedVector,
-                        //     source: 'tariffSubmit'
-                        // });
-                        
                         // Check if TariffCalculations is available
                         if (!window.TariffCalculations || typeof window.TariffCalculations.processTariffData !== 'function') {
                             throw new Error('TariffCalculations module not available');
@@ -573,8 +610,6 @@ function attachPopupHandlers(isoCode, countryName, currentTariff) {
                         const success = await window.TariffCalculations.processTariffData(tariffData);
                         
                         if (success) {
-                            //console.log('Map tariff applied successfully with import weighting');
-                            
                             // Update receipt display
                             if (window.ReceiptModule && typeof window.ReceiptModule.updateReceiptDisplay === 'function') {
                                 window.ReceiptModule.updateReceiptDisplay();
@@ -602,7 +637,14 @@ function attachPopupHandlers(isoCode, countryName, currentTariff) {
     // Handle the Product-Specific Tariff button
     const productTariffBtn = document.getElementById("productTariffBtn");
     if (productTariffBtn) {
-        productTariffBtn.addEventListener("click", function() {
+        // Replace the button with a clone to remove any existing event listeners
+        const newProductBtn = productTariffBtn.cloneNode(true);
+        productTariffBtn.parentNode.replaceChild(newProductBtn, productTariffBtn);
+        
+        // Get the fresh reference after replacement
+        const cleanProductBtn = document.getElementById("productTariffBtn");
+        
+        cleanProductBtn.addEventListener("click", function() {
             // Add country to selected countries if not already there
             if (!window.selectedISOs) {
                 window.selectedISOs = [];
@@ -622,7 +664,7 @@ function attachPopupHandlers(isoCode, countryName, currentTariff) {
                 window.isoToCountryName[isoCode] = countryName;
             }
             
-            // Close the popup
+            // Close the popup first to clean up all listeners
             map.closePopup();
             
             // Initialize ProductTariffModal if needed
@@ -781,6 +823,25 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Remove automatic initialization of ProductTariffModal
     // We'll initialize it only when needed
+    
+    // Add global click handler to ensure popups close when clicking outside them
+    document.addEventListener('click', function(event) {
+        // Check if we have an open popup
+        const popup = document.querySelector('.leaflet-popup');
+        if (!popup) return; // No popup is open
+        
+        // Check if the click was inside the popup
+        if (popup.contains(event.target)) return; // Click was inside popup
+        
+        // Check if click was on a country (these clicks are handled by their own listener)
+        const isCountryClick = event.target.classList.contains('leaflet-interactive');
+        
+        // If the click was outside the popup and not directly on a country path, close the popup
+        if (!isCountryClick) {
+            // Close the popup using Leaflet's method
+            map.closePopup();
+        }
+    });
     
     // Listen for dark mode changes
     document.addEventListener('DOMClassChange', function(e) {
