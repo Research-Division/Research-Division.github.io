@@ -13,47 +13,81 @@ let guidedTour = null;
 function initializeHelpPanel() {
     if (isInitialized) return;
     
-    // Load the modal HTML with tour options
+    // Load the modal HTML with tour options, instructions, acknowledgements, and terms of service
     const modalHtml = `
     <div class="help-info-modal">
-        <div class="modal-content">
+        <div class="modal-content" style="max-height: 95vh; height: auto;">
             <div class="modal-header">
                 <h2>Help & Information</h2>
                 <button class="panel-close-button" id="help-panel-close-button">
                     <img src="${DataPaths.assets.fontawesome.xmark}" alt="Close" class="close-icon">
                 </button>
             </div>
-            <div class="modal-body">
-                <div class="help-options">
-                    <div class="help-option">
-                        <h3>📍 Take Guided Tour</h3>
+            <div class="modal-body" style="overflow-y: auto; max-height: calc(95vh - 60px); padding-top: 0;">
+                <div class="help-receipt">
+                    <!-- Section 1: Guided Tour Button -->
+                    <div class="help-section">
+                        <h3>Take a Guided Tour</h3>
                         <p>Take a step-by-step tour of the application to learn about all the key features and tools.</p>
-                        <button id="start-guided-tour-btn" class="help-action-btn">Start Tour</button>
-                        <button id="reset-guided-tour-btn" class="help-action-btn secondary">Reset First-Visit Tour</button>
+                        <div class="help-buttons">
+                            <button id="start-guided-tour-btn" class="help-action-btn">Start Tour</button>
+                            <button id="reset-guided-tour-btn" class="help-action-btn secondary">Reset First-Visit Tour</button>
+                        </div>
                     </div>
                     
-                    <div class="help-option">
-                        <h3>📊 Application Features</h3>
-                        <p>Learn about the interactive map, tariff calculations, and analysis tools available in this application.</p>
+                    <div class="separator receipt-separator"></div>
+                    
+                    <!-- Section 2: Getting Started (from final slide of tour) -->
+                    <div class="help-section">
+                        <h3>Getting Started</h3>
+                        <p>To get started, explore country trade relationships using the Global Trade Explorer <img src="${DataPaths.assets.fontawesome.globe}" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> or the country-level Trade Data Explorer <img src="${DataPaths.assets.fontawesome.chartLine}" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;">. This will help you understand existing trade patterns before implementing policy changes.</p>
+                        <p>When you're ready to implement tariffs, click on a country to add a country-specific tariff, select a set of countries in the receipt, or add a global tariff that applies to all trading partners.</p>
+                    </div>
+                    
+                    <div class="separator receipt-separator"></div>
+                    
+                    <!-- Section 3: Interface Elements (from final slide of tour) -->
+                    <div class="help-section">
+                        <h3>Interface Elements</h3>
+                        <p>Look for these consistent elements throughout the application:</p>
                         <ul>
-                            <li><strong>Interactive Map:</strong> Explore global trade relationships with zoom and pan controls</li>
-                            <li><strong>Tariff Receipt:</strong> Calculate economic impacts of tariff changes</li>
-                            <li><strong>Country Selection:</strong> Choose specific countries for bilateral analysis</li>
-                            <li><strong>Global Tariffs:</strong> Analyze economy-wide policy effects</li>
-                            <li><strong>Analysis Tools:</strong> Access advanced charts and visualizations</li>
+                            <li>Chevron icons <img src="${DataPaths.assets.fontawesome.chevronDown}" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> indicate expandable information or dropdowns</li>
+                            <li><span style="color: var(--excellenceOrange); font-weight: bold;">Orange</span>/<span style="color: var(--primary); font-weight: bold;">blue</span> text near icons indicates clickable elements or dropdowns</li>
+                            <li>Chart icons <img src="${DataPaths.assets.fontawesome.chartLine}" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> show that charts are available for that item</li>
+                            <li>Press the Escape key to close any modal</li>
+                            <li>If a tariff calculation seems incorrect, try refreshing the page or check the trade data explorer for that country to verify expected effects</li>
                         </ul>
                     </div>
                     
-                    <div class="help-option">
-                        <h3>🔧 Quick Tips</h3>
-                        <p>Essential tips for using the application:</p>
+                    <div class="separator receipt-separator"></div>
+                    
+                    <!-- Section 4: Acknowledgements -->
+                    <div class="help-section">
+                        <h3>Data Sources & Acknowledgements</h3>
+                        <p>This application uses data from several sources:</p>
                         <ul>
-                            <li>Click on countries in the map to explore trade data</li>
-                            <li>Use <strong>Select a Country</strong> to start tariff analysis</li>
-                            <li>Try <strong>Add Global Tariff</strong> for broad policy impacts</li>
-                            <li>Access charts via the header icons for detailed visualizations</li>
-                            <li>Use the help button anytime for assistance</li>
+                            <li><strong>Trade Data:</strong> Official U.S. international trade data from 2024</li>
+                            <li><strong>Production Data:</strong> Input-output tables from 2022</li>
+                            <li><strong>Tariff Data:</strong> Global Tariff Database (Teti 2024)</li>
+                            <li><strong>Geographic Data:</strong> Natural Earth vector data</li>
                         </ul>
+                    </div>
+                    
+                    <div class="separator receipt-separator"></div>
+                    
+                    <!-- Section 5: Terms of Service -->
+                    <div class="help-section">
+                        <h3>Terms of Use</h3>
+                        <div class="terms-content">
+                            <p>By using the Federal Reserve Bank of Atlanta's (Bank's) mobile app, Tariff Price Tool, you implicitly agree that your use is subject to the following disclaimers and other terms of use:</p>
+                            <ol>
+                                <li>Unauthorized attempts to upload or change information, to defeat or circumvent security measures, or to use this app or its content for other than its intended purpose is prohibited.</li>
+                                <li>The Federal Reserve Bank of Atlanta takes reasonable measures to ensure the quality of the data and other information produced by the Bank and made available in this app. However, the Bank makes no warranty, express or implied, nor assumes any liability or responsibility for the accuracy, timeliness, correctness, completeness, merchantability, or fitness for a particular purpose of any information that is available through this app, nor represents that its use would not infringe upon any privately owned rights.</li>
+                                <li>Reproduction of Bank content (print and digital) offered through our app may be made without limitation as to number, provided that such reproductions are not for private gain and that appropriate attribution to the Federal Reserve Bank of Atlanta is made on all such reproductions.</li>
+                                <li>This app links to the Atlanta Fed's website. Material on that website may be subject to additional copyright restrictions. Please see the <a href="https://www.atlantafed.org/disclaimers-and-terms-of-use" target="_blank" style="color: var(--primary); text-decoration: underline;">Disclaimer and Terms of Use</a> and <a href="https://www.atlantafed.org/online-privacy-policy" target="_blank" style="color: var(--primary); text-decoration: underline;">Online Privacy Policy</a> for the Atlanta Fed's website for more information.</li>
+                                <li>The Bank does not endorse any product, service, or company and does not permit the use of its name in any form of advertising or for any other commercial purpose.</li>
+                            </ol>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -65,6 +99,12 @@ function initializeHelpPanel() {
     modalDiv.id = 'help-info-panel-container';
     modalDiv.className = 'help-info-modal-container';
     modalDiv.style.display = 'flex';
+    modalDiv.style.justifyContent = 'center'; // Center horizontally
+    modalDiv.style.alignItems = 'center';     // Center vertically 
+    modalDiv.style.maxWidth = '100vw';        // Full width
+    modalDiv.style.maxHeight = '100vh';       // Full height
+    modalDiv.style.height = '100%';           // Full height
+    modalDiv.style.padding = '20px';          // Add some padding
     modalDiv.innerHTML = modalHtml;
     
     // Remove any existing modal first
@@ -367,46 +407,119 @@ function addTourHTML() {
                 }
             }
 
-            /* Help modal styles */
-            .help-options {
+            /* Help modal styles with receipt-like appearance */
+            .help-receipt {
                 display: flex;
                 flex-direction: column;
-                gap: 2rem;
                 font-family: var(--font-family-monospace);
+                width: 100%;
+                max-width: 1000px;
+                margin: 0 auto;
+                line-height: 1.6;
+                padding-top: 0;
+                padding-bottom: 20px;
             }
 
-            .help-option {
+            .help-section {
                 padding: 1.5rem;
-                border: var(--borderWidth) solid var(--borderColor);
-                border-radius: var(--borderRadius);
                 background: var(--background-color);
             }
 
-            .help-option h3 {
-                margin: 0 0 0.5rem 0;
+            .help-section h3 {
+                margin: 0 0 0.75rem 0;
                 color: var(--text-color);
-                font-size: 1.125rem;
+                font-size: 1.25rem;
+                font-weight: 600;
+                font-family: var(--font-family-monospace);
             }
 
-            .help-option p {
+            .help-section p {
                 margin: 0 0 1rem 0;
                 color: var(--alt-text-color);
                 line-height: 1.5;
+                font-family: var(--font-family-monospace);
+                font-weight: 400; /* Regular weight */
+            }
+            
+            .help-section p:last-child {
+                margin-bottom: 0;
             }
 
-            .help-option ul {
-                margin: 0;
+            .help-section ul {
+                margin: 0.5rem 0;
                 padding-left: 1.5rem;
                 color: var(--text-color);
+                font-family: var(--font-family-monospace);
+                font-weight: 400;
             }
 
-            .help-option li {
-                margin-bottom: 0.5rem;
+            .help-section li {
+                margin-bottom: 0.75rem;
                 line-height: 1.4;
+                font-family: var(--font-family-monospace);
+                font-weight: 400;
+            }
+            
+            .help-section li:last-child {
+                margin-bottom: 0;
             }
 
-            .help-option strong {
+            .help-section strong {
                 color: var(--primary);
+                font-weight: 600;
+            }
+
+            /* Receipt-like dashed separator */
+            .receipt-separator {
+                width: 100%;
+                height: 1px;
+                border-bottom: 2px dashed var(--borderColor);
+                margin: 0.5rem 0;
+                opacity: 0.7;
+            }
+            
+            /* Separator class for consistency with other components */
+            .separator {
+                width: 100%;
+                height: 1px;
+                border-bottom: 2px dashed var(--borderColor);
+                margin: 0.5rem 0;
+                opacity: 0.7;
+            }
+            
+            /* Terms of service styling */
+            .terms-content {
+                padding-top: 0.5rem;
+            }
+            
+            .terms-content ol {
+                margin-top: 1rem;
+                padding-left: 2rem;
+                counter-reset: terms-counter;
+            }
+            
+            .terms-content li {
+                margin-bottom: 1rem;
+                text-align: justify;
+                list-style-position: outside;
+            }
+            
+            .terms-content a {
+                color: var(--primary);
+                text-decoration: underline;
+                transition: color 0.2s;
+            }
+            
+            .terms-content a:hover {
+                color: var(--dark);
+            }
+            
+            /* Button container */
+            .help-buttons {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.75rem;
+                margin-top: 1rem;
             }
 
             .help-action-btn {
@@ -419,6 +532,7 @@ function addTourHTML() {
                 font-weight: 600;
                 font-family: var(--font-family-monospace);
                 transition: background 0.2s;
+                white-space: nowrap;
             }
 
             .help-action-btn:hover {
@@ -427,7 +541,6 @@ function addTourHTML() {
             
             .help-action-btn.secondary {
                 background: var(--darkGray);
-                margin-left: 10px;
             }
             
             .help-action-btn.secondary:hover {
@@ -490,7 +603,7 @@ function cleanupLeftoverTourElements() {
     });
 }
 
-// Setup click handler for help button to directly start the guided tour
+// Setup click handler for help button to show the help panel instead of directly starting the tour
 document.addEventListener('DOMContentLoaded', function() {
     const helpButton = document.getElementById('show-help-panel');
     
@@ -499,9 +612,9 @@ document.addEventListener('DOMContentLoaded', function() {
             // First clean up any leftover tour elements from previous sessions
             cleanupLeftoverTourElements();
             
-            // Then start the guided tour
+            // Now show the help panel instead of starting the tour directly
             setTimeout(() => {
-                startGuidedTour();
+                showHelpPanel();
             }, 100);
         });
     }
@@ -526,7 +639,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Export functions for global access
 window.HelpInfoPanel = {
     initialize: initializeHelpPanel,
-    show: startGuidedTour, // Changed to directly start the tour instead of showing the panel
+    show: showHelpPanel, // Changed to show the help panel instead of directly starting the tour
     hide: hideHelpPanel,
     startTour: startGuidedTour,
     resetFirstVisitTour: function() {

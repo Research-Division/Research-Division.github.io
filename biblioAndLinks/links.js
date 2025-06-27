@@ -136,7 +136,7 @@ export const LINKS = {
         date_updated: '2025-04-30'
     },
     censusTrade: { 
-        link:'https://www.usatrade.census.gov',
+        link:'https://usatrade.census.gov/',
         misc: "",
         affiliations:['census'],
         category:'dataSource',
@@ -192,7 +192,7 @@ export const LINKS = {
         site_description: 'Country Converter Python Package Homepage and Documentation',
         description: 'The country converter coco - a Python package for converting country names between different classifications schemes', 
         version: '1.3',
-        licesne: 'GNU General Public Liscense v3.0 (GPLv3', 
+        licesne: 'GNU General Public Liscense v3.0 (GPLv3)', 
         author: 'Konstantin Stadler',
         contact:{
             email: 'konstantin.stadler@ntnu.no'
