@@ -164,11 +164,11 @@ function addTourHTML() {
         <div class="tour-tooltip" id="tourTooltip" role="dialog" aria-labelledby="tooltipTitle" aria-describedby="tooltipContent">
             <div class="tooltip-header">
                 <h3 class="tooltip-title" id="tooltipTitle">Welcome to Sparks Graph</h3>
-                <button class="close-button" id="closeBtn" aria-label="Close tour">×</button>
+                <button class="close-button" id="closeBtn" aria-label="Skip tour">SKIP TOUR</button>
             </div>
             <div class="tooltip-content" id="tooltipContent">
                 Let's take a quick tour of the key features in this application.
-                <p class="keyboard-hint">Use arrow keys (←→) to navigate or Esc to close</p>
+                <p class="keyboard-hint">Use arrow keys (←→) to navigate. <strong>Press Esc or click <span style="color: var(--excellenceOrange); text-decoration: underline; font-weight: bold;">SKIP TOUR</span> to exit the tour at any time.</strong></p>
             </div>
             <div class="tooltip-navigation">
                 <button class="nav-button" id="prevBtn" disabled aria-label="Previous step"><u>Previous</u></button>
@@ -216,8 +216,8 @@ function addTourHTML() {
                 border: var(--borderWidth) solid var(--borderColor);
                 box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
                 padding: 30px;
-                max-width: 550px;
-                min-width: 450px;
+                max-width: 600px;
+                min-width: 500px;
                 z-index: 1001;
                 opacity: 0;
                 transform: translateY(10px);
@@ -235,8 +235,9 @@ function addTourHTML() {
             .tooltip-header {
                 display: flex;
                 justify-content: space-between;
-                align-items: flex-start;
+                align-items: center;
                 margin-bottom: 16px;
+                flex-wrap: nowrap;
             }
 
             .tooltip-title {
@@ -244,26 +245,29 @@ function addTourHTML() {
                 font-size: 1.125rem;
                 color: var(--text-color);
                 margin: 0;
+                max-width: 75%;
+                padding-right: 15px;
             }
 
             .close-button {
-                background: none;
+                background: transparent;
                 border: none;
-                font-size: 24px;
+                font-size: 15px;
+                font-weight: bold;
                 cursor: pointer;
-                color: var(--text-color);
-                padding: 0;
-                width: 24px;
-                height: 24px;
+                color: var(--excellenceOrange);
+                padding: 4px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                border-radius: 4px;
-                transition: background 0.2s;
+                transition: all 0.2s;
+                letter-spacing: 0.5px;
+                text-decoration: none;
             }
 
             .close-button:hover {
-                background: var(--background-color3);
+                text-decoration: underline;
+                transform: scale(1.08);
             }
 
             .tooltip-content {
@@ -464,7 +468,8 @@ function cleanupLeftoverTourElements() {
         'tour-a11y-announcer',
         'tour-styles',
         'tour-completion-message',
-        'highlightRing'
+        'highlightRing',
+        'pulse-animation-style'
     ];
     
     elementsToCheck.forEach(id => {
@@ -539,9 +544,62 @@ class SparksGuidedTourV2 {
             {
                 target: null,
                 title: 'Explore the Price Effects of Tariffs  ',
-                content: 'This application helps users understand how tariffs on imports might affect consumer prices in the U.S. economy. It combines trade, tariff, and production data to show both direct and indirect effects—meaning not just what you pay at the store, but how higher input costs ripple through supply chains. This short walkthrough explains how the tool works at a glance.\n\nUse the left and right arrow keys to navigate',
+                content: 'This application helps users understand how tariffs on imports might affect consumer prices in the U.S. economy. It combines trade, tariff, and production data to show both direct and indirect effects—meaning not just what you pay at the store, but how higher input costs ripple through supply chains. This short walkthrough explains how the tool works at a glance.\n\nUse the left and right arrow keys to navigate through the tour.\n\n<strong>To skip the tour at any time, press the Escape key or click <span style="color: var(--excellenceOrange); text-decoration: underline; font-weight: bold;">SKIP TOUR</span> in the upper right corner.</strong>',
                 position: 'center',
-                isIntro: true
+                isIntro: true,
+                beforeStep: function() {
+                    // Make the close button pulse to draw attention to it
+                    const closeBtn = document.getElementById('closeBtn');
+                    if (closeBtn) {
+                        // Add a pulsing animation to the close button
+                        closeBtn.style.animation = 'pulse-attention 1.5s infinite';
+                        
+                        // Add the animation style if it doesn't exist
+                        if (!document.getElementById('pulse-animation-style')) {
+                            const style = document.createElement('style');
+                            style.id = 'pulse-animation-style';
+                            style.textContent = `
+                                @keyframes pulse-attention {
+                                    0%, 100% { transform: scale(1); }
+                                    50% { transform: scale(1.15); }
+                                }
+                            `;
+                            document.head.appendChild(style);
+                        }
+                        
+                        // Remove the animation when any interaction happens on the first slide
+                        setTimeout(() => {
+                            // Helper function to remove the animation
+                            const removeAnimation = function() {
+                                if (closeBtn) {
+                                    closeBtn.style.animation = '';
+                                    // Add an underline after animation stops
+                                    closeBtn.style.textDecoration = 'underline';
+                                }
+                                
+                                // Remove all these event listeners
+                                nextBtn.removeEventListener('click', removeAnimation);
+                                document.removeEventListener('keydown', keyHandler);
+                            };
+                            
+                            // Function to handle keyboard events
+                            const keyHandler = function(e) {
+                                if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || 
+                                    e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                                    removeAnimation();
+                                }
+                            };
+                            
+                            // Add event listeners
+                            const nextBtn = document.getElementById('nextBtn');
+                            if (nextBtn) {
+                                nextBtn.addEventListener('click', removeAnimation);
+                                // Also listen for keyboard navigation
+                                document.addEventListener('keydown', keyHandler);
+                            }
+                        }, 100);
+                    }
+                }
             },
             {
                 target: null,
@@ -651,7 +709,7 @@ class SparksGuidedTourV2 {
                 target: '#btn-country-list',
                 title: 'Select Country Button',
                 content: '<p>Click here to choose specific countries for tariff analysis. This opens a country selection modal where you can pick a country, continent, or sets of countries, and then select different products to raise tariff rates on.</p> <p> The inputs here are Tariff Changes: indicating percentage point increases in tariff rates. For example, inputting 10% would not yield a 10% increase in the tariff rate, but would increase tariffs from, for example, 25% to 35%. </p>',
-                position: 'top'
+                position: 'bottom'
             },
             {
                 target: '#btn-global-list',
@@ -719,7 +777,7 @@ class SparksGuidedTourV2 {
             {
                 target: null,
                 title: 'Consistent Interface Elements',
-                content: '<p>Look for these consistent elements throughout the application:</p><ul><li>Chevron icons <img src="assets/fontawesome/chevron-down-solid.svg" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> indicate expandable information or dropdowns</li><li><span style="color: var(--excellenceOrange);">Orange</span>/<span style="color: var(--primary);">blue</span> text near icons indicates clickable elements or dropdowns</li><li>Chart icons <img src="assets/fontawesome/chart-line-solid.svg" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> show that charts are available for that item</li><li>Press the Escape key to close any modal</li><li>If a tariff calculation seems incorrect, try refreshing the page or check the trade data explorer for that country to verify expected effects</li></ul>',
+                content: '<p>Look for these consistent elements throughout the application:</p><ul><li>Chevron icons <img src="assets/fontawesome/chevron-down-solid.svg" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> indicate expandable information or dropdowns</li><li><span style="color: var(--excellenceOrange); font-weight: bold;">Orange</span>/<span style="color: var(--primary); font-weight: bold;">blue</span> text near icons indicates clickable elements or dropdowns</li><li>Chart icons <img src="assets/fontawesome/chart-line-solid.svg" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> show that charts are available for that item</li><li>Press the Escape key to close any modal</li><li>If a tariff calculation seems incorrect, try refreshing the page or check the trade data explorer for that country to verify expected effects</li></ul>',
                 position: 'center',
                 isIntro: true
             }
@@ -757,6 +815,10 @@ class SparksGuidedTourV2 {
         document.addEventListener('keydown', (e) => {
             // ESC key to close tour
             if (e.key === 'Escape') {
+                // Clear any animations before closing
+                const closeBtn = document.getElementById('closeBtn');
+                if (closeBtn) closeBtn.style.animation = '';
+                
                 this.closeTour();
             }
             // Right arrow or down arrow for next step
@@ -1050,7 +1112,7 @@ class SparksGuidedTourV2 {
         console.log(`Showing step ${stepIndex + 1}/${this.tourSteps.length}:`, step.title, step.target);
         
         // For step 16 (country entry row), expand it BEFORE highlighting
-        if (stepIndex === 16) {
+        if (stepIndex === 15) {
             console.log('Preparing to show country entry row step...');
             
             // Find and expand EXAMPLE 1 details BEFORE highlighting
@@ -1320,6 +1382,16 @@ class SparksGuidedTourV2 {
         this.overlay.classList.remove('active');
         this.highlightRing.style.opacity = '0';
         
+        // Clean up any animations on the close button
+        const closeBtn = document.getElementById('closeBtn');
+        if (closeBtn) closeBtn.style.animation = '';
+        
+        // Remove animation style if it exists
+        const animStyle = document.getElementById('pulse-animation-style');
+        if (animStyle && animStyle.parentNode) {
+            animStyle.parentNode.removeChild(animStyle);
+        }
+        
         // Close any open popups when closing the tour
         if (window.map && typeof window.map.closePopup === 'function') {
             window.map.closePopup();
@@ -1352,7 +1424,8 @@ class SparksGuidedTourV2 {
             'tourOverlay',
             'tourTooltip',
             'tour-a11y-announcer',
-            'tour-styles'
+            'tour-styles',
+            'pulse-animation-style'
         ];
         
         elementsToRemove.forEach(id => {
