@@ -180,15 +180,21 @@ class TreemapRenderer {
         tooltipContainer = document.createElement('div');
         tooltipContainer.id = 'treemap-tooltip-container';
         tooltipContainer.className = 'treemap-tooltip-container';
-        tooltipContainer.style.position = 'absolute';
+        // Position the tooltip with fixed position for highest stacking
+        tooltipContainer.style.position = 'fixed';  // Changed from absolute to fixed
         tooltipContainer.style.pointerEvents = 'none';
-        tooltipContainer.style.zIndex = '9999999';
+        tooltipContainer.style.zIndex = '2147483647';  // Maximum z-index value (2^31 - 1)
         tooltipContainer.style.visibility = 'hidden';
         tooltipContainer.style.backgroundColor = 'white';
         tooltipContainer.style.padding = '8px 12px';
         tooltipContainer.style.border = '1px solid #ddd';
         tooltipContainer.style.borderRadius = '4px';
-        tooltipContainer.style.boxShadow = '0 1px 3px rgba(0,0,0,0.1)';
+        tooltipContainer.style.boxShadow = '0 2px 8px rgba(0,0,0,0.2)';
+        // Remove existing tooltip container if it exists (prevent duplicates)
+        const existingTooltip = document.getElementById('treemap-tooltip-container');
+        if (existingTooltip) {
+          document.body.removeChild(existingTooltip);
+        }
         // Add directly to body instead of the container
         document.body.appendChild(tooltipContainer);
       }
@@ -676,18 +682,20 @@ class TreemapRenderer {
           `;
           
           // Set tooltip styling with dark mode support and translucent effect
-          tooltip.style.position = 'absolute';
-          tooltip.style.zIndex = '1000';
+          tooltip.style.position = 'fixed'; // Changed from absolute to fixed
+          tooltip.style.zIndex = '2147483647'; // Maximum z-index (same as container)
           tooltip.style.backgroundColor = 'var(--background-color, white)';
           tooltip.style.color = 'var(--text-color, black)';
           tooltip.style.padding = '8px 12px';
           tooltip.style.border = '1px solid var(--borderColor, #ddd)';
           tooltip.style.borderRadius = 'var(--borderRadius, 4px)';
-          tooltip.style.boxShadow = '0 2px 5px rgba(0,0,0,0.25)';
-          tooltip.style.opacity = '0.9'; // Translucent effect
-          tooltip.style.transition = 'opacity 0.2s ease';
+          tooltip.style.boxShadow = '0 2px 8px rgba(0,0,0,0.3)'; // Stronger shadow
+          tooltip.style.opacity = '0.98'; // Less translucent for better visibility
+          tooltip.style.transition = 'opacity 0.15s ease';
           tooltip.style.fontFamily = 'var(--font-family-monospace, monospace)';
           tooltip.style.pointerEvents = 'none';
+          // Force tooltip to render at the highest level
+          tooltip.style.isolation = 'isolate';
           
           // Show tooltip
           tooltip.style.visibility = 'visible';
@@ -728,20 +736,21 @@ class TreemapRenderer {
   _positionTooltip(tooltip, event) {
     if (!tooltip) return;
     
-    // Get the container's position
-    const containerRect = this.container.getBoundingClientRect();
-    
-    // Calculate position relative to the page, not the viewport
-    const pageX = event.pageX || (event.clientX + window.scrollX);
-    const pageY = event.pageY || (event.clientY + window.scrollY);
+    // For fixed positioning, we only need client coordinates (viewport-relative)
+    // This works better with our fixed positioning and ensures tooltips appear on top
     
     // Calculate offset from mouse position
     const offsetX = 15;
     const offsetY = 15;
     
-    // Position tooltip relative to the page
-    tooltip.style.left = `${pageX + offsetX}px`;
-    tooltip.style.top = `${pageY + offsetY}px`;
+    // Position tooltip relative to the viewport (for fixed positioning)
+    tooltip.style.left = `${event.clientX + offsetX}px`;
+    tooltip.style.top = `${event.clientY + offsetY}px`;
+    
+    // Force tooltip to be visible - use a small delay to ensure styles are applied
+    setTimeout(() => {
+      tooltip.style.visibility = 'visible';
+    }, 0);
     
     // Ensure tooltip is within viewport
     const tooltipRect = tooltip.getBoundingClientRect();
@@ -750,12 +759,12 @@ class TreemapRenderer {
     
     // If tooltip goes beyond right edge, flip to left of cursor
     if (tooltipRect.right > viewportWidth) {
-      tooltip.style.left = `${pageX - tooltipRect.width - offsetX}px`;
+      tooltip.style.left = `${event.clientX - tooltipRect.width - offsetX}px`;
     }
     
     // If tooltip goes beyond bottom edge, flip to above cursor
     if (tooltipRect.bottom > viewportHeight) {
-      tooltip.style.top = `${pageY - tooltipRect.height - offsetY}px`;
+      tooltip.style.top = `${event.clientY - tooltipRect.height - offsetY}px`;
     }
   }
   
