@@ -462,7 +462,7 @@ body.dark_theme .panel-close-button:hover img {
 
 /* Common dropdown display elements */
 .year-display, .metric-display, .country-count-display, .sector-group-display, .narrative-sector-group-display, .hs-section-display, .trade-type-display {
-    color: var(--orange1);
+    color: var(--excellenceOrange);
     font-weight: bold;
     cursor: pointer;
     display: inline-block;

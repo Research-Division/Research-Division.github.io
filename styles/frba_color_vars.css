@@ -1,7 +1,7 @@
 :root{
     /*OLD PALETTE*/
     /*PRIMARY - FED BLUE*/
-    --primary: #0060A0;
+    --primaryBlue: #0060A0;
     --secondary: #8FAFCE;
     --dark: #01486D; 
 
@@ -13,7 +13,7 @@
     --shamrockGreen: #00A871;
     --limeGreen:#6FA200;
     --gold: #FFC400;
-    --excellenceOrange: #ED690E;
+    --excellenceOrange_old: #ED690E;
 
     /*NEUTRALS*/
     --charcoal: #1A1A1A;

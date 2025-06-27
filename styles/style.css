@@ -1,5 +1,7 @@
 /* Global Variables for standard (light) and dark modes. */
 :root{
+    --primary: var(--primaryBlue);
+    --excellenceOrange: var(--atlOrange700);
     --background-color: var(--marbleColumn); /* Dark mode:#2b2b2b*/
     --background-color2: var(--medGray); /* Dark mode: #1c1c1c*/
     --background-color3: var(--lightGray); 
@@ -34,6 +36,8 @@
     --scrollbar-thumb-hover: var(--darkGray);
 }
 .dark_theme{
+    --primary: var(--atlBlue400);
+    --excellenceOrange: var(--atlOrange400);
     --background-color: #2b2b2b;
     --background-color2: #1c1c1c; 
     --background-color3: #444; 
