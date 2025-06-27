@@ -182,7 +182,7 @@ class TreemapRenderer {
         tooltipContainer.className = 'treemap-tooltip-container';
         tooltipContainer.style.position = 'absolute';
         tooltipContainer.style.pointerEvents = 'none';
-        tooltipContainer.style.zIndex = '1000';
+        tooltipContainer.style.zIndex = '9999999';
         tooltipContainer.style.visibility = 'hidden';
         tooltipContainer.style.backgroundColor = 'white';
         tooltipContainer.style.padding = '8px 12px';
