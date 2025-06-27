@@ -6,6 +6,7 @@
  * propagation of changes.
  */
 
+
 // Create a namespace for the module
 var ProductTariffModal = (function() {
     // Module state
