@@ -35,7 +35,7 @@
 }
 
 .modal-header h2 {
-    font-size: 1.5rem;
+    font-size: 1.35rem;
     margin: 0;
     font-weight: 600;
     color: var(--text-color);
@@ -425,7 +425,7 @@ body.dark_theme .next-button{
     flex-grow: 1;
     font-weight: bold;
     margin-left: 5px;
-    font-size: 1.05em;
+    font-size: 0.95em;
     font-family: var(--font-family-monospace);
 }
 /* Dropdown triangles and icons for continent and product lists */
@@ -461,13 +461,13 @@ body.dark_theme .next-button{
 .country-item label{
     margin-left: 8px;
     cursor: pointer; 
-    font-size: 1em;
+    font-size: 0.9em;
     font-family: var(--font-family-monospace);
 }
 .country-item input[type="checkbox"], 
 .continent-header input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     cursor: pointer;
     accent-color: var(--borderColor);
 }
@@ -479,6 +479,13 @@ body.dark_theme .next-button{
     border: 1px solid var(--background-color);
     padding: 5px;
     margin: 4px 0;
+}
+
+/* Enhanced tariff badge styling */
+.tariff-badge {
+    font-weight: normal !important;
+    font-style: italic !important;
+    margin-left: 15px !important;
 }
 
   /* Header for each node */

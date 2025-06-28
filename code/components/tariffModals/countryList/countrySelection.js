@@ -54,12 +54,12 @@ var CountrySelectionModal = (function() {
                             <p>
                                 <strong>How to use this page:</strong>
                             </p>
-                            <ol style="text-align: left; margin-top: 5px; padding-left: 20px;">
-                                <li>Click the <img src="assets/fontawesome/chevron-right-solid.svg" alt="Expand" style="width: 14px; height: 14px; vertical-align: middle;"> next to a continent to see its <span class="primary-text">countries</span></li>
+                            <ol style="text-align: left; margin-top: 5px; padding-left: 20px; font-size: 0.9em;">
+                                <li>Click the <img src="assets/fontawesome/chevron-right-solid.svg" alt="Expand" style="width: 12px; height: 12px; vertical-align: middle;"> next to a continent to see its <span class="primary-text">countries</span></li>
                                 <li><span class="primary-text">Select one or more countries</span> by checking the boxes</li>
                                 <li>Click the <span class="primary-text">"Continue to Tariff Selection"</span> button when done</li>
                             </ol>
-                            <p style="margin-top: 5px; font-size: 0.9em;">
+                            <p style="margin-top: 5px; font-size: 0.8em;">
                                 <em>Tip: Check a continent box to select all countries in that continent</em>
                             </p>
                             <div class="separator"></div>
@@ -73,7 +73,7 @@ var CountrySelectionModal = (function() {
                             </div>
                             
                             <!-- Selected countries counter -->
-                            <div id="selected-counter" style="text-align: center; margin: 10px 0; font-weight: bold;">
+                            <div id="selected-counter" style="text-align: center; margin: 10px 0; font-weight: bold; font-size: 0.9em;">
                                 0 countries selected
                             </div>
                             
@@ -82,7 +82,7 @@ var CountrySelectionModal = (function() {
                         </div>
                         <div class="modal-footer" style="position: sticky; bottom: 0; background-color: var(--background-color); padding-top: 20px; z-index: 100; border-top: 2px dashed var(--borderColor); margin-top: 10px;">
                             <div style="display: flex; justify-content: flex-end;">
-                                <button id="continue-to-tariff" class="receipt-btn" style="font-size: 1.05em; padding: 10px 20px;">
+                                <button id="continue-to-tariff" class="receipt-btn" style="font-size: 0.95em; padding: 10px 20px;">
                                     Continue to Tariff Selection
                                 </button>
                             </div>

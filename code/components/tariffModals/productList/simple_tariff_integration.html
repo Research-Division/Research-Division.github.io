@@ -220,8 +220,13 @@
     .tariff-badge {
       background-color: #fff3e0;
       color: #e65100;
-      font-weight: bold;
+      font-weight: normal;
       border: 1px solid #ffe0b2;
+      font-size: 0.9em;
+      font-style: italic;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-left: 15px;
     }
     
     /* Hierarchical structure styling */
@@ -300,25 +305,25 @@
     <div class="modal-content">
       <button class="modal-close" onclick="closeModal('modal-product-list')">✖</button>
       <div class="modal-header">
-        <h2>Country Product Level Tariff</h2>
+        <h2 style="font-size: 1.35rem;">Country Product Level Tariff</h2>
         <div class="separator"></div>
         <p>
           <strong>How to change tariffs:</strong>
         </p>
         <div style="margin: 10px 0 15px 0;">
-          <p style="margin-bottom: 10px;"><strong>Option 1: <span class="primary-text">Change tariffs on ALL industries</span></strong></p>
-          <ol style="text-align: left; margin-left: 20px; margin-bottom: 15px;">
+          <p style="margin-bottom: 10px; font-size: 0.95em;"><strong>Option 1: <span class="primary-text">Change tariffs on ALL industries</span></strong></p>
+          <ol style="text-align: left; margin-left: 20px; margin-bottom: 15px; font-size: 0.9em;">
             <li>Enter a value in the <span class="primary-text">"Additional Tariffs"</span> box: this is the amount the tariff rate will increase for all goods from their baseline 2021 statutory rates.</li>
             <li>Enter an expected <span class="primary-text">"Pass-through Rate"</span> (Standard rate is 100%)</li>
           </ol>
 
-          <p style="margin-bottom: 10px;"><strong>Option 2: <span class="primary-text">Change tariffs on SPECIFIC industries</span></strong></p>
-          <ol style="text-align: left; margin-left: 20px;">
-            <li>Click the <img src="assets/fontawesome/chevron-right-solid.svg" alt="Expand" style="width: 14px; height: 14px; vertical-align: middle;"> next to an industry to see more options</li>
+          <p style="margin-bottom: 10px; font-size: 0.95em;"><strong>Option 2: <span class="primary-text">Change tariffs on SPECIFIC industries</span></strong></p>
+          <ol style="text-align: left; margin-left: 20px; font-size: 0.9em;">
+            <li>Click the <img src="assets/fontawesome/chevron-right-solid.svg" alt="Expand" style="width: 12px; height: 12px; vertical-align: middle;"> next to an industry to see more options</li>
             <li>Enter <span class="primary-text">tariff percentages</span> for the industries you want to change</li>
           </ol>
         </div>
-        <p style="margin-top: 10px; font-size: 0.9em;">
+        <p style="margin-top: 10px; font-size: 0.8em;">
           <em>Tip: Click "Submit Tariff" at the bottom when you're done to see the price effects</em>
         </p>
         
@@ -326,10 +331,10 @@
       </div>
       <div class="modal-body">
         <div id="tariff-all-goods">
-            <div style="text-align: center; font-weight: bold; margin-bottom: 10px;">
+            <div style="text-align: center; font-weight: bold; margin-bottom: 10px; font-size: 0.95em;">
                 TARIFFS ON ALL INDUSTRIES
             </div>
-            <label for="tariff-all-input">Additional Tariffs:</label>
+            <label for="tariff-all-input" style="font-size: 0.9em;">Additional Tariffs:</label>
             <div class="popup-row">
               <div class="input-group">
                 <input 
@@ -344,7 +349,7 @@
                 <span class="percent-symbol">%</span>
               </div>
             </div>
-            <label for="tariff-all-passthrough">Pass-through Rate:</label>
+            <label for="tariff-all-passthrough" style="font-size: 0.9em;">Pass-through Rate:</label>
             <div class="popup-row">
               <div class="input-group">
                 <input 
@@ -361,14 +366,14 @@
             </div>
             <div class="separator"></div>
         </div>
-        <div style="text-align: center; font-weight: bold; margin-bottom: 10px;">
+        <div style="text-align: center; font-weight: bold; margin-bottom: 10px; font-size: 0.95em;">
             TARIFFS ON SPECIFIC INDUSTRIES
         </div>
         <div id="tariff-tree"></div>
       </div>
       <div class="modal-footer" style="position: sticky; bottom: 0; background-color: var(--background-color); padding-top: 20px; z-index: 100; border-top: 2px dashed var(--borderColor); margin-top: 10px;">
         <div style="display: flex; justify-content: flex-end;">
-          <button id="tariffSubmit" class="receipt-btn">Submit Tariff</button>
+          <button id="tariffSubmit" class="receipt-btn" style="font-size: 0.95em;">Submit Tariff</button>
         </div>
       </div>
     </div>

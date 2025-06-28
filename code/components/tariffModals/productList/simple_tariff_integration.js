@@ -311,17 +311,13 @@ function buildHierarchicalView() {
     // Create section header with indicators
     const titleDiv = document.createElement('div');
     titleDiv.className = 'item-title';
+    titleDiv.style.fontSize = '0.9em';
     
-    // Create indicator badge for directly set vs calculated
-    const indicatorBadge = isDirectlySet ? 
-      '<span class="direct-badge">Direct</span>' : 
-      (sectionTariff > 0 ? '<span class="calculated-badge">Calculated</span>' : '');
-    
+    // Show "Effective Tariff - X.XX%" in the tariff badge
     titleDiv.innerHTML = `
-      <span class="toggle-icon"><img src="assets/fontawesome/chevron-right-solid.svg" alt="Expand" class="toggle-icon-img"></span> 
+      <span class="toggle-icon"><img src="assets/fontawesome/chevron-right-solid.svg" alt="Expand" class="toggle-icon-img" style="width: 12px; height: 12px;"></span> 
       <strong>Section ${sectionId}:</strong> ${section.title}
-      ${sectionTariff > 0 ? `<span class="tariff-badge">${sectionTariff.toFixed(2)}%</span>` : ''}
-      ${indicatorBadge}
+      ${sectionTariff > 0 ? `<span class="tariff-badge">Effective Tariff - ${sectionTariff.toFixed(2)}%</span>` : ''}
     `;
     
     // Add section header to section item
@@ -353,20 +349,16 @@ function buildHierarchicalView() {
       // Create chapter header with indicators
       const chapterTitleDiv = document.createElement('div');
       chapterTitleDiv.className = 'item-title';
+      chapterTitleDiv.style.fontSize = '0.9em';
       
       // Zero-pad chapter ID to ensure it has at least 2 digits
       const paddedChapterId = chapterId.padStart(2, '0');
       
-      // Create indicator badge for directly set vs calculated
-      const chapterIndicatorBadge = isChapterDirectlySet ? 
-        '<span class="direct-badge">Direct</span>' : 
-        (chapterTariff > 0 ? '<span class="calculated-badge">Calculated</span>' : '');
-      
+      // Show "Effective Tariff - X.XX%" in the tariff badge
       chapterTitleDiv.innerHTML = `
-        <span class="toggle-icon"><img src="assets/fontawesome/chevron-right-solid.svg" alt="Expand" class="toggle-icon-img"></span> 
+        <span class="toggle-icon"><img src="assets/fontawesome/chevron-right-solid.svg" alt="Expand" class="toggle-icon-img" style="width: 12px; height: 12px;"></span> 
         <strong>Chapter ${paddedChapterId}:</strong> ${chapter.short || chapter.title}
-        ${chapterTariff > 0 ? `<span class="tariff-badge">${chapterTariff.toFixed(2)}%</span>` : ''}
-        ${chapterIndicatorBadge}
+        ${chapterTariff > 0 ? `<span class="tariff-badge">Effective Tariff - ${chapterTariff.toFixed(2)}%</span>` : ''}
       `;
       
       // Add chapter header to chapter item
@@ -399,6 +391,7 @@ function buildHierarchicalView() {
           // Create HS4 header with indicators
           const hs4TitleDiv = document.createElement('div');
           hs4TitleDiv.className = 'item-title';
+          hs4TitleDiv.style.fontSize = '0.9em';
           
           // Create the description with name property
           let description = hs4.description || '';
@@ -410,15 +403,10 @@ function buildHierarchicalView() {
           // Zero-pad HS4 code to ensure it has 4 digits
           const paddedHs4Code = hs4Code.padStart(4, '0');
           
-          // Create indicator badge for directly set vs calculated
-          const hs4IndicatorBadge = isHs4DirectlySet ? 
-            '<span class="direct-badge">Direct</span>' : 
-            (hs4Tariff > 0 ? '<span class="calculated-badge">Calculated</span>' : '');
-          
+          // Show "Effective Tariff - X.XX%" in the tariff badge
           hs4TitleDiv.innerHTML = `
             <strong>${paddedHs4Code}:</strong> ${description}${nameText}
-            ${hs4Tariff > 0 ? `<span class="tariff-badge">${hs4Tariff.toFixed(2)}%</span>` : ''}
-            ${hs4IndicatorBadge}
+            ${hs4Tariff > 0 ? `<span class="tariff-badge">Effective Tariff - ${hs4Tariff.toFixed(2)}%</span>` : ''}
           `;
           
           // Add HS4 header to HS4 item
@@ -496,6 +484,7 @@ function createTariffContainer(nodeId) {
     const originalTariffLabel = document.createElement('label');
     originalTariffLabel.setAttribute('for', 'originalTariffInput_' + nodeId);
     originalTariffLabel.textContent = "Original Tariff:";
+    originalTariffLabel.style.fontSize = '0.9em';
 
     const originalTariffInputGroup = document.createElement('div');
     originalTariffInputGroup.classList.add('input-group');
@@ -562,6 +551,7 @@ function createTariffContainer(nodeId) {
     const currentTariffLabel = document.createElement('label');
     currentTariffLabel.setAttribute('for', 'currentTariffInput_' + nodeId);
     currentTariffLabel.textContent = "Current Tariff:";
+    currentTariffLabel.style.fontSize = '0.9em';
 
     const currentTariffInputGroup = document.createElement('div');
     currentTariffInputGroup.classList.add('input-group');
@@ -631,6 +621,7 @@ function createTariffContainer(nodeId) {
     const newTariffLabel = document.createElement('label');
     newTariffLabel.setAttribute('for', 'newTariffInput_' + nodeId);
     newTariffLabel.textContent = "Tariff Change:";
+    newTariffLabel.style.fontSize = '0.9em';
 
     const newTariffInputGroup = document.createElement('div');
     newTariffInputGroup.classList.add('input-group');
@@ -733,6 +724,7 @@ function createTariffContainer(nodeId) {
     const passThroughLabel = document.createElement('label');
     passThroughLabel.setAttribute('for', 'passThroughInput_' + nodeId);
     passThroughLabel.textContent = "Pass Through:";
+    passThroughLabel.style.fontSize = '0.9em';
 
     const passThroughInputGroup = document.createElement('div');
     passThroughInputGroup.classList.add('input-group');

@@ -135,7 +135,7 @@ var ProductTariffModal = (function() {
                     <div class="modal-footer solid-bg">`)
                 // Update the footer button style for better visibility
                 .replace('<button id="tariffSubmit" class="receipt-btn">',
-                    '<button id="tariffSubmit" class="receipt-btn" style="font-size: 1.05em; padding: 10px 24px;">');
+                    '<button id="tariffSubmit" class="receipt-btn" style="font-size: 0.95em; padding: 10px 24px;">');
                 
             return modifiedHtml;
         }
@@ -680,17 +680,12 @@ var ProductTariffModal = (function() {
             // Create section header with indicators
             const titleDiv = document.createElement('div');
             titleDiv.className = 'item-title';
-            
-            // Create indicator badge for directly set vs calculated
-            const indicatorBadge = isDirectlySet ? 
-                '<span class="direct-badge">Direct</span>' : 
-                (sectionTariff > 0 ? '<span class="calculated-badge"></span>' : '');
+            titleDiv.style.fontSize = '0.9em';
             
             titleDiv.innerHTML = `
-                <span class="toggle-icon"><img src="assets/fontawesome/chevron-right-solid.svg" alt="Expand" class="toggle-icon-img"></span> 
+                <span class="toggle-icon"><img src="assets/fontawesome/chevron-right-solid.svg" alt="Expand" class="toggle-icon-img" style="width: 12px; height: 12px;"></span> 
                 <strong>Section ${sectionId}:</strong> ${section.title}
-                ${sectionTariff > 0 ? `<span class="tariff-badge">${sectionTariff.toFixed(2)}%</span>` : ''}
-                ${indicatorBadge}
+                ${sectionTariff > 0 ? `<span class="tariff-badge">Effective Tariff - ${sectionTariff.toFixed(2)}%</span>` : ''}
             `;
             
             // Add section header to section item
@@ -722,20 +717,15 @@ var ProductTariffModal = (function() {
                 // Create chapter header with indicators
                 const chapterTitleDiv = document.createElement('div');
                 chapterTitleDiv.className = 'item-title';
+                chapterTitleDiv.style.fontSize = '0.9em';
                 
                 // Zero-pad chapter ID to ensure it has at least 2 digits
                 const paddedChapterId = chapterId.padStart(2, '0');
                 
-                // Create indicator badge for directly set vs calculated
-                const chapterIndicatorBadge = isChapterDirectlySet ? 
-                    '<span class="direct-badge">Direct</span>' : 
-                    (chapterTariff > 0 ? '<span class="calculated-badge">Calculated</span>' : '');
-                
                 chapterTitleDiv.innerHTML = `
-                    <span class="toggle-icon"><img src="assets/fontawesome/chevron-right-solid.svg" alt="Expand" class="toggle-icon-img"></span> 
+                    <span class="toggle-icon"><img src="assets/fontawesome/chevron-right-solid.svg" alt="Expand" class="toggle-icon-img" style="width: 12px; height: 12px;"></span> 
                     <strong>Chapter ${paddedChapterId}:</strong> ${chapter.short || chapter.title}
-                    ${chapterTariff > 0 ? `<span class="tariff-badge">${chapterTariff.toFixed(2)}%</span>` : ''}
-                    ${chapterIndicatorBadge}
+                    ${chapterTariff > 0 ? `<span class="tariff-badge">Effective Tariff - ${chapterTariff.toFixed(2)}%</span>` : ''}
                 `;
                 
                 // Add chapter header to chapter item
@@ -771,6 +761,7 @@ var ProductTariffModal = (function() {
                         // Create HS4 header with indicators
                         const hs4TitleDiv = document.createElement('div');
                         hs4TitleDiv.className = 'item-title';
+                        hs4TitleDiv.style.fontSize = '0.9em';
                         
                         // Create the description with name property
                         let description = hs4.description || '';
@@ -782,15 +773,9 @@ var ProductTariffModal = (function() {
                         // Zero-pad HS4 code to ensure it has 4 digits
                         const paddedHs4Code = hs4Code.padStart(4, '0');
                         
-                        // Create indicator badge for directly set vs calculated
-                        const hs4IndicatorBadge = isHs4DirectlySet ? 
-                            '<span class="direct-badge">Direct</span>' : 
-                            (hs4Tariff > 0 ? '<span class="calculated-badge">Calculated</span>' : '');
-                        
                         hs4TitleDiv.innerHTML = `
                             <strong>${paddedHs4Code}:</strong> ${description}${nameText}
-                            ${hs4Tariff > 0 ? `<span class="tariff-badge">${hs4Tariff.toFixed(2)}%</span>` : ''}
-                            ${hs4IndicatorBadge}
+                            ${hs4Tariff > 0 ? `<span class="tariff-badge">Effective Tariff - ${hs4Tariff.toFixed(2)}%</span>` : ''}
                         `;
                         
                         // Add HS4 header to HS4 item
@@ -868,6 +853,7 @@ var ProductTariffModal = (function() {
             const originalTariffLabel = document.createElement('label');
             originalTariffLabel.setAttribute('for', 'originalTariffInput_' + nodeId);
             originalTariffLabel.textContent = "Original Tariff:";
+            originalTariffLabel.style.fontSize = "0.9em";
             
             const originalTariffInputGroup = document.createElement('div');
             originalTariffInputGroup.classList.add('input-group');
@@ -939,6 +925,7 @@ var ProductTariffModal = (function() {
             const currentTariffLabel = document.createElement('label');
             currentTariffLabel.setAttribute('for', 'currentTariffInput_' + nodeId);
             currentTariffLabel.textContent = "Current Tariff:";
+            currentTariffLabel.style.fontSize = "0.9em";
             
             const currentTariffInputGroup = document.createElement('div');
             currentTariffInputGroup.classList.add('input-group');
@@ -1020,6 +1007,7 @@ var ProductTariffModal = (function() {
             const newTariffLabel = document.createElement('label');
             newTariffLabel.setAttribute('for', 'newTariffInput_' + nodeId);
             newTariffLabel.textContent = "Additional Tariffs:";
+            newTariffLabel.style.fontSize = "0.9em";
             
             const newTariffInputGroup = document.createElement('div');
             newTariffInputGroup.classList.add('input-group');
@@ -1113,6 +1101,7 @@ var ProductTariffModal = (function() {
             const passThroughLabel = document.createElement('label');
             passThroughLabel.setAttribute('for', 'passThroughInput_' + nodeId);
             passThroughLabel.textContent = "Pass Through:";
+            passThroughLabel.style.fontSize = "0.9em";
             
             const passThroughInputGroup = document.createElement('div');
             passThroughInputGroup.classList.add('input-group');
@@ -1453,8 +1442,8 @@ var ProductTariffModal = (function() {
             tariffData.useSectionTariffsFallback = true; // Product tariffs should use section tariffs
             
             // Add debug to trace the call stack for product tariff calculation
-            // console.log('[TARIFF_VECTOR_DEBUG] Generating product tariff calculation, call stack:', 
-            //     new Error('Call stack trace').stack);
+            console.log('[TARIFF_VECTOR_DEBUG] Generating product tariff calculation, call stack:', 
+                new Error('Call stack trace').stack);
             
             // Add pass-through rate to the tariff data
             tariffData.passThroughRate = currentPassThroughRate;
@@ -1583,11 +1572,11 @@ var ProductTariffModal = (function() {
                         tauCForCalculations[countryCode] = percentChangeVector;
                         
                         // Log the 21-item tariff vector for tracking
-                        // console.log('[TARIFF_VECTOR_DEBUG] productTariffBtn created vector:', {
-                        //     countryCode,
-                        //     vector: percentChangeVector,
-                        //     source: 'productTariffModal'
-                        // });
+                        console.log('[TARIFF_VECTOR_DEBUG] productTariffBtn created vector:', {
+                            countryCode,
+                            vector: percentChangeVector,
+                            source: 'productTariffModal'
+                        });
                         
                         //console.log(`Applied import weighting successfully for ${countryCode}`);
                     }
