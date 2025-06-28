@@ -27,10 +27,10 @@
     --font-family-monospace: 'IBM Plex Mono', monospace;
     --font-family-serif: 'IBM Plex Serif', serif;
 
-    --map_flex: 2;
+    --map_flex: 3;
     --receipt_flex: 1;
 
-    --header_size_font: 3rem;
+    --header_size_font: 2rem;
     
     /* Scrollbar Colors - Light Theme */
     --scrollbar-track: var(--background-color);

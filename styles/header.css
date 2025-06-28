@@ -12,8 +12,8 @@
     display: flex;
     width:auto;
     padding-left: 10px;
-    padding-top: 10px;
-    padding-bottom: 5px;
+    padding-top: 2.5px;
+    padding-bottom: 2.5px;
     padding-right: 10px;
 
 
@@ -32,8 +32,8 @@
 .industry-icon,
 .help-info-icon {
     color: var(--marbleColumn);
-    width: 29px;
-    height: 29px;
+    width: 23px;
+    height: 23px;
     cursor: pointer;
     transition: transform 0.2s ease;
 }

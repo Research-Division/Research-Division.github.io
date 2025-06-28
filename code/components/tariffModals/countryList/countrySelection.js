@@ -206,10 +206,15 @@ var CountrySelectionModal = (function() {
             titleSpan.classList.add('title');
             titleSpan.textContent = continent;
             
+            // Create unique ID for the continent checkbox
+            const continentCheckboxId = `continent-checkbox-${continent.replace(/\s+/g, '-').toLowerCase()}`;
+            
             const continentCheckbox = document.createElement('input');
             continentCheckbox.type = 'checkbox';
             continentCheckbox.classList.add('continent-select');
             continentCheckbox.style.marginRight = '25px'; // Add right margin to prevent being cut off
+            continentCheckbox.id = continentCheckboxId; // Set ID for label association
+            continentCheckbox.setAttribute('aria-label', `Select all countries in ${continent}`);
             continentCheckbox.addEventListener('click', function(e) {
                 e.stopPropagation();
                 
@@ -247,6 +252,23 @@ var CountrySelectionModal = (function() {
             const checkboxContainer = document.createElement('div');
             checkboxContainer.style.marginLeft = 'auto'; // Push to the right
             checkboxContainer.style.marginRight = '15px'; // Space from the right edge
+            
+            // Create label for the checkbox (visually hidden but available for screen readers)
+            const continentLabel = document.createElement('label');
+            continentLabel.setAttribute('for', continentCheckboxId);
+            continentLabel.textContent = `Select all countries in ${continent}`;
+            continentLabel.className = 'visually-hidden';
+            continentLabel.style.position = 'absolute';
+            continentLabel.style.width = '1px';
+            continentLabel.style.height = '1px';
+            continentLabel.style.padding = '0';
+            continentLabel.style.margin = '-1px';
+            continentLabel.style.overflow = 'hidden';
+            continentLabel.style.clip = 'rect(0, 0, 0, 0)';
+            continentLabel.style.whiteSpace = 'nowrap';
+            continentLabel.style.border = '0';
+            
+            checkboxContainer.appendChild(continentLabel);
             checkboxContainer.appendChild(continentCheckbox);
             header.appendChild(checkboxContainer);
             
