@@ -84,14 +84,15 @@
     color: var(--text-color);
     border: 1px solid var(--borderColor);
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
     font-size: 0.95em;
     width: 100%;
     font-family: var(--font-family-monospace);
 }
 
 #tariffSubmit:hover, .btn-product:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: var(--primary);
+    color: var(--btn_text_color, white);
 }
 
 /* Disabled button styling */
@@ -110,6 +111,7 @@
 .btn-product.btn-disabled:hover,
 .btn-product[disabled]:hover {
     background-color: var(--lightGray, #ccc);
+    color: var(--darkGray, #777); /* Keep text color consistent with disabled state */
 }
 
 .popup-buttons .separator {
