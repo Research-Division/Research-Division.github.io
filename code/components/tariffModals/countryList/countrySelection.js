@@ -80,8 +80,8 @@ var CountrySelectionModal = (function() {
                             <!-- This is where the collapsible country list will be injected -->
                             <div id="continent-list"></div>
                         </div>
-                        <div class="modal-footer">
-                            <div style="display: flex; justify-content: flex-end; margin-top: 20px;">
+                        <div class="modal-footer" style="position: sticky; bottom: 0; background-color: var(--background-color); padding-top: 20px; z-index: 100; border-top: 2px dashed var(--borderColor); margin-top: 10px;">
+                            <div style="display: flex; justify-content: flex-end;">
                                 <button id="continue-to-tariff" class="receipt-btn" style="font-size: 1.05em; padding: 10px 20px;">
                                     Continue to Tariff Selection
                                 </button>

@@ -52,7 +52,7 @@ const map = L.map("map-section", {
     ],
     attributionControl: false,
     maxBoundsViscosity: 0.0,
-}).setView([25, 6], 3);
+}).setView([25, 6], 2.6);
 
 // Initialize GeoJson Map layer
 // Store the layer reference for later updates (make it globally accessible)
