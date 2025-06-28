@@ -1696,7 +1696,7 @@ window.multiChartPanel = (function() {
                 }
             }
             
-            return `${scope} trade relationship, spanning ${impCodes} import categories (${impPct}) and ${expCodes} export categories (${expPct})${asymmetryNote}`;
+            return `${scope} trade relationship, spanning ${impCodes} HS-4 import categories (${impPct}) and ${expCodes} HS-4 export categories (${expPct})${asymmetryNote}`;
         };
     
         // Helper function for sectoral concentration with transition logic
