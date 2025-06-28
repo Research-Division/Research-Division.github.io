@@ -100,7 +100,7 @@ var TariffCalculations = (function() {
         if (!matrix || !matrix[0]) {
             return [];
         }
-        console.log(inputVector, matrix);
+        //console.log(inputVector, matrix);
 
         const E = matrix[0].length; // Number of columns in the matrix
         const result = new Array(E).fill(0);
@@ -245,74 +245,58 @@ var TariffCalculations = (function() {
                 tariffMetadata: currentTariffData.tariffMetadata || {}
             };
             
-            // Add section-level tariffs to the result if tariff propagator is available
-            if (window.tariffPropagator) {
+            // Add section-level tariffs to the result
+            // Priority: Use pre-built section tariffs from map popup if available
+            if (currentTariffData.sectionTariffs && 
+                currentTariffData.sectionTariffs[iso]) {
+                // Use the section tariffs built by map popup (has proper fallback logic)
+                resultObj.sectionTariffs = currentTariffData.sectionTariffs[iso];
+            } else if (window.tariffPropagator) {
+                // Fallback: Try to build section tariffs from tariff propagator
                 resultObj.sectionTariffs = {
                     original: {},
                     current: {}
                 };
                 
                 try {
-                    // Get all section IDs
-                    const sectionIds = window.tariffPropagator.sectionToHs4Mapping ? 
-                        Object.keys(window.tariffPropagator.sectionToHs4Mapping) : [];
+                    // Get all section IDs - ensure the mapping actually has content
+                    const sectionIds = window.tariffPropagator.sectionToHs4Mapping && 
+                                     Object.keys(window.tariffPropagator.sectionToHs4Mapping).length > 0
+                        ? Object.keys(window.tariffPropagator.sectionToHs4Mapping) 
+                        : []; // Empty array if no mapping available
                     
-                    // Store original and current tariffs for each section
-                    sectionIds.forEach(sectionId => {
-                        try {
-                            // Get original tariff value
-                            resultObj.sectionTariffs.original[sectionId] = 
-                                window.tariffPropagator.getTariffValue('section', sectionId, null, null, iso, 'original');
-                            
-                            // Get current tariff value
-                            resultObj.sectionTariffs.current[sectionId] = 
-                                window.tariffPropagator.getTariffValue('section', sectionId, null, null, iso, 'current');
-                        } catch (e) {
-                            console.warn(`Error getting tariff values for section ${sectionId}, country ${iso}:`, e);
-                            resultObj.sectionTariffs.original[sectionId] = 0;
-                            resultObj.sectionTariffs.current[sectionId] = 0;
-                        }
-                    });
+                    // Only proceed if we have section IDs
+                    if (sectionIds.length > 0) {
+                        // Store original and current tariffs for each section
+                        sectionIds.forEach(sectionId => {
+                            try {
+                                // Get original tariff value
+                                resultObj.sectionTariffs.original[sectionId] = 
+                                    window.tariffPropagator.getTariffValue('section', sectionId, null, null, iso, 'original');
+                                
+                                // Get current tariff value
+                                resultObj.sectionTariffs.current[sectionId] = 
+                                    window.tariffPropagator.getTariffValue('section', sectionId, null, null, iso, 'current');
+                            } catch (e) {
+                                console.warn(`Error getting tariff values for section ${sectionId}, country ${iso}:`, e);
+                                resultObj.sectionTariffs.original[sectionId] = 0;
+                                resultObj.sectionTariffs.current[sectionId] = 0;
+                            }
+                        });
+                    } else {
+                        console.warn(`No section IDs available from tariffPropagator for ${iso}`);
+                        // Create empty section tariffs to avoid undefined
+                        resultObj.sectionTariffs = {
+                            original: {},
+                            current: {}
+                        };
+                    }
                 } catch (e) {
                     console.warn('Error collecting section tariffs:', e);
                     resultObj.sectionTariffs = {
-                        original: { error: 'Failed to collect section tariffs' },
-                        current: { error: 'Failed to collect section tariffs' }
+                        original: {},
+                        current: {}
                     };
-                }
-            } else if (currentTariffData.sectionTariffs && 
-                     currentTariffData.sectionTariffs[iso]) {
-                
-                // IMPORTANT CHANGE: We'll always include section tariffs in the result object for visualization
-                // purposes, but we'll only USE them for calculations if the fallback is enabled
-                
-                // Always store section tariffs in the result for visualization purposes
-                resultObj.sectionTariffs = currentTariffData.sectionTariffs[iso];
-                
-                // Only use section tariffs for calculations if fallback is explicitly enabled
-                // or if we're explicitly requested to include them in the result
-                const shouldUseFallback = 
-                    // Always include if includeSectionTariffsInResult is true
-                    currentTariffData.includeSectionTariffsInResult === true ||
-                    // Otherwise check detailed fallback conditions
-                    (currentTariffData.useSectionTariffsFallback !== false && 
-                     // For uniform popup tariffs, only use fallback if it's also from uniform popup
-                     ((currentTariffData.tariffSource === 'uniformPopup' && 
-                       (!currentTariffData.sectionTariffSource || 
-                        currentTariffData.sectionTariffSource === 'uniformPopup')) ||
-                      // For product tariffs, only use fallback if it's also from product tariffs
-                      (currentTariffData.tariffSource === 'productTariffModal' && 
-                       currentTariffData.sectionTariffSource === 'productTariffModal')));
-                
-                // Debug logging to help trace what's happening     
-                if (!shouldUseFallback) {
-                    // console.log('[TARIFF_VECTOR_DEBUG] Including section tariffs in result but not using for calculation:', {
-                    //     iso,
-                    //     includeSectionTariffsInResult: currentTariffData.includeSectionTariffsInResult,
-                    //     useSectionTariffsFallback: currentTariffData.useSectionTariffsFallback,
-                    //     currentSource: currentTariffData.tariffSource || 'unknown',
-                    //     sectionTariffSource: currentTariffData.sectionTariffSource || 'unknown'
-                    // });
                 }
             }
             

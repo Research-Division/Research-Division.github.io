@@ -548,7 +548,9 @@ function attachPopupHandlers(isoCode, countryName, currentTariff) {
             };
             
             // Try to get all section IDs from tariffPropagator if available
-            const sectionIds = window.tariffPropagator && window.tariffPropagator.sectionToHs4Mapping 
+            const sectionIds = window.tariffPropagator && 
+                              window.tariffPropagator.sectionToHs4Mapping && 
+                              Object.keys(window.tariffPropagator.sectionToHs4Mapping).length > 0
                 ? Object.keys(window.tariffPropagator.sectionToHs4Mapping)
                 : Array.from({length: 21}, (_, i) => String(i + 1)); // Fallback to sections 1-21
             
