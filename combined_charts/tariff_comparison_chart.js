@@ -140,6 +140,57 @@ window.tariffComparisonChart = (function() {
                     closeButton.addEventListener('click', closeModal);
                 }
                 
+                // Setup FAQ link to open help panel and scroll to methodology section
+                const faqLink = panelContainer.querySelector('#faq-link');
+                if (faqLink) {
+                    faqLink.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        
+                        // Show the help panel (same function used by citation link)
+                        if (window.showHelpPanel && typeof window.showHelpPanel === 'function') {
+                            window.showHelpPanel();
+                            
+                            // After panel is visible, scroll to the methodology/FAQ section
+                            setTimeout(() => {
+                                const modalBody = document.querySelector('.modal-body');
+                                
+                                if (modalBody) {
+                                    // Look for the paragraph containing methodology/FAQ text
+                                    const methodologyParagraphs = modalBody.querySelectorAll('p');
+                                    let methodologyParagraph = null;
+                                    
+                                    for (let p of methodologyParagraphs) {
+                                        if (p.textContent.includes('For detailed information on our methodology, calculations, and frequently asked questions')) {
+                                            methodologyParagraph = p;
+                                            break;
+                                        }
+                                    }
+                                    
+                                    if (methodologyParagraph) {
+                                        // Get the position relative to the modal body
+                                        const paragraphPosition = methodologyParagraph.offsetTop;
+                                        
+                                        // Scroll the modal body to the methodology section
+                                        modalBody.scrollTo({
+                                            top: paragraphPosition - 100, // Subtract some pixels to show context above
+                                            behavior: 'smooth'
+                                        });
+                                        
+                                        // Add a brief highlight effect to the paragraph
+                                        methodologyParagraph.style.backgroundColor = 'rgba(0, 118, 182, 0.1)';
+                                        methodologyParagraph.style.transition = 'background-color 0.5s ease';
+                                        
+                                        // Remove highlight after 3 seconds
+                                        setTimeout(() => {
+                                            methodologyParagraph.style.backgroundColor = '';
+                                        }, 3000);
+                                    }
+                                }
+                            }, 500); // Wait a bit longer for the modal to fully render
+                        }
+                    });
+                }
+                
                 setupCountryDropdown(panelContainer);
                 setupHouseholdIncomeDropdown(panelContainer);
                 createTariffComparisonChart(isoCode, 'total');
@@ -769,7 +820,7 @@ window.tariffComparisonChart = (function() {
             currentVector,
             categoryNames,
             'Original Tariffs',
-            'Current Tariffs'
+            'New Tariffs'
         );
         
         // Attach the section mapping to the chart data for use in tooltips
@@ -777,8 +828,8 @@ window.tariffComparisonChart = (function() {
         chartData.sectionIds = sectionIds;
         
         // Use FRBA color palette from chartConfig.json if possible
-        let originalColor = 'var(--blue1)';
-        let currentColor = 'var(--orange1)';
+        let originalColor = 'var(--primary)';
+        let currentColor = 'var(--excellenceOrange)';
         
         if (window.chartConfig && window.chartConfig.colors && window.chartConfig.colors.bilateral) {
             originalColor = window.chartConfig.colors.bilateral[0];
@@ -802,7 +853,7 @@ window.tariffComparisonChart = (function() {
             const newValue = metadata.newValue !== undefined ? metadata.newValue.toFixed(1) + '%' : 'new';
             const passThrough = metadata.passThroughRate !== undefined ? metadata.passThroughRate.toFixed(0) + '%' : '100%';
             
-            subtitle = `Simplified view showing uniform <span style="color:var(--blue1);font-weight:bold">${originalValue}</span> baseline tariff vs. <span style="color:var(--orange1);font-weight:bold">${newValue}</span> updated tariff across all product categories. ${passThrough} pass-through rate applied. For detailed analysis, use the <span style="color:var(--yellow1);font-weight:bold;text-decoration:underline">Product Specific Tariffs</span> button.`;
+            subtitle = `Simplified view showing uniform <span style="color:var(--blue1);font-weight:bold">${originalValue}</span> baseline tariff vs. <span style="color:var(--orange1);font-weight:bold">${newValue}</span> updated tariff across all product categories. ${passThrough} pass-through rate applied. For detailed analysis, use the <span style="font-weight:bold;text-decoration:underline">Product Specific Tariffs</span> button.`;
         }
         
         // Add additional configuration
@@ -810,7 +861,7 @@ window.tariffComparisonChart = (function() {
             ...chartData,
             title: `Tariff Comparison for ${countryName}`,
             subtitle: subtitle,
-            source: "Feodora Teti's Global Tariff Database (v_beta1-2024-12) from Teti (2024)",
+            source: "Global Tariff Database (Teti 2024)",
             yAxis: {
                 title: 'Tariff Rate (%)',
                 type: 'number',
@@ -1070,9 +1121,10 @@ window.tariffComparisonChart = (function() {
         // Create the reset button
         const resetButton = document.createElement('button');
         resetButton.id = `reset-treemap-button-${effectType}`;
-        resetButton.className = 'chart-action-button';
+        resetButton.className = 'reset-treemap-button';
         resetButton.title = 'Reset Treemap';
-        resetButton.innerHTML = '<img src="assets/fontawesome/circle-dot-solid.svg" alt="Reset" class="action-icon"> Reset Treemap';
+        resetButton.setAttribute('aria-label', 'Reset treemap');
+        resetButton.innerHTML = '<img src="assets/fontawesome/arrow-rotate-left.svg" alt="" class="reset-icon"><span class="tooltip">Click to reset treemap</span>';
         resetButton.addEventListener('click', function() {
             // Clear cache for the current effect type before redrawing
             if (window.tariffEffectsTreemap && window.tariffEffectsTreemap.clearCache) {

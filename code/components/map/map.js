@@ -40,7 +40,7 @@ window.zoomToCountry = zoomToCountry;
 
 // Initialize the leaflet map
 const map = L.map("map-section", {
-    center: [20, 0], // roughly center on the globe
+    center: [30, 0], // roughly center on the globe
     maxZoom: 5,
     minZoom: 2.5,
     zoom : 1, 
@@ -53,7 +53,7 @@ const map = L.map("map-section", {
     ],
     attributionControl: false,
     maxBoundsViscosity: 0.0,
-}).setView([25, 6], 2.5);
+}).setView([30, 0], 2.5);
 
 // Initialize GeoJson Map layer
 // Store the layer reference for later updates (make it globally accessible)

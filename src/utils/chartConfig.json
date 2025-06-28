@@ -23,7 +23,7 @@
         }
       },
       "defaults": {
-        "source": "Data visualization",
+        "source": "Federal Reserve Bank of Atlanta",
         "legendLines": false,
         "legendItemsPerRow": 5,
         "legendMaxRows": 3,

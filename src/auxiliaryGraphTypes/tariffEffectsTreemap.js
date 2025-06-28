@@ -203,8 +203,8 @@ window.tariffEffectsTreemap = (function() {
                 enableDrillDown: true,
                 legendLevel: chartOptions.legendLevel || 1,
                 preserveTitles: chartOptions.preserveTitles,
-                note: chartOptions.note || 'Hover over a sector for details and click to drill down.',
-                sourceNote: chartOptions.sourceNote || 'Tariff effect calculations by Federal Reserve Bank of Atlanta',
+                note: chartOptions.note || 'Hover for details, click to drill down. Values show percentage of total effect and dollar cost to consumers.',
+                sourceNote: 'Tariff effect calculations by Federal Reserve Bank of Atlanta',
                 year: '2025', // Use fixed year for data compatibility
                 
                 // Pass through showPercentages flag
