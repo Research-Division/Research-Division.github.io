@@ -268,11 +268,12 @@
 }
 
 #receipt-footer{
-    padding:10px;
+    padding: 8px;
     text-align:center;
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-size: 0.9em;
 }
 
 .row-tariff{
@@ -287,12 +288,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
+    font-size: 0.75em;
 }
 
 .input-group-receipt {
     position: relative;
-    width: 80px; /* Increased from 68px to match popup inputs */
+    width: 65px; /* Further reduced to match 0.75em font size */
 }
 
 .popup-input-receipt.percent {
@@ -302,9 +304,9 @@
     border: var(--borderWidth) solid var(--borderColor);
     background-color: var(--input-box-color);
     color: var(--text-color);
-    padding: 5px 20px 5px 8px; /* Added right padding for % symbol */
-    font-size: 0.95em;
-    height: 28px;
+    padding: 3px 16px 3px 5px; /* Further reduced padding to match smaller size */
+    font-size: 0.75em;
+    height: 22px;
 }
 
 .row-title, .country-row-title {
@@ -402,17 +404,18 @@
 
 /* Receipt Button Options*/
 .receipt-btn {
-    margin: 5px auto;
+    margin: 3px auto;
     background-color: var(--background-color);
     color: var(--text-color);
     border: 1px solid var(--borderColor);
-    padding: 10px 10px;
+    padding: 8px 10px;
     border-radius: 12px;  /* Rounded corners for a soft touch */
     cursor: pointer;
     display: block;
     width: fit-content;
     transition: all 0.3s ease;
     font-family: var(--font-family-monospace);
+    font-size: 0.95em;
 }
 
 .receipt-btn:hover {
@@ -428,9 +431,9 @@
 
 /* Style for larger clear history button */
 .receipt-btn.large-btn {
-    font-size: 1.1em;
-    padding: 12px 20px;
-    margin-top: 15px;
+    font-size: 0.95em;
+    padding: 10px 16px;
+    margin-top: 8px;
     width: 80%;
     max-width: 250px;
 }

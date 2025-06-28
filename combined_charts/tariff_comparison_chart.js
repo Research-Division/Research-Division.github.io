@@ -191,6 +191,57 @@ window.tariffComparisonChart = (function() {
                     });
                 }
                 
+                // Setup the new methodology FAQ link with the same functionality
+                const faqLinkMethodology = panelContainer.querySelector('#faq-link-methodology');
+                if (faqLinkMethodology) {
+                    faqLinkMethodology.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        
+                        // Show the help panel (same function used by citation link)
+                        if (window.showHelpPanel && typeof window.showHelpPanel === 'function') {
+                            window.showHelpPanel();
+                            
+                            // After panel is visible, scroll to the methodology/FAQ section
+                            setTimeout(() => {
+                                const modalBody = document.querySelector('.modal-body');
+                                
+                                if (modalBody) {
+                                    // Look for the paragraph containing methodology/FAQ text
+                                    const methodologyParagraphs = modalBody.querySelectorAll('p');
+                                    let methodologyParagraph = null;
+                                    
+                                    for (let p of methodologyParagraphs) {
+                                        if (p.textContent.includes('For detailed information on our methodology, calculations, and frequently asked questions')) {
+                                            methodologyParagraph = p;
+                                            break;
+                                        }
+                                    }
+                                    
+                                    if (methodologyParagraph) {
+                                        // Get the position relative to the modal body
+                                        const paragraphPosition = methodologyParagraph.offsetTop;
+                                        
+                                        // Scroll the modal body to the methodology section
+                                        modalBody.scrollTo({
+                                            top: paragraphPosition - 100, // Subtract some pixels to show context above
+                                            behavior: 'smooth'
+                                        });
+                                        
+                                        // Add a brief highlight effect to the paragraph
+                                        methodologyParagraph.style.backgroundColor = 'rgba(0, 118, 182, 0.1)';
+                                        methodologyParagraph.style.transition = 'background-color 0.5s ease';
+                                        
+                                        // Remove highlight after 3 seconds
+                                        setTimeout(() => {
+                                            methodologyParagraph.style.backgroundColor = '';
+                                        }, 3000);
+                                    }
+                                }
+                            }, 500); // Wait a bit longer for the modal to fully render
+                        }
+                    });
+                }
+                
                 setupCountryDropdown(panelContainer);
                 setupHouseholdIncomeDropdown(panelContainer);
                 createTariffComparisonChart(isoCode, 'total');
@@ -241,6 +292,9 @@ window.tariffComparisonChart = (function() {
                             window.tariffEffectsTreemap.clearCache();  // Clear all caches
                         }
                         createTariffComparisonChart(iso, selectedEffectType);
+                        
+                        // Update effect summaries with new country name (will be called again when aggregations are ready)
+                        updateEffectSummaries();
                         
                         dropdown.classList.remove('active');
                         dropdownToggle.classList.remove('active');
@@ -317,6 +371,9 @@ window.tariffComparisonChart = (function() {
                         // Hide dropdown
                         dropdown.classList.remove('active');
                         dropdownToggle.classList.remove('active');
+                        
+                        // Update the dynamic effect summaries with new income calculations
+                        updateEffectSummaries();
                         
                         // Clear all treemap caches when changing income
                         if (window.tariffEffectsTreemap && window.tariffEffectsTreemap.clearCache) {
@@ -733,8 +790,31 @@ window.tariffComparisonChart = (function() {
         
         // Convert to vectors for the chart
         const sectionIds = Object.keys(originalTariffs).sort((a, b) => parseInt(a) - parseInt(b));
-        const originalVector = sectionIds.map(id => originalTariffs[id] || 0);
-        const currentVector = sectionIds.map(id => currentTariffs[id] || 0);
+        
+        // Debug logging to identify NaN values
+        console.log('Section tariff data check:', {
+            originalTariffs: originalTariffs,
+            currentTariffs: currentTariffs,
+            sectionIds: sectionIds
+        });
+        
+        const originalVector = sectionIds.map(id => {
+            const value = originalTariffs[id];
+            const numericValue = (value !== undefined && value !== null && !isNaN(value)) ? Number(value) : 0;
+            if (isNaN(numericValue)) {
+                console.warn(`NaN detected in originalTariffs[${id}]:`, value, 'converted to:', numericValue);
+            }
+            return numericValue;
+        });
+        
+        const currentVector = sectionIds.map(id => {
+            const value = currentTariffs[id];
+            const numericValue = (value !== undefined && value !== null && !isNaN(value)) ? Number(value) : 0;
+            if (isNaN(numericValue)) {
+                console.warn(`NaN detected in currentTariffs[${id}]:`, value, 'converted to:', numericValue);
+            }
+            return numericValue;
+        });
         
         // Create mapping between section IDs, display names, and full titles
         const sectionNameMapping = {};
@@ -853,13 +933,13 @@ window.tariffComparisonChart = (function() {
             const newValue = metadata.newValue !== undefined ? metadata.newValue.toFixed(1) + '%' : 'new';
             const passThrough = metadata.passThroughRate !== undefined ? metadata.passThroughRate.toFixed(0) + '%' : '100%';
             
-            subtitle = `Simplified view showing uniform <span style="color:var(--blue1);font-weight:bold">${originalValue}</span> baseline tariff vs. <span style="color:var(--orange1);font-weight:bold">${newValue}</span> updated tariff across all product categories. ${passThrough} pass-through rate applied. For detailed analysis, use the <span style="font-weight:bold;text-decoration:underline">Product Specific Tariffs</span> button.`;
+            subtitle = `Simplified view showing uniform <span style="color:var(--blue1);font-weight:bold">${originalValue}</span> baseline tariff vs. <span style="color:var(--orange1);font-weight:bold">${newValue}</span> updated tariff across all product categories. ${passThrough} pass-through rate applied. For detailed analysis, use the Product Specific Tariffs button.`;
         }
         
         // Add additional configuration
         const chartConfig = {
             ...chartData,
-            title: `Tariff Comparison for ${countryName}`,
+            title: `<b>Figure 1.</b> Tariff Comparison for ${countryName}`,
             subtitle: subtitle,
             source: "Global Tariff Database (Teti 2024)",
             yAxis: {
@@ -1037,6 +1117,8 @@ window.tariffComparisonChart = (function() {
         return Promise.all(promises)
             .then(() => {
                 //console.log('All effect aggregations created successfully');
+                // Update the dynamic effect summaries now that all aggregations are available
+                updateEffectSummaries();
             })
             .catch(error => {
                 console.error('Error creating effect aggregations:', error);
@@ -1201,7 +1283,7 @@ window.tariffComparisonChart = (function() {
             showLabels: true,
             showValues: true, // Explicitly set to show values 
             animate: false,
-            title: `Tariff ${capitalizeFirstLetter(effectType)} Effects`,
+            title: `<b>Figure 2.</b> Tariff ${capitalizeFirstLetter(effectType)} Effects`,
             subtitle: `Total ${effectType} effect: ${formattedTotalEffect} price increase. Values show % of total effect and $ impact on a $${selectedHouseholdIncome.toLocaleString()} household.`,
             preserveTitles: true,
             resetToRoot: true,
@@ -1236,6 +1318,47 @@ window.tariffComparisonChart = (function() {
     function capitalizeFirstLetter(str) {
         if (!str) return '';
         return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+    
+    /**
+     * Update the dynamic effect summary sentences in the HTML
+     */
+    function updateEffectSummaries() {
+        // Get the current country name
+        const countryName = window.isoToCountryName && window.isoToCountryName[currentIsoCode] 
+            ? window.isoToCountryName[currentIsoCode] 
+            : currentIsoCode;
+        
+        // Helper function to format effect value and calculate dollar amount
+        function formatEffectSummary(effectType, effectAggregations) {
+            if (!effectAggregations || !effectAggregations['0'] || !effectAggregations['0'].sum) {
+                return `The ${effectType} effect data is not available for ${countryName}.`;
+            }
+            
+            const effectValue = effectAggregations['0'].sum;
+            const effectPercent = (effectValue * 100).toFixed(2) + '%';
+            const dollarAmount = Math.round(effectValue * selectedHouseholdIncome);
+            
+            return `The ${effectType} effect from the selected tariffs on ${countryName} is ${effectPercent} (approximately $${dollarAmount.toLocaleString()} annually for a $${selectedHouseholdIncome.toLocaleString()} household).`;
+        }
+        
+        // Update direct effect summary
+        const directSummaryElement = document.getElementById('direct-effect-summary');
+        if (directSummaryElement && window.nipaDirectLayerAggregations) {
+            directSummaryElement.textContent = formatEffectSummary('direct', window.nipaDirectLayerAggregations);
+        }
+        
+        // Update indirect effect summary
+        const indirectSummaryElement = document.getElementById('indirect-effect-summary');
+        if (indirectSummaryElement && window.nipaIndirectLayerAggregations) {
+            indirectSummaryElement.textContent = formatEffectSummary('indirect', window.nipaIndirectLayerAggregations);
+        }
+        
+        // Update total effect summary
+        const totalSummaryElement = document.getElementById('total-effect-summary');
+        if (totalSummaryElement && window.nipaTotalLayerAggregations) {
+            totalSummaryElement.textContent = formatEffectSummary('total', window.nipaTotalLayerAggregations);
+        }
     }
     
     /**
