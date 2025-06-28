@@ -907,9 +907,9 @@ function updateReceiptDisplay() {
             return;
         }
         
-        // Extract ISO codes from results, filtering out 'WLD' and 'WRLD'
+        // Extract ISO codes from results, filtering out 'WLD', 'WRLD', and Rest of World countries
         const isoList = results
-            .filter(result => result.isoCode !== 'WLD' && result.isoCode !== 'WRLD')
+            .filter(result => result.isoCode !== 'WLD' && result.isoCode !== 'WRLD' && !result.isRestOfWorld)
             .map(result => result.isoCode);
         
         // Update global selectedISOs array, making sure to use a new array instance
