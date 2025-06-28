@@ -287,7 +287,7 @@ body.dark_theme .panel-close-button:hover img {
 .split-left {
     flex: 1;
     min-width: 450px;
-    min-height: 400px;
+    min-height: auto;
 }
 
 .split-right {
@@ -298,7 +298,7 @@ body.dark_theme .panel-close-button:hover img {
 .split-full {
     flex: 1;
     width: 100%;
-    min-height: 400px;
+    min-height: auto;
 }
 
 .section-header {

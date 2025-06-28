@@ -47,7 +47,7 @@
     "country": {
       "metrics": {
         "impVal": {
-          "title": "Import Value from Top Trading Partners",
+          "title": "<b>Figure 3. </b>Import Value from Top Trading Partners",
           "title_chartWiz": "US Import Value",
           "yAxisTitle": "Import Value (USD)",
           "yAxisTitle_chartWiz": "Value (USD)",
@@ -64,7 +64,7 @@
           "isPercentage": true
         },
         "expVal": {
-          "title": "Export Value to Top Trading Partners",
+          "title": "<b>Figure 3. </b>Export Value to Top Trading Partners",
           "title_chartWiz": "US Export Value",
           "yAxisTitle": "Export Value (USD)",
           "yAxisTitle_chartWiz": "Value (USD)",

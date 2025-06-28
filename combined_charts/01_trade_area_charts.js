@@ -535,6 +535,7 @@ window.multiChartPanel = (function() {
         if (value < 0) return `fell by ${formattedString}`;
         return `remained unchanged`;
     }
+    /*
     function generateTradeNarrative(features, countryName, isoCode) {
         const latestYear = 2024;
         const initialYear = 1992;
@@ -610,8 +611,147 @@ window.multiChartPanel = (function() {
             </p>
         `;
     }
-    
-    
+    */
+    function generateTradeNarrative(features, countryName, isoCode) {
+        const latestYear = 2024;
+        const initialYear = 1992;
+  
+        function ordinal(n) {
+            const s = ["<sup>th</sup>", "<sup>st</sup>", "<sup>nd</sup>", "<sup>rd</sup>"], v = n % 100;
+            return n + (s[(v - 20) % 10] || s[v] || s[0]);
+        }
+        
+        const safeRank = r => (r === 9999 ? 'N/A' : ordinal(r));
+        const formatUSD = val => `${Number(val).toLocaleString()}`;
+  
+        const tradeRank_latest_raw = features.tradeRank[0];
+        const tradeRank_initial_raw = features.tradeRank.at(-1);
+  
+        const tradeRank_initial = safeRank(tradeRank_initial_raw);
+        const tradeRank_latest = safeRank(tradeRank_latest_raw);
+  
+        let tradeDirection = "";
+        if (tradeRank_initial_raw === 9999 || tradeRank_latest_raw === 9999) {
+            tradeDirection = "compared to earlier data";
+        } else if (tradeRank_latest_raw < tradeRank_initial_raw) {
+            tradeDirection = `up from ${tradeRank_initial}`;
+        } else if (tradeRank_latest_raw > tradeRank_initial_raw) {
+            tradeDirection = `down from ${tradeRank_initial}`;
+        } else {
+            tradeDirection = `unchanged from ${tradeRank_initial}`;
+        }
+  
+        const importRank_latest_raw = features.importRank[0];
+        const exportRank_latest_raw = features.exportRank[0];
+        const deficitRank_latest_raw = features.deficitRank[0];
+  
+        const importRank_latest = safeRank(importRank_latest_raw);
+        const exportRank_latest = safeRank(exportRank_latest_raw);
+        const deficitRank_latest = safeRank(deficitRank_latest_raw);
+  
+        const importShare = features.importShare;
+        const exportShare = features.exportShare;
+        const bilateralDeficit = features.bilateralDeficit;
+  
+        // Enhanced trade balance narrative with better transitions
+        const balanceText = (() => {
+            let narrative = '';
+            
+            if (!features.tradeBalanceAnalysis || !features.tradeBalanceAnalysis.summary_stats) {
+                // Fallback to old logic
+                if (features.deficitToSurplus === "NO") return `The <strong>U.S.</strong> has consistently run a trade deficit with <strong>${countryName}</strong> since 1992.`;
+                if (features.deficitToSurplus === "ALWAYS SURPLUS") return `The <strong>U.S.</strong> has consistently maintained a trade surplus with <strong>${countryName}</strong> since 1992.`;
+                return `The <strong>U.S.</strong> ran trade surpluses with <strong>${countryName}</strong> in the following years: ${features.deficitToSurplus.join(", ")}.`;
+            }
+  
+            const analysis = features.tradeBalanceAnalysis;
+            const stats = analysis.summary_stats;
+            const currentStatus = analysis.current_status;
+            const alwaysType = analysis.always_type;
+  
+            if (alwaysType === "deficit") {
+                return `The <strong>U.S.</strong> has consistently run a trade deficit with <strong>${countryName}</strong> since 1992.`;
+            } else if (alwaysType === "surplus") {
+                return `The <strong>U.S.</strong> has consistently maintained a trade surplus with <strong>${countryName}</strong> since 1992.`;
+            } else {
+                // Complex case with alternating periods - enhanced transition logic
+                const currentStatusText = currentStatus === "surplus" ? "surplus" : "deficit";
+                const currentPercentage = currentStatus === "surplus" ? stats.surplus_percentage_total : stats.deficit_percentage_total;
+                const recent5yrPct = currentStatus === "surplus" ? stats.surplus_percentage_5yr : stats.deficit_percentage_5yr;
+  
+                narrative = `While the <strong>U.S.</strong> currently runs a trade ${currentStatusText} with <strong>${countryName}</strong>, this has not always been the case. `;
+  
+                if (stats.total_years_analyzed > 0) {
+                    narrative += `Over the past ${stats.total_years_analyzed} years, the <strong>U.S.</strong> has run a ${currentStatusText} in ${currentPercentage}% of years. `;
+                }
+  
+                // Smart transition based on comparison of historical vs recent patterns
+                if (stats.years_analyzed_5yr > 0) {
+                    const recent5yrYears = Math.round(recent5yrPct * stats.years_analyzed_5yr / 100);
+                    const historicalRate = currentPercentage / 100;
+                    const recentRate = recent5yrPct / 100;
+                    const rateDifference = Math.abs(recentRate - historicalRate);
+  
+                    // Determine if pattern has changed substantially (threshold of 0.2 or 20%)
+                    if (rateDifference < 0.2) {
+                        // Pattern hasn't changed much
+                        if (recent5yrPct === 100) {
+                            narrative += `This pattern has remained consistent, with the <strong>U.S.</strong> running a ${currentStatusText} in every year over the past 5 years.`;
+                        } else if (recent5yrPct === 0) {
+                            narrative += `However, this pattern has shifted dramatically in recent years, with the <strong>U.S.</strong> running no ${currentStatusText} in the past 5 years.`;
+                        } else {
+                            narrative += `This pattern has not changed substantially in recent years, with the <strong>U.S.</strong> running a ${currentStatusText} in ${recent5yrYears} out of ${stats.years_analyzed_5yr} years over the past 5 years.`;
+                        }
+                    } else {
+                        // Pattern has changed significantly
+                        if (recentRate > historicalRate) {
+                            if (recent5yrPct === 100) {
+                                narrative += `This trend has intensified in recent years, with the <strong>U.S.</strong> running a ${currentStatusText} in every year over the past 5 years.`;
+                            } else {
+                                narrative += `This trend has strengthened in recent years, with the <strong>U.S.</strong> running a ${currentStatusText} in ${recent5yrYears} out of ${stats.years_analyzed_5yr} years over the past 5 years.`;
+                            }
+                        } else {
+                            if (recent5yrPct === 0) {
+                                narrative += `However, this pattern has reversed in recent years, with the <strong>U.S.</strong> running no ${currentStatusText} in the past 5 years.`;
+                            } else {
+                                narrative += `However, this pattern has weakened in recent years, with the <strong>U.S.</strong> running a ${currentStatusText} in only ${recent5yrYears} out of ${stats.years_analyzed_5yr} years over the past 5 years.`;
+                            }
+                        }
+                    }
+                }
+            }
+  
+            return narrative;
+        })();
+  
+        const delta = features.valueChanges;
+        const pct = features.percentChanges;
+  
+        return `
+            <p>
+                As of ${latestYear}, <strong>${countryName}</strong> ranked 
+                ${tradeRank_latest} among all <strong>U.S.</strong> trading partners by total goods trade — 
+                ${tradeDirection}. It is currently the 
+                ${importRank_latest} largest source of imports and the 
+                ${exportRank_latest} largest destination for exports.
+            </p>
+  
+            <p>
+                Imports from <strong>${countryName}</strong> make up ${importShare} of total <strong>U.S.</strong> imports and is the 
+                destination for ${exportShare} of total <strong>U.S.</strong> exports. The <strong>U.S.</strong> currently 
+                runs a trade deficit of ${bilateralDeficit}, ranking 
+                ${deficitRank_latest} among all bilateral trade deficits.
+            </p>
+  
+            <p>${balanceText}</p>                
+            <p>
+            More recently, over the past 5 years, imports ${formatDirectionalChange(pct.import["5year"])} and exports 
+            ${formatDirectionalChange(pct.export["5year"])}. In the last year, exports 
+            ${formatDirectionalChange(pct.export["1year"])} and imports 
+            ${formatDirectionalChange(pct.import["1year"])}.
+            </p>
+        `;
+    }
     /**
      * Show the panel and load the charts
      * @param {string} initialTab - The tab to show initially (defaults to 'trade-relations')
@@ -835,7 +975,7 @@ window.multiChartPanel = (function() {
           const overlap = oldTitles.filter(t => newTitles.includes(t));
           
           if (overlap.length === 3) return "remained remarkably stable";
-          if (overlap.length >= 2) return "shown moderate evolution";
+          if (overlap.length >= 2) return "shown moderate changes";
           if (overlap.length === 1) return "undergone substantial transformation";
           return "been completely restructured";
         }
@@ -903,11 +1043,11 @@ window.multiChartPanel = (function() {
         if (impG.length || impS.length) {
             let importParagraph = "";
             if (impG.length && impS.length) {
-              importParagraph = `<p>From 1994 to 2024, imports from <strong>${name}</strong> have seen notable growth in ${joinWithOxfordComma(impG)}. Over the same period, some sectors have lost ground, including ${joinWithOxfordComma(impS)}. These rankings reflect <strong>${name}'s</strong> position among all countries exporting to the <strong>U.S.</strong> in each sector.</p>`;
+              importParagraph = `<p>From 1994 to 2024, imports from <strong>${name}</strong> have seen notable growth in ${joinWithOxfordComma(impG)}. Over the same period, some sectors have lost ground, including ${joinWithOxfordComma(impS)}. These changes represent shifts in <strong>${name}'s</strong> competitive position among supplier countries to the <strong>U.S.</strong> market.</p>`;
             } else if (impG.length) {
-              importParagraph = `<p>Since 1994, imports from <strong>${name}</strong> have shown notable growth, particularly in ${joinWithOxfordComma(impG)}. These rankings reflect <strong>${name}'s</strong> position among all countries exporting to the <strong>U.S.</strong> in each sector.</p>`;
+              importParagraph = `<p>Since 1994, imports from <strong>${name}</strong> have shown notable growth, particularly in ${joinWithOxfordComma(impG)}. These gains represent improvements in <strong>${name}'s</strong> competitive position among supplier countries to the <strong>U.S.</strong> market.</p>`;
             } else {
-              importParagraph = `<p>Over the past three decades, some import sectors from <strong>${name}</strong> have lost ground, including ${joinWithOxfordComma(impS)}. These rankings reflect <strong>${name}'s</strong> position among all countries exporting to the <strong>U.S.</strong> in each sector.</p>`;
+              importParagraph = `<p>Over the past three decades, some import sectors from <strong>${name}</strong> have lost ground, including ${joinWithOxfordComma(impS)}. These declines represent weakening in <strong>${name}'s</strong> competitive position among supplier countries to the <strong>U.S.</strong> market.</p>`;
             }
             detailedContent += importParagraph;
           }
@@ -916,15 +1056,15 @@ window.multiChartPanel = (function() {
         if (expG.length || expS.length) {
           let exportParagraph = "";
           if (expG.length && expS.length) {
-            exportParagraph = `<p>For <strong>U.S.</strong> exports to <strong>${name}</strong>, the 30-year trend shows several sectors gaining prominence, such as ${expG.join(", and ")}, though certain categories have seen their significance diminish. Notably ${expS.join(", and ")}. These rankings reflect <strong>${name}'s</strong> position among all destinations for <strong>U.S.</strong> exports in each sector.</p>`;
+            exportParagraph = `<p>For <strong>U.S.</strong> exports to <strong>${name}</strong>, the 30-year trend shows several sectors gaining prominence, such as ${joinWithOxfordComma(expG)}, though certain categories have seen their significance diminish, including ${joinWithOxfordComma(expS)}. This reflects <strong>${name}'s</strong> evolving importance as a destination market for <strong>U.S.</strong> goods across different sectors.</p>`;
           } else if (expG.length) {
-            exportParagraph = `<p><strong>U.S.</strong> export trends to <strong>${name}</strong> since 1994 show several sectors gaining prominence, such as ${expG.join(", and ")}. These rankings reflect <strong>${name}'s</strong> position among all destinations for <strong>U.S.</strong> exports in each sector.</p>`;
+            exportParagraph = `<p><strong>U.S.</strong> export trends to <strong>${name}</strong> since 1994 show several sectors gaining prominence, such as ${joinWithOxfordComma(expG)}. This reflects <strong>${name}'s</strong> growing importance as a destination market for <strong>U.S.</strong> goods in these sectors.</p>`;
           } else {
-            exportParagraph = `<p>Over the past three decades, certain <strong>U.S.</strong> export categories to <strong>${name}</strong> have seen their significance diminish, notably ${expS.join(", and ")}. These rankings reflect <strong>${name}'s</strong> position among all destinations for <strong>U.S.</strong> exports in each sector.</p>`;
+            exportParagraph = `<p>Over the past three decades, certain <strong>U.S.</strong> export categories to <strong>${name}</strong> have seen their significance diminish, notably ${joinWithOxfordComma(expS)}. This reflects <strong>${name}'s</strong> declining importance as a destination market for <strong>U.S.</strong> goods in these sectors.</p>`;
           }
           detailedContent += exportParagraph;
         }
-        detailedContent += `<p> <b> Figures 1, 2, </b> and <b>3</b> respectively display the trade balance, value of imports, and value of exports between the <strong>U.S.</strong> and <strong>${name}</strong>. The commodity groups displayed are grouped into four broader categories (select the dropdown to change categories): 
+        detailedContent += `<p><b>Figures 1, 2,</b> and <b>3</b> respectively display the trade balance, value of imports, and value of exports between the <strong>U.S.</strong> and <strong>${name}</strong>. The commodity groups displayed are grouped into four broader categories (select the dropdown to change categories): 
                             <span class="narrative-sector-group-selector-container">
                                 <span class="narrative-sector-group-display">Agricultural Sectors</span>
                                 <span class="narrative-sector-group-dropdown-toggle">
@@ -1511,6 +1651,14 @@ window.multiChartPanel = (function() {
     function generateProductNarrative(features, countryName) {
         const getPercent = s => parseFloat(s.replace("%", ""));
         const shareThreshold = 10.0;
+        
+        // Helper function for proper Oxford comma formatting
+        const formatList = (items, conjunction = "and") => {
+            if (items.length === 0) return "";
+            if (items.length === 1) return items[0];
+            if (items.length === 2) return `${items[0]} ${conjunction} ${items[1]}`;
+            return `${items.slice(0, -1).join(", ")}, ${conjunction} ${items[items.length - 1]}`;
+        };
     
         // Extract all the data
         const numHS4Imp = features["01_numImpCodes"].hs4;
@@ -1568,7 +1716,7 @@ window.multiChartPanel = (function() {
             const transition = needsTransition ? "However, the" : "The";
             
             // Build sectoral description based on meaningful shares
-            let sectorText = `${transition} sectoral composition is ${concentration}: ${s1.share} in ${s1.title} (${s1.value})`;
+            let sectorText = `${transition} sectoral composition of <strong>U.S.</strong> imports from <strong>${countryName}</strong> is ${concentration}: ${s1.share} in ${s1.title} (${s1.value})`;
             
             if (secondShare >= 15) {
                 sectorText += `, ${s2.share} in ${s2.title} (${s2.value})`;
@@ -1579,7 +1727,7 @@ window.multiChartPanel = (function() {
                     sectorText += `, with remaining sectors each below 15%`;
                 }
             } else {
-                sectorText += `, with imports from {countryName} in other sectors making up less than 15% of U.S. imports`;
+                sectorText += `, with <strong>U.S.</strong> imports from <strong>${countryName}</strong> in other sectors each making up less than 15%`;
             }
             
             return sectorText + ".";
@@ -1590,7 +1738,7 @@ window.multiChartPanel = (function() {
             const majors = topImps.filter(p => getPercent(p.share) >= threshold);
             
             if (majors.length === 0) {
-                return `<strong>${countryName}</strong> does not hold major market share in any <strong>U.S.</strong> import categories (no products exceed ${threshold}% market share).`;
+                return `<strong>${countryName}</strong> does not account for a major share of <strong>U.S.</strong> imports in any HS-4 product categories (no products where <strong>${countryName}</strong> provides ${threshold}% or more of total <strong>U.S.</strong> imports).`;
             }
             
             // Helper to get dominance language based on market share
@@ -1604,20 +1752,15 @@ window.multiChartPanel = (function() {
             };
             
             const topProducts = majors.slice(0, 5).map(p => {
-                const dominanceLevel = getDominanceLevel(p.share);
                 return `${p.hs4_name} (${p.share}${majors.length <= 5 ? ', ' + p.dollar_value : ''})`;
             });
             
             if (majors.length === 1) {
-                const dominanceLevel = getDominanceLevel(majors[0].share);
-                return `<strong>${countryName}</strong> ${dominanceLevel} ${topProducts[0]}.`;
+                return `<strong>${countryName}</strong> accounts for a significant share of <strong>U.S.</strong> imports in ${topProducts[0]}.`;
             }
             
-            // For multiple products, use the highest dominance level as the lead descriptor
-            const maxShare = Math.max(...majors.map(p => getPercent(p.share)));
-            const leadDominance = getDominanceLevel(maxShare + "%");
-            
-            return `<strong>${countryName}</strong> ${leadDominance} ${majors.length} <strong>U.S. </strong> import categories, led by ${topProducts.join(", ")}${majors.length > 5 ? ` and ${majors.length - 5} others` : ""}.`;
+            const formattedList = formatList(topProducts);
+            return `<strong>${countryName}</strong> accounts for a significant share of total <strong>U.S.</strong> imports across multiple HS-4 categories, with top examples including ${formattedList}${majors.length > 5 ? ` among ${majors.length} total categories where <strong>${countryName}</strong> provides ${threshold}% or more of <strong>U.S.</strong> imports` : ""}.`;
         };
 
 
@@ -1626,16 +1769,16 @@ window.multiChartPanel = (function() {
             const majors = topExps.filter(p => getPercent(p.share) >= threshold);
             
             if (majors.length === 0) {
-                return `The <strong>U.S.</strong> does not concentrate significant export shares to <strong>${countryName}</strong> in any single HS-4 product category.`;
+                return `<strong>${countryName}</strong> is not a primary destination for <strong>U.S.</strong> exports in any HS-4 product categories (no products where <strong>${countryName}</strong> receives ${threshold}% or more of total <strong>U.S.</strong> exports).`;
             }
             
-            const topProducts = majors.slice(0, 3).map(p => 
-                `${p.hs4_name} (${p.share}${majors.length <= 3 ? ', ' + p.dollar_value : ''})`
+            const topProducts = majors.slice(0, 5).map(p => 
+                `${p.hs4_name} (${p.share}${majors.length <= 5 ? ', ' + p.dollar_value : ''})`
             );
             
             return majors.length === 1
-                ? `The <strong>U.S.</strong> concentrates exports to <strong>${countryName}</strong> primarily in ${topProducts[0]}.`
-                : `The <strong>U.S.</strong> has concentrated export ties to <strong>${countryName}</strong> across at least ${majors.length} HS-4 categories, notably ${topProducts.join(", ")}${majors.length > 3 ? ` and ${majors.length - 3} others` : ""}.`;
+                ? `<strong>${countryName}</strong> serves as a primary destination for <strong>U.S.</strong> exports in ${topProducts[0]}.`
+                : `<strong>${countryName}</strong> serves as a primary destination for <strong>U.S.</strong> exports across at least ${Math.min(majors.length, 5)} HS-4 categories, with top examples including ${formatList(topProducts)}${majors.length > 5 ? `, representing the top ${topProducts.length} categories from our data` : ""}.`;
         };
     
         // Helper function for trade similarity

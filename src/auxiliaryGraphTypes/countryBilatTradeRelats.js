@@ -256,7 +256,7 @@ window.countryBilatTradeRelats = (function() {
                 itemsPerRow: 2,
                 maxRows: 1
             },
-            sourceNote: "US Census Bureau's USA Trade Online"
+            sourceNote: "U.S. Census Bureau's USA Trade Online"
         };
     }
     

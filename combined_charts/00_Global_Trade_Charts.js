@@ -958,7 +958,7 @@ window.globalTradeCharts = (function() {
                 showLabels: true,
                 animate: false,
                 year: currentYear,
-                title: `Global Imports by Country and Section (${currentYear})`,
+                title: `<b>Figure 1.</b> Global Imports by Country and Section (${currentYear})`,
                 subtitle: 'Click on a region to explore details',
                 height: 500  // Explicit height to ensure proper rendering
             });
@@ -999,7 +999,7 @@ window.globalTradeCharts = (function() {
                 showLabels: true,
                 animate: false,
                 year: currentYear,
-                title: `Global Exports by Country and Section (${currentYear})`,
+                title: `<b>Figure 2. </b>Global Exports by Country and Section (${currentYear})`,
                 subtitle: 'Click on a region to explore details',
                 height: 500  // Explicit height to ensure proper rendering
             });

@@ -91,7 +91,7 @@ window.compressedCountryTreemap = (function() {
                 legendLevel: 1,
                 preserveTitles: chartParams.preserveTitles, // Pass through the preserveTitles option
                 note: ` Country level ${goodsType} in ${year}. Import values as appraised by U.S. Customs, excluding import duties, freight, and insurance for general imports. Export values defined as the total value of the goods for export at the U.S. port of export.`,
-                source: `US Census Bureau's USA Trade Online` , 
+                source: `U.S. Census Bureau's USA Trade Online` , 
             };
             
             // Clear the container before rendering
