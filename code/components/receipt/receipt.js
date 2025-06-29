@@ -203,176 +203,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 
                 // Function to show the treemap modal
                 function showTreemapModal() {
-                    // Create modal container if it doesn't exist
-                    let modal = document.getElementById('tariff-treemap-modal');
-                    if (!modal) {
-                        modal = document.createElement('div');
-                        modal.id = 'tariff-treemap-modal';
-                        modal.className = 'modal';
-                        modal.style.display = 'none';
-                        modal.style.position = 'fixed';
-                        modal.style.top = '0';
-                        modal.style.left = '0';
-                        modal.style.width = '100%';
-                        modal.style.height = '100%';
-                        modal.style.backgroundColor = 'rgba(0,0,0,0.7)';
-                        modal.style.zIndex = '1000';
-                        
-                        // Create modal content
-                        const modalContent = document.createElement('div');
-                        modalContent.className = 'modal-content';
-                        modalContent.style.backgroundColor = '#fff';
-                        modalContent.style.margin = '5% auto';
-                        modalContent.style.padding = '20px';
-                        modalContent.style.width = '90%';
-                        modalContent.style.maxWidth = '1000px';
-                        modalContent.style.borderRadius = '5px';
-                        modalContent.style.position = 'relative';
-                        modalContent.style.maxHeight = '85vh';
-                        modalContent.style.overflow = 'auto';
-                        
-                        // Create close button
-                        const closeBtn = document.createElement('span');
-                        closeBtn.className = 'close-btn';
-                        closeBtn.innerHTML = '&times;';
-                        closeBtn.style.position = 'absolute';
-                        closeBtn.style.top = '10px';
-                        closeBtn.style.right = '15px';
-                        closeBtn.style.fontSize = '24px';
-                        closeBtn.style.fontWeight = 'bold';
-                        closeBtn.style.cursor = 'pointer';
-                        closeBtn.onclick = function() {
-                            modal.style.display = 'none';
-                        };
-                        
-                        // Create title
-                        const title = document.createElement('h2');
-                        title.textContent = 'Tariff Effects Visualization';
-                        title.style.marginTop = '0';
-                        title.style.marginBottom = '20px';
-                        
-                        // Create tabs for different effect types
-                        const tabContainer = document.createElement('div');
-                        tabContainer.className = 'tab-container';
-                        tabContainer.style.marginBottom = '20px';
-                        
-                        const tabs = ['Total', 'Direct', 'Indirect', 'Combined'];
-                        tabs.forEach(tabName => {
-                            const tab = document.createElement('button');
-                            tab.textContent = `${tabName} Effects`;
-                            tab.className = 'effect-tab';
-                            tab.dataset.effectType = tabName.toLowerCase();
-                            tab.style.padding = '8px 16px';
-                            tab.style.marginRight = '10px';
-                            tab.style.border = '1px solid #ccc';
-                            tab.style.borderRadius = '4px';
-                            tab.style.backgroundColor = '#f8f9fa';
-                            tab.style.cursor = 'pointer';
-                            
-                            // Active tab style
-                            if (tabName === 'Total') {
-                                tab.style.backgroundColor = '#007bff';
-                                tab.style.color = 'white';
-                                tab.style.borderColor = '#007bff';
-                            }
-                            
-                            tab.onclick = function() {
-                                // Update active tab styling
-                                document.querySelectorAll('.effect-tab').forEach(t => {
-                                    t.style.backgroundColor = '#f8f9fa';
-                                    t.style.color = 'black';
-                                    t.style.borderColor = '#ccc';
-                                });
-                                tab.style.backgroundColor = '#007bff';
-                                tab.style.color = 'white';
-                                tab.style.borderColor = '#007bff';
-                                
-                                // Create the treemap for the selected effect type
-                                createTreemap(tab.dataset.effectType);
-                            };
-                            
-                            tabContainer.appendChild(tab);
-                        });
-                        
-                        // Create container for the treemap
-                        const treemapContainer = document.createElement('div');
-                        treemapContainer.id = 'tariff-treemap-container';
-                        treemapContainer.style.height = '500px';
-                        treemapContainer.style.border = '1px solid #e9ecef';
-                        treemapContainer.style.borderRadius = '4px';
-                        
-                        // Assemble modal content
-                        modalContent.appendChild(closeBtn);
-                        modalContent.appendChild(title);
-                        modalContent.appendChild(tabContainer);
-                        modalContent.appendChild(treemapContainer);
-                        
-                        // Add modal content to modal
-                        modal.appendChild(modalContent);
-                        
-                        // Add modal to document
-                        document.body.appendChild(modal);
-                        
-                        // Close modal when clicking outside
-                        window.onclick = function(event) {
-                            if (event.target === modal) {
-                                modal.style.display = 'none';
-                            }
-                        };
+                    // Simply call the tariff effects panel directly
+                    if (window.tariffEffectsPanel && window.tariffEffectsPanel.showPanel) {
+                        window.tariffEffectsPanel.showPanel();
+                    } else {
+                        console.error('Tariff effects panel not available');
                     }
-                    
-                    // Display the modal
-                    modal.style.display = 'block';
-                    
-                    // Create the treemap
-                    createTreemap('total');
                 }
                 
-                // Function to create the treemap
-                function createTreemap(effectType) {
-                    if (!window.tariffEffectsTreemap) {
-                        console.error('Treemap component not loaded');
-                        return;
-                    }
-                    
-                    // Clear previous content
-                    const container = document.getElementById('tariff-treemap-container');
-                    if (container) {
-                        container.innerHTML = '<div class="loading-indicator">Loading tariff effect treemap...</div>';
-                    }
-                    
-                    // Ensure we have the aggregated data
-                    if (effectType === 'direct' && !window.nipaDirectLayerAggregations) {
-                        container.innerHTML = '<div class="error-message">Direct effect data not available. Please try again.</div>';
-                        return;
-                    }
-                    
-                    if (effectType === 'indirect' && !window.nipaIndirectLayerAggregations) {
-                        container.innerHTML = '<div class="error-message">Indirect effect data not available. Please try again.</div>';
-                        return;
-                    }
-                    
-                    if (effectType === 'total' && !window.nipaTotalLayerAggregations) {
-                        container.innerHTML = '<div class="error-message">Total effect data not available. Please try again.</div>';
-                        return;
-                    }
-                    
-                    if (effectType === 'combined' && (!window.nipaDirectLayerAggregations || !window.nipaIndirectLayerAggregations)) {
-                        container.innerHTML = '<div class="error-message">Direct and indirect effect data required for combined view. Please try again.</div>';
-                        return;
-                    }
-                    
-                    // Create the treemap
-                    window.tariffEffectsTreemap.createChart('tariff-treemap-container', effectType, {
-                        title: `Tariff ${effectType.charAt(0).toUpperCase() + effectType.slice(1)} Effects`,
-                        onSuccess: function() {
-                        },
-                        onError: function(error) {
-                            console.error(`Error creating ${effectType} treemap:`, error);
-                            container.innerHTML = `<div class="error-message">Error: ${error.message}</div>`;
-                        }
-                    });
-                }
+                // Make the function globally accessible for HTML onclick attributes
+                window.showTreemapModal = showTreemapModal;
+                
             }, 500);
             
             // Load the customReceiptOrder.js script
@@ -1327,7 +1168,13 @@ window.clearCountries = function(fromEvent = false) {
     const toggleIcon = document.getElementById('global-toggle-icon');
     if (toggleIcon) {
         toggleIcon.style.display = 'none';
-        toggleIcon.textContent = '►';
+        // Reset chevron icons to default state (right chevron visible, down chevron hidden)
+        const plusIcon = toggleIcon.querySelector('.toggle-plus');
+        const minusIcon = toggleIcon.querySelector('.toggle-minus');
+        if (plusIcon && minusIcon) {
+            plusIcon.style.display = 'inline';
+            minusIcon.style.display = 'none';
+        }
     }
     
     window.restOfWorldEffect = 0;

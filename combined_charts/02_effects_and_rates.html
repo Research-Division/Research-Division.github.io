@@ -1,31 +1,81 @@
-<div class="multi-chart-panel-content">
+<!-- Total Price Effects Modal -->
+<div id="total-effects-modal" class="multi-chart-panel-content">
     <div class="multi-chart-panel-header">
         <div class="multi-chart-title-container">
-            <h2>Tariff Effects Breakdown</h2>
+            <h2>Total Price Effects</h2>
         </div>
         <button class="panel-close-button" id="panel-close-button">
             <img src="assets/fontawesome/xmark.svg" alt="Close" class="close-icon">
         </button>
     </div>
-    <div class="multi-chart-panel-content-header">
-        <div class="tabs-container" id="chart-tabs-container">
-            <div class="tab active" data-tab="total-effects" id="total-effects-tab">
-                <span>Total Effects</span>
-            </div>
-            <div class="tab" data-tab="direct-effects" id="direct-effects-tab">
-                <span>Direct Effects</span>
-            </div>
-            <div class="tab" data-tab="indirect-effects" id="indirect-effects-tab">
-                <span>Indirect Effects</span>
-            </div>
+
+    <div class="multi-chart-panel-body" style="overflow-y: auto; max-height: calc(95vh - 80px);">
+        <!-- Introduction Section -->
+        <div class="text-section" style="padding: 20px; margin-bottom: 20px;">
+            <h3 class="section-header">Overview</h3>
+            <p>
+                The <italic>Tariff Price Tool</italic> estimates how your imposed tariffs might affect consumer prices, measured through the personal consumption expenditures (PCE) index. A positive effect indicates a potential increase in consumer prices resulting from the tariffs. These effects are broken into two categories: direct and indirect effects.
+            </p>
+            <p>
+                This treemap breaks down the potential price effects across different consumer product categories, allowing you to explore how tariff costs might flow through the economy to affect household spending.
+            </p>
         </div>
-    </div>
-    <div class="multi-chart-panel-body">
-        <!-- Total Effects Tab Content -->
-        <div class="tab-content total-effects-content active">
-            <div class="split-section">
-                <div class="split-full">
-                    <h3 class="section-header">Total Price Effects by Economic Sector</h3>
+
+        <!-- Tariff Effects -->
+        <div class="split-section">
+            <div class="split-left">
+                <h3 class="section-header">Price Effects by Category</h3>
+                <div class="text-section">
+                    <p>
+                        <strong>Direct effects</strong> occur when retailers pass higher tariff costs directly to consumers by raising prices on imported goods. The size of this effect depends on how much of each product category is imported, how important it is in household spending, and how much of the tariff increase retailers choose to pass through to consumers.
+                    </p>
+                    <p id="direct-effect-summary" class="dynamic-effect-summary" style="font-style: italic; color: var(--primary); margin-left: 20px;">
+                        <!-- Dynamic direct effect summary will be inserted here -->
+                    </p>
+                    <p>
+                        <strong>Indirect effects</strong> capture how tariff costs spread through the economy via supply chains. When businesses use tariffed imports as production inputs, these higher costs can flow through to other products and services. This tool assumes firms pass these increased costs on to their customers.
+                    </p>
+                    <p id="indirect-effect-summary" class="dynamic-effect-summary" style="font-style: italic; color: var(--primary); margin-left: 20px;">
+                        <!-- Dynamic indirect effect summary will be inserted here -->
+                    </p>
+                    <p>
+                        <strong>Total effects</strong> represent the sum of direct and indirect effects.
+                    </p>
+                    <p id="total-effect-summary" class="dynamic-effect-summary" style="font-style: italic; color: var(--primary); margin-left: 20px;">
+                        <!-- Dynamic total effect summary will be inserted here -->
+                    </p>
+                    <p>
+                        This treemap visualization uses National Income and Products Account (NIPA) categorization to show how tariff effects are distributed across consumer product categories. Click on any category to explore its components. Each category shows both its percentage share of the total effect and the estimated annual dollar impact for the selected household income level.
+                    </p>
+
+                    <p>
+                        Values shown are for a household with annual income of 
+                        <span class="household-income-display">$100,000</span><span class="household-income-dropdown-toggle"><img src="assets/fontawesome/chevron-down-solid.svg" alt="Select Income" class="dropdown-icon"></span>.
+                        Go to the <a href="#" id="faq-link" style="color: var(--primary); text-decoration: underline;">FAQ's</a> to learn about how to interpret these results.
+                        <div class="household-income-dropdown" id="household-income-dropdown">
+                            <div id="household-income-dropdown-content">
+                                <!-- Income options will be populated here -->
+                            </div>
+                        </div>
+                    </p>
+                </div>
+            </div>
+            <div class="split-right">
+                <!-- Tab Navigation -->
+                <div class="tabs-container" id="chart-tabs-container" style="margin-bottom: 15px;">
+                    <div class="tab active" data-tab="total-effects" id="total-effects-tab">
+                        <span>Total Effects</span>
+                    </div>
+                    <div class="tab" data-tab="direct-effects" id="direct-effects-tab">
+                        <span>Direct Effects</span>
+                    </div>
+                    <div class="tab" data-tab="indirect-effects" id="indirect-effects-tab">
+                        <span>Indirect Effects</span>
+                    </div>
+                </div>
+
+                <!-- Total Effects Tab Content -->
+                <div class="tab-content total-effects-content active">
                     <div class="chart-container-with-actions">
                         <div class="chart-actions">
                             <button id="reset-treemap-button-total" class="chart-action-button" title="Reset Treemap">
@@ -35,24 +85,10 @@
                         </div>
                         <div class="chart-container" id="total-effects-treemap"></div>
                     </div>
-                    <div class="text-section">
-                        <p>
-                            This treemap visualizes the total price effects of tariffs across different economic sectors. 
-                            The size of each box represents the magnitude of the price effect in that sector.
-                        </p>
-                        <p>
-                            <strong>Hover</strong> over a sector to see details and <strong>click</strong> to drill down into sub-sectors.
-                        </p>
-                    </div>
                 </div>
-            </div>
-        </div>
-        
-        <!-- Direct Effects Tab Content -->
-        <div class="tab-content direct-effects-content">
-            <div class="split-section">
-                <div class="split-full">
-                    <h3 class="section-header">Direct Price Effects by Economic Sector</h3>
+                
+                <!-- Direct Effects Tab Content -->
+                <div class="tab-content direct-effects-content">
                     <div class="chart-container-with-actions">
                         <div class="chart-actions">
                             <button id="reset-treemap-button-direct" class="chart-action-button" title="Reset Treemap">
@@ -62,23 +98,10 @@
                         </div>
                         <div class="chart-container" id="direct-effects-treemap"></div>
                     </div>
-                    <div class="text-section">
-                        <p>
-                            Direct effects show the immediate impact on prices due to tariffs on imports used directly in production or consumption.
-                        </p>
-                        <p>
-                            <strong>Hover</strong> over a sector to see details and <strong>click</strong> to drill down into sub-sectors.
-                        </p>
-                    </div>
                 </div>
-            </div>
-        </div>
-        
-        <!-- Indirect Effects Tab Content -->
-        <div class="tab-content indirect-effects-content">
-            <div class="split-section">
-                <div class="split-full">
-                    <h3 class="section-header">Indirect Price Effects by Economic Sector</h3>
+                
+                <!-- Indirect Effects Tab Content -->
+                <div class="tab-content indirect-effects-content">
                     <div class="chart-container-with-actions">
                         <div class="chart-actions">
                             <button id="reset-treemap-button-indirect" class="chart-action-button" title="Reset Treemap">
@@ -87,14 +110,6 @@
                             </button>
                         </div>
                         <div class="chart-container" id="indirect-effects-treemap"></div>
-                    </div>
-                    <div class="text-section">
-                        <p>
-                            Indirect effects show the downstream impact on prices due to tariffs on inputs used in intermediate production.
-                        </p>
-                        <p>
-                            <strong>Hover</strong> over a sector to see details and <strong>click</strong> to drill down into sub-sectors.
-                        </p>
                     </div>
                 </div>
             </div>

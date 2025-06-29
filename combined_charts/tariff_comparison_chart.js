@@ -293,8 +293,7 @@ window.tariffComparisonChart = (function() {
                         }
                         createTariffComparisonChart(iso, selectedEffectType);
                         
-                        // Update effect summaries with new country name (will be called again when aggregations are ready)
-                        updateEffectSummaries();
+                        // Don't update summaries here - they will be updated when aggregations are ready
                         
                         dropdown.classList.remove('active');
                         dropdownToggle.classList.remove('active');
@@ -372,8 +371,7 @@ window.tariffComparisonChart = (function() {
                         dropdown.classList.remove('active');
                         dropdownToggle.classList.remove('active');
                         
-                        // Update the dynamic effect summaries with new income calculations
-                        updateEffectSummaries();
+                        // Don't update summaries here immediately - let the treemap recreation handle this
                         
                         // Clear all treemap caches when changing income
                         if (window.tariffEffectsTreemap && window.tariffEffectsTreemap.clearCache) {
@@ -382,6 +380,11 @@ window.tariffComparisonChart = (function() {
                         
                         // Recreate chart with new income value
                         createTariffEffectsTreemap(selectedEffectType);
+                        
+                        // Update effect summaries with new income calculations after a short delay
+                        setTimeout(() => {
+                            updateEffectSummaries();
+                        }, 100);
                     }
                 }
             });
@@ -1324,6 +1327,12 @@ window.tariffComparisonChart = (function() {
      * Update the dynamic effect summary sentences in the HTML
      */
     function updateEffectSummaries() {
+        // Check if we have a valid current ISO code
+        if (!currentIsoCode) {
+            console.warn('updateEffectSummaries called but currentIsoCode is not set');
+            return;
+        }
+        
         // Get the current country name
         const countryName = window.isoToCountryName && window.isoToCountryName[currentIsoCode] 
             ? window.isoToCountryName[currentIsoCode] 
@@ -1343,20 +1352,20 @@ window.tariffComparisonChart = (function() {
         }
         
         // Update direct effect summary
-        const directSummaryElement = document.getElementById('direct-effect-summary');
-        if (directSummaryElement && window.nipaDirectLayerAggregations) {
+        const directSummaryElement = document.getElementById('country-direct-effect-summary');
+        if (directSummaryElement) {
             directSummaryElement.textContent = formatEffectSummary('direct', window.nipaDirectLayerAggregations);
         }
         
         // Update indirect effect summary
-        const indirectSummaryElement = document.getElementById('indirect-effect-summary');
-        if (indirectSummaryElement && window.nipaIndirectLayerAggregations) {
+        const indirectSummaryElement = document.getElementById('country-indirect-effect-summary');
+        if (indirectSummaryElement) {
             indirectSummaryElement.textContent = formatEffectSummary('indirect', window.nipaIndirectLayerAggregations);
         }
         
         // Update total effect summary
-        const totalSummaryElement = document.getElementById('total-effect-summary');
-        if (totalSummaryElement && window.nipaTotalLayerAggregations) {
+        const totalSummaryElement = document.getElementById('country-total-effect-summary');
+        if (totalSummaryElement) {
             totalSummaryElement.textContent = formatEffectSummary('total', window.nipaTotalLayerAggregations);
         }
     }

@@ -31,6 +31,18 @@ window.tariffEffectsPanel = (function() {
     // Track if treemap dependencies are loaded
     let treemapDependenciesLoaded = false;
     
+    // Household income presets for dollar impact calculations
+    const householdIncomePresets = [
+        { value: 50000, label: '$50,000' },
+        { value: 75000, label: '$75,000' },
+        { value: 100000, label: '$100,000' },
+        { value: 150000, label: '$150,000' },
+        { value: 200000, label: '$200,000' }
+    ];
+    
+    // Default household income value
+    let selectedHouseholdIncome = 100000;
+    
     /**
      * Initialize the panel structure
      */
@@ -151,6 +163,9 @@ window.tariffEffectsPanel = (function() {
                 // Add the panel to the body
                 document.body.appendChild(panelContainer);
                 
+                // Add required CSS styles
+                addDropdownStyles();
+                
                 // Set up event listeners
                 setupEventListeners(panelContainer);
             })
@@ -159,6 +174,81 @@ window.tariffEffectsPanel = (function() {
             });
     }
     
+    /**
+     * Add required CSS styles for dropdown functionality
+     */
+    function addDropdownStyles() {
+        // Check if styles are already added
+        if (document.getElementById('tariff-effects-dropdown-styles')) {
+            return;
+        }
+        
+        const style = document.createElement('style');
+        style.id = 'tariff-effects-dropdown-styles';
+        style.textContent = `
+            .household-income-display {
+                color: var(--excellenceOrange, #ff8c00);
+                font-weight: bold;
+                cursor: pointer;
+            }
+            
+            .household-income-dropdown-toggle {
+                display: inline-block;
+                margin-left: 0;
+                cursor: pointer;
+                vertical-align: middle;
+            }
+            
+            .household-income-dropdown-toggle img {
+                height: 10px;
+                width: 10px;
+                filter: var(--icon-filter, none);
+                transition: transform 0.2s ease;
+            }
+            
+            .household-income-dropdown-toggle.active img {
+                transform: rotate(180deg);
+            }
+            
+            .household-income-dropdown {
+                position: fixed;
+                transform: translateX(-50%);
+                background-color: var(--background-color);
+                border: 1px solid var(--borderColor, #ddd);
+                border-radius: var(--borderRadius, 4px);
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+                display: none;
+                z-index: 1100;
+                max-height: 300px;
+                width: 150px;
+                overflow-y: auto;
+                padding: 5px 0;
+            }
+            
+            .household-income-dropdown.active {
+                display: block;
+            }
+            
+            .dropdown-option {
+                padding: 8px 15px;
+                cursor: pointer;
+                font-family: var(--font-family-monospace);
+                font-size: 14px;
+                color: var(--text-color);
+            }
+            
+            .dropdown-option:hover {
+                background-color: var(--borderColor, #ddd);
+            }
+            
+            .dropdown-option.active {
+                background-color: var(--primary, #3581b4);
+                color: white;
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
     /**
      * Set up event listeners for the panel
      * @param {HTMLElement} container - The panel container
@@ -196,6 +286,9 @@ window.tariffEffectsPanel = (function() {
                 createTreemap('indirect');
             });
         }
+        
+        // Setup household income dropdown
+        setupHouseholdIncomeDropdown(container);
         
         // Setup tab switching event listeners
         const totalEffectsTab = container.querySelector('#total-effects-tab');
@@ -246,6 +339,9 @@ window.tariffEffectsPanel = (function() {
         // Make sure treemap dependencies are loaded before creating treemaps
         loadTreemapDependencies()
             .then(() => {
+                // Update dynamic effect summaries
+                updateEffectSummaries();
+                
                 // Create treemap for the active tab only
                 createAllTreemaps();
             })
@@ -447,8 +543,9 @@ window.tariffEffectsPanel = (function() {
             animate: false, // Disable animation so legends render properly
             preserveTitles: true,
             title: `Tariff ${capitalizeFirstLetter(effectType)} Effects`,
-            subtitle: 'Breakdown by economic sector',
+            subtitle: `Breakdown by economic sector. Values show % of total effect and $ impact on a $${selectedHouseholdIncome.toLocaleString()} household.`,
             resetToRoot: true, // Force reset to root level
+            householdIncome: selectedHouseholdIncome, // Pass the current household income
             onSuccess: function(config) {
                 //console.log(`${effectType} effects treemap created successfully`);
             },
@@ -509,6 +606,135 @@ window.tariffEffectsPanel = (function() {
     }
     
     /**
+     * Update dynamic effect summaries with current data
+     */
+    function updateEffectSummaries() {
+        // Helper function to format effect value and calculate dollar amount
+        function formatEffectSummary(effectType, effectAggregations) {
+            if (!effectAggregations || !effectAggregations['0'] || !effectAggregations['0'].sum) {
+                return `The ${effectType} effect data is not available for the current tariff scenario.`;
+            }
+            
+            const effectValue = effectAggregations['0'].sum;
+            const effectPercent = (effectValue * 100).toFixed(2) + '%';
+            const dollarAmount = Math.round(effectValue * selectedHouseholdIncome);
+            
+            return `The ${effectType} effect from the selected tariffs is ${effectPercent} (approximately $${dollarAmount.toLocaleString()} annually for a $${selectedHouseholdIncome.toLocaleString()} household).`;
+        }
+        
+        // Update direct effect summary
+        const directSummaryElement = document.getElementById('direct-effect-summary');
+        if (directSummaryElement && window.nipaDirectLayerAggregations) {
+            directSummaryElement.textContent = formatEffectSummary('direct', window.nipaDirectLayerAggregations);
+        }
+        
+        // Update indirect effect summary
+        const indirectSummaryElement = document.getElementById('indirect-effect-summary');
+        if (indirectSummaryElement && window.nipaIndirectLayerAggregations) {
+            indirectSummaryElement.textContent = formatEffectSummary('indirect', window.nipaIndirectLayerAggregations);
+        }
+        
+        // Update total effect summary
+        const totalSummaryElement = document.getElementById('total-effect-summary');
+        if (totalSummaryElement && window.nipaTotalLayerAggregations) {
+            totalSummaryElement.textContent = formatEffectSummary('total', window.nipaTotalLayerAggregations);
+        }
+    }
+
+    /**
+     * Setup household income dropdown functionality
+     * @param {HTMLElement} container - The panel container
+     */
+    function setupHouseholdIncomeDropdown(container) {
+        const incomeDisplay = container.querySelector('.household-income-display');
+        const incomeDropdownToggle = container.querySelector('.household-income-dropdown-toggle');
+        const incomeDropdown = container.querySelector('.household-income-dropdown');
+        const incomeDropdownContent = container.querySelector('#household-income-dropdown-content');
+        
+        if (!incomeDisplay || !incomeDropdownToggle || !incomeDropdown || !incomeDropdownContent) {
+            console.warn('Household income dropdown elements not found');
+            return;
+        }
+        
+        // Set initial display value
+        const initialIncome = householdIncomePresets.find(preset => preset.value === selectedHouseholdIncome);
+        if (initialIncome) {
+            incomeDisplay.textContent = initialIncome.label;
+        }
+        
+        // Populate dropdown content
+        incomeDropdownContent.innerHTML = '';
+        householdIncomePresets.forEach(preset => {
+            const option = document.createElement('div');
+            option.className = 'dropdown-option';
+            option.textContent = preset.label;
+            option.dataset.value = preset.value;
+            
+            option.addEventListener('click', function() {
+                // Update selected income
+                selectedHouseholdIncome = parseInt(preset.value);
+                incomeDisplay.textContent = preset.label;
+                
+                // Hide dropdown
+                incomeDropdown.classList.remove('active');
+                incomeDropdownToggle.classList.remove('active');
+                
+                // Clear treemap caches and recreate with new income
+                if (window.tariffEffectsTreemap && window.tariffEffectsTreemap.clearCache) {
+                    window.tariffEffectsTreemap.clearCache();
+                }
+                
+                // Update the dynamic effect summaries with new income calculations
+                updateEffectSummaries();
+                
+                // Recreate the active treemap with new income calculations
+                createAllTreemaps();
+            });
+            
+            incomeDropdownContent.appendChild(option);
+        });
+        
+        // Toggle dropdown visibility
+        incomeDropdownToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const isVisible = incomeDropdown.classList.contains('active');
+            
+            // Toggle dropdown visibility
+            if (isVisible) {
+                incomeDropdown.classList.remove('active');
+                incomeDropdownToggle.classList.remove('active');
+            } else {
+                incomeDropdown.classList.add('active');
+                incomeDropdownToggle.classList.add('active');
+                
+                // Position dropdown relative to the display element
+                const displayRect = incomeDisplay.getBoundingClientRect();
+                const dropdownRect = incomeDropdown.getBoundingClientRect();
+                
+                // Position dropdown below and centered on the display element
+                incomeDropdown.style.left = `${displayRect.left + (displayRect.width / 2)}px`;
+                incomeDropdown.style.top = `${displayRect.bottom + 5}px`;
+                
+                // Adjust position if dropdown would go off-screen
+                if (displayRect.left + dropdownRect.width > window.innerWidth) {
+                    incomeDropdown.style.left = `${window.innerWidth - dropdownRect.width - 10}px`;
+                }
+                if (displayRect.left < 0) {
+                    incomeDropdown.style.left = '10px';
+                }
+            }
+        });
+        
+        // Hide dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!incomeDropdown.contains(e.target) && !incomeDropdownToggle.contains(e.target) && !incomeDisplay.contains(e.target)) {
+                incomeDropdown.classList.remove('active');
+                incomeDropdownToggle.classList.remove('active');
+            }
+        });
+    }
+
+    /**
      * Public API
      */
     return {
@@ -518,7 +744,8 @@ window.tariffEffectsPanel = (function() {
         togglePanel,
         createAllTreemaps,
         createTreemap,
-        clearAllDataCaches
+        clearAllDataCaches,
+        updateEffectSummaries
     };
 })();
 

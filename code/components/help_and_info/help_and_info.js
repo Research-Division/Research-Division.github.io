@@ -378,7 +378,7 @@ function cleanupLeftoverTourElements() {
     elementsToCheck.forEach(id => {
         const element = document.getElementById(id);
         if (element && element.parentNode) {
-            console.log(`Cleaning up leftover tour element: ${id}`);
+            //console.log(`Cleaning up leftover tour element: ${id}`);
             element.parentNode.removeChild(element);
         }
     });
@@ -387,7 +387,7 @@ function cleanupLeftoverTourElements() {
     const tourClassElements = document.querySelectorAll('.tour-overlay, .tour-tooltip, .highlight-ring');
     tourClassElements.forEach(element => {
         if (element && element.parentNode) {
-            console.log('Cleaning up element with tour class');
+            //console.log('Cleaning up element with tour class');
             element.parentNode.removeChild(element);
         }
     });
@@ -461,7 +461,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Check if this is the first visit (using localStorage)
     const hasVisitedBefore = localStorage.getItem('hasVisitedSparksTool');
-    console.log('hasVisitedSparksTool value:', hasVisitedBefore);
+    //console.log('hasVisitedSparksTool value:', hasVisitedBefore);
     
     // If this is the first visit, start the guided tour
     if (!hasVisitedBefore) {
@@ -700,8 +700,8 @@ class SparksGuidedTourV2 {
             }
         ];
         
-        console.log('SparksGuidedTourV2 initialized with', this.tourSteps.length, 'steps');
-        console.log('Steps:', this.tourSteps.map(s => s.title));
+        //console.log('SparksGuidedTourV2 initialized with', this.tourSteps.length, 'steps');
+        //console.log('Steps:', this.tourSteps.map(s => s.title));
         
         // Initialize DOM elements
         this.overlay = document.getElementById('tourOverlay');
@@ -765,7 +765,7 @@ class SparksGuidedTourV2 {
         const container = document.getElementById('progressDots');
         container.innerHTML = '';
         
-        console.log('Creating progress dots for', this.tourSteps.length, 'steps');
+        //console.log('Creating progress dots for', this.tourSteps.length, 'steps');
         
         this.tourSteps.forEach((_, index) => {
             const dot = document.createElement('div');
@@ -773,7 +773,7 @@ class SparksGuidedTourV2 {
             container.appendChild(dot);
         });
         
-        console.log('Created', container.children.length, 'progress dots');
+        //console.log('Created', container.children.length, 'progress dots');
     }
     
     updateProgressDots() {
@@ -923,7 +923,7 @@ class SparksGuidedTourV2 {
     highlightElement(selector, title, content, position) {
         const element = document.querySelector(selector);
         if (!element) {
-            console.warn(`Element not found: ${selector}`);
+            //console.warn(`Element not found: ${selector}`);
             return;
         }
         
@@ -1026,7 +1026,7 @@ class SparksGuidedTourV2 {
             }
         }
         
-        console.log(`Showing step ${stepIndex + 1}/${this.tourSteps.length}:`, step.title, step.target);
+        //console.log(`Showing step ${stepIndex + 1}/${this.tourSteps.length}:`, step.title, step.target);
         
         
         // Handle intro steps (centered content with no highlighting)
@@ -1064,7 +1064,7 @@ class SparksGuidedTourV2 {
             // Check if target element exists for regular steps
             const targetElement = document.querySelector(step.target);
             if (!targetElement) {
-                console.warn(`Target element not found: ${step.target}`);
+                //console.warn(`Target element not found: ${step.target}`);
                 
                 // For popup targeting steps, popup may not be open yet
                 if (step.targetPopup) {
@@ -1072,7 +1072,7 @@ class SparksGuidedTourV2 {
                     // Check if we can still see any popup-related elements
                     const popupContainer = document.querySelector('.popup-container');
                     if (!popupContainer) {
-                        console.warn('Popup appears to be closed, attempting to reopen it');
+                        //console.warn('Popup appears to be closed, attempting to reopen it');
                         
                         // Try to reopen the popup for Canada if it's closed and we're on a popup-related step
                         if (this.currentStep >= 4 && this.currentStep <= 5) {  // Steps 4-5 need the popup
@@ -1099,19 +1099,19 @@ class SparksGuidedTourV2 {
                                 if (secondRetryElement) {
                                     this.highlightElement(step.target, step.title, step.content, step.position);
                                 } else {
-                                    console.warn(`Target element still not found after retry: ${step.target}`);
+                                    //console.warn(`Target element still not found after retry: ${step.target}`);
                                     
                                     // If the popup is visible but we still can't find the element,
                                     // continue to the next step instead of getting stuck
                                     if (document.querySelector('.popup-container')) {
-                                        console.log('Popup is open but element not found, continuing to next step');
+                                        //console.log('Popup is open but element not found, continuing to next step');
                                         if (stepIndex < this.tourSteps.length - 1) {
                                             this.currentStep++;
                                             this.showStep(this.currentStep);
                                         }
                                     } else {
                                         // If popup disappeared again, try to reopen it
-                                        console.log('Popup disappeared, trying to reopen');
+                                        //console.log('Popup disappeared, trying to reopen');
                                         this.openCanadaPopup();
                                         setTimeout(() => {
                                             this.showStep(this.currentStep);
@@ -1283,13 +1283,13 @@ class SparksGuidedTourV2 {
             }
         });
         
-        console.log('Tour elements cleaned up');
+        //console.log('Tour elements cleaned up');
     }
     
     // Removed product modal opening function
     
     openCanadaPopup() {
-        console.log('Opening Canada popup for guided tour...');
+        //console.log('Opening Canada popup for guided tour...');
         
         // Close any existing popups first to avoid conflicts
         if (window.map && typeof window.map.closePopup === 'function') {
@@ -1340,7 +1340,7 @@ class SparksGuidedTourV2 {
                                     // Verify the popup has opened
                                     const popupContainer = document.querySelector('.popup-container');
                                     if (popupContainer) {
-                                        console.log('Canada popup opened successfully for guided tour');
+                                        //console.log('Canada popup opened successfully for guided tour');
                                         
                                         // Set a value in the new tariff field to make it more obvious
                                         const newTariffInput = document.getElementById('newTariffInput');
@@ -1348,7 +1348,7 @@ class SparksGuidedTourV2 {
                                             newTariffInput.value = '10.00';
                                         }
                                     } else {
-                                        console.warn('Canada popup did not open as expected for guided tour');
+                                        //console.warn('Canada popup did not open as expected for guided tour');
                                     }
                                 }, 500);
                             } catch (error) {
@@ -1362,7 +1362,7 @@ class SparksGuidedTourV2 {
             });
             
             if (!canadaFound) {
-                console.warn('Could not find Canada on the map for the guided tour');
+                //console.warn('Could not find Canada on the map for the guided tour');
                 
                 // If Canada wasn't found, move to the next step after a delay
                 setTimeout(() => {
@@ -1373,7 +1373,7 @@ class SparksGuidedTourV2 {
                 }, 3000);
             }
         } else {
-            console.warn('GeoJSON layer not available for the guided tour');
+            //console.warn('GeoJSON layer not available for the guided tour');
             
             // If geojsonLayer is not available, move to the next step after a delay
             setTimeout(() => {
@@ -1386,14 +1386,14 @@ class SparksGuidedTourV2 {
     }
     
     populateReceiptWithExamples() {
-        console.log('Populating receipt with examples for guided tour...');
-        console.log('devTools available:', typeof devTools !== 'undefined');
-        console.log('toggleReceipt function available:', typeof devTools !== 'undefined' && typeof devTools.toggleReceipt === 'function');
+        //console.log('Populating receipt with examples for guided tour...');
+        //console.log('devTools available:', typeof devTools !== 'undefined');
+        //console.log('toggleReceipt function available:', typeof devTools !== 'undefined' && typeof devTools.toggleReceipt === 'function');
         
         try {
             // Use the devTools function to add example countries to the receipt
             if (typeof devTools !== 'undefined' && typeof devTools.toggleReceipt === 'function') {
-                console.log('Calling devTools.toggleReceipt(true)...');
+                //console.log('Calling devTools.toggleReceipt(true)...');
                 // Show the receipt and populate it with examples
                 devTools.toggleReceipt(true);
                 
@@ -1435,7 +1435,7 @@ class SparksGuidedTourV2 {
                                 const detailSection = document.getElementById(targetId);
                                 if (detailSection) {
                                     detailSection.style.display = 'block';
-                                    console.log('Receipt example expanded after population');
+                                    //console.log('Receipt example expanded after population');
                                 }
                             }
                         }
@@ -1489,7 +1489,7 @@ class SparksGuidedTourV2 {
                     
                 }, 500);
             } else {
-                console.warn('devTools.toggleReceipt function not available');
+                //console.warn('devTools.toggleReceipt function not available');
             }
         } catch (error) {
             console.error('Error populating receipt with examples:', error);

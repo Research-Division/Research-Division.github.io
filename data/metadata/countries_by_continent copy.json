@@ -279,6 +279,10 @@
             "ISO_A3": "CCK"
         },
         {
+            "country": "Georgia",
+            "ISO_A3": "GEO"
+        },
+        {
             "country": "Hong Kong",
             "ISO_A3": "HKG"
         },
@@ -501,10 +505,6 @@
         {
             "country": "Germany",
             "ISO_A3": "DEU"
-        },
-        {
-            "country": "Georgia",
-            "ISO_A3": "GEO"
         },
         {
             "country": "Gibraltar",
