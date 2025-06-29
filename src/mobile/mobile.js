@@ -744,20 +744,33 @@
                 // Store original height option
                 const originalHeight = this.options.height;
                 
-                // On mobile, use a fixed height
+                // On mobile, use a larger fixed height
                 if (window.isMobileVersion) {
-                    this.options.height = 400;
+                    this.options.height = 500;
+                    // Override the 75% calculation to use more space
+                    this.options.useMobileHeight = true;
                 }
                 
                 // Pre-set container dimensions for mobile to ensure proper calculation
                 if (window.isMobileVersion && container) {
                     // Force container to have proper width before getBoundingClientRect is called
                     container.style.width = '100%';
-                    container.style.height = '400px';
+                    container.style.height = '500px';
                     container.style.position = 'relative';
                     
                     // Force a reflow to ensure dimensions are calculated
                     container.offsetHeight;
+                    
+                    // Override the render method's height calculation
+                    const originalGetBoundingClientRect = container.getBoundingClientRect.bind(container);
+                    container.getBoundingClientRect = function() {
+                        const rect = originalGetBoundingClientRect();
+                        // Return modified rect that will result in full height usage
+                        return {
+                            ...rect,
+                            height: 500 / 0.75 // This will make the 75% calculation result in 500px
+                        };
+                    };
                 }
                 
                 // Call original render
@@ -774,10 +787,10 @@
                     // Fix SVG dimensions
                     const svg = container.querySelector('.treemap-svg');
                     if (svg) {
-                        svg.setAttribute('height', '400');
+                        svg.setAttribute('height', '500');
                         svg.setAttribute('width', '100%');
-                        svg.setAttribute('viewBox', `0 0 ${viewportWidth} 400`);
-                        svg.style.height = '400px';
+                        svg.setAttribute('viewBox', `0 0 ${viewportWidth} 500`);
+                        svg.style.height = '500px';
                         svg.style.width = '100%';
                         svg.style.maxWidth = '100%';
                         
@@ -789,8 +802,8 @@
                     }
                     
                     // Fix container heights
-                    container.style.height = '400px';
-                    container.style.minHeight = '400px';
+                    container.style.height = '500px';
+                    container.style.minHeight = '500px';
                     container.style.maxWidth = '100%';
                     container.style.overflow = 'hidden';
                     
@@ -808,7 +821,7 @@
                             x: 0,
                             y: 0,
                             width: Math.max(300, containerWidth - 20), // Ensure minimum width, account for padding
-                            height: 400
+                            height: 500
                         };
                         layout.calculateLayout(rootNode, bounds);
                         
@@ -952,9 +965,10 @@
                                 const containerWidth = container.offsetWidth || viewportWidth;
                                 const width = Math.max(300, containerWidth - 20);
                                 
-                                svg.setAttribute('viewBox', `0 0 ${width} 400`);
+                                svg.setAttribute('viewBox', `0 0 ${width} 500`);
                                 svg.style.width = '100%';
                                 svg.style.maxWidth = '100%';
+                                svg.style.height = '500px';
                             }
                             
                             // Fix legend text visibility
@@ -991,6 +1005,174 @@
                 fixLegendTextVisibility();
             }
         }, 500); // Check every 500ms
+    }
+    
+    /**
+     * Add touch-and-hold functionality for treemap tooltips
+     */
+    function addTouchTooltipSupport() {
+        let touchTimer = null;
+        let currentTooltip = null;
+        let touchedElement = null;
+        let touchStartTime = 0;
+        let isDrillDownClick = false;
+        
+        // Function to show tooltip
+        function showTouchTooltip(element, touch) {
+            // Find the tooltip container
+            const tooltipContainer = document.getElementById('treemap-tooltip-container');
+            if (!tooltipContainer) return;
+            
+            // Trigger the mouseenter event to show tooltip
+            const mouseEnterEvent = new MouseEvent('mouseenter', {
+                bubbles: true,
+                cancelable: true,
+                clientX: touch.clientX,
+                clientY: touch.clientY
+            });
+            element.dispatchEvent(mouseEnterEvent);
+            
+            // Add highlight effect
+            element.setAttribute('stroke', 'var(--text-color, #333)');
+            element.setAttribute('stroke-width', '4');
+            element.style.opacity = '0.8';
+            
+            // Position tooltip at touch point
+            if (tooltipContainer.style.visibility === 'visible') {
+                tooltipContainer.style.left = `${touch.clientX + 10}px`;
+                tooltipContainer.style.top = `${touch.clientY - 40}px`;
+            }
+            
+            currentTooltip = tooltipContainer;
+            touchedElement = element;
+        }
+        
+        // Function to hide tooltip
+        function hideTouchTooltip() {
+            if (touchedElement) {
+                // Trigger mouseleave to hide tooltip
+                const mouseLeaveEvent = new MouseEvent('mouseleave', {
+                    bubbles: true,
+                    cancelable: true
+                });
+                touchedElement.dispatchEvent(mouseLeaveEvent);
+                
+                // Remove highlight effect
+                touchedElement.setAttribute('stroke', 'var(--background-color, #fff)');
+                touchedElement.setAttribute('stroke-width', '1');
+                touchedElement.style.opacity = '1';
+                
+                touchedElement = null;
+            }
+            
+            currentTooltip = null;
+        }
+        
+        // Add touch event listeners to document
+        document.addEventListener('touchstart', function(e) {
+            // Check if touch is on a treemap rectangle
+            const target = e.target;
+            if (target && target.classList && target.classList.contains('treemap-rect')) {
+                // Hide any existing tooltip first
+                hideTouchTooltip();
+                
+                // Clear any existing timer
+                if (touchTimer) {
+                    clearTimeout(touchTimer);
+                }
+                
+                // Store touch position and time
+                const touch = e.touches[0];
+                touchStartTime = Date.now();
+                isDrillDownClick = false;
+                
+                // Start timer for long press (1 second)
+                touchTimer = setTimeout(() => {
+                    // Only show tooltip if not a drill-down click
+                    if (!isDrillDownClick) {
+                        showTouchTooltip(target, touch);
+                        
+                        // Add haptic feedback if available
+                        if (window.navigator && window.navigator.vibrate) {
+                            window.navigator.vibrate(50);
+                        }
+                    }
+                }, 1000);
+            }
+        }, { passive: true });
+        
+        document.addEventListener('touchmove', function(e) {
+            // Cancel timer if user moves finger
+            if (touchTimer) {
+                clearTimeout(touchTimer);
+                touchTimer = null;
+            }
+            
+            // Update tooltip position if visible
+            if (currentTooltip && currentTooltip.style.visibility === 'visible') {
+                const touch = e.touches[0];
+                currentTooltip.style.left = `${touch.clientX + 10}px`;
+                currentTooltip.style.top = `${touch.clientY - 40}px`;
+            }
+        }, { passive: true });
+        
+        document.addEventListener('touchend', function(e) {
+            // Clear timer
+            if (touchTimer) {
+                clearTimeout(touchTimer);
+                touchTimer = null;
+            }
+            
+            // Check if this was a quick tap (potential drill-down)
+            const touchDuration = Date.now() - touchStartTime;
+            if (touchDuration < 500) { // Quick tap
+                isDrillDownClick = true;
+                // Hide tooltip immediately for quick taps
+                hideTouchTooltip();
+            } else {
+                // Hide tooltip after a short delay for long presses
+                setTimeout(() => {
+                    hideTouchTooltip();
+                }, 100);
+            }
+        }, { passive: true });
+        
+        document.addEventListener('touchcancel', function() {
+            // Clear timer and hide tooltip
+            if (touchTimer) {
+                clearTimeout(touchTimer);
+                touchTimer = null;
+            }
+            hideTouchTooltip();
+        }, { passive: true });
+        
+        // Hide tooltip when clicking anywhere (including treemap rects for drill-down)
+        document.addEventListener('click', function(e) {
+            // Always hide tooltip on any click
+            hideTouchTooltip();
+            
+            // Also cancel any pending timer
+            if (touchTimer) {
+                clearTimeout(touchTimer);
+                touchTimer = null;
+            }
+        }, true); // Use capture phase to ensure this runs before drill-down
+        
+        // Also listen for the custom treemap drill-down event
+        document.addEventListener('treemap-node-click', function() {
+            // Hide tooltip when drilling down
+            hideTouchTooltip();
+            isDrillDownClick = true;
+        });
+    }
+    
+    // Initialize touch tooltip support
+    if (window.isMobileVersion) {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', addTouchTooltipSupport);
+        } else {
+            addTouchTooltipSupport();
+        }
     }
 
     // Expose functions to global scope if needed

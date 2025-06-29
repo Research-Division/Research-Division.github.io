@@ -701,7 +701,7 @@ body.menu-open {
 /* Fix treemap container and visualization for mobile */
 .treemap-container {
     width: 100% !important;
-    height: 400px !important; /* Fixed height for mobile */
+    height: 500px !important; /* Increased height for better proportions */
     overflow: hidden !important;
 }
 
@@ -765,7 +765,7 @@ body.menu-open {
 /* Override the 75% height calculation on mobile */
 .multi-chart-panel-body .treemap-visualization-container svg,
 .trade-area-panel-body .treemap-visualization-container svg {
-    height: 400px !important; /* Fixed height instead of percentage */
+    height: 500px !important; /* Fixed height instead of percentage */
 }
 
 /* Fix legend color boxes on mobile */
@@ -871,4 +871,31 @@ body.menu-open {
     width: 100% !important;
     max-width: 100% !important;
     min-width: unset !important;
+}
+
+/* Treemap touch behavior for mobile */
+.treemap-rect {
+    -webkit-touch-callout: none; /* Disable callout on long press */
+    -webkit-user-select: none; /* Disable text selection */
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    touch-action: manipulation; /* Prevent double-tap zoom */
+}
+
+/* Ensure tooltip is visible above everything on mobile */
+#treemap-tooltip-container {
+    z-index: 2147483647 !important; /* Maximum z-index */
+    position: fixed !important;
+    pointer-events: none !important;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* Visual feedback for touch-and-hold */
+.treemap-rect.touch-active {
+    stroke: var(--text-color, #333) !important;
+    stroke-width: 4px !important;
+    opacity: 0.8 !important;
 }
