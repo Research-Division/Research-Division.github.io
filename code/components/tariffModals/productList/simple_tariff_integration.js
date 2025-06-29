@@ -131,7 +131,7 @@ function setupEventListeners() {
     submitBtn.addEventListener('click', handleTariffSubmit);
   }
   
-  // All-industry tariff input
+  // All-industry tariff input - now updates all section values directly
   const allTariffInput = document.getElementById('tariff-all-input');
   if (allTariffInput) {
     allTariffInput.addEventListener('change', function() {
@@ -140,6 +140,24 @@ function setupEventListeners() {
       const passThroughInput = document.getElementById('tariff-all-passthrough');
       if (passThroughInput) {
         currentPassThroughRate = (parseFloat(passThroughInput.value) || 100) / 100;
+      }
+      
+      // Update all section values based on the mode
+      if (value >= 0 && selectedCountry) {
+        Object.keys(sectionToHs4Mapping).forEach(sectionId => {
+          if (showOriginalAndCurrentTariffs) {
+            // In original/current mode: current = original + (additional × pass-through)
+            const originalValue = tariffPropagator.getTariffValue('section', sectionId, null, null, selectedCountry, 'original');
+            const newValue = originalValue + (value * currentPassThroughRate);
+            tariffPropagator.updateTariff('section', sectionId, null, null, newValue, selectedCountry, 'current');
+          } else {
+            // In tariff-change mode: value = additional × pass-through
+            tariffPropagator.updateTariff('section', sectionId, null, null, value * currentPassThroughRate, selectedCountry);
+          }
+        });
+        
+        // Refresh the hierarchical view to show the updated values
+        buildHierarchicalView();
       }
     });
   }
@@ -891,33 +909,9 @@ function handleTariffSubmit() {
       // Store current pass-through rate (as a decimal)
       currentPassThroughRate = passThroughValue / 100;
       
-      // If all-industry tariff is set, apply it to all sections
-      if (tariffValue > 0) {
-        // Handle differently based on the current mode
-        if (showOriginalAndCurrentTariffs) {
-          
-          // For each section, add the tariff value to the original value
-          Object.keys(sectionToHs4Mapping).forEach(sectionId => {
-            // Get the original tariff value for this section
-            const originalValue = tariffPropagator.getTariffValue('section', sectionId, null, null, selectedCountry, 'original');
-            
-            // Calculate the new value by adding the tariff value to the original value
-            const newValue = originalValue + (tariffValue * currentPassThroughRate);
-            
-            // Update the tariff with the new value
-            tariffPropagator.updateTariff('section', sectionId, null, null, newValue, selectedCountry, 'current');
-            
-          });
-        } else {
-          // In Tariff Change mode, apply tariff value directly
-          
-          // Apply to all sections (which will propagate to all chapters and HS4 codes)
-          Object.keys(sectionToHs4Mapping).forEach(sectionId => {
-            tariffPropagator.updateTariff('section', sectionId, null, null, tariffValue * currentPassThroughRate, selectedCountry);
-          });
-        }
-        
-      }
+      // The all-industry tariff is now applied directly to sections when the input changes,
+      // so we don't need to apply it again here during submission.
+      // The tariffPropagator already has all the section values set correctly.
     }
     
     // Generate tariff data from the tariff propagator

@@ -309,6 +309,48 @@ var ProductTariffModal = (function() {
             // Add a direct onclick attribute as a fallback
             submitBtn.setAttribute('onclick', 'if(window.ProductTariffModal) window.ProductTariffModal.handleTariffSubmit()');
         }
+        
+        // Add event listener for tariff-all-input
+        const allTariffInput = document.getElementById('tariff-all-input');
+        if (allTariffInput) {
+            // Remove any existing listeners to prevent duplicates
+            if (allTariffInput._boundChangeHandler) {
+                allTariffInput.removeEventListener('change', allTariffInput._boundChangeHandler);
+            }
+            
+            // Create bound handler for the change event
+            const boundChangeHandler = function(e) {
+                const value = parseFloat(e.target.value) || 0;
+                
+                // Update global pass-through rate from the input
+                const passThroughInput = document.getElementById('tariff-all-passthrough');
+                if (passThroughInput) {
+                    currentPassThroughRate = (parseFloat(passThroughInput.value) || 100) / 100;
+                }
+                
+                // Update all section values based on the mode
+                if (value >= 0 && selectedCountry && tariffPropagator) {
+                    Object.keys(sectionToHs4Mapping).forEach(sectionId => {
+                        if (showOriginalAndCurrentTariffs) {
+                            // In original/current mode: current = original + (additional × pass-through)
+                            const originalValue = tariffPropagator.getTariffValue('section', sectionId, null, null, selectedCountry, 'original');
+                            const newValue = originalValue + (value * currentPassThroughRate);
+                            tariffPropagator.updateTariff('section', sectionId, null, null, newValue, selectedCountry, 'current');
+                        } else {
+                            // In tariff-change mode: value = additional × pass-through
+                            tariffPropagator.updateTariff('section', sectionId, null, null, value * currentPassThroughRate, selectedCountry);
+                        }
+                    });
+                    
+                    // Refresh the hierarchical view to show the updated values
+                    buildHierarchicalView();
+                }
+            };
+            
+            // Store the function reference for later cleanup
+            allTariffInput._boundChangeHandler = boundChangeHandler;
+            allTariffInput.addEventListener('change', boundChangeHandler);
+        }
     }
     
     /**
@@ -547,6 +589,40 @@ var ProductTariffModal = (function() {
         const allTariffInput = document.getElementById('tariff-all-input');
         if (allTariffInput) {
             allTariffInput.value = "0";
+            
+            // Ensure event listener is attached after modal is shown
+            if (!allTariffInput._boundChangeHandler) {
+                const boundChangeHandler = function(e) {
+                    const value = parseFloat(e.target.value) || 0;
+                    
+                    // Update global pass-through rate from the input
+                    const passThroughInput = document.getElementById('tariff-all-passthrough');
+                    if (passThroughInput) {
+                        currentPassThroughRate = (parseFloat(passThroughInput.value) || 100) / 100;
+                    }
+                    
+                    // Update all section values based on the mode
+                    if (value >= 0 && selectedCountry && tariffPropagator) {
+                        Object.keys(sectionToHs4Mapping).forEach(sectionId => {
+                            if (showOriginalAndCurrentTariffs) {
+                                // In original/current mode: current = original + (additional × pass-through)
+                                const originalValue = tariffPropagator.getTariffValue('section', sectionId, null, null, selectedCountry, 'original');
+                                const newValue = originalValue + (value * currentPassThroughRate);
+                                tariffPropagator.updateTariff('section', sectionId, null, null, newValue, selectedCountry, 'current');
+                            } else {
+                                // In tariff-change mode: value = additional × pass-through
+                                tariffPropagator.updateTariff('section', sectionId, null, null, value * currentPassThroughRate, selectedCountry);
+                            }
+                        });
+                        
+                        // Refresh the hierarchical view to show the updated values
+                        buildHierarchicalView();
+                    }
+                };
+                
+                allTariffInput._boundChangeHandler = boundChangeHandler;
+                allTariffInput.addEventListener('change', boundChangeHandler);
+            }
         }
         
         // Fix modal positioning styles
@@ -632,6 +708,13 @@ var ProductTariffModal = (function() {
         const toggleModeBtn = document.getElementById('toggle-mode-btn');
         if (toggleModeBtn) {
             toggleModeBtn.removeEventListener('click', toggleInputMode);
+        }
+        
+        // Clean up all-industry tariff input listener
+        const allTariffInput = document.getElementById('tariff-all-input');
+        if (allTariffInput && allTariffInput._boundChangeHandler) {
+            allTariffInput.removeEventListener('change', allTariffInput._boundChangeHandler);
+            delete allTariffInput._boundChangeHandler;
         }
     }
     
@@ -1471,33 +1554,9 @@ var ProductTariffModal = (function() {
                 // Store current pass-through rate (as a decimal)
                 currentPassThroughRate = passThroughValue / 100;
                 
-                // If all-industry tariff is set, apply it to all sections
-                if (tariffValue > 0) {
-                    // When in Original/Current mode, add the tariff value to the original value
-                    if (showOriginalAndCurrentTariffs) {
-                        
-                        // For each section, add the tariff value to the original value
-                        Object.keys(sectionToHs4Mapping).forEach(sectionId => {
-                            // Get the original tariff value for this section
-                            const originalValue = tariffPropagator.getTariffValue('section', sectionId, null, null, selectedCountry, 'original');
-                            
-                            // Calculate the new value by adding the tariff value to the original value
-                            const newValue = originalValue + (tariffValue * currentPassThroughRate);
-                            
-                            // Update the tariff with the new value
-                            tariffPropagator.updateTariff('section', sectionId, null, null, newValue, selectedCountry, 'current');
-                            
-                        });
-                    } else {
-                        // In Tariff Change mode or for global tariff, use the tariff value directly
-                        Object.keys(sectionToHs4Mapping).forEach(sectionId => {
-                            tariffPropagator.updateTariff('section', sectionId, null, null, tariffValue * currentPassThroughRate, selectedCountry);
-                            
-                        
-                        });
-                    }
-                    
-                }
+                // The all-industry tariff is now applied directly to sections when the input changes,
+                // so we don't need to apply it again here during submission.
+                // The tariffPropagator already has all the section values set correctly.
             }
             
             // For global tariff debugging - log after applying all-industry tariff
