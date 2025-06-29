@@ -32,7 +32,7 @@ html, body {
 .hamburger-btn {
     background: none;
     border: none;
-    padding: 8px;
+    padding: 10px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -40,9 +40,21 @@ html, body {
     margin-left: 10px;
 }
 
-.menu-icon {
-    width: 24px;
-    height: 24px;
+.globe-btn {
+    background: none;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.menu-icon,
+.globe-icon {
+    width: 30px;
+    height: 30px;
     filter: var(--icon-filter);
 }
 
@@ -96,20 +108,9 @@ html, body {
     color: var(--text-color);
 }
 
+/* Mobile menu close button uses standard panel-close-button styles */
 .mobile-menu-close {
-    background: none;
-    border: none;
-    font-size: 24px;
-    color: var(--text-color);
-    cursor: pointer;
-    padding: 5px;
-    margin: -5px;
-    transition: color 0.2s ease;
-}
-
-.mobile-menu-close:hover,
-.mobile-menu-close:active {
-    color: var(--excellenceOrange);
+    margin: -8px;
 }
 
 /* Custom menu button styles */
@@ -143,8 +144,9 @@ html, body {
     flex: 1;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: calc(100vh - 100px); /* Default with footer, changed dynamically via JS */
     overflow: hidden;
+    transition: height 0.3s ease; /* Smooth transition when footer appears/disappears */
 }
 
 /* Mobile Receipt Container */
@@ -227,6 +229,20 @@ html, body {
     max-width: 95%;
     max-height: 90vh;
     margin: 5vh auto;
+}
+
+/* Larger close buttons in modals on mobile */
+.modal-close,
+.panel-close-button {
+    min-width: 44px !important;
+    min-height: 44px !important;
+}
+
+.modal-close img,
+.panel-close-button img,
+.close-icon {
+    width: 28px !important;
+    height: 28px !important;
 }
 
 /* Prevent body scroll when menu is open */
@@ -383,11 +399,16 @@ body.menu-open {
 
 /* Adjust modal header spacing without title */
 #modal-country-selection .modal-header {
-    padding-top: 10px;
+    padding-top: 20px;
 }
 
 /* Hide first separator after removed title */
 #modal-country-selection .modal-header .separator:first-of-type {
+    display: none;
+}
+
+/* Hide separator in product list modal when title is hidden */
+#modal-product-list .modal-header .separator:first-of-type {
     display: none;
 }
 
@@ -415,7 +436,7 @@ body.menu-open {
 /* Mobile-friendly collapsible "How to change tariffs" section */
 .how-to-change-tariffs-header {
     padding: 10px 5px;
-    margin: 0;
+    margin-top: 10px;
     -webkit-tap-highlight-color: transparent;
 }
 
@@ -545,6 +566,70 @@ body.menu-open {
 #mobile-map-overlay .leaflet-interactive {
     cursor: default !important;
     pointer-events: none !important;
+}
+
+/* Hide reset treemap button tooltip on mobile */
+.reset-treemap-button .tooltip {
+    display: none !important;
+}
+
+/* Make section headers smaller on mobile */
+.section-header {
+    font-size: 1.1rem !important;
+}
+
+/* Mobile footer adjustments */
+#site-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    font-size: 9px !important;
+    padding: 6px 10px !important;
+    min-height: 100px;
+    height: auto;
+    line-height: 1.4;
+    display: flex;
+    align-items: center;
+    transition: opacity 0.3s ease;
+}
+
+#site-footer p {
+    margin: 0;
+    padding: 0;
+    word-wrap: break-word;
+    width: 100%;
+}
+
+/* Full screen modal for Information & Attributions */
+.help-info-modal-container {
+    padding: 0 !important;
+}
+
+.help-info-modal .modal-content {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    border: none !important;
+}
+
+.help-info-modal .modal-header {
+    position: sticky;
+    top: 0;
+    background-color: var(--background-color);
+    z-index: 10;
+    border-bottom: 1px solid var(--borderColor);
+    padding: 15px !important;
+}
+
+.help-info-modal .modal-body {
+    padding: 15px !important;
+    height: calc(100vh - 60px) !important;
+    max-height: calc(100vh - 60px) !important;
 }
 
 /* Chart panel adjustments for mobile */

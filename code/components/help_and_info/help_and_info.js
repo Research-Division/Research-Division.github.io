@@ -18,13 +18,14 @@ function initializeHelpPanel() {
     <div class="help-info-modal">
         <div class="modal-content" style="max-height: 95vh; height: auto;">
             <div class="modal-header">
-                <h2>Help & Information</h2>
+                <h2>Information & Attributions</h2>
                 <button class="panel-close-button" id="help-panel-close-button">
                     <img src="assets/fontawesome/xmark.svg" alt="Close" class="close-icon">
                 </button>
             </div>
             <div class="modal-body" style="overflow-y: auto; max-height: calc(95vh - 60px); padding-top: 0;">
                 <div class="help-receipt">
+                    ${!window.isMobileVersion ? `
                     <!-- Section 1: Guided Tour Button -->
                     <div class="help-section">
                         <h3>Take a Guided Tour</h3>
@@ -36,12 +37,18 @@ function initializeHelpPanel() {
                     </div>
                     
                     <div class="separator receipt-separator"></div>
+                    ` : ''}
                     
                     <!-- Section 2: Getting Started (from final slide of tour) -->
                     <div class="help-section">
                         <h3>Getting Started</h3>
+                        ${window.isMobileVersion ? `
+                        <p>To get started, explore country trade relationships using the Trade Data Explorer or the World Data Explorer (both located in the menu <img src="assets/fontawesome/bars-solid.svg" alt="Menu icon" class="inline-icon" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle; filter: var(--icon-filter, none);">). If you are ready to apply a tariff, use the add a country button to apply tariffs and see the potential price effects. To visualize the potential impacts, click the "Map" <img src="assets/fontawesome/globe-solid.svg" alt="Globe icon" class="inline-icon" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle; filter: var(--icon-filter, none);"> in the menu.</p>
+                        <p><strong>Note:</strong> The Atlanta Fed's Tariff Price Tool is designed for use on desktop for the best experience.</p>
+                        ` : `
                         <p>To get started, explore country trade relationships using the Global Trade Explorer <img src="assets/fontawesome/globe-solid.svg" alt="Globe icon" class="inline-icon" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> or the country-level Trade Data Explorer <img src="assets/fontawesome/chart-line-solid.svg" alt="Chart icon" class="inline-icon" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;">. This will help you understand existing trade patterns before implementing policy changes.</p>
                         <p>When you're ready to implement tariffs, click on a country to add a country-specific tariff, select a set of countries in the receipt, or add a global tariff that applies to all trading partners.</p>
+                        `}
                     </div>
                     
                     <div class="separator receipt-separator"></div>
@@ -68,32 +75,32 @@ function initializeHelpPanel() {
                         
                         <h4>Software Components</h4>
                         <ul>
-                            <li><strong>Leaflet.js (v1.9.4):</strong> The interactive mapping library used in this application. To learn more about Leaflet, visit <a href="https://leafletjs.com/" target="_blank" style="color: var(--primary); text-decoration: underline;">leafletjs.com</a></li>
+                            <li><strong>Leaflet.js (v1.9.4):</strong> The interactive mapping library used in this application. To learn more about Leaflet, visit ${window.isMobileVersion ? '<a href="https://leafletjs.com/" target="_blank" style="color: var(--primary); text-decoration: underline;">LINK</a>' : '<a href="https://leafletjs.com/" target="_blank" style="color: var(--primary); text-decoration: underline;">leafletjs.com</a>'}</li>
                             
                             <li><strong>GeoJSON Countries (v1.1):</strong> World map geographic data (modified to 3 decimal point accuracy).<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;Data available at: <a href="https://github.com/datasets/geo-countries/" target="_blank" style="color: var(--primary); text-decoration: underline;">github.com/datasets/geo-countries</a></li>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Data available at: ${window.isMobileVersion ? '<a href="https://github.com/datasets/geo-countries/" target="_blank" style="color: var(--primary); text-decoration: underline;">LINK</a>' : '<a href="https://github.com/datasets/geo-countries/" target="_blank" style="color: var(--primary); text-decoration: underline;">github.com/datasets/geo-countries</a>'}</li>
                             
                             <li><strong>Country Converter (v1.3):</strong> Used for standardizing country codes and names under GNU General Public License v3.0 (GPLv3).<br>
                             Citation: Stadler, K. (2017). The country converter coco - a Python package for converting country names between different classification schemes. The Journal of Open Source Software. doi: 10.21105/joss.00332<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;Paper available at: <a href="https://joss.theoj.org/papers/10.21105/joss.00332" target="_blank" style="color: var(--primary); text-decoration: underline;">joss.theoj.org/papers/10.21105/joss.00332</a></li>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Paper available at: ${window.isMobileVersion ? '<a href="https://joss.theoj.org/papers/10.21105/joss.00332" target="_blank" style="color: var(--primary); text-decoration: underline;">LINK</a>' : '<a href="https://joss.theoj.org/papers/10.21105/joss.00332" target="_blank" style="color: var(--primary); text-decoration: underline;">joss.theoj.org/papers/10.21105/joss.00332</a>'}</li>
                         </ul>
                         
                         <h4>Data Sources</h4>
                         <ul>
                             <li><strong>Tariff Data:</strong> Feodora Teti's Global Tariff Database (v_beta1-2024-12).<br>
                             Citation: Teti, F. A. (2024). Missing Tariffs. CESifo Working Papers No. 11590.<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;Data available at: <a href="https://feodorateti.github.io/data.html" target="_blank" style="color: var(--primary); text-decoration: underline;">feodorateti.github.io/data.html</a></li>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Data available at: ${window.isMobileVersion ? '<a href="https://feodorateti.github.io/data.html" target="_blank" style="color: var(--primary); text-decoration: underline;">LINK</a>' : '<a href="https://feodorateti.github.io/data.html" target="_blank" style="color: var(--primary); text-decoration: underline;">feodorateti.github.io/data.html</a>'}</li>
                             
                             <li><strong>Trade Data:</strong> U.S. Census Bureau international trade data.<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;Data available at: <a href="https://usatrade.census.gov/" target="_blank" style="color: var(--primary); text-decoration: underline;">usatrade.census.gov</a></li>
+                            &nbsp;&nbsp;&nbsp;&nbsp;Data available at: ${window.isMobileVersion ? '<a href="https://usatrade.census.gov/" target="_blank" style="color: var(--primary); text-decoration: underline;">LINK</a>' : '<a href="https://usatrade.census.gov/" target="_blank" style="color: var(--primary); text-decoration: underline;">usatrade.census.gov</a>'}</li>
                         </ul>
                         
-                        <p>For detailed information on our methodology, calculations, and frequently asked questions, please visit the <a href="https://atlantafed.org/research/data-and-tools/tariff-price-tool" target="_blank" style="color: var(--primary); text-decoration: underline;">Tariff Price Tool documentation page</a>.</p>
+                        <p>For detailed information on our methodology, calculations, and frequently asked questions, please visit the ${window.isMobileVersion ? '<a href="https://atlantafed.org/research/data-and-tools/tariff-price-tool" target="_blank" style="color: var(--primary); text-decoration: underline;">Tariff Price Tool documentation page</a>' : '<a href="https://atlantafed.org/research/data-and-tools/tariff-price-tool" target="_blank" style="color: var(--primary); text-decoration: underline;">Tariff Price Tool documentation page</a>'}.</p>
                         
                         <div id="citation-section" style="display: flex; flex-direction: column; align-items: center; width: 100%; margin-top: 1.5rem;">
                             <h4 style="margin-bottom: 0.75rem; text-align: center;">Suggested Citation</h4>
-                            <div id="citation-box" style="position: relative; max-width: 95%; width: 700px; padding: 0.75rem 2rem 1.25rem 2rem; border-radius: 8px; border: 2px dashed #666; font-family: var(--font-family-monospace); background-color: rgba(0,0,0,0.01); box-shadow: 0 2px 6px rgba(0,0,0,0.05); transition: background-color 0.5s ease;">
-                                <p id="citation-text" style="margin-bottom: 0; font-style: italic; text-align: justify; line-height: 1.6;">Michael Dwight Sparks, Salomé Baslandze & Simon Fuchs, <i>The Atlanta Fed's Tariff Price Tool: Methodology</i> (SSRN Working Paper No. #####),<br>&#9;https://ssrn.com/abstract=#####</p>
+                            <div id="citation-box" style="position: relative; max-width: 95%; width: 700px; padding: 0.75rem 2rem 1.25rem 2rem; border-radius: 8px; border: 2px dashed #666; font-family: var(--font-family-monospace); background-color: rgba(0,0,0,0.01); box-shadow: 0 2px 6px rgba(0,0,0,0.05); transition: background-color 0.5s ease; word-wrap: break-word; overflow-wrap: break-word;">
+                                <p id="citation-text" style="margin-bottom: 0; font-style: italic; text-align: justify; line-height: 1.6; word-wrap: break-word; overflow-wrap: break-word; white-space: pre-wrap;">Michael Dwight Sparks, Salomé Baslandze & Simon Fuchs, <i>The Atlanta Fed's Tariff Price Tool: Methodology</i> (SSRN Working Paper No. #####), https://ssrn.com/abstract=#####</p>
                                 <div style="position: absolute; bottom: 8px; right: 8px; display: flex; gap: 4px; align-items: baseline;">
                                     <button id="copy-citation-btn" style="background: none; border: none; cursor: pointer; padding: 4px; border-radius: 4px; transition: all 0.2s ease;" title="Copy citation to clipboard">
                                         <img src="assets/fontawesome/copy.svg" alt="Copy citation" style="width: 16px; height: 16px; filter: var(--icon-filter, none); transition: transform 0.2s ease;">

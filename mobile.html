@@ -28,6 +28,7 @@
         <link rel="stylesheet" href="styles/combinedSparksCharts.css"/>
         <link rel="stylesheet" href="styles/help_info_modal.css"/>
         <link rel="stylesheet" href="styles/help_and_info_styles.css"/>
+        <link rel="stylesheet" href="styles/footer.css"/>
         
         <!-- Mobile specific styles -->
         <link rel="stylesheet" href="styles/mobile.css"/>
@@ -38,13 +39,13 @@
             <div class="mobile-menu-content">
                 <div class="mobile-menu-header">
                     <h2>Menu</h2>
-                    <button class="mobile-menu-close" aria-label="Close menu">✕</button>
+                    <button class="mobile-menu-close panel-close-button" aria-label="Close menu">
+                        <img src="assets/fontawesome/xmark.svg" alt="Close" class="close-icon">
+                    </button>
                 </div>
-                <button class="mobile-menu-item receipt-btn" id="mobile-map-btn">Map View</button>
                 <button class="mobile-menu-item receipt-btn" id="mobile-charts-btn">Trade Data Explorer</button>
                 <button class="mobile-menu-item receipt-btn" id="mobile-trade-btn">World Data Explorer</button>
-                <button class="mobile-menu-item receipt-btn" id="mobile-help-btn">Help & Info</button>
-                <button class="mobile-menu-item receipt-btn" id="mobile-settings-btn">Settings</button>
+                <button class="mobile-menu-item receipt-btn" id="mobile-help-btn">Information & Attributions</button>
             </div>
         </div>
         
@@ -60,6 +61,11 @@
         
         <!-- Modal Container -->
         <div id="modal-container"></div>
+        
+        <!-- Footer -->
+        <footer id="site-footer">
+            <p>©2025 Federal Reserve Bank of Atlanta. All rights reserved. Permission is granted to reproduce for personal and educational use only and with attribution to the Federal Reserve Bank of Atlanta. <a href="#" id="citation-link" style="color: var(--primary); text-decoration: underline;">Suggested Citation found here</a></p>
+        </footer>
         
         <!-- Hidden desktop buttons for compatibility -->
         <div style="display: none;">

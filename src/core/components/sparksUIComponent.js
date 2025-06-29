@@ -12,6 +12,15 @@ window.sparksUIComponent = (function() {
         // Start with default margins
         const margins = { top: 30, right: 50, bottom: 40, left: 100 };
         
+        // Adjust margins for mobile
+        if (window.isMobileVersion) {
+            // Reduce margins on mobile for more chart space
+            margins.top = 20;
+            margins.right = 20;  // Significantly reduce right margin on mobile
+            margins.bottom = 50;  // Increase bottom margin for rotated labels
+            margins.left = 80;   // Slightly reduce left margin
+        }
+        
         // Adjust for horizontal y-axis title if applicable
         if (window.sparksStyleManager) {
             const activeStyle = window.sparksStyleManager.getActiveStyle();
@@ -29,7 +38,7 @@ window.sparksUIComponent = (function() {
                 
                 // Set balanced margins
                 margins.left = yAxisLabelWidth + yAxisTickMarkWidth + leftPadding;
-                margins.right = margins.left;
+                margins.right = window.isMobileVersion ? 20 : margins.left;  // Keep mobile right margin small
             }
         }
         
@@ -74,7 +83,7 @@ window.sparksUIComponent = (function() {
         // Create chart structure
         const chartHTML = `
             <div class="tariff-chart-container">
-                <div class="chart-title" style="${titleStyle}">${config.title}</div>
+                <div class="chart-title" style="${titleStyle}${window.isMobileVersion ? ' font-size: 14px;' : ''}">${config.title}</div>
                 <div class="chart-visualization">
                     <svg id="${containerId}-svg" width="100%" height="${svgHeight}"></svg>
                 </div>

@@ -11,15 +11,15 @@
     });
 
     /**
-     * Wait for receipt to load and add hamburger menu
+     * Wait for receipt to load and add mobile buttons
      */
-    function waitForReceiptAndAddHamburger() {
+    function waitForReceiptAndAddButtons() {
         // Check if receipt header exists
         const checkInterval = setInterval(function() {
             const receiptHeader = document.getElementById('receipt-header');
             if (receiptHeader) {
                 clearInterval(checkInterval);
-                addHamburgerToReceipt();
+                addMobileButtonsToReceipt();
             }
         }, 100);
         
@@ -30,13 +30,34 @@
     }
 
     /**
-     * Add hamburger menu button to receipt header
+     * Add globe and hamburger menu buttons to receipt header
      */
-    function addHamburgerToReceipt() {
+    function addMobileButtonsToReceipt() {
         const receiptHeader = document.getElementById('receipt-header');
         if (!receiptHeader) return;
         
-        // Create hamburger button
+        // Create globe button (left side)
+        const globeBtn = document.createElement('button');
+        globeBtn.id = 'mobile-globe-toggle';
+        globeBtn.className = 'globe-btn';
+        globeBtn.setAttribute('aria-label', 'Map View');
+        
+        const globeIcon = document.createElement('img');
+        globeIcon.src = 'assets/fontawesome/globe-solid.svg';
+        globeIcon.alt = 'Map';
+        globeIcon.className = 'globe-icon';
+        
+        globeBtn.appendChild(globeIcon);
+        
+        // Insert globe button at the beginning of the header
+        receiptHeader.insertBefore(globeBtn, receiptHeader.firstChild);
+        
+        // Add click event for globe button
+        globeBtn.addEventListener('click', function() {
+            showMobileMapView();
+        });
+        
+        // Create hamburger button (right side)
         const hamburgerBtn = document.createElement('button');
         hamburgerBtn.id = 'mobile-menu-toggle';
         hamburgerBtn.className = 'hamburger-btn';
@@ -80,11 +101,77 @@
     }
 
     /**
+     * Toggle footer visibility based on receipt content
+     */
+    function toggleFooterVisibility() {
+        const placeholder = document.getElementById('placeholder-message');
+        const footer = document.getElementById('site-footer');
+        const mainContent = document.getElementById('mobile-main-content');
+        
+        if (placeholder && footer && mainContent) {
+            // Show footer only when placeholder is visible
+            if (placeholder.style.display === 'block' || !placeholder.style.display) {
+                footer.style.display = 'block';
+                mainContent.style.height = 'calc(100vh - 100px)'; // Account for footer
+            } else {
+                footer.style.display = 'none';
+                mainContent.style.height = '100vh'; // Full height when no footer
+            }
+        }
+    }
+    
+    /**
+     * Set up observer to watch for receipt changes
+     */
+    function observeReceiptChanges() {
+        const observer = new MutationObserver(function(mutations) {
+            // Check if placeholder display changed
+            mutations.forEach(function(mutation) {
+                if (mutation.target.id === 'placeholder-message' && 
+                    mutation.attributeName === 'style') {
+                    toggleFooterVisibility();
+                }
+            });
+        });
+        
+        // Observe the placeholder for style changes
+        const placeholder = document.getElementById('placeholder-message');
+        if (placeholder) {
+            observer.observe(placeholder, { 
+                attributes: true, 
+                attributeFilter: ['style'] 
+            });
+        }
+        
+        // Also observe receipt items container for changes
+        const receiptItems = document.getElementById('receipt-items');
+        if (receiptItems) {
+            observer.observe(receiptItems, { 
+                childList: true 
+            });
+            
+            // Check on any change to receipt items
+            observer.observe(receiptItems, {
+                childList: true,
+                callback: function() {
+                    setTimeout(toggleFooterVisibility, 100);
+                }
+            });
+        }
+    }
+    
+    /**
      * Initialize mobile UI components and event handlers
      */
     function initializeMobileUI() {
-        // Wait for receipt to load, then add hamburger menu
-        waitForReceiptAndAddHamburger();
+        // Wait for receipt to load, then add mobile buttons
+        waitForReceiptAndAddButtons();
+        
+        // Set up receipt observer
+        setTimeout(() => {
+            observeReceiptChanges();
+            toggleFooterVisibility(); // Initial check
+        }, 500);
         
         // Get DOM elements
         const mobileMenu = document.getElementById('mobile-menu');
@@ -196,15 +283,6 @@
      * Setup handlers for menu items
      */
     function setupMenuItemHandlers(closeMenu) {
-        // Map View button
-        const mapBtn = document.getElementById('mobile-map-btn');
-        if (mapBtn) {
-            mapBtn.addEventListener('click', function() {
-                closeMenu();
-                showMobileMapView();
-            });
-        }
-        
         // Charts button (Trade Data Explorer)
         const chartsBtn = document.getElementById('mobile-charts-btn');
         if (chartsBtn) {
@@ -243,19 +321,6 @@
                 const helpPanel = document.getElementById('show-help-panel');
                 if (helpPanel) {
                     helpPanel.click();
-                }
-            });
-        }
-        
-        // Settings button
-        const settingsBtn = document.getElementById('mobile-settings-btn');
-        if (settingsBtn) {
-            settingsBtn.addEventListener('click', function() {
-                closeMenu();
-                // Trigger dev tools if available
-                const settingsIcon = document.querySelector('.settings-icon');
-                if (settingsIcon) {
-                    settingsIcon.click();
                 }
             });
         }
@@ -595,23 +660,52 @@
             flex-direction: column;
         `;
         
-        // Create exit button
+        // Create exit button with receipt icon
         const exitButton = document.createElement('button');
-        exitButton.textContent = 'EXIT MAP';
+        exitButton.className = 'map-exit-btn';
+        exitButton.setAttribute('aria-label', 'Return to Receipt');
         exitButton.style.cssText = `
             position: absolute;
             top: 10px;
             right: 10px;
             background: none;
             border: none;
-            color: var(--excellenceOrange);
-            text-decoration: underline;
-            font-family: var(--font-family-sans-serif);
-            font-size: 1rem;
-            font-weight: bold;
             cursor: pointer;
             z-index: 2001;
-            padding: 8px 12px;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        `;
+        
+        // Create receipt icon
+        const receiptIcon = document.createElement('img');
+        receiptIcon.src = 'assets/fontawesome/receipt-solid.svg';
+        receiptIcon.alt = 'Return to Receipt';
+        receiptIcon.style.cssText = `
+            width: 30px;
+            height: 30px;
+            filter: var(--icon-filter);
+        `;
+        
+        exitButton.appendChild(receiptIcon);
+        
+        // Create hint text that appears for 10 seconds
+        const hintText = document.createElement('div');
+        hintText.textContent = 'Click to return to receipt';
+        hintText.style.cssText = `
+            position: absolute;
+            top: 45px;
+            right: 10px;
+            color: var(--excellenceOrange);
+            font-family: var(--font-family-sans-serif);
+            font-size: 14px;
+            font-weight: 500;
+            z-index: 2001;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+            text-align: right;
         `;
         
         // Create map container
@@ -629,6 +723,7 @@
         
         // Add elements to overlay
         mapOverlay.appendChild(exitButton);
+        mapOverlay.appendChild(hintText);
         mapOverlay.appendChild(mapContainer);
         
         // Add overlay to body
@@ -638,6 +733,16 @@
         exitButton.addEventListener('click', function() {
             exitMobileMapView();
         });
+        
+        // Hide hint text after 4 seconds
+        setTimeout(() => {
+            hintText.style.opacity = '0';
+            setTimeout(() => {
+                if (hintText && hintText.parentNode) {
+                    hintText.parentNode.removeChild(hintText);
+                }
+            }, 500); // Wait for fade out transition
+        }, 4000);
         
         // Always ensure map.js is loaded first
         loadMapScript().then(() => {

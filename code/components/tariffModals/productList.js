@@ -552,7 +552,7 @@ var ProductTariffModal = (function() {
         // Update modal title to show the country name or indicate global tariffs
         let titleText;
         if (isGlobalTariff) {
-            titleText = 'Global Tariff Application';
+            titleText = 'Select Products to Tariff';
         } else {
             const countryName = window.isoToCountryName ? window.isoToCountryName[countryIso] : countryIso;
             titleText = `Product Tariffs for ${countryName}`;
@@ -560,7 +560,19 @@ var ProductTariffModal = (function() {
         
         const modalTitle = modal.querySelector('.modal-header h2');
         if (modalTitle) {
-            modalTitle.textContent = titleText;
+            // Hide title on mobile, show on desktop
+            if (window.isMobileVersion) {
+                modalTitle.style.display = 'none';
+                // Also reduce header padding on mobile when no title
+                const modalHeader = modal.querySelector('.modal-header');
+                if (modalHeader) {
+                    modalHeader.style.paddingTop = '10px';
+                    modalHeader.style.paddingBottom = '10px';
+                }
+            } else {
+                modalTitle.style.display = 'block';
+                modalTitle.textContent = titleText;
+            }
         }
         
         // Fix closeModal call on the modal close button

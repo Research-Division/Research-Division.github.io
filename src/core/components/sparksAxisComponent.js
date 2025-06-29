@@ -279,7 +279,7 @@ window.sparksAxisComponent = (function() {
                 label.setAttribute('y', height + 20);
                 label.setAttribute('text-anchor', 'middle');
                 label.setAttribute('font-family', 'monospace');
-                label.setAttribute('font-size', '12px');
+                label.setAttribute('font-size', window.isMobileVersion ? '8px' : '12px');
                 label.setAttribute('fill', 'var(--text-color)');
                 
                 // Truncate long text
@@ -290,10 +290,14 @@ window.sparksAxisComponent = (function() {
                 
                 label.textContent = labelText;
                 
-                // Rotate labels if there are many
-                if (xValues.length > 8) {
-                    label.setAttribute('transform', `rotate(-35, ${x}, ${height + 20})`);
+                // Rotate labels if there are many or on mobile
+                if (xValues.length > 8 || (window.isMobileVersion && xValues.length > 4)) {
+                    const rotationAngle = window.isMobileVersion ? -45 : -35;
+                    label.setAttribute('transform', `rotate(${rotationAngle}, ${x}, ${height + 20})`);
                     label.setAttribute('text-anchor', 'end');
+                    if (window.isMobileVersion) {
+                        label.setAttribute('y', height + 15);  // Adjust y position for rotation on mobile
+                    }
                 }
                 
                 chartArea.appendChild(label);
@@ -376,9 +380,17 @@ window.sparksAxisComponent = (function() {
                 label.setAttribute('y', height + 20);
                 label.setAttribute('text-anchor', 'middle');
                 label.setAttribute('font-family', 'monospace');
-                label.setAttribute('font-size', '12px');
+                label.setAttribute('font-size', window.isMobileVersion ? '8px' : '12px');
                 label.setAttribute('fill', 'var(--text-color)');
                 label.textContent = labelText;
+                
+                // On mobile, rotate year labels if they are 4-digit years
+                if (window.isMobileVersion && labelText.match(/^\d{4}$/)) {
+                    label.setAttribute('transform', `rotate(-45, ${x}, ${height + 20})`);
+                    label.setAttribute('text-anchor', 'end');
+                    label.setAttribute('y', height + 15);  // Adjust y position for rotation
+                }
+                
                 chartArea.appendChild(label);
                 
                 // Add vertical grid line
@@ -429,7 +441,7 @@ window.sparksAxisComponent = (function() {
             label.setAttribute('y', y + 4);
             label.setAttribute('text-anchor', 'end');
             label.setAttribute('font-family', 'monospace');
-            label.setAttribute('font-size', '12px');
+            label.setAttribute('font-size', window.isMobileVersion ? '8px' : '12px');
             label.setAttribute('fill', 'var(--text-color)');
             label.textContent = labelText;
             chartArea.appendChild(label);
@@ -457,16 +469,18 @@ window.sparksAxisComponent = (function() {
         yAxisTitle.textContent = config.yAxis.title;
         chartArea.appendChild(yAxisTitle);
         
-        // X-axis title
-        const xAxisTitle = document.createElementNS("http://www.w3.org/2000/svg", "text");
-        xAxisTitle.setAttribute('x', width / 2);
-        xAxisTitle.setAttribute('y', height + 40);
-        xAxisTitle.setAttribute('text-anchor', 'middle');
-        xAxisTitle.setAttribute('font-family', 'monospace');
-        xAxisTitle.setAttribute('font-size', '14px');
-        xAxisTitle.setAttribute('fill', 'var(--text-color)');
-        xAxisTitle.textContent = config.xAxis.title;
-        chartArea.appendChild(xAxisTitle);
+        // X-axis title - hide on mobile if it's "Year"
+        if (!window.isMobileVersion || config.xAxis.title !== 'Year') {
+            const xAxisTitle = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            xAxisTitle.setAttribute('x', width / 2);
+            xAxisTitle.setAttribute('y', height + 40);
+            xAxisTitle.setAttribute('text-anchor', 'middle');
+            xAxisTitle.setAttribute('font-family', 'monospace');
+            xAxisTitle.setAttribute('font-size', '14px');
+            xAxisTitle.setAttribute('fill', 'var(--text-color)');
+            xAxisTitle.textContent = config.xAxis.title;
+            chartArea.appendChild(xAxisTitle);
+        }
     }
     
     /**
@@ -559,7 +573,7 @@ window.sparksAxisComponent = (function() {
             label.setAttribute('y', height + 25);
             label.setAttribute('text-anchor', 'middle');
             label.setAttribute('font-family', 'monospace');
-            label.setAttribute('font-size', '12px');
+            label.setAttribute('font-size', window.isMobileVersion ? '8px' : '12px');
             label.setAttribute('fill', 'var(--text-color)');
             label.setAttribute('class', 'tick-label tick-label-x'); // Add classes for styling
             
@@ -568,15 +582,18 @@ window.sparksAxisComponent = (function() {
             
             // Truncate long text without storing the original
             let labelText = originalText;
-            if (labelText.length > 14) {
-                labelText = labelText.substring(0, 11) + '...';
+            const maxLength = window.isMobileVersion ? 10 : 14;
+            if (labelText.length > maxLength) {
+                labelText = labelText.substring(0, maxLength - 3) + '...';
             }
             
             label.textContent = labelText;
             
-            // Rotate labels if there are many categories
-            if (xValues.length > 8) {
-                label.setAttribute('transform', `rotate(-35, ${x}, ${height + 10})`);
+            // Rotate labels if there are many categories or on mobile
+            if (xValues.length > 8 || (window.isMobileVersion && xValues.length > 4)) {
+                const rotationAngle = window.isMobileVersion ? -45 : -35;
+                const yOffset = window.isMobileVersion ? 15 : 10;
+                label.setAttribute('transform', `rotate(${rotationAngle}, ${x}, ${height + yOffset})`);
                 label.setAttribute('y', height + 20);
                 label.setAttribute('text-anchor', 'end');
             }
@@ -630,7 +647,7 @@ window.sparksAxisComponent = (function() {
             label.setAttribute('y', y + 4);
             label.setAttribute('text-anchor', 'end');
             label.setAttribute('font-family', 'monospace');
-            label.setAttribute('font-size', '12px');
+            label.setAttribute('font-size', window.isMobileVersion ? '8px' : '12px');
             label.setAttribute('fill', 'var(--text-color)');
             label.textContent = labelText;
             chartArea.appendChild(label);
@@ -658,16 +675,18 @@ window.sparksAxisComponent = (function() {
         yAxisTitle.textContent = config.yAxis.title;
         chartArea.appendChild(yAxisTitle);
         
-        // X-axis title
-        const xAxisTitle = document.createElementNS("http://www.w3.org/2000/svg", "text");
-        xAxisTitle.setAttribute('x', width / 2);
-        xAxisTitle.setAttribute('y', height + 60); // Positioned lower for bar charts with category labels
-        xAxisTitle.setAttribute('text-anchor', 'middle');
-        xAxisTitle.setAttribute('font-family', 'monospace');
-        xAxisTitle.setAttribute('font-size', '14px');
-        xAxisTitle.setAttribute('fill', 'var(--text-color)');
-        xAxisTitle.textContent = config.xAxis.title;
-        chartArea.appendChild(xAxisTitle);
+        // X-axis title - hide on mobile if it's "Year"
+        if (!window.isMobileVersion || config.xAxis.title !== 'Year') {
+            const xAxisTitle = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            xAxisTitle.setAttribute('x', width / 2);
+            xAxisTitle.setAttribute('y', height + 60); // Positioned lower for bar charts with category labels
+            xAxisTitle.setAttribute('text-anchor', 'middle');
+            xAxisTitle.setAttribute('font-family', 'monospace');
+            xAxisTitle.setAttribute('font-size', '14px');
+            xAxisTitle.setAttribute('fill', 'var(--text-color)');
+            xAxisTitle.textContent = config.xAxis.title;
+            chartArea.appendChild(xAxisTitle);
+        }
         
         // DO NOT draw the x-axis line here anymore - we'll do it at the very end to ensure it's on top
     }
