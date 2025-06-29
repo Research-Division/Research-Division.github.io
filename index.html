@@ -3,7 +3,22 @@
     <head>
         <!-- To test online, host local server with python3 -m http.server, which points to port 8000, then do ngrok http http://localhost:8000 for more check out "https://dashboard.ngrok.com/get-started/setup/linux"-->
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Sparks Graph Function Testing Environment</title>
+        
+        <!-- Mobile Detection and Redirect -->
+        <script>
+            (function() {
+                function isMobileDevice() {
+                    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                           (window.innerWidth <= 768 && window.innerHeight <= 1024);
+                }
+                
+                if (isMobileDevice() && !window.location.search.includes('desktop=true')) {
+                    window.location.replace('mobile.html');
+                }
+            })();
+        </script>
         <!-- Link to Leaflet scripts and CSS-->
         <link rel="stylesheet" href="leaflet/leaflet.css">
         <script src="leaflet/leaflet.js"></script>

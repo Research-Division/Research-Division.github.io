@@ -8,7 +8,23 @@
     // Wait for DOM to be fully loaded
     document.addEventListener('DOMContentLoaded', function() {
         initializeMobileUI();
+        showMobileDisclaimer();
     });
+
+    /**
+     * Show mobile disclaimer notice that fades away after 4 seconds
+     */
+    function showMobileDisclaimer() {
+        const disclaimer = document.getElementById('mobile-disclaimer');
+        if (disclaimer) {
+            setTimeout(function() {
+                disclaimer.classList.add('fade-out');
+                setTimeout(function() {
+                    disclaimer.style.display = 'none';
+                }, 1000);
+            }, 4000);
+        }
+    }
 
     /**
      * Wait for receipt to load and add mobile buttons
