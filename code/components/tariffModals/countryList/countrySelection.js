@@ -51,21 +51,29 @@ var CountrySelectionModal = (function() {
                         <div class="modal-header">
                             <h2>Select Countries for Tariff Application</h2>
                             <div class="separator"></div>
-                            <p>
-                                <strong>How to use this page:</strong>
-                            </p>
-                            <ol style="text-align: left; margin-top: 5px; padding-left: 20px; font-size: 0.9em;">
-                                <li>Click the <img src="assets/fontawesome/chevron-right-solid.svg" alt="Expand" style="width: 12px; height: 12px; vertical-align: middle;"> next to a continent to see its <span class="primary-text">countries</span></li>
-                                <li><span class="primary-text">Select one or more countries</span> by checking the boxes</li>
-                                <li>Click the <span class="primary-text">"Continue to Tariff Selection"</span> button when done</li>
-                            </ol>
-                            <p style="margin-top: 5px; font-size: 0.8em;">
-                                <em>Tip: Check a continent box to select all countries in that continent</em>
-                            </p>
+                            <div class="how-to-use-section">
+                                <p class="how-to-use-header" style="cursor: pointer; display: flex; align-items: center; justify-content: space-between;">
+                                    <strong>How to use this page:</strong>
+                                    <span class="how-to-use-toggle">
+                                        <img src="assets/fontawesome/chevron-right-solid.svg" alt="Expand" class="toggle-icon-expand" style="width: 14px; height: 14px;">
+                                        <img src="assets/fontawesome/chevron-down-solid.svg" alt="Collapse" class="toggle-icon-collapse" style="width: 14px; height: 14px; display: none;">
+                                    </span>
+                                </p>
+                                <div class="how-to-use-content" style="display: none;">
+                                    <ol style="text-align: left; margin-top: 5px; padding-left: 20px; font-size: 0.9em;">
+                                        <li>Click the <img src="assets/fontawesome/chevron-right-solid.svg" alt="Expand" style="width: 12px; height: 12px; vertical-align: middle;"> next to a continent to see its <span class="primary-text">countries</span></li>
+                                        <li><span class="primary-text">Select one or more countries</span> by checking the boxes</li>
+                                        <li>Click the <span class="primary-text">"Continue to Tariff Selection"</span> button when done</li>
+                                    </ol>
+                                    <p style="margin-top: 5px; font-size: 0.8em;">
+                                        <em>Tip: Check a continent box to select all countries in that continent</em>
+                                    </p>
+                                </div>
+                            </div>
                             <div class="separator"></div>
                         </div>
                         <div class="modal-body">
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin: 10px 0;">
+                            <div class="country-selection-controls" style="display: flex; justify-content: space-between; align-items: center; margin: 10px 0;">
                                 <button id="select-all-countries" class="receipt-btn">Select All Countries</button>
                                 <input type="text" id="country-search-input" placeholder="Search for a country..."
                                     style="width: 40%; padding: 8px; border: 1px solid var(--borderColor); background-color: var(--background-color); color: var(--text-color); border-radius: var(--borderRadius);">
@@ -165,6 +173,26 @@ var CountrySelectionModal = (function() {
                 if (event.key === 'Enter' && selectedISOs.length > 0) {
                     event.preventDefault();
                     continueToTariffSelection();
+                }
+            });
+        }
+        
+        // How to use section toggle functionality
+        const howToUseHeader = document.querySelector('.how-to-use-header');
+        if (howToUseHeader) {
+            howToUseHeader.addEventListener('click', function() {
+                const content = document.querySelector('.how-to-use-content');
+                const expandIcon = document.querySelector('.toggle-icon-expand');
+                const collapseIcon = document.querySelector('.toggle-icon-collapse');
+                
+                if (content) {
+                    const isHidden = content.style.display === 'none';
+                    content.style.display = isHidden ? 'block' : 'none';
+                    
+                    if (expandIcon && collapseIcon) {
+                        expandIcon.style.display = isHidden ? 'none' : 'block';
+                        collapseIcon.style.display = isHidden ? 'block' : 'none';
+                    }
                 }
             });
         }

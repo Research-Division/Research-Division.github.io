@@ -1,0 +1,453 @@
+/* Mobile-specific styles */
+
+/* Prevent scrolling and bouncing on iOS */
+html, body {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+.mobile-body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: var(--background-color);
+}
+
+/* Receipt header with hamburger */
+.mobile-receipt-container #receipt-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    position: sticky;
+    top: 0;
+    background-color: var(--receipt-bg);
+    z-index: 10;
+}
+
+.hamburger-btn {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+}
+
+.menu-icon {
+    width: 24px;
+    height: 24px;
+    filter: var(--icon-filter);
+}
+
+/* Mobile Menu */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 250px;
+    background-color: var(--background-color2);
+    border-left: 2px solid var(--borderColor);
+    height: 100vh;
+    z-index: 999;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    overflow-y: auto;
+    padding: 20px 0;
+}
+
+.mobile-menu.active {
+    transform: translateX(0);
+}
+
+.mobile-menu-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 15px 20px;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-family: var(--font-family-sans-serif);
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.mobile-menu-item:hover,
+.mobile-menu-item:active {
+    background-color: var(--background-color3);
+}
+
+.menu-item-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 15px;
+    filter: var(--icon-filter);
+}
+
+/* Main Content */
+#mobile-main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Mobile Receipt Container */
+.mobile-receipt-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--receipt-bg);
+    overflow: hidden;
+}
+
+/* Override receipt styles for mobile */
+.mobile-receipt-container #receipt-section {
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    flex: 1;
+    height: 100%;
+    max-height: none;
+}
+
+
+.mobile-receipt-container #receipt-content {
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    padding: 0 15px 0 15px; /* No bottom padding on mobile */
+}
+
+.mobile-receipt-container #receipt_totals {
+    position: sticky;
+    bottom: 0;
+    background-color: var(--receipt-bg);
+    border-top: none; /* No border on mobile */
+    padding: 10px 15px;
+    z-index: 10;
+}
+
+.mobile-receipt-container #receipt-footer {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.mobile-receipt-container .receipt-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    touch-action: manipulation; /* Prevent double-tap zoom */
+}
+
+/* Touch-friendly input fields */
+.mobile-receipt-container input[type="number"] {
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: 8px;
+}
+
+
+/* Adjust receipt item spacing for mobile */
+.mobile-receipt-container .receipt-item {
+    padding: 12px 0;
+}
+
+/* Modal adjustments for mobile */
+.modal-content {
+    max-width: 95%;
+    max-height: 90vh;
+    margin: 5vh auto;
+}
+
+/* Prevent body scroll when menu is open */
+body.menu-open {
+    overflow: hidden;
+}
+
+/* Dark mode menu overlay */
+.mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.mobile-menu-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+/* Responsive typography */
+@media (max-width: 380px) {
+    .mobile-receipt-container #receipt-header h2 {
+        font-size: 1.2rem;
+    }
+    
+    .mobile-menu {
+        width: 200px;
+    }
+}
+
+/* Landscape orientation adjustments */
+@media (orientation: landscape) and (max-height: 500px) {
+    .mobile-receipt-container #receipt-header h2 {
+        font-size: 1.1rem;
+    }
+}
+
+/* iOS specific fixes */
+@supports (-webkit-touch-callout: none) {
+    /* iOS specific styles */
+    .mobile-receipt-container #receipt-content {
+        padding-bottom: env(safe-area-inset-bottom, 80px);
+    }
+}
+
+/* Disable text selection on interactive elements */
+.mobile-menu-item,
+.hamburger-btn,
+.receipt-btn {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Hide sort dropdown on mobile */
+.mobile-receipt-container .receipt-sort-container {
+    display: none !important;
+}
+
+/* Hide unnecessary receipt elements on mobile */
+.mobile-receipt-container .remove-btn {
+    display: none !important;
+}
+
+.mobile-receipt-container .tariff-subtotal {
+    display: none !important;
+}
+
+.mobile-receipt-container .row-group {
+    display: none !important;
+}
+
+.mobile-receipt-container #potential-price-effects {
+    display: none !important;
+}
+
+/* Mobile-friendly collapsible sections */
+.how-to-use-header {
+    padding: 10px 5px;
+    margin: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.how-to-use-header:active {
+    background-color: var(--background-color3);
+}
+
+.how-to-use-toggle {
+    padding: 5px;
+}
+
+/* Ensure modal content is mobile-friendly */
+.modal-content .how-to-use-content {
+    padding: 0 10px 10px 10px;
+}
+
+.modal-content .how-to-use-section {
+    margin: 10px 0;
+    background-color: var(--background-color2);
+    border-radius: var(--borderRadius);
+    overflow: hidden;
+}
+
+/* Hide modal title on mobile */
+#modal-country-selection .modal-header h2 {
+    display: none;
+}
+
+/* Make separators full width in modals */
+.modal-content .separator {
+    margin-left: -25px;
+    margin-right: -25px;
+    width: calc(100% + 50px);
+}
+
+/* Adjust modal header spacing without title */
+#modal-country-selection .modal-header {
+    padding-top: 10px;
+}
+
+/* Hide first separator after removed title */
+#modal-country-selection .modal-header .separator:first-of-type {
+    display: none;
+}
+
+/* Rearrange country selection controls on mobile */
+.country-selection-controls {
+    flex-wrap: wrap !important;
+    gap: 10px;
+}
+
+/* Make search input full width and display first */
+.country-selection-controls #country-search-input {
+    width: 100% !important;
+    order: -1; /* Move search to top */
+    flex-basis: 100%;
+}
+
+/* Arrange buttons side by side below search */
+.country-selection-controls button {
+    flex: 1;
+    width: auto !important;
+    font-size: 0.9em;
+    min-width: 0; /* Allow buttons to shrink */
+}
+
+/* Mobile-friendly collapsible "How to change tariffs" section */
+.how-to-change-tariffs-header {
+    padding: 10px 5px;
+    margin: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.how-to-change-tariffs-header:active {
+    background-color: var(--background-color3);
+}
+
+.how-to-change-tariffs-toggle {
+    padding: 5px;
+}
+
+.modal-content .how-to-change-tariffs-content {
+    padding: 0 10px 10px 10px;
+}
+
+.modal-content .how-to-change-tariffs-section {
+    margin: 10px 0;
+    background-color: var(--background-color2);
+    border-radius: var(--borderRadius);
+    overflow: hidden;
+}
+
+/* Mobile-friendly font sizes for modals */
+.modal-content {
+    font-size: 16px; /* Base font size for mobile */
+}
+
+/* Country selection modal font sizes */
+#modal-country-selection .modal-content ol,
+#modal-country-selection .modal-content p {
+    font-size: 1rem !important; /* 16px */
+}
+
+#modal-country-selection .modal-content em {
+    font-size: 0.875rem !important; /* 14px */
+}
+
+#modal-country-selection #selected-counter {
+    font-size: 1rem !important; /* 16px */
+}
+
+/* Product list modal font sizes */
+#modal-product-list .modal-content ol,
+#modal-product-list .modal-content p {
+    font-size: 1rem !important; /* 16px */
+}
+
+#modal-product-list .modal-content label {
+    font-size: 1rem !important; /* 16px */
+}
+
+#modal-product-list .modal-content em {
+    font-size: 0.875rem !important; /* 14px */
+}
+
+/* Modal buttons - make them larger on mobile */
+.modal-content .receipt-btn {
+    font-size: 1rem !important; /* 16px */
+    padding: 12px 20px !important;
+    min-height: 44px; /* iOS touch target */
+}
+
+/* Input fields in modals */
+.modal-content input[type="text"],
+.modal-content input[type="number"] {
+    font-size: 16px !important; /* Prevents zoom on iOS */
+    padding: 10px !important;
+    min-height: 44px;
+}
+
+/* Country/product names in lists */
+.modal-content .country-item {
+    font-size: 1rem !important; /* 16px */
+}
+
+/* Override inline styles for hierarchical items */
+.modal-content .item-title {
+    font-size: 1rem !important; /* 16px - overrides inline 0.9em */
+}
+
+/* Section, Chapter, and HS4 items */
+.modal-content .section-item .item-title,
+.modal-content .chapter-item .item-title,
+.modal-content .hs4-item .item-title {
+    font-size: 1rem !important; /* 16px */
+    line-height: 1.5;
+    padding: 8px 0;
+}
+
+/* Tariff badges */
+.modal-content .tariff-badge {
+    font-size: 0.875rem !important; /* 14px */
+}
+
+/* Make the tree container scrollable with larger text */
+#tariff-tree {
+    font-size: 1rem !important;
+}
+
+/* Add borders to section items on mobile */
+.modal-content .section-item {
+    border: 2px solid var(--excelOrangeSec);
+    border-radius: var(--borderRadius);
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: var(--background-color);
+}
+
+/* Ensure nested items have proper spacing */
+.modal-content .chapter-container {
+    margin-top: 10px;
+    padding-left: 10px;
+}
+
+.modal-content .hs4-container {
+    margin-top: 8px;
+    padding-left: 10px;
+}
+
+/* Ensure proper spacing around section titles in product modal */
+#modal-product-list .modal-body > div[style*="text-align: center"] {
+    margin-top: 20px !important;
+    margin-bottom: 15px !important;
+}

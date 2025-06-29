@@ -307,25 +307,32 @@
       <div class="modal-header">
         <h2 style="font-size: 1.35rem;">Country Product Level Tariff</h2>
         <div class="separator"></div>
-        <p>
-          <strong>How to change tariffs:</strong>
-        </p>
-        <div style="margin: 10px 0 15px 0;">
-          <p style="margin-bottom: 10px; font-size: 0.95em;"><strong>Option 1: <span class="primary-text">Change tariffs on ALL industries</span></strong></p>
-          <ol style="text-align: left; margin-left: 20px; margin-bottom: 15px; font-size: 0.9em;">
-            <li>Enter a value in the <span class="primary-text">"Additional Tariffs"</span> box: this is the amount the tariff rate will increase for all goods from their baseline 2021 statutory rates.</li>
-            <li>Enter an expected <span class="primary-text">"Pass-through Rate"</span> (Standard rate is 100%)</li>
-          </ol>
+        <div class="how-to-change-tariffs-section">
+          <p class="how-to-change-tariffs-header" style="cursor: pointer; display: flex; align-items: center; justify-content: space-between;">
+            <strong>How to change tariffs:</strong>
+            <span class="how-to-change-tariffs-toggle">
+              <img src="assets/fontawesome/chevron-right-solid.svg" alt="Expand" class="toggle-icon-expand" style="width: 14px; height: 14px;">
+              <img src="assets/fontawesome/chevron-down-solid.svg" alt="Collapse" class="toggle-icon-collapse" style="width: 14px; height: 14px; display: none;">
+            </span>
+          </p>
+          <div class="how-to-change-tariffs-content" style="display: none; margin: 10px 0 15px 0;">
+            <p style="margin-bottom: 10px; font-size: 0.95em;"><strong>Option 1: <span class="primary-text">Change tariffs on ALL industries</span></strong></p>
+            <ol style="text-align: left; margin-left: 20px; margin-bottom: 15px; font-size: 0.9em;">
+              <li>Enter a value in the <span class="primary-text">"Additional Tariffs"</span> box: this is the amount the tariff rate will increase for all goods from their baseline 2021 statutory rates.</li>
+              <li>Enter an expected <span class="primary-text">"Pass-through Rate"</span> (Standard rate is 100%)</li>
+            </ol>
 
-          <p style="margin-bottom: 10px; font-size: 0.95em;"><strong>Option 2: <span class="primary-text">Change tariffs on SPECIFIC industries</span></strong></p>
-          <ol style="text-align: left; margin-left: 20px; font-size: 0.9em;">
-            <li>Click the <img src="assets/fontawesome/chevron-right-solid.svg" alt="Expand" style="width: 12px; height: 12px; vertical-align: middle;"> next to an industry to see more options</li>
-            <li>Enter <span class="primary-text">tariff percentages</span> for the industries you want to change</li>
-          </ol>
+            <p style="margin-bottom: 10px; font-size: 0.95em;"><strong>Option 2: <span class="primary-text">Change tariffs on SPECIFIC industries</span></strong></p>
+            <ol style="text-align: left; margin-left: 20px; font-size: 0.9em;">
+              <li>Click the <img src="assets/fontawesome/chevron-right-solid.svg" alt="Expand" style="width: 12px; height: 12px; vertical-align: middle;"> next to an industry to see more options</li>
+              <li>Enter <span class="primary-text">tariff percentages</span> for the industries you want to change</li>
+            </ol>
+            
+            <p style="margin-top: 10px; font-size: 0.8em;">
+              <em>Tip: Click "Submit Tariff" at the bottom when you're done to see the price effects</em>
+            </p>
+          </div>
         </div>
-        <p style="margin-top: 10px; font-size: 0.8em;">
-          <em>Tip: Click "Submit Tariff" at the bottom when you're done to see the price effects</em>
-        </p>
         
         <div class="separator"></div>
       </div>
@@ -366,7 +373,7 @@
             </div>
             <div class="separator"></div>
         </div>
-        <div style="text-align: center; font-weight: bold; margin-bottom: 10px; font-size: 0.95em;">
+        <div style="text-align: center; font-weight: bold; margin-bottom: 10px; margin-top: 20px; font-size: 0.95em;">
             TARIFFS ON SPECIFIC INDUSTRIES
         </div>
         <div id="tariff-tree"></div>

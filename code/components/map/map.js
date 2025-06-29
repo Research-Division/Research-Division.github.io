@@ -12,6 +12,11 @@ function zoomToCountry(isoCode) {
         return;
     }
     
+    if (!map) {
+        console.error("Map not initialized yet");
+        return;
+    }
+    
     let found = false;
     
     // Find the country layer by ISO code
@@ -39,21 +44,40 @@ function zoomToCountry(isoCode) {
 window.zoomToCountry = zoomToCountry;
 
 // Initialize the leaflet map
-const map = L.map("map-section", {
-    center: [30, 0], // roughly center on the globe
-    maxZoom: 5,
-    minZoom: 2.5,
-    zoom : 1, 
-    preferCanvas: true,
-    zoomSnap: false,
-    noClip: true,
-    maxBounds:[
-        [-80, -180],
-        [120, 180]
-    ],
-    attributionControl: false,
-    maxBoundsViscosity: 0.0,
-}).setView([30, 0], 2.5);
+let map = null;
+
+// Function to initialize the map
+function initializeMap() {
+    if (map || !document.getElementById('map-section')) {
+        return map;
+    }
+    
+    map = L.map("map-section", {
+        center: [30, 0], // roughly center on the globe
+        maxZoom: 5,
+        minZoom: 2.5,
+        zoom : 1, 
+        preferCanvas: true,
+        zoomSnap: false,
+        noClip: true,
+        maxBounds:[
+            [-80, -180],
+            [120, 180]
+        ],
+        attributionControl: false,
+        maxBoundsViscosity: 0.0,
+    }).setView([30, 0], 2.5);
+    
+    return map;
+}
+
+// Try to initialize the map if the element exists
+if (document.getElementById('map-section')) {
+    initializeMap();
+}
+
+// Make the initialization function globally available
+window.initializeMap = initializeMap;
 
 // Initialize GeoJson Map layer
 // Store the layer reference for later updates (make it globally accessible)
@@ -151,34 +175,54 @@ function blendColors(baseColor, effectColor, intensity) {
     ];
 }
 
-// Your existing fetch code becomes:
-fetch(DataPaths.geography.map)
-.then((res) => res.json())
-.then((geojsonData) => {
-    const currentMode = getCurrentMode(); // Get mode from body class
-    const colors = colorSchemes[currentMode];
+// Function to load the GeoJSON data
+function loadGeoJSONData() {
+    if (!map) {
+        console.warn("Map not initialized yet, cannot load GeoJSON data");
+        return;
+    }
     
-    window.geojsonLayer = L.geoJSON(geojsonData, {
-        noClip: true,
-        style: function(feature) {
-            return {
-                color: colors.border,
-                fillColor: colors.fill,
-                fillOpacity: 1,
-                weight: 1
-            };
-        },
-        onEachFeature: function(feature, layer){
-            layer.on("click", (e) => handleCountryClick(feature, e));
-        }
-    }).addTo(map);
-});
+    fetch(DataPaths.geography.map)
+    .then((res) => res.json())
+    .then((geojsonData) => {
+        const currentMode = getCurrentMode(); // Get mode from body class
+        const colors = colorSchemes[currentMode];
+        
+        window.geojsonLayer = L.geoJSON(geojsonData, {
+            noClip: true,
+            style: function(feature) {
+                return {
+                    color: colors.border,
+                    fillColor: colors.fill,
+                    fillOpacity: 1,
+                    weight: 1
+                };
+            },
+            onEachFeature: function(feature, layer){
+                layer.on("click", (e) => handleCountryClick(feature, e));
+            }
+        }).addTo(map);
+    })
+    .catch(error => {
+        console.error("Error loading GeoJSON data:", error);
+    });
+}
+
+// Load GeoJSON data if map is already initialized
+if (map) {
+    loadGeoJSONData();
+}
+
+// Make the function globally available
+window.loadGeoJSONData = loadGeoJSONData;
 
 
 // Function to force close all popups and clean up
 function forceCloseAllPopups() {
     // Close any popup using Leaflet's method
-    map.closePopup();
+    if (map) {
+        map.closePopup();
+    }
     
     // Manually remove any popup DOM elements that might still be around
     const popupElements = document.querySelectorAll('.leaflet-popup');

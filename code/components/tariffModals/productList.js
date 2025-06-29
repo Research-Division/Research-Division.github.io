@@ -249,6 +249,24 @@ var ProductTariffModal = (function() {
                 }
             }
             
+            // Handle "How to change tariffs" toggle
+            if (e.target && e.target.closest('.how-to-change-tariffs-header')) {
+                const header = e.target.closest('.how-to-change-tariffs-header');
+                const content = document.querySelector('.how-to-change-tariffs-content');
+                const expandIcon = document.querySelector('.how-to-change-tariffs-toggle .toggle-icon-expand');
+                const collapseIcon = document.querySelector('.how-to-change-tariffs-toggle .toggle-icon-collapse');
+                
+                if (content) {
+                    const isHidden = content.style.display === 'none';
+                    content.style.display = isHidden ? 'block' : 'none';
+                    
+                    if (expandIcon && collapseIcon) {
+                        expandIcon.style.display = isHidden ? 'none' : 'block';
+                        collapseIcon.style.display = isHidden ? 'block' : 'none';
+                    }
+                }
+            }
+            
             // Handle submit button using event delegation
             if (e.target && (e.target.id === 'tariffSubmit' || 
                 (e.target.tagName === 'BUTTON' && e.target.textContent.includes('Submit')))) {

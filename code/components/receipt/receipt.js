@@ -647,6 +647,31 @@ function updateReceipt(selectedISOs) {
             // Create a unique ID for this country's effects detail
             const effectsDetailId = `effects-detail-${iso}`;
             
+            // Check if we're on mobile version to determine country name click behavior
+            const countryClickHandler = window.isMobileVersion ? `showSummaryEffects('${iso}')` : `zoomToCountry('${iso}')`;
+            
+            // Only render chart icon on desktop
+            const chartIconHTML = !window.isMobileVersion ? `
+                            <span class="clickable effects-summary-btn" data-iso="${iso}" onclick="showSummaryEffects('${iso}')" title="Show effects summary">
+                                <img src="assets/fontawesome/chart-line-solid.svg" alt="Effects" class="effects-icon" style="width: 14px; height: 14px; margin-left: 5px; color:var(--text-color);">
+                            </span>` : '';
+            
+            // Only render chevron toggle on desktop
+            const chevronToggleHTML = !window.isMobileVersion ? `
+                            <span class="toggle-icon country-toggle receipt-chevron" data-target="${effectsDetailId}">
+                                <img src="assets/fontawesome/chevron-right-solid.svg" alt="Expand" class="toggle-plus">
+                                <img src="assets/fontawesome/chevron-down-solid.svg" alt="Collapse" class="toggle-minus" style="display: none;">
+                            </span>` : '';
+            
+            // Only render effects detail section on desktop
+            const effectsDetailHTML = !window.isMobileVersion ? `
+                        <div id="${effectsDetailId}" class="country-effects-detail" style="display: none; margin-top: -14px">
+                            <span> <br>
+                                <span class="effect-label">Direct Effect: </span><span class="effect-value">${formatEffectValue(directEffect)}</span><br>
+                                <span class="effect-label">Indirect Effect: </span><span class="effect-value">${formatEffectValue(indirectEffect)}</span>
+                            </span>
+                        </div>` : '';
+            
             // Render the receipt item with clickable country name and toggle
             lineItemDiv.innerHTML = `
                 <div class="receipt-item-left">
@@ -655,21 +680,11 @@ function updateReceipt(selectedISOs) {
                     </button>
                     <div>
                         <div class="country-row-title">
-                            <span class="clickable" data-iso="${iso}" onclick="zoomToCountry('${iso}')">${countryName}</span>
-                            <span class="clickable effects-summary-btn" data-iso="${iso}" onclick="showSummaryEffects('${iso}')" title="Show effects summary">
-                                <img src="assets/fontawesome/chart-line-solid.svg" alt="Effects" class="effects-icon" style="width: 14px; height: 14px; margin-left: 5px; color:var(--text-color);">
-                            </span>
-                            <span class="toggle-icon country-toggle receipt-chevron" data-target="${effectsDetailId}">
-                                <img src="assets/fontawesome/chevron-right-solid.svg" alt="Expand" class="toggle-plus">
-                                <img src="assets/fontawesome/chevron-down-solid.svg" alt="Collapse" class="toggle-minus" style="display: none;">
-                            </span>
+                            <span class="clickable" data-iso="${iso}" onclick="${countryClickHandler}">${countryName}</span>
+                            ${chartIconHTML}
+                            ${chevronToggleHTML}
                         </div>
-                        <div id="${effectsDetailId}" class="country-effects-detail" style="display: none; margin-top: -14px">
-                            <span> <br>
-                                <span class="effect-label">Direct Effect: </span><span class="effect-value">${formatEffectValue(directEffect)}</span><br>
-                                <span class="effect-label">Indirect Effect: </span><span class="effect-value">${formatEffectValue(indirectEffect)}</span>
-                            </span>
-                        </div>
+                        ${effectsDetailHTML}
                     </div>
                 </div>
                 <div>
@@ -916,9 +931,14 @@ function updateTotalEffect(subtotalDirectEffect, subtotalIndirectEffect) {
 
 // Call the global updateMapColors function from map.js
 function updateMapColors() {
+    // Check if we're on mobile version without map
+    if (window.isMobileVersion && !document.getElementById('map-section')) {
+        console.log("Mobile version - map coloring deferred until map view");
+        return;
+    }
     
     // Call the global implementation if available
-    if (window.updateMapColors) {
+    if (window.updateMapColors && window.updateMapColors !== updateMapColors) {
         window.updateMapColors();
     } else {
         console.error("Global updateMapColors function not found. Map colors may not be updated correctly.");

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title>Tariff Price Tool</title>
+        
+        <!-- Link to Leaflet scripts and CSS-->
+        <link rel="stylesheet" href="leaflet/leaflet.css">
+        <script src="leaflet/leaflet.js"></script>
+        
+        <!-- Link to External CSS Files -->
+        <link rel="stylesheet" href="assets/fonts/optimized-fonts.css"/>
+        <!-- Preload critical font files -->
+        <link rel="preload" href="assets/fonts/optimized/ibm-plex-sans/fonts/complete/woff2/IBMPlexSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="assets/fonts/optimized/ibm-plex-sans/fonts/complete/woff2/IBMPlexSans-Bold.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="assets/fonts/optimized/ibm-plex-mono/fonts/complete/woff2/IBMPlexMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="assets/fonts/optimized/ibm-plex-mono/fonts/complete/woff2/IBMPlexMono-Bold.woff2" as="font" type="font/woff2" crossorigin>
+        
+        <!-- Core styles -->
+        <link rel="stylesheet" href="styles/frba_color_vars.css"/>
+        <link rel="stylesheet" href="styles/style.css" />
+        <link rel="stylesheet" href="styles/modal.css"/>
+        <link rel="stylesheet" href="styles/receipt.css"/>
+        <link rel="stylesheet" href="styles/popup.css"/>
+        <link rel="stylesheet" href="styles/form-elements.css"/>
+        <link rel="stylesheet" href="styles/sparksGraphStyles.css"/>
+        <link rel="stylesheet" href="styles/combinedSparksCharts.css"/>
+        <link rel="stylesheet" href="styles/help_info_modal.css"/>
+        <link rel="stylesheet" href="styles/help_and_info_styles.css"/>
+        
+        <!-- Mobile specific styles -->
+        <link rel="stylesheet" href="styles/mobile.css"/>
+    </head>
+    <body class="mobile-body">
+        <!-- Mobile Navigation Menu (hidden by default) -->
+        <nav id="mobile-menu" class="mobile-menu" style="display: none;">
+            <button class="mobile-menu-item" id="mobile-map-btn">
+                <img src="assets/fontawesome/globe-solid.svg" alt="Map View" class="menu-item-icon">
+                <span>Map View</span>
+            </button>
+            <button class="mobile-menu-item" id="mobile-charts-btn">
+                <img src="assets/fontawesome/chart-line-solid.svg" alt="Charts" class="menu-item-icon">
+                <span>Charts</span>
+            </button>
+            <button class="mobile-menu-item" id="mobile-trade-btn">
+                <img src="assets/fontawesome/globe-solid.svg" alt="Global Trade" class="menu-item-icon">
+                <span>Global Trade</span>
+            </button>
+            <button class="mobile-menu-item" id="mobile-help-btn">
+                <img src="assets/fontawesome/info-circle.svg" alt="Help" class="menu-item-icon">
+                <span>Help & Info</span>
+            </button>
+            <button class="mobile-menu-item" id="mobile-settings-btn">
+                <img src="assets/fontawesome/settings.svg" alt="Settings" class="menu-item-icon">
+                <span>Settings</span>
+            </button>
+        </nav>
+        
+        <!-- Main Content - Receipt takes full screen -->
+        <main id="mobile-main-content">
+            <h1 class='sr-only'>Tariff Price Tool</h1>
+            
+            <!-- Receipt section - full screen on mobile -->
+            <div id="receipt-section-plhld" class="mobile-receipt-container">
+                <!-- Receipt will be loaded here -->
+            </div>
+        </main>
+        
+        <!-- Modal Container -->
+        <div id="modal-container"></div>
+        
+        <!-- Load essential utilities first -->
+        <script src="src/utils/formatUtils.js"></script>
+        <script src="code/data_paths.js"></script>
+        <script src="src/utils/sourceLinkHandler.js"></script>
+        
+        <!-- Load Sparks Core Components -->
+        <script src="src/utils/chartUtilsFunctions/sparksChartConfigManager.js"></script>
+        <script src="src/utils/chartUtilsFunctions/sparksColorUtils.js"></script>
+        <script src="src/utils/chartUtilsFunctions/sparksCreateChartUtils.js"></script>
+        <script src="src/utils/chartUtilsFunctions/sparksLayoutManager.js"></script>
+        <script src="src/utils/chartUtilsFunctions/sparksTooltipManager.js"></script>
+        <script src="src/utils/chartUtilsFunctions/sparksAnimationUtils.js"></script>
+        <script src="src/utils/chartUtilsFunctions/sparksUpdateChartUtils.js"></script>
+        <script src="src/utils/chartUtils.js"></script>
+        
+        <!-- Load Core Components -->
+        <script src="src/core/components/sparksStyleManager.js"></script>
+        <script src="src/core/components/sparksAxisComponent.js"></script>
+        <script src="src/core/components/sparksDataComponent.js"></script>
+        <script src="src/core/components/sparksDecorationComponent.js"></script>
+        <script src="src/core/components/sparksUIComponent.js"></script>
+        <script src="src/core/sparksGraphingCore.js"></script>
+        <script src="src/core/sparksGraphingInit.js"></script>
+        
+        <!-- Load Chart Renderers -->
+        <script src="src/renderers/sparksLineChart.js"></script>
+        <script src="src/renderers/sparksBarChart.js"></script>
+        <script src="src/renderers/sparksCompressedTreemap.js"></script>
+        
+        <!-- Load CompressedTreemap JS files -->
+        <script>
+            window.CompressedTreemap = window.CompressedTreemap || {};
+        </script>
+        <script src="src/utils/dataUtils/CompressedTreemap/metadataProvider.js"></script>
+        <script src="src/utils/dataUtils/CompressedTreemap/treemapNode.js"></script>
+        <script src="src/utils/dataUtils/CompressedTreemap/treemapLayout.js"></script>
+        <script src="src/utils/dataUtils/CompressedTreemap/treemapRenderer.js"></script>
+        <script src="src/utils/dataUtils/CompressedTreemap/compressedDataAdapter.js"></script>
+        <script src="src/utils/dataUtils/CompressedTreemap/drillDownManager.js"></script>
+        <script src="src/utils/dataUtils/compressedTreemap.js"></script>
+        
+        <!-- Load Auxiliary Graph Types -->
+        <script src="src/auxiliaryGraphTypes/countryTimeSeriesChart.js"></script>
+        <script src="src/auxiliaryGraphTypes/countryBilatTariffRates.js"></script>
+        <script src="src/auxiliaryGraphTypes/countryBilatTradeRelats.js"></script>
+        <script src="src/auxiliaryGraphTypes/industryTariffsBarChart.js"></script>
+        <script src="src/auxiliaryGraphTypes/industryTariffsTimeSeries.js"></script>
+        <script src="src/auxiliaryGraphTypes/compressedCountryTreemap.js"></script>
+        <script src="src/auxiliaryGraphTypes/sectionTimeSeries.js"></script>
+        <script src="src/auxiliaryGraphTypes/countrySectionTimeSeries.js"></script>
+        <script src="src/auxiliaryGraphTypes/sectionBilateralTradeChart.js"></script>
+        
+        <!-- Load Modal System -->
+        <script src="src/devTools/devTools.js"></script>
+        
+        <!-- Main application script -->
+        <script src="app.js"></script>
+        <script src="code/components/calculations/calculations.js"></script>
+        <script src="code/components/calculations/tariff_pre_calculations.js"></script>
+        
+        <!-- UI Components -->
+        <script src="code/components/tariffModals/countryList/countryList.js"></script>
+        <script src="code/components/tariffModals/countryList/countrySelection.js"></script>
+        <script src="code/components/tariffModals/productList/tariffs/simpleTariffPropagation.js"></script>
+        <script src="code/components/tariffModals/productList/MDS_helper_functions.js"></script>
+        <script src="code/components/tariffModals/productList.js"></script>
+        <script src="code/components/tariffModals/globalTariff.js"></script>
+        <script src="code/components/tariffModals/tariffModalIntegration.js"></script>
+        <script src="code/components/receipt/receipt.js"></script>
+        <script src="code/components/map/map.js"></script>
+        <script src="code/components/help_and_info/help_and_info.js"></script>
+        
+        <!-- Load Required Chart Components -->
+        <script src="src/dataAux/barChartData.js"></script>
+        <script src="src/renderers/sparksBarChart.js"></script>
+        
+        <!-- Load Combined Chart Layouts -->
+        <script src="combined_charts/01_trade_area_charts.js"></script>
+        <script src="combined_charts/tariff_comparison_chart.js"></script>
+        <script src="combined_charts/02_effects_and_rates.js"></script>
+        <script src="combined_charts/00_Global_Trade_Charts.js"></script>
+        
+        <!-- Mobile specific JavaScript -->
+        <script src="src/mobile/mobile.js"></script>
+    </body>
+</html>
