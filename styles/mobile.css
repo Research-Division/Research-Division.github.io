@@ -698,10 +698,11 @@ body.menu-open {
     width: 100% !important;
 }
 
-/* Fix treemap container and visualization for mobile */
+/* COMMENTED OUT ALL TREEMAP MOBILE STYLES TO USE DESKTOP RENDERING */
+/*
 .treemap-container {
     width: 100% !important;
-    height: 500px !important; /* Increased height for better proportions */
+    height: 500px !important;
     overflow: hidden !important;
 }
 
@@ -712,14 +713,12 @@ body.menu-open {
     overflow: hidden !important;
 }
 
-/* Fix treemap SVG for mobile */
 .treemap-svg {
     width: 100% !important;
     height: 100% !important;
     max-width: 100% !important;
 }
 
-/* Fix treemap legend for mobile */
 .treemap-legend {
     margin-top: 20px !important;
     max-height: none !important;
@@ -728,17 +727,15 @@ body.menu-open {
     height: auto !important;
 }
 
-/* Fix treemap legend items grid for mobile */
 .treemap-legend-items {
     display: grid !important;
-    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)) !important; /* Even smaller columns on mobile */
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)) !important;
     gap: 6px !important;
     padding: 4px !important;
     width: 100% !important;
     align-items: start !important;
 }
 
-/* Fix treemap legend item layout for mobile */
 .treemap-legend-item {
     font-size: 12px !important;
     padding: 3px 6px !important;
@@ -747,14 +744,13 @@ body.menu-open {
 
 .treemap-legend-item .legend-label {
     font-size: 12px !important;
-    max-width: 120px !important; /* Smaller max width on mobile */
+    max-width: 120px !important;
 }
 
 .treemap-legend-item .legend-value {
     font-size: 11px !important;
 }
 
-/* Fix chart visualization containing treemaps on mobile */
 .chart-visualization:has(.treemap-visualization-container),
 .chart-visualization.contains-treemap {
     height: auto !important;
@@ -762,13 +758,11 @@ body.menu-open {
     display: block !important;
 }
 
-/* Override the 75% height calculation on mobile */
 .multi-chart-panel-body .treemap-visualization-container svg,
 .trade-area-panel-body .treemap-visualization-container svg {
-    height: 500px !important; /* Fixed height instead of percentage */
+    height: 500px !important;
 }
 
-/* Fix legend color boxes on mobile */
 .treemap-legend-item .legend-color {
     width: 12px !important;
     height: 12px !important;
@@ -776,31 +770,28 @@ body.menu-open {
     max-width: 12px !important;
     margin-right: 4px !important;
     display: inline-block !important;
-    flex: 0 0 12px !important; /* Don't grow or shrink, fixed 12px */
+    flex: 0 0 12px !important;
 }
 
-/* Ensure legend item content is visible on mobile */
 .treemap-legend-item {
     display: flex !important;
     flex-direction: column !important;
     width: auto !important;
-    min-width: 100px !important; /* Reduced to fit better */
-    max-width: 150px !important; /* Add max width */
+    min-width: 100px !important;
+    max-width: 150px !important;
     background-color: var(--background-color) !important;
-    padding: 4px !important; /* Add some padding */
+    padding: 4px !important;
 }
 
-/* Ensure legend header row displays properly */
 .treemap-legend-item > div:first-child {
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
     width: 100% !important;
     gap: 4px !important;
-    min-height: 16px !important; /* Ensure minimum height */
+    min-height: 16px !important;
 }
 
-/* Force legend text to be visible - more specific selectors */
 .treemap-legend-item div.legend-label {
     display: block !important;
     visibility: visible !important;
@@ -808,8 +799,8 @@ body.menu-open {
     color: var(--text-color) !important;
     font-size: 12px !important;
     line-height: 1.2 !important;
-    flex: 1 1 auto !important; /* Allow it to grow */
-    min-width: 80px !important; /* Ensure minimum space for text */
+    flex: 1 1 auto !important;
+    min-width: 80px !important;
     max-width: 120px !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
@@ -827,17 +818,14 @@ body.menu-open {
     width: 100% !important;
 }
 
-/* Override any inline styles that might hide content */
 .treemap-legend-item * {
     visibility: visible !important;
 }
 
-/* Fix the legend items container */
 .treemap-legend .treemap-legend-items {
     background-color: transparent !important;
 }
 
-/* Target all text-containing divs in legend items */
 .treemap-legend-item > div > div:not(.legend-color) {
     display: block !important;
     visibility: visible !important;
@@ -845,7 +833,6 @@ body.menu-open {
     color: var(--text-color) !important;
 }
 
-/* Ensure flex layout doesn't hide content */
 .treemap-legend-item > div:first-child > *:not(.legend-color) {
     flex: 1 1 auto !important;
     min-width: 0 !important;
@@ -854,7 +841,6 @@ body.menu-open {
     white-space: nowrap !important;
 }
 
-/* Fix any potential z-index issues */
 .treemap-legend {
     z-index: 10 !important;
     position: relative !important;
@@ -865,7 +851,6 @@ body.menu-open {
     position: relative !important;
 }
 
-/* Fix any other containers that might have fixed widths */
 .multi-chart-panel-body [style*="width"],
 .trade-area-panel-body [style*="width"] {
     width: 100% !important;
@@ -873,19 +858,17 @@ body.menu-open {
     min-width: unset !important;
 }
 
-/* Treemap touch behavior for mobile */
 .treemap-rect {
-    -webkit-touch-callout: none; /* Disable callout on long press */
-    -webkit-user-select: none; /* Disable text selection */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    touch-action: manipulation; /* Prevent double-tap zoom */
+    touch-action: manipulation;
 }
 
-/* Ensure tooltip is visible above everything on mobile */
 #treemap-tooltip-container {
-    z-index: 2147483647 !important; /* Maximum z-index */
+    z-index: 2147483647 !important;
     position: fixed !important;
     pointer-events: none !important;
     -webkit-touch-callout: none;
@@ -893,29 +876,29 @@ body.menu-open {
     user-select: none;
 }
 
-/* Visual feedback for touch-and-hold */
 .treemap-rect.touch-active {
     stroke: var(--text-color, #333) !important;
     stroke-width: 4px !important;
     opacity: 0.8 !important;
 }
+*/
 
-/* Multi-chart panel (Trade Data Explorer) mobile adjustments */
+/* COMMENTED OUT MULTI-CHART PANEL MOBILE ADJUSTMENTS TO USE DESKTOP RENDERING */
+/*
 .multi-chart-panel-container,
 .trade-area-panel-container {
-    padding: 0 !important; /* Remove padding on mobile */
-    z-index: 2000 !important; /* Higher z-index on mobile */
+    padding: 0 !important;
+    z-index: 2000 !important;
 }
 
 .multi-chart-panel-content,
 .trade-area-panel-content {
     width: 100% !important;
     height: 100% !important;
-    border-radius: 0 !important; /* No rounded corners on mobile */
+    border-radius: 0 !important;
     margin: 0 !important;
 }
 
-/* Adjust panel header for mobile */
 .multi-chart-panel-header,
 .trade-area-panel-header {
     padding: 10px 15px !important;
@@ -924,21 +907,18 @@ body.menu-open {
     z-index: 100 !important;
 }
 
-/* Make tabs scrollable on mobile if needed */
 .tabs-container,
 #chart-tabs-container {
     overflow-x: auto !important;
     -webkit-overflow-scrolling: touch !important;
 }
 
-/* Smaller tabs on mobile */
 .tab {
     padding: 10px 15px !important;
     font-size: 14px !important;
     white-space: nowrap !important;
 }
 
-/* Panel body scrolling */
 .multi-chart-panel-body,
 .trade-area-panel-body {
     overflow-y: auto !important;
@@ -946,48 +926,46 @@ body.menu-open {
     padding: 10px !important;
 }
 
-/* Close button adjustments */
 .panel-close-button {
     min-width: 40px !important;
     min-height: 40px !important;
     font-size: 24px !important;
 }
 
-/* Chart containers within panels on mobile */
 .multi-chart-panel-body .chart-container,
 .trade-area-panel-body .chart-container {
     min-height: 300px !important;
     margin-bottom: 20px !important;
 }
+*/
 
-/* Country dropdown in panel header */
+/* COMMENTED OUT REMAINING PANEL STYLES TO USE DESKTOP RENDERING */
+/*
 .country-dropdown {
     max-width: 90vw !important;
     left: auto !important;
     right: 0 !important;
 }
 
-/* Narrative text sections */
 .narrative-section {
     font-size: 14px !important;
     line-height: 1.5 !important;
     padding: 10px !important;
 }
 
-/* Split sections should stack on mobile */
 .multi-chart-panel-body .split-section,
 .trade-area-panel-body .split-section {
     flex-direction: column !important;
 }
 
-/* Make dropdowns more touch-friendly */
 .sector-group-dropdown,
 .country-dropdown {
-    max-height: 50vh !important; /* Limit height on mobile */
+    max-height: 50vh !important;
 }
 
 .sector-group-option,
 .country-option {
-    padding: 12px 15px !important; /* Larger touch targets */
+    padding: 12px 15px !important;
     font-size: 14px !important;
 }
+*/

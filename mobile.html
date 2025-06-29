@@ -61,6 +61,13 @@
         <!-- Modal Container -->
         <div id="modal-container"></div>
         
+        <!-- Hidden desktop buttons for compatibility -->
+        <div style="display: none;">
+            <span id="show-multi-chart-panel"></span>
+            <span id="show-global-trade-panel"></span>
+            <span id="show-help-panel"></span>
+        </div>
+        
         <!-- Load essential utilities first -->
         <script src="src/utils/formatUtils.js"></script>
         <script src="code/data_paths.js"></script>
@@ -142,6 +149,9 @@
         <script src="combined_charts/tariff_comparison_chart.js"></script>
         <script src="combined_charts/02_effects_and_rates.js"></script>
         <script src="combined_charts/00_Global_Trade_Charts.js"></script>
+        
+        <!-- Initialize desktop environment for compatibility -->
+        <script src="testing_environment.js"></script>
         
         <!-- Mobile specific JavaScript -->
         <script src="src/mobile/mobile.js"></script>

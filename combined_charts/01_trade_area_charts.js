@@ -1402,7 +1402,7 @@ window.multiChartPanel = (function() {
                 });
             }
         } else {
-            console.warn('Narrative section toggle or container not found');
+            // This is expected on mobile or when the narrative section is not included
         }
         
         // Setup section options
@@ -1512,7 +1512,7 @@ window.multiChartPanel = (function() {
                 }
             });
         } else {
-            console.warn('Section dropdown not found');
+            // This is expected on mobile or when the narrative section is not included
         }
         
         // Close dropdowns when clicking outside
@@ -1740,7 +1740,7 @@ window.multiChartPanel = (function() {
      */
     function updateProductNarrative() {
         if (!productFeaturesData || !currentCountry || !currentCountry.iso) {
-            console.error('Cannot update product narrative: missing data or country selection');
+            // Don't log error on initialization or when data is still loading
             return;
         }
         

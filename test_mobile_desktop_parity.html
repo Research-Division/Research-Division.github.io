@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Desktop Parity Test</title>
+    
+    <!-- Load ALL the same files as index.html in the same order -->
+    <link rel="stylesheet" href="leaflet/leaflet.css">
+    <script src="leaflet/leaflet.js"></script>
+    
+    <link rel="stylesheet" href="assets/fonts/optimized-fonts.css"/>
+    <link rel="preload" href="assets/fonts/optimized/ibm-plex-sans/fonts/complete/woff2/IBMPlexSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/optimized/ibm-plex-sans/fonts/complete/woff2/IBMPlexSans-Bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/optimized/ibm-plex-mono/fonts/complete/woff2/IBMPlexMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/optimized/ibm-plex-mono/fonts/complete/woff2/IBMPlexMono-Bold.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <link rel="stylesheet" href="styles/frba_color_vars.css"/>
+    <link rel="stylesheet" href="styles/style.css"/>
+    <link rel="stylesheet" href="styles/modal.css"/>
+    <link rel="stylesheet" href="styles/map.css"/>
+    <link rel="stylesheet" href="styles/receipt.css"/>
+    <link rel="stylesheet" href="styles/header.css"/>
+    <link rel="stylesheet" href="styles/footer.css"/>
+    <link rel="stylesheet" href="styles/popup.css"/>
+    <link rel="stylesheet" href="styles/form-elements.css"/>
+    <link rel="stylesheet" href="styles/sparksGraphStyles.css"/>
+    <link rel="stylesheet" href="styles/combinedSparksCharts.css"/>
+    <link rel="stylesheet" href="styles/help_info_modal.css"/>
+    <link rel="stylesheet" href="styles/help_and_info_styles.css"/>
+    
+    <!-- NO MOBILE CSS! -->
+</head>
+<body>
+    <h1>Mobile Desktop Parity Test</h1>
+    <button onclick="openTradeExplorer()">Open Trade Data Explorer</button>
+    
+    <div id="modal-container"></div>
+    
+    <!-- Hidden button for compatibility -->
+    <div style="display: none;">
+        <span id="show-multi-chart-panel"></span>
+    </div>
+    
+    <!-- Load ALL scripts in same order as index.html -->
+    <script src="src/utils/formatUtils.js"></script>
+    <script src="code/data_paths.js"></script>
+    <script src="src/utils/sourceLinkHandler.js"></script>
+    
+    <script src="src/utils/chartUtilsFunctions/sparksChartConfigManager.js"></script>
+    <script src="src/utils/chartUtilsFunctions/sparksColorUtils.js"></script>
+    <script src="src/utils/chartUtilsFunctions/sparksCreateChartUtils.js"></script>
+    <script src="src/utils/chartUtilsFunctions/sparksLayoutManager.js"></script>
+    <script src="src/utils/chartUtilsFunctions/sparksTooltipManager.js"></script>
+    <script src="src/utils/chartUtilsFunctions/sparksAnimationUtils.js"></script>
+    <script src="src/utils/chartUtilsFunctions/sparksUpdateChartUtils.js"></script>
+    <script src="src/utils/chartUtils.js"></script>
+    
+    <script src="src/core/components/sparksStyleManager.js"></script>
+    <script src="src/core/components/sparksAxisComponent.js"></script>
+    <script src="src/core/components/sparksDataComponent.js"></script>
+    <script src="src/core/components/sparksDecorationComponent.js"></script>
+    <script src="src/core/components/sparksUIComponent.js"></script>
+    <script src="src/core/sparksGraphingCore.js"></script>
+    <script src="src/core/sparksGraphingInit.js"></script>
+    
+    <script src="src/renderers/sparksLineChart.js"></script>
+    <script src="src/renderers/sparksBarChart.js"></script>
+    <script src="src/renderers/sparksCompressedTreemap.js"></script>
+    
+    <script>window.CompressedTreemap = window.CompressedTreemap || {};</script>
+    <script src="src/utils/dataUtils/CompressedTreemap/metadataProvider.js"></script>
+    <script src="src/utils/dataUtils/CompressedTreemap/treemapNode.js"></script>
+    <script src="src/utils/dataUtils/CompressedTreemap/treemapLayout.js"></script>
+    <script src="src/utils/dataUtils/CompressedTreemap/treemapRenderer.js"></script>
+    <script src="src/utils/dataUtils/CompressedTreemap/compressedDataAdapter.js"></script>
+    <script src="src/utils/dataUtils/CompressedTreemap/drillDownManager.js"></script>
+    <script src="src/utils/dataUtils/compressedTreemap.js"></script>
+    
+    <script src="src/auxiliaryGraphTypes/countryTimeSeriesChart.js"></script>
+    <script src="src/auxiliaryGraphTypes/countryBilatTariffRates.js"></script>
+    <script src="src/auxiliaryGraphTypes/countryBilatTradeRelats.js"></script>
+    <script src="src/auxiliaryGraphTypes/industryTariffsBarChart.js"></script>
+    <script src="src/auxiliaryGraphTypes/industryTariffsTimeSeries.js"></script>
+    <script src="src/auxiliaryGraphTypes/compressedCountryTreemap.js"></script>
+    <script src="src/auxiliaryGraphTypes/sectionTimeSeries.js"></script>
+    <script src="src/auxiliaryGraphTypes/countrySectionTimeSeries.js"></script>
+    <script src="src/auxiliaryGraphTypes/sectionBilateralTradeChart.js"></script>
+    
+    <script src="src/devTools/devTools.js"></script>
+    <script src="app.js"></script>
+    <script src="code/components/calculations/calculations.js"></script>
+    <script src="code/components/calculations/tariff_pre_calculations.js"></script>
+    <script src="code/components/tariffModals/countryList/countryList.js"></script>
+    <script src="code/components/tariffModals/countryList/countrySelection.js"></script>
+    <script src="code/components/tariffModals/productList/tariffs/simpleTariffPropagation.js"></script>
+    <script src="code/components/tariffModals/productList/MDS_helper_functions.js"></script>
+    <script src="code/components/tariffModals/productList.js"></script>
+    <script src="code/components/tariffModals/globalTariff.js"></script>
+    <script src="code/components/tariffModals/tariffModalIntegration.js"></script>
+    <script src="code/components/receipt/receipt.js"></script>
+    <script src="code/components/map/map.js"></script>
+    <script src="code/components/help_and_info/help_and_info.js"></script>
+    
+    <script src="src/dataAux/barChartData.js"></script>
+    <script src="src/renderers/sparksBarChart.js"></script>
+    
+    <script src="combined_charts/01_trade_area_charts.js"></script>
+    <script src="combined_charts/tariff_comparison_chart.js"></script>
+    <script src="combined_charts/02_effects_and_rates.js"></script>
+    <script src="combined_charts/00_Global_Trade_Charts.js"></script>
+    
+    <script src="testing_environment.js"></script>
+    
+    <script>
+        function openTradeExplorer() {
+            console.log('Opening Trade Data Explorer...');
+            if (window.multiChartPanel && window.multiChartPanel.showPanel) {
+                window.multiChartPanel.showPanel('trade-relations');
+            } else {
+                console.error('multiChartPanel not available');
+            }
+        }
+    </script>
+</body>
+</html>

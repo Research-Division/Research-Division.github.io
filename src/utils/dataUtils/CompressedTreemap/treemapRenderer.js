@@ -142,11 +142,22 @@ class TreemapRenderer {
     
     // Get container dimensions - prioritize actual container dimensions over options
     const containerRect = container.getBoundingClientRect();
-    const width = containerRect.width;
+    const width = containerRect.width || this.options.width || 800; // Fallback to default width
     // Prioritize container height over options.height, but leave space for legend (approx 25% of total height)
     // This prevents the treemap from taking the full container height and overlapping with the legend
     const totalHeight = containerRect.height || this.options.height || 500;
     const height = Math.floor(totalHeight * 0.75); // Use 75% of the height for the treemap, leaving 25% for legend
+    
+    // Validate dimensions
+    if (!width || width <= 0 || !height || height <= 0) {
+      console.warn('Invalid treemap dimensions, using defaults', { width, height });
+      const defaultWidth = 800;
+      const defaultHeight = 400;
+      svg.setAttribute('width', '100%');
+      svg.setAttribute('height', `${defaultHeight}px`);
+      svg.setAttribute('viewBox', `0 0 ${defaultWidth} ${defaultHeight}`);
+      return; // Exit early if dimensions are invalid
+    }
     
     // Set SVG dimensions to properly fit within the larger chart container
     // IMPORTANT: We're addressing an issue where SVG overflow doesn't affect DOM layout flow
