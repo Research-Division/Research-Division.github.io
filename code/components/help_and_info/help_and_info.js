@@ -94,12 +94,14 @@ function initializeHelpPanel() {
                             <h4 style="margin-bottom: 0.75rem; text-align: center;">Suggested Citation</h4>
                             <div id="citation-box" style="position: relative; max-width: 95%; width: 700px; padding: 0.75rem 2rem 1.25rem 2rem; border-radius: 8px; border: 2px dashed #666; font-family: var(--font-family-monospace); background-color: rgba(0,0,0,0.01); box-shadow: 0 2px 6px rgba(0,0,0,0.05); transition: background-color 0.5s ease;">
                                 <p id="citation-text" style="margin-bottom: 0; font-style: italic; text-align: justify; line-height: 1.6;">Michael Dwight Sparks, Salomé Baslandze & Simon Fuchs, <i>The Atlanta Fed's Tariff Price Tool: Methodology</i> (SSRN Working Paper No. #####),<br>&#9;https://ssrn.com/abstract=#####</p>
-                                <div style="position: absolute; bottom: 8px; right: 8px; display: flex; gap: 4px; align-items: center;">
-                                    <button id="copy-bibtex-btn" style="background: none; border: none; cursor: pointer; padding: 2px 4px; border-radius: 4px; transition: all 0.2s ease; font-size: 10px; color: var(--text-color); font-weight: bold;" title="Copy BibTeX citation to clipboard">
-                                        <span style="font-family: 'Computer Modern', 'Latin Modern Math', 'Times New Roman', serif; letter-spacing: -0.05em;">Bib<span style="text-transform: uppercase; font-size: 0.7em; vertical-align: 0.25em; margin-left: -0.1em; margin-right: -0.1em;">T<span style="text-transform: uppercase; font-size: 0.5em; vertical-align: -0.5em; margin-left: -0.15em;">E</span></span>X</span>
-                                    </button>
+                                <div style="position: absolute; bottom: 8px; right: 8px; display: flex; gap: 4px; align-items: baseline;">
                                     <button id="copy-citation-btn" style="background: none; border: none; cursor: pointer; padding: 4px; border-radius: 4px; transition: all 0.2s ease;" title="Copy citation to clipboard">
                                         <img src="assets/fontawesome/copy.svg" alt="Copy citation" style="width: 16px; height: 16px; filter: var(--icon-filter, none); transition: transform 0.2s ease;">
+                                    </button>
+                                    <button id="copy-bibtex-btn" style="background: none; border: none; cursor: pointer; padding: 2px 4px; border-radius: 4px; transition: all 0.2s ease; font-size: 11px; color: var(--text-color); font-weight: bold;" title="Copy BibTeX citation to clipboard">
+                                        <span style="font-family: 'Computer Modern', 'Latin Modern Math', 'Times New Roman', serif; letter-spacing: -0.02em;">
+                                            <span style="font-size: 1.2em;">B</span><span style="font-size: 0.9em;">IB</span><span style="font-size: 1.2em;">T</span><span style="font-size: 1.2em; vertical-align: -0.4em;">E</span><span style="font-size: 1.2em;">X</span>
+                                        </span>
                                     </button>
                                 </div>
                             </div>
@@ -229,6 +231,45 @@ function setupEventListeners() {
                     window.getSelection().removeAllRanges();
                     window.getSelection().addRange(range);
                 }
+            }
+        });
+    }
+    
+    // Copy BibTeX button
+    const copyBibtexButton = helpModal.querySelector('#copy-bibtex-btn');
+    if (copyBibtexButton) {
+        // Hover effects
+        copyBibtexButton.addEventListener('mouseenter', function() {
+            copyBibtexButton.style.transform = 'scale(1.1)';
+        });
+        
+        copyBibtexButton.addEventListener('mouseleave', function() {
+            copyBibtexButton.style.transform = 'scale(1)';
+        });
+        
+        copyBibtexButton.addEventListener('click', async function() {
+            try {
+                const bibtexText = `@misc{sparks2024tariff,
+    title={The Atlanta Fed's Tariff Price Tool: Methodology},
+    author={Sparks, Michael Dwight and Baslandze, Salomé and Fuchs, Simon},
+    year={2024},
+    howpublished={SSRN Working Paper No. #####},
+    url={https://ssrn.com/abstract=#####},
+    note={Federal Reserve Bank of Atlanta}
+}`;
+                await navigator.clipboard.writeText(bibtexText);
+                
+                // Visual feedback - briefly change background color
+                const citationBox = helpModal.querySelector('#citation-box');
+                if (citationBox) {
+                    citationBox.style.backgroundColor = 'rgba(0, 118, 182, 0.1)';
+                    setTimeout(() => {
+                        citationBox.style.backgroundColor = 'rgba(0,0,0,0.01)';
+                    }, 500);
+                }
+                
+            } catch (err) {
+                console.error('Failed to copy BibTeX citation: ', err);
             }
         });
     }
