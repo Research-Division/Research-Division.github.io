@@ -134,6 +134,55 @@ function setupEventListeners() {
   // All-industry tariff input - now updates all section values directly
   const allTariffInput = document.getElementById('tariff-all-input');
   if (allTariffInput) {
+    // Add focus event listener for warning popup
+    allTariffInput.addEventListener('focus', function() {
+      // Check if warning popup already exists
+      let warningPopup = document.getElementById('all-tariff-warning-popup');
+      if (!warningPopup) {
+        // Create warning popup
+        warningPopup = document.createElement('div');
+        warningPopup.id = 'all-tariff-warning-popup';
+        warningPopup.style.cssText = `
+          position: absolute;
+          background: var(--background-color, white);
+          border: 2px solid var(--warning, #f0ad4e);
+          border-radius: 4px;
+          padding: 10px 15px;
+          box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+          font-size: 14px;
+          font-family: var(--font-family-monospace);
+          color: var(--text-color);
+          z-index: 10000;
+          max-width: 300px;
+          pointer-events: none;
+        `;
+        warningPopup.innerHTML = `
+          <div style="display: flex; align-items: flex-start; gap: 8px;">
+            <span style="color: var(--warning, #f0ad4e); font-weight: bold;">⚠</span>
+            <span>Changing this value will override all current industry-level tariff values. Make sure this is what you want before proceeding.</span>
+          </div>
+        `;
+        
+        // Position the popup above the input
+        const rect = allTariffInput.getBoundingClientRect();
+        const modalRect = allTariffInput.closest('.modal-content').getBoundingClientRect();
+        warningPopup.style.left = (rect.left - modalRect.left) + 'px';
+        warningPopup.style.top = (rect.top - modalRect.top - 80) + 'px';
+        
+        // Add to modal content
+        allTariffInput.closest('.modal-content').appendChild(warningPopup);
+        
+        // Remove popup when input loses focus
+        allTariffInput.addEventListener('blur', function() {
+          setTimeout(() => {
+            if (warningPopup && warningPopup.parentNode) {
+              warningPopup.parentNode.removeChild(warningPopup);
+            }
+          }, 200);
+        }, { once: true });
+      }
+    });
+    
     allTariffInput.addEventListener('change', function() {
       const value = parseFloat(this.value) || 0;
       // Update global pass-through rate from the input
