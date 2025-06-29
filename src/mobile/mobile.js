@@ -74,7 +74,7 @@
                 mobileMenu.classList.add('active');
                 overlay.classList.add('active');
                 body.classList.add('menu-open');
-                mobileMenu.style.display = 'block';
+                mobileMenu.style.display = 'flex';
             }
         });
     }
@@ -110,7 +110,7 @@
             mobileMenu.classList.add('active');
             overlay.classList.add('active');
             body.classList.add('menu-open');
-            mobileMenu.style.display = 'block';
+            mobileMenu.style.display = 'flex';
         }
         
         function closeMenu() {
@@ -128,6 +128,19 @@
         
         // Close menu when clicking overlay
         overlay.addEventListener('click', closeMenu);
+        
+        // Close menu when clicking the X button
+        const closeButton = document.querySelector('.mobile-menu-close');
+        if (closeButton) {
+            closeButton.addEventListener('click', closeMenu);
+        }
+        
+        // Close menu when clicking outside the menu content
+        mobileMenu.addEventListener('click', function(e) {
+            if (e.target === mobileMenu) {
+                closeMenu();
+            }
+        });
         
         // Menu item handlers
         setupMenuItemHandlers(closeMenu);

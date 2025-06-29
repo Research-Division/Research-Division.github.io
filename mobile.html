@@ -34,28 +34,19 @@
     </head>
     <body class="mobile-body">
         <!-- Mobile Navigation Menu (hidden by default) -->
-        <nav id="mobile-menu" class="mobile-menu" style="display: none;">
-            <button class="mobile-menu-item" id="mobile-map-btn">
-                <img src="assets/fontawesome/globe-solid.svg" alt="Map View" class="menu-item-icon">
-                <span>Map View</span>
-            </button>
-            <button class="mobile-menu-item" id="mobile-charts-btn">
-                <img src="assets/fontawesome/chart-line-solid.svg" alt="Charts" class="menu-item-icon">
-                <span>Charts</span>
-            </button>
-            <button class="mobile-menu-item" id="mobile-trade-btn">
-                <img src="assets/fontawesome/globe-solid.svg" alt="Global Trade" class="menu-item-icon">
-                <span>Global Trade</span>
-            </button>
-            <button class="mobile-menu-item" id="mobile-help-btn">
-                <img src="assets/fontawesome/info-circle.svg" alt="Help" class="menu-item-icon">
-                <span>Help & Info</span>
-            </button>
-            <button class="mobile-menu-item" id="mobile-settings-btn">
-                <img src="assets/fontawesome/settings.svg" alt="Settings" class="menu-item-icon">
-                <span>Settings</span>
-            </button>
-        </nav>
+        <div id="mobile-menu" class="mobile-menu-modal" style="display: none;">
+            <div class="mobile-menu-content">
+                <div class="mobile-menu-header">
+                    <h2>Menu</h2>
+                    <button class="mobile-menu-close" aria-label="Close menu">✕</button>
+                </div>
+                <button class="mobile-menu-item receipt-btn" id="mobile-map-btn">Map View</button>
+                <button class="mobile-menu-item receipt-btn" id="mobile-charts-btn">Trade Data Explorer</button>
+                <button class="mobile-menu-item receipt-btn" id="mobile-trade-btn">World Data Explorer</button>
+                <button class="mobile-menu-item receipt-btn" id="mobile-help-btn">Help & Info</button>
+                <button class="mobile-menu-item receipt-btn" id="mobile-settings-btn">Settings</button>
+            </div>
+        </div>
         
         <!-- Main Content - Receipt takes full screen -->
         <main id="mobile-main-content">
