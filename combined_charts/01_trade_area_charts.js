@@ -205,30 +205,52 @@ window.multiChartPanel = (function() {
                     dropdown.classList.remove('active');
                     dropdownToggle.classList.remove('active');
                     dropdownToggle.setAttribute('aria-expanded', 'false');
-                    dropdownToggle.focus(); // Return focus to toggle
+                    // Clear search term and restore original country name
+                    window._countrySearchTerm = '';
+                    updateDisplayedCountryName();
+                    dropdownToggle.focus();
+                } else if (e.key === 'Backspace') {
+                    // Handle backspace for search
+                    e.preventDefault();
+                    if (window._countrySearchTerm.length > 0) {
+                        window._countrySearchTerm = window._countrySearchTerm.slice(0, -1);
+                        updateDisplayedCountryName();
+                        filterCountryList(window._countrySearchTerm);
+                    }
                 } else if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
                     // Navigate options with arrow keys
                     e.preventDefault();
                     
-                    const options = Array.from(dropdown.querySelectorAll('.country-option'));
-                    if (options.length === 0) return;
+                    // Get only visible options
+                    const visibleOptions = Array.from(dropdown.querySelectorAll('.country-option'))
+                        .filter(option => option.style.display !== 'none' && !option.closest('.country-group.hidden'));
                     
-                    // Find currently focused option
-                    const focusedOption = document.activeElement.closest('.country-option');
-                    let nextIndex = 0;
+                    if (visibleOptions.length === 0) return;
                     
-                    if (focusedOption) {
-                        const currentIndex = options.indexOf(focusedOption);
+                    // Find currently focused element
+                    const focusedElement = document.activeElement;
+                    
+                    if (!focusedElement.classList.contains('country-option')) {
+                        // No option is focused, focus first visible option on ArrowDown
                         if (e.key === 'ArrowDown') {
-                            nextIndex = (currentIndex + 1) % options.length;
-                        } else {
-                            nextIndex = (currentIndex - 1 + options.length) % options.length;
+                            visibleOptions[0].focus();
                         }
+                    } else {
+                        // Navigate between visible options
+                        const currentIndex = visibleOptions.indexOf(focusedElement);
+                        let nextIndex;
+                        
+                        if (e.key === 'ArrowDown') {
+                            nextIndex = (currentIndex + 1) % visibleOptions.length;
+                        } else {
+                            // ArrowUp
+                            nextIndex = (currentIndex - 1 + visibleOptions.length) % visibleOptions.length;
+                        }
+                        
+                        visibleOptions[nextIndex].focus();
                     }
-                    
-                    options[nextIndex].focus();
-                } else if (e.key === 'Enter' || e.key === ' ') {
-                    // Select option with Enter or Space
+                } else if (e.key === 'Enter') {
+                    // Select option with Enter
                     e.preventDefault();
                     const option = e.target.closest('.country-option');
                     if (option) {
@@ -236,9 +258,24 @@ window.multiChartPanel = (function() {
                         const name = option.getAttribute('data-name');
                         
                         if (iso && name) {
+                            window._countrySearchTerm = ''; // Clear search
                             updateCountry(iso, name);
                         }
                     }
+                } else if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
+                    // Handle typing for search
+                    e.preventDefault();
+                    window._countrySearchTerm += e.key;
+                    updateDisplayedCountryName();
+                    filterCountryList(window._countrySearchTerm);
+                    
+                    // Focus first visible option after filtering
+                    setTimeout(() => {
+                        const firstVisible = dropdown.querySelector('.country-option:not([style*="display: none"])');
+                        if (firstVisible && !firstVisible.closest('.country-group.hidden')) {
+                            firstVisible.focus();
+                        }
+                    }, 10);
                 }
             });
         }
@@ -494,11 +531,19 @@ window.multiChartPanel = (function() {
             // Build the dropdown HTML
             let dropdownHtml = '';
             
+            // Store country groups globally for filtering
+            window._countryGroups = countryGroups;
+            window._countrySearchTerm = ''; // Store current search term
+            
+            // Create a container for the country list that we can filter
+            dropdownHtml += '<div id="country-dropdown-list">';
+            
             // For each continent, create a section
             Object.keys(countryGroups).forEach(continent => {
                 const countries = countryGroups[continent];
                 if (countries.length === 0) return;
                 
+                dropdownHtml += `<div class="country-group" data-continent="${continent}">`;
                 dropdownHtml += `<div class="country-group-header">${continent} (${countries.length})</div>`;
                 
                 countries.forEach(country => {
@@ -506,6 +551,7 @@ window.multiChartPanel = (function() {
                         <div class="country-option" 
                              data-iso="${country.iso}" 
                              data-name="${country.name}"
+                             data-continent="${continent}"
                              tabindex="0"
                              role="option"
                              aria-label="Select ${country.name}">
@@ -513,17 +559,78 @@ window.multiChartPanel = (function() {
                         </div>
                     `;
                 });
+                
+                dropdownHtml += '</div>'; // Close country-group
             });
+            
+            dropdownHtml += '</div>'; // Close country-dropdown-list
             
             // Update the dropdown content
             dropdownContent.innerHTML = dropdownHtml;
             
             //console.log('Country dropdown populated successfully');
+            
+            // Initialize stored country values from current display
+            const countryNameSpan = document.querySelector('.country-name');
+            const countryIsoSpan = document.querySelector('.country-iso');
+            if (countryNameSpan && countryIsoSpan) {
+                window._currentCountryName = countryNameSpan.textContent;
+                window._currentCountryIso = countryIsoSpan.textContent;
+            }
         } catch (error) {
             console.error('Error loading country list:', error);
             dropdownContent.innerHTML = '<div class="dropdown-error">Error loading countries</div>';
         }
     }
+    /**
+     * Filter the country list based on search input
+     * @param {string} searchTerm - The search term to filter by
+     */
+    function filterCountryList(searchTerm) {
+        const countryList = document.getElementById('country-dropdown-list');
+        if (!countryList || !window._countryGroups) return;
+        
+        const normalizedSearch = searchTerm.toLowerCase().trim();
+        
+        // If no search term, show all groups and countries
+        if (!normalizedSearch) {
+            document.querySelectorAll('.country-group').forEach(group => {
+                group.classList.remove('hidden');
+                group.querySelectorAll('.country-option').forEach(option => {
+                    option.style.display = 'block';
+                });
+            });
+            return;
+        }
+        
+        // Filter each continent group
+        document.querySelectorAll('.country-group').forEach(group => {
+            const continent = group.dataset.continent;
+            let hasVisibleCountries = false;
+            
+            // Filter countries within this group
+            group.querySelectorAll('.country-option').forEach(option => {
+                const countryName = option.dataset.name.toLowerCase();
+                const countryIso = option.dataset.iso.toLowerCase();
+                
+                // Check if country name or ISO code matches the search
+                if (countryName.includes(normalizedSearch) || countryIso.includes(normalizedSearch)) {
+                    option.style.display = 'block';
+                    hasVisibleCountries = true;
+                } else {
+                    option.style.display = 'none';
+                }
+            });
+            
+            // Hide the entire group if no countries match
+            if (hasVisibleCountries) {
+                group.classList.remove('hidden');
+            } else {
+                group.classList.add('hidden');
+            }
+        });
+    }
+    
     function formatDirectionalChange(formattedString) {
         if (typeof formattedString !== "string") return "N/A";
     
@@ -2678,6 +2785,83 @@ window.multiChartPanel = (function() {
     */
 
     /**
+     * Update the displayed country name to show search term or actual country
+     */
+    function updateDisplayedCountryName() {
+        const h2Element = document.querySelector('.multi-chart-title-container h2');
+        const countryNameSpan = document.querySelector('.country-name');
+        const countryIsoSpan = document.querySelector('.country-iso');
+        if (!countryNameSpan || !h2Element) return;
+        
+        if (window._countrySearchTerm) {
+            // Show the search term being typed
+            countryNameSpan.textContent = window._countrySearchTerm;
+            countryNameSpan.style.color = 'var(--primary)'; // Use primary color for search
+            
+            // Store and hide the ISO part
+            if (!h2Element.hasAttribute('data-iso-text') && countryIsoSpan) {
+                // Find the text after country name span until the dropdown toggle
+                const dropdownToggle = h2Element.querySelector('.country-dropdown-toggle');
+                let isoText = ' (';
+                let currentNode = countryNameSpan.nextSibling;
+                
+                while (currentNode && currentNode !== dropdownToggle) {
+                    if (currentNode.nodeType === Node.TEXT_NODE) {
+                        isoText += currentNode.textContent;
+                        currentNode.textContent = '';
+                    } else if (currentNode === countryIsoSpan) {
+                        isoText += currentNode.textContent;
+                        currentNode.style.display = 'none';
+                    }
+                    currentNode = currentNode.nextSibling;
+                }
+                
+                h2Element.setAttribute('data-iso-text', isoText);
+            }
+        } else {
+            // Restore the actual country name
+            countryNameSpan.textContent = window._currentCountryName || countryNameSpan.textContent || 'China';
+            countryNameSpan.style.color = ''; // Reset to default color
+            
+            // Restore ISO code and parentheses
+            if (h2Element.hasAttribute('data-iso-text')) {
+                const isoText = h2Element.getAttribute('data-iso-text');
+                const parts = isoText.match(/\s*\(([^)]+)\)/);
+                
+                if (parts && countryIsoSpan) {
+                    // Update the ISO span
+                    countryIsoSpan.style.display = '';
+                    if (window._currentCountryIso) {
+                        countryIsoSpan.textContent = window._currentCountryIso;
+                    }
+                    
+                    // Restore text nodes
+                    let currentNode = countryNameSpan.nextSibling;
+                    let textToAdd = ' (';
+                    
+                    while (currentNode && currentNode !== countryIsoSpan) {
+                        if (currentNode.nodeType === Node.TEXT_NODE) {
+                            currentNode.textContent = textToAdd;
+                            textToAdd = '';
+                            break;
+                        }
+                        currentNode = currentNode.nextSibling;
+                    }
+                    
+                    // Find node after ISO span for closing paren
+                    currentNode = countryIsoSpan.nextSibling;
+                    while (currentNode && currentNode.nodeType === Node.TEXT_NODE) {
+                        currentNode.textContent = ')';
+                        break;
+                    }
+                }
+                
+                h2Element.removeAttribute('data-iso-text');
+            }
+        }
+    }
+    
+    /**
      * Toggle the country dropdown
      */
     function toggleCountryDropdown() {
@@ -2701,14 +2885,31 @@ window.multiChartPanel = (function() {
             // Update ARIA attributes
             toggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
             
-            // If opening the dropdown, focus the first option after a short delay
+            // If opening the dropdown, clear search and reset filter
             if (isExpanded) {
+                // Clear any previous search
+                window._countrySearchTerm = '';
+                updateDisplayedCountryName();
+                filterCountryList(''); // Reset filter to show all countries
+                
+                // Store the current country name and ISO for restoration
+                const currentCountrySpan = document.querySelector('.country-name');
+                const currentIsoSpan = document.querySelector('.country-iso');
+                if (currentCountrySpan) {
+                    window._currentCountryName = currentCountrySpan.textContent;
+                }
+                if (currentIsoSpan) {
+                    window._currentCountryIso = currentIsoSpan.textContent;
+                }
+                
+                // Focus the dropdown for keyboard events
                 setTimeout(() => {
-                    const firstOption = dropdown.querySelector('.country-option');
-                    if (firstOption) {
-                        firstOption.focus();
-                    }
+                    dropdown.focus();
                 }, 50);
+            } else {
+                // Closing dropdown - restore country name
+                window._countrySearchTerm = '';
+                updateDisplayedCountryName();
             }
         }
     }
@@ -2777,17 +2978,29 @@ window.multiChartPanel = (function() {
         currentCountry.iso = iso;
         currentCountry.name = name;
         
+        // Store the new country info for the dropdown
+        window._currentCountryName = name;
+        window._currentCountryIso = iso;
+        
         // Update the UI - find all country name and ISO elements
         const countryNameElements = document.querySelectorAll('.country-name');
         const countryIsoElements = document.querySelectorAll('.country-iso');
         
         countryNameElements.forEach(el => {
             el.textContent = name;
+            el.style.color = ''; // Reset color to default
         });
         
         countryIsoElements.forEach(el => {
             el.textContent = iso;
+            el.style.display = ''; // Make sure ISO is visible
         });
+        
+        // Clear search term since we've selected a country
+        window._countrySearchTerm = '';
+        
+        // Update the display to ensure parentheses are restored
+        updateDisplayedCountryName();
         
         // Close the dropdown
         const dropdown = document.getElementById('country-dropdown');

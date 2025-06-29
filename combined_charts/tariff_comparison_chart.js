@@ -267,6 +267,86 @@ window.tariffComparisonChart = (function() {
                 populateCountryDropdown(container);
             });
             
+            // Keyboard navigation for dropdown
+            dropdown.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    // Close dropdown on Escape
+                    dropdown.classList.remove('active');
+                    dropdownToggle.classList.remove('active');
+                    // Clear search term and restore original country name
+                    window._tariffCountrySearchTerm = '';
+                    updateDisplayedCountryName();
+                    dropdownToggle.focus();
+                } else if (e.key === 'Backspace') {
+                    // Handle backspace for search
+                    e.preventDefault();
+                    if (window._tariffCountrySearchTerm.length > 0) {
+                        window._tariffCountrySearchTerm = window._tariffCountrySearchTerm.slice(0, -1);
+                        updateDisplayedCountryName();
+                        filterCountryList(window._tariffCountrySearchTerm);
+                    }
+                } else if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+                    // Navigate options with arrow keys
+                    e.preventDefault();
+                    
+                    // Get only visible options
+                    const visibleOptions = Array.from(dropdown.querySelectorAll('.country-option'))
+                        .filter(option => option.style.display !== 'none' && !option.closest('.country-group.hidden'));
+                    
+                    if (visibleOptions.length === 0) return;
+                    
+                    // Find currently focused element
+                    const focusedElement = document.activeElement;
+                    
+                    if (!focusedElement.classList.contains('country-option')) {
+                        // No option is focused, focus first visible option on ArrowDown
+                        if (e.key === 'ArrowDown') {
+                            visibleOptions[0].focus();
+                        }
+                    } else {
+                        // Navigate between visible options
+                        const currentIndex = visibleOptions.indexOf(focusedElement);
+                        let nextIndex;
+                        
+                        if (e.key === 'ArrowDown') {
+                            nextIndex = (currentIndex + 1) % visibleOptions.length;
+                        } else {
+                            // ArrowUp
+                            nextIndex = (currentIndex - 1 + visibleOptions.length) % visibleOptions.length;
+                        }
+                        
+                        visibleOptions[nextIndex].focus();
+                    }
+                } else if (e.key === 'Enter') {
+                    // Select option with Enter
+                    e.preventDefault();
+                    const option = e.target.closest('.country-option');
+                    if (option) {
+                        const iso = option.getAttribute('data-iso');
+                        const name = option.getAttribute('data-name');
+                        
+                        if (iso && name) {
+                            window._tariffCountrySearchTerm = ''; // Clear search
+                            selectCountry(iso, name, container);
+                        }
+                    }
+                } else if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
+                    // Handle typing for search
+                    e.preventDefault();
+                    window._tariffCountrySearchTerm += e.key;
+                    updateDisplayedCountryName();
+                    filterCountryList(window._tariffCountrySearchTerm);
+                    
+                    // Focus first visible option after filtering
+                    setTimeout(() => {
+                        const firstVisible = dropdown.querySelector('.country-option:not([style*="display: none"])');
+                        if (firstVisible && !firstVisible.closest('.country-group.hidden')) {
+                            firstVisible.focus();
+                        }
+                    }, 10);
+                }
+            });
+            
             dropdown.addEventListener('click', function(e) {
                 const option = e.target.closest('.country-option');
                 if (option) {
@@ -275,28 +355,8 @@ window.tariffComparisonChart = (function() {
                     const name = option.getAttribute('data-name');
                     
                     if (iso && name) {
-                        currentIsoCode = iso;
-                        
-                        const countryNameElements = container.querySelectorAll('.country-name');
-                        countryNameElements.forEach(el => {
-                            el.textContent = name;
-                        });
-                        
-                        const countryIsoElements = container.querySelectorAll('.country-iso');
-                        countryIsoElements.forEach(el => {
-                            el.textContent = iso;
-                        });
-                        
-                        // Clear all treemap caches when changing country
-                        if (window.tariffEffectsTreemap && window.tariffEffectsTreemap.clearCache) {
-                            window.tariffEffectsTreemap.clearCache();  // Clear all caches
-                        }
-                        createTariffComparisonChart(iso, selectedEffectType);
-                        
-                        // Don't update summaries here - they will be updated when aggregations are ready
-                        
-                        dropdown.classList.remove('active');
-                        dropdownToggle.classList.remove('active');
+                        window._tariffCountrySearchTerm = ''; // Clear search
+                        selectCountry(iso, name, container);
                     }
                 }
             });
@@ -307,8 +367,180 @@ window.tariffComparisonChart = (function() {
                     !dropdownToggle.contains(e.target)) {
                     dropdown.classList.remove('active');
                     dropdownToggle.classList.remove('active');
+                    // Clear search and restore country name
+                    window._tariffCountrySearchTerm = '';
+                    updateDisplayedCountryName();
                 }
             });
+        }
+    }
+    
+    /**
+     * Select a country and update the display
+     * @param {string} iso - ISO code of the country
+     * @param {string} name - Name of the country
+     * @param {HTMLElement} container - The container element
+     */
+    function selectCountry(iso, name, container) {
+        currentIsoCode = iso;
+        
+        // Store the new country info for the dropdown
+        window._tariffCurrentCountryName = name;
+        window._tariffCurrentCountryIso = iso;
+        
+        const countryNameElements = container.querySelectorAll('.country-name');
+        countryNameElements.forEach(el => {
+            el.textContent = name;
+            el.style.color = ''; // Reset color to default
+        });
+        
+        const countryIsoElements = container.querySelectorAll('.country-iso');
+        countryIsoElements.forEach(el => {
+            el.textContent = iso;
+            el.style.display = ''; // Make sure ISO is visible
+        });
+        
+        // Clear search term since we've selected a country
+        window._tariffCountrySearchTerm = '';
+        
+        // Update the display to ensure parentheses are restored
+        updateDisplayedCountryName();
+        
+        // Clear all treemap caches when changing country
+        if (window.tariffEffectsTreemap && window.tariffEffectsTreemap.clearCache) {
+            window.tariffEffectsTreemap.clearCache();  // Clear all caches
+        }
+        createTariffComparisonChart(iso, selectedEffectType);
+        
+        // Close the dropdown
+        const dropdown = container.querySelector('#country-dropdown');
+        const dropdownToggle = container.querySelector('.country-dropdown-toggle');
+        if (dropdown) dropdown.classList.remove('active');
+        if (dropdownToggle) dropdownToggle.classList.remove('active');
+    }
+    
+    /**
+     * Filter the country list based on search input
+     * @param {string} searchTerm - The search term to filter by
+     */
+    function filterCountryList(searchTerm) {
+        const countryList = document.getElementById('country-dropdown-list');
+        if (!countryList || !window._tariffCountryGroups) return;
+        
+        const normalizedSearch = searchTerm.toLowerCase().trim();
+        
+        // If no search term, show all groups and countries
+        if (!normalizedSearch) {
+            document.querySelectorAll('.country-group').forEach(group => {
+                group.classList.remove('hidden');
+                group.querySelectorAll('.country-option').forEach(option => {
+                    option.style.display = 'block';
+                });
+            });
+            return;
+        }
+        
+        // Filter each continent group
+        document.querySelectorAll('.country-group').forEach(group => {
+            let hasVisibleCountries = false;
+            
+            // Filter countries within this group
+            group.querySelectorAll('.country-option').forEach(option => {
+                const countryName = option.dataset.name.toLowerCase();
+                const countryIso = option.dataset.iso.toLowerCase();
+                
+                // Check if country name or ISO code matches the search
+                if (countryName.includes(normalizedSearch) || countryIso.includes(normalizedSearch)) {
+                    option.style.display = 'block';
+                    hasVisibleCountries = true;
+                } else {
+                    option.style.display = 'none';
+                }
+            });
+            
+            // Hide the entire group if no countries match
+            if (hasVisibleCountries) {
+                group.classList.remove('hidden');
+            } else {
+                group.classList.add('hidden');
+            }
+        });
+    }
+    
+    /**
+     * Update the displayed country name to show search term or actual country
+     */
+    function updateDisplayedCountryName() {
+        const h2Element = document.querySelector('#tariff-comparison-modal .multi-chart-title-container h2');
+        const countryNameSpan = document.querySelector('#tariff-comparison-modal .country-name');
+        const countryIsoSpan = document.querySelector('#tariff-comparison-modal .country-iso');
+        if (!countryNameSpan || !h2Element) return;
+        
+        if (window._tariffCountrySearchTerm) {
+            // Show the search term being typed
+            countryNameSpan.textContent = window._tariffCountrySearchTerm;
+            countryNameSpan.style.color = 'var(--primary)'; // Use primary color for search
+            
+            // Store and hide the ISO part
+            if (!h2Element.hasAttribute('data-iso-text') && countryIsoSpan) {
+                // Find the text after country name span until the dropdown toggle
+                const dropdownToggle = h2Element.querySelector('.country-dropdown-toggle');
+                let isoText = ' (';
+                let currentNode = countryNameSpan.nextSibling;
+                
+                while (currentNode && currentNode !== dropdownToggle) {
+                    if (currentNode.nodeType === Node.TEXT_NODE) {
+                        isoText += currentNode.textContent;
+                        currentNode.textContent = '';
+                    } else if (currentNode === countryIsoSpan) {
+                        isoText += currentNode.textContent;
+                        currentNode.style.display = 'none';
+                    }
+                    currentNode = currentNode.nextSibling;
+                }
+                
+                h2Element.setAttribute('data-iso-text', isoText);
+            }
+        } else {
+            // Restore the actual country name
+            countryNameSpan.textContent = window._tariffCurrentCountryName || countryNameSpan.textContent || '';
+            countryNameSpan.style.color = ''; // Reset to default color
+            
+            // Restore ISO code and parentheses
+            if (h2Element.hasAttribute('data-iso-text')) {
+                const isoText = h2Element.getAttribute('data-iso-text');
+                const parts = isoText.match(/\s*\(([^)]+)\)/);
+                
+                if (parts && countryIsoSpan) {
+                    // Update the ISO span
+                    countryIsoSpan.style.display = '';
+                    if (window._tariffCurrentCountryIso) {
+                        countryIsoSpan.textContent = window._tariffCurrentCountryIso;
+                    }
+                    
+                    // Restore text nodes
+                    let currentNode = countryNameSpan.nextSibling;
+                    let textToAdd = ' (';
+                    
+                    while (currentNode && currentNode !== countryIsoSpan) {
+                        if (currentNode.nodeType === Node.TEXT_NODE) {
+                            currentNode.textContent = textToAdd;
+                            textToAdd = '';
+                            break;
+                        }
+                        currentNode = currentNode.nextSibling;
+                    }
+                    
+                    // Find node after ISO span for closing paren
+                    currentNode = countryIsoSpan.nextSibling;
+                    while (currentNode && currentNode.nodeType === Node.TEXT_NODE) {
+                        currentNode.textContent = ')';
+                        break;
+                    }
+                }
+                
+                h2Element.removeAttribute('data-iso-text');
+            }
         }
     }
     
@@ -322,8 +554,37 @@ window.tariffComparisonChart = (function() {
             const toggleRect = toggle.getBoundingClientRect();
             dropdown.style.left = (toggleRect.left + toggleRect.width/2) + 'px';
             dropdown.style.top = (toggleRect.bottom + 5) + 'px';
+            
+            const isExpanded = dropdown.classList.contains('active');
             dropdown.classList.toggle('active');
             toggle.classList.toggle('active');
+            
+            // If opening the dropdown, clear search and reset filter
+            if (!isExpanded) {
+                // Clear any previous search
+                window._tariffCountrySearchTerm = '';
+                updateDisplayedCountryName();
+                filterCountryList(''); // Reset filter to show all countries
+                
+                // Store the current country name for restoration
+                const currentCountrySpan = document.querySelector('#tariff-comparison-modal .country-name');
+                const currentIsoSpan = document.querySelector('#tariff-comparison-modal .country-iso');
+                if (currentCountrySpan) {
+                    window._tariffCurrentCountryName = currentCountrySpan.textContent;
+                }
+                if (currentIsoSpan) {
+                    window._tariffCurrentCountryIso = currentIsoSpan.textContent;
+                }
+                
+                // Focus the dropdown for keyboard events
+                setTimeout(() => {
+                    dropdown.focus();
+                }, 50);
+            } else {
+                // Closing dropdown - restore country name
+                window._tariffCountrySearchTerm = '';
+                updateDisplayedCountryName();
+            }
         }
     }
     
@@ -547,8 +808,12 @@ window.tariffComparisonChart = (function() {
                     countriesByContinent[continent].sort((a, b) => a.name.localeCompare(b.name));
                 });
                 
+                // Store country groups globally for filtering
+                window._tariffCountryGroups = countriesByContinent;
+                window._tariffCountrySearchTerm = ''; // Store current search term
+                
                 // Build dropdown HTML with continent grouping
-                let dropdownHtml = '';
+                let dropdownHtml = '<div id="country-dropdown-list">';
                 
                 // Get list of continents with at least one country
                 const continentsWithCountries = Object.keys(countriesByContinent)
@@ -564,7 +829,8 @@ window.tariffComparisonChart = (function() {
                 continentsWithCountries.forEach(continent => {
                     const countries = countriesByContinent[continent];
                     if (countries.length > 0) {
-                        // Add continent header
+                        // Add continent group container
+                        dropdownHtml += `<div class="country-group" data-continent="${continent}">`;
                         dropdownHtml += `<div class="country-group-header">${continent} (${countries.length})</div>`;
                         
                         // Add countries in this continent
@@ -574,16 +840,35 @@ window.tariffComparisonChart = (function() {
                             const activeStyle = isActive ? 'background-color: var(--blue1, #3581b4); color: white;' : '';
                             
                             dropdownHtml += `
-                                <div class="country-option${isActive}" data-iso="${country.iso}" data-name="${country.name}" style="${activeStyle}">
+                                <div class="country-option${isActive}" 
+                                     data-iso="${country.iso}" 
+                                     data-name="${country.name}" 
+                                     data-continent="${continent}"
+                                     tabindex="0"
+                                     role="option"
+                                     aria-label="Select ${country.name}"
+                                     style="${activeStyle}">
                                     ${country.name} (${country.iso})
                                 </div>
                             `;
                         });
+                        
+                        dropdownHtml += '</div>'; // Close country-group
                     }
                 });
                 
+                dropdownHtml += '</div>'; // Close country-dropdown-list
+                
                 // Update dropdown content
                 dropdownContent.innerHTML = dropdownHtml;
+                
+                // Initialize stored country values from current display
+                const countryNameSpan = container.querySelector('.country-name');
+                const countryIsoSpan = container.querySelector('.country-iso');
+                if (countryNameSpan && countryIsoSpan) {
+                    window._tariffCurrentCountryName = countryNameSpan.textContent;
+                    window._tariffCurrentCountryIso = countryIsoSpan.textContent;
+                }
             })
             .catch(error => {
                 console.error('Error loading continent data:', error);

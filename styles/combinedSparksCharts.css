@@ -218,6 +218,19 @@ body.dark_theme .panel-close-button:hover img {
     color: var(--text-color);
 }
 
+#country-dropdown-list {
+    overflow-y: auto;
+    max-height: 400px;
+}
+
+.country-group {
+    display: block;
+}
+
+.country-group.hidden {
+    display: none;
+}
+
 .country-name, .country-iso {
     font-weight: 600;
 }
