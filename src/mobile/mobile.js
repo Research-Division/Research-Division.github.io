@@ -22,7 +22,7 @@
                 setTimeout(function() {
                     disclaimer.style.display = 'none';
                 }, 1000);
-            }, 4000);
+            }, 3000);
         }
     }
 
