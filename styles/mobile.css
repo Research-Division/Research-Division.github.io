@@ -161,6 +161,19 @@ html, body {
 /* Adjust receipt item spacing for mobile */
 .mobile-receipt-container .receipt-item {
     padding: 12px 0;
+    position: relative;
+    overflow: hidden;
+    touch-action: pan-y; /* Allow vertical scroll but handle horizontal swipe */
+}
+
+/* Add subtle hint that items can be swiped */
+.mobile-receipt-container #receipt-items .receipt-item {
+    border-left: 3px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.mobile-receipt-container #receipt-items .receipt-item:active {
+    border-left-color: var(--danger);
 }
 
 /* Modal adjustments for mobile */
@@ -250,6 +263,36 @@ body.menu-open {
 }
 
 .mobile-receipt-container #potential-price-effects {
+    display: none !important;
+}
+
+/* Hide chevrons in receipt totals section on mobile */
+.mobile-receipt-container #subtotal-row .toggle-icon {
+    display: none !important;
+}
+
+.mobile-receipt-container #global-toggle-icon {
+    display: none !important;
+}
+
+.mobile-receipt-container #total-effect-row .toggle-icon {
+    display: none !important;
+}
+
+.mobile-receipt-container #total-effect-row .effects-summary-btn {
+    display: none !important;
+}
+
+/* Hide expandable details in totals section on mobile */
+.mobile-receipt-container #subtotal-effects-detail {
+    display: none !important;
+}
+
+.mobile-receipt-container #global-effects-detail {
+    display: none !important;
+}
+
+.mobile-receipt-container #total-effects-detail {
     display: none !important;
 }
 
@@ -450,4 +493,65 @@ body.menu-open {
 #modal-product-list .modal-body > div[style*="text-align: center"] {
     margin-top: 20px !important;
     margin-bottom: 15px !important;
+}
+
+/* Disable country clicks on mobile map */
+#mobile-map-overlay .leaflet-interactive {
+    cursor: default !important;
+    pointer-events: none !important;
+}
+
+/* Chart panel adjustments for mobile */
+.multi-chart-panel-header h2,
+.trade-area-panel-header h2 {
+    font-size: 1.1rem !important; /* Smaller than desktop 1.4rem */
+    padding-right: 15px; /* Add space between title and X button */
+}
+
+/* Ensure proper spacing in chart panel header */
+.multi-chart-panel-header,
+.trade-area-panel-header {
+    padding: 12px 15px; /* Reduce padding on mobile */
+    gap: 15px; /* Add gap between elements */
+}
+
+/* Make close button touch-friendly with proper spacing */
+.panel-close-button {
+    min-width: 44px; /* iOS touch target */
+    min-height: 44px;
+    margin-left: auto; /* Push to the right */
+    flex-shrink: 0; /* Prevent button from shrinking */
+}
+
+/* Chart panel container adjustments for mobile */
+.multi-chart-panel-container,
+.trade-area-panel-container {
+    padding: 0 !important; /* Remove padding for full screen */
+}
+
+/* Chart panel content adjustments for mobile */
+.multi-chart-panel-content,
+.trade-area-panel-content {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    border-radius: 0; /* Remove rounded corners on mobile for full screen */
+}
+
+/* Adjust tab font size for mobile */
+.tab {
+    font-size: 14px !important;
+    padding: 10px 15px !important;
+}
+
+/* Chart panel body padding adjustment */
+.multi-chart-panel-body,
+.trade-area-panel-body {
+    padding: 15px !important;
+}
+
+/* Ensure charts are responsive within panels */
+.multi-chart-panel-body .sparks-graph-container,
+.trade-area-panel-body .sparks-graph-container {
+    min-height: 250px; /* Minimum height for charts on mobile */
 }

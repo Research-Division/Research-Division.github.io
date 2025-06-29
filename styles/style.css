@@ -16,6 +16,7 @@
     --footer-bg: var(--background-color);
     --input-box-color: var(--light-grey);
     --icon-filter: none; /* No filter needed in light mode */
+    --danger: #dc3545; /* Red color for delete actions */
     
     --cardMargin: 10px;
     --borderWidth: 2px;

@@ -171,6 +171,12 @@
         
         // Ensure receipt is always sorted by value on mobile
         ensureValueSorting();
+        
+        // Hide static chevrons and chart icons in receipt totals section
+        hideMobileReceiptElements();
+        
+        // Initialize input select-all functionality
+        initializeInputSelectAll();
     }
 
     /**
@@ -283,6 +289,142 @@
                 }
             }
         });
+        
+        // Initialize swipe-to-delete functionality
+        initializeSwipeToDelete();
+    }
+    
+    /**
+     * Initialize swipe-to-delete functionality for receipt items
+     */
+    function initializeSwipeToDelete() {
+        // Use MutationObserver to handle dynamically added receipt items
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                mutation.addedNodes.forEach(function(node) {
+                    if (node.nodeType === 1 && node.classList && node.classList.contains('receipt-item')) {
+                        // Only add swipe to country items, not subtotal/total rows
+                        if (!node.id || (!node.id.includes('subtotal') && !node.id.includes('global') && !node.id.includes('total-effect'))) {
+                            addSwipeToDelete(node);
+                        }
+                    }
+                });
+            });
+        });
+        
+        // Start observing the receipt items container
+        const receiptItems = document.getElementById('receipt-items');
+        if (receiptItems) {
+            observer.observe(receiptItems, { childList: true });
+            
+            // Add swipe to existing items
+            const existingItems = receiptItems.querySelectorAll('.receipt-item');
+            existingItems.forEach(item => {
+                if (!item.id || (!item.id.includes('subtotal') && !item.id.includes('global') && !item.id.includes('total-effect'))) {
+                    addSwipeToDelete(item);
+                }
+            });
+        }
+    }
+    
+    /**
+     * Add swipe-to-delete functionality to a receipt item
+     */
+    function addSwipeToDelete(item) {
+        let startX = 0;
+        let currentX = 0;
+        let isDragging = false;
+        let startTime = 0;
+        
+        // Get the ISO code from the item ID
+        const match = item.id ? item.id.match(/receipt-item-(.+)/) : null;
+        const iso = match ? match[1] : null;
+        
+        if (!iso) return; // Skip if no ISO code found
+        
+        // Touch event handlers
+        item.addEventListener('touchstart', function(e) {
+            startX = e.touches[0].clientX;
+            currentX = startX;
+            isDragging = true;
+            startTime = Date.now();
+            item.style.transition = 'none';
+        }, { passive: true });
+        
+        item.addEventListener('touchmove', function(e) {
+            if (!isDragging) return;
+            
+            currentX = e.touches[0].clientX;
+            const deltaX = currentX - startX;
+            
+            // Only allow left swipe (negative deltaX)
+            if (deltaX < 0) {
+                const progress = Math.min(Math.abs(deltaX) / item.offsetWidth, 1);
+                
+                // Apply transform
+                item.style.transform = `translateX(${deltaX}px)`;
+                
+                // Get the country name span
+                const countrySpan = item.querySelector('.clickable[data-iso]');
+                if (countrySpan) {
+                    // Interpolate color from text color to danger color
+                    if (progress > 0.3) {
+                        const dangerColor = getComputedStyle(document.documentElement).getPropertyValue('--danger') || '#dc3545';
+                        countrySpan.style.color = dangerColor;
+                        countrySpan.style.opacity = 1 - (progress * 0.5); // Fade out as it swipes
+                    }
+                }
+            }
+        }, { passive: true });
+        
+        item.addEventListener('touchend', function(e) {
+            if (!isDragging) return;
+            isDragging = false;
+            
+            const deltaX = currentX - startX;
+            const progress = Math.abs(deltaX) / item.offsetWidth;
+            const velocity = Math.abs(deltaX) / (Date.now() - startTime);
+            
+            // If swiped more than 50% or with high velocity, delete it
+            if (deltaX < 0 && (progress > 0.5 || velocity > 0.5)) {
+                // Animate off screen
+                item.style.transition = 'transform 0.3s ease-out, opacity 0.3s ease-out';
+                item.style.transform = `translateX(-${item.offsetWidth}px)`;
+                item.style.opacity = '0';
+                
+                // Remove the country after animation
+                setTimeout(() => {
+                    if (window.removeCountry && typeof window.removeCountry === 'function') {
+                        window.removeCountry(iso);
+                    }
+                }, 300);
+            } else {
+                // Snap back to original position
+                item.style.transition = 'transform 0.3s ease-out';
+                item.style.transform = 'translateX(0)';
+                
+                // Reset country name color
+                const countrySpan = item.querySelector('.clickable[data-iso]');
+                if (countrySpan) {
+                    countrySpan.style.color = '';
+                    countrySpan.style.opacity = '';
+                }
+            }
+        });
+        
+        // Handle touch cancel
+        item.addEventListener('touchcancel', function(e) {
+            isDragging = false;
+            item.style.transition = 'transform 0.3s ease-out';
+            item.style.transform = 'translateX(0)';
+            
+            // Reset country name color
+            const countrySpan = item.querySelector('.clickable[data-iso]');
+            if (countrySpan) {
+                countrySpan.style.color = '';
+                countrySpan.style.opacity = '';
+            }
+        });
     }
 
     /**
@@ -306,7 +448,102 @@
         window.isMobileVersion = true;
         window.forceSortByValue = true;
     }
+    
+    /**
+     * Hide unnecessary elements in the receipt totals section for mobile
+     */
+    function hideMobileReceiptElements() {
+        // Wait for receipt to be loaded
+        const checkInterval = setInterval(function() {
+            const receiptTotals = document.getElementById('receipt_totals');
+            if (receiptTotals) {
+                clearInterval(checkInterval);
+                
+                // Hide chevrons in subtotal row
+                const subtotalChevron = receiptTotals.querySelector('#subtotal-row .toggle-icon');
+                if (subtotalChevron) {
+                    subtotalChevron.style.display = 'none';
+                }
+                
+                // Hide chevrons in rest of world row
+                const globalChevron = receiptTotals.querySelector('#global-toggle-icon');
+                if (globalChevron) {
+                    globalChevron.style.display = 'none';
+                }
+                
+                // Hide chevron and chart icon in potential price effect row
+                const totalEffectRow = receiptTotals.querySelector('#total-effect-row');
+                if (totalEffectRow) {
+                    const chevron = totalEffectRow.querySelector('.toggle-icon');
+                    if (chevron) {
+                        chevron.style.display = 'none';
+                    }
+                    
+                    const chartIcon = totalEffectRow.querySelector('.effects-summary-btn');
+                    if (chartIcon) {
+                        chartIcon.style.display = 'none';
+                    }
+                }
+                
+                // Also hide the effects detail sections since they won't be toggleable
+                const subtotalDetail = document.getElementById('subtotal-effects-detail');
+                if (subtotalDetail) {
+                    subtotalDetail.style.display = 'none';
+                }
+                
+                const globalDetail = document.getElementById('global-effects-detail');
+                if (globalDetail) {
+                    globalDetail.style.display = 'none';
+                }
+                
+                const totalDetail = document.getElementById('total-effects-detail');
+                if (totalDetail) {
+                    totalDetail.style.display = 'none';
+                }
+            }
+        }, 100);
+        
+        // Stop checking after 5 seconds
+        setTimeout(function() {
+            clearInterval(checkInterval);
+        }, 5000);
+    }
 
+    /**
+     * Initialize select-all functionality for input fields
+     */
+    function initializeInputSelectAll() {
+        // Add event delegation for dynamically created inputs
+        document.addEventListener('focus', function(e) {
+            if (e.target.matches('input[type="number"], input[type="text"]')) {
+                // Select all text in the input
+                e.target.select();
+                
+                // For mobile devices, sometimes we need to use setSelectionRange
+                try {
+                    e.target.setSelectionRange(0, e.target.value.length);
+                } catch (err) {
+                    // Some input types don't support setSelectionRange
+                }
+            }
+        }, true); // Use capture phase to ensure we catch the event
+        
+        // Also handle click events on inputs (some mobile browsers need this)
+        document.addEventListener('click', function(e) {
+            if (e.target.matches('input[type="number"], input[type="text"]')) {
+                // Only select all if the input was just focused
+                if (document.activeElement === e.target) {
+                    e.target.select();
+                    try {
+                        e.target.setSelectionRange(0, e.target.value.length);
+                    } catch (err) {
+                        // Some input types don't support setSelectionRange
+                    }
+                }
+            }
+        });
+    }
+    
     /**
      * Show mobile map view
      */
@@ -426,7 +663,20 @@
                 if (window.updateMapColors && typeof window.updateMapColors === 'function') {
                     window.updateMapColors();
                 }
-            }, 100);
+                
+                // Disable country clicks on mobile by removing click handlers
+                if (window.geojsonLayer) {
+                    window.geojsonLayer.eachLayer(function(layer) {
+                        // Remove all event listeners from the layer
+                        layer.off('click');
+                        
+                        // Also disable pointer events via CSS class
+                        if (layer._path) {
+                            layer._path.style.pointerEvents = 'none';
+                        }
+                    });
+                }
+            }, 200); // Give a bit more time for everything to load
         } else {
             console.error('Map initialization function not available');
             mapSection.innerHTML = '<p style="text-align: center; padding: 20px;">Error initializing map</p>';
