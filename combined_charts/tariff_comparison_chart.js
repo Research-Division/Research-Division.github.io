@@ -337,11 +337,14 @@ window.tariffComparisonChart = (function() {
                     updateDisplayedCountryName();
                     filterCountryList(window._tariffCountrySearchTerm);
                     
-                    // Focus first visible option after filtering
+                    // Focus first visible option after filtering, or keep focus on dropdown
                     setTimeout(() => {
                         const firstVisible = dropdown.querySelector('.country-option:not([style*="display: none"])');
                         if (firstVisible && !firstVisible.closest('.country-group.hidden')) {
                             firstVisible.focus();
+                        } else {
+                            // No visible options, keep focus on dropdown
+                            dropdown.focus();
                         }
                     }, 10);
                 }
