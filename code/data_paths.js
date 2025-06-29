@@ -25,6 +25,7 @@ const DataPathsConfig = {
         // Calculations
         'data/calculations/weighting/bea_import_weights.json': '67890',
         'data/calculations/weighting/bea_section_weights.json': '78901',
+        'data/calculations/weighting/bea_hs4_weights_FINAL.json': '89012',
         'data/calculations/weighting/section_weights.json': '89012',
         'data/calculations/direct_matrix_prodPrice_normPurch_Real.json': '90123',
         'data/calculations/indirect_matrix_prodPrice_normPurch_Real.json': '01234',
@@ -167,6 +168,7 @@ const DataPaths = {
     calculations: {
         get importVector() { return DataPathsConfig.getPath('data/calculations/weighting/bea_import_weights.json'); },
         get bea_section_weights() { return DataPathsConfig.getPath('data/calculations/weighting/bea_section_weights.json'); },
+        get bea_hs4_weights() { return DataPathsConfig.getPath('data/calculations/weighting/bea_hs4_weights_FINAL.json');},
         get hs_section_weights() { return DataPathsConfig.getPath('data/calculations/weighting/section_weights.json'); },
         get direct_matrix() { return DataPathsConfig.getPath('data/calculations/direct_matrix_prodPrice_normPurch_Real.json'); },
         get indirect_matrix() { return DataPathsConfig.getPath('data/calculations/indirect_matrix_prodPrice_normPurch_Real.json'); }
