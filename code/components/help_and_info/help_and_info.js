@@ -55,7 +55,7 @@ function initializeHelpPanel() {
                             <li><span style="color: var(--excellenceOrange); font-weight: bold;">Orange</span>/<span style="color: var(--primary); font-weight: bold;">blue</span> text near icons indicates clickable elements or dropdowns</li>
                             <li>Chart icons <img src="assets/fontawesome/chart-line-solid.svg" alt="Chart icon" class="inline-icon" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> show that charts are available for that item</li>
                             <li>Press the Escape key to close any modal</li>
-                            <li>If a tariff calculation seems incorrect, try refreshing the page or check the trade data explorer for that country to verify expected effects</li>
+                            <li>If a tariff calculation seems incorrect, try refreshing the page or check the trade data explorer for that country to verify expected potential effects</li>
                         </ul>
                     </div>
                     
@@ -92,8 +92,16 @@ function initializeHelpPanel() {
                         
                         <div id="citation-section" style="display: flex; flex-direction: column; align-items: center; width: 100%; margin-top: 1.5rem;">
                             <h4 style="margin-bottom: 0.75rem; text-align: center;">Suggested Citation</h4>
-                            <div id="citation-box" style="max-width: 95%; width: 700px; padding: 0.75rem 2rem 1.25rem 2rem; border-radius: 8px; border: 2px dashed #666; font-family: var(--font-family-monospace); background-color: rgba(0,0,0,0.01); box-shadow: 0 2px 6px rgba(0,0,0,0.05); transition: background-color 0.5s ease;">
-                                <p style="margin-bottom: 0; font-style: italic; text-align: justify; line-height: 1.6;">Michael Dwight Sparks, Salomé Baslandze & Simon Fuchs, <i>The Atlanta Fed's Tariff Price Tool: Methodology</i> (SSRN Working Paper No. #####),<br>&#9;https://ssrn.com/abstract=#####</p>
+                            <div id="citation-box" style="position: relative; max-width: 95%; width: 700px; padding: 0.75rem 2rem 1.25rem 2rem; border-radius: 8px; border: 2px dashed #666; font-family: var(--font-family-monospace); background-color: rgba(0,0,0,0.01); box-shadow: 0 2px 6px rgba(0,0,0,0.05); transition: background-color 0.5s ease;">
+                                <p id="citation-text" style="margin-bottom: 0; font-style: italic; text-align: justify; line-height: 1.6;">Michael Dwight Sparks, Salomé Baslandze & Simon Fuchs, <i>The Atlanta Fed's Tariff Price Tool: Methodology</i> (SSRN Working Paper No. #####),<br>&#9;https://ssrn.com/abstract=#####</p>
+                                <div style="position: absolute; bottom: 8px; right: 8px; display: flex; gap: 4px; align-items: center;">
+                                    <button id="copy-bibtex-btn" style="background: none; border: none; cursor: pointer; padding: 2px 4px; border-radius: 4px; transition: all 0.2s ease; font-size: 10px; color: var(--text-color); font-weight: bold;" title="Copy BibTeX citation to clipboard">
+                                        <span style="font-family: 'Computer Modern', 'Latin Modern Math', 'Times New Roman', serif; letter-spacing: -0.05em;">Bib<span style="text-transform: uppercase; font-size: 0.7em; vertical-align: 0.25em; margin-left: -0.1em; margin-right: -0.1em;">T<span style="text-transform: uppercase; font-size: 0.5em; vertical-align: -0.5em; margin-left: -0.15em;">E</span></span>X</span>
+                                    </button>
+                                    <button id="copy-citation-btn" style="background: none; border: none; cursor: pointer; padding: 4px; border-radius: 4px; transition: all 0.2s ease;" title="Copy citation to clipboard">
+                                        <img src="assets/fontawesome/copy.svg" alt="Copy citation" style="width: 16px; height: 16px; filter: var(--icon-filter, none); transition: transform 0.2s ease;">
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -176,6 +184,52 @@ function setupEventListeners() {
             // Remove the flag from localStorage to reset the first-visit status
             localStorage.removeItem('hasVisitedSparksTool');
             alert('First-visit tour has been reset. The guided tour will start automatically next time you reload the page.');
+        });
+    }
+    
+    // Copy citation button
+    const copyCitationButton = helpModal.querySelector('#copy-citation-btn');
+    if (copyCitationButton) {
+        const copyIcon = copyCitationButton.querySelector('img');
+        
+        // Hover effects
+        copyCitationButton.addEventListener('mouseenter', function() {
+            if (copyIcon) {
+                copyIcon.style.transform = 'scale(1.15)';
+            }
+        });
+        
+        copyCitationButton.addEventListener('mouseleave', function() {
+            if (copyIcon) {
+                copyIcon.style.transform = 'scale(1)';
+            }
+        });
+        
+        copyCitationButton.addEventListener('click', async function() {
+            try {
+                const citationText = 'Michael Dwight Sparks, Salomé Baslandze & Simon Fuchs, The Atlanta Fed\'s Tariff Price Tool: Methodology (SSRN Working Paper No. #####), https://ssrn.com/abstract=#####';
+                await navigator.clipboard.writeText(citationText);
+                
+                // Visual feedback - briefly change background color
+                const citationBox = helpModal.querySelector('#citation-box');
+                if (citationBox) {
+                    citationBox.style.backgroundColor = 'rgba(0, 118, 182, 0.1)';
+                    setTimeout(() => {
+                        citationBox.style.backgroundColor = 'rgba(0,0,0,0.01)';
+                    }, 500);
+                }
+                
+            } catch (err) {
+                console.error('Failed to copy citation: ', err);
+                // Fallback for older browsers
+                const citationText = helpModal.querySelector('#citation-text');
+                if (citationText) {
+                    const range = document.createRange();
+                    range.selectNode(citationText);
+                    window.getSelection().removeAllRanges();
+                    window.getSelection().addRange(range);
+                }
+            }
         });
     }
     
@@ -379,6 +433,61 @@ document.addEventListener('DOMContentLoaded', function() {
             localStorage.setItem('hasVisitedSparksTool', 'true');
         }, 1000); // 1 second delay for page to fully render
     }
+    
+    // Handle methodology link clicks within tour content using event delegation
+    document.addEventListener('click', function(e) {
+        if (e.target && e.target.id === 'faq-link-methodology') {
+            e.preventDefault();
+            
+            // Close any existing tour first
+            if (guidedTour) {
+                guidedTour.closeTour();
+            }
+            
+            // Show the help panel
+            setTimeout(() => {
+                showHelpPanel();
+                
+                // After panel is visible, scroll to the methodology section and highlight it
+                setTimeout(() => {
+                    const modalBody = document.querySelector('.modal-body');
+                    
+                    if (modalBody) {
+                        // Look for the paragraph containing methodology/FAQ text
+                        const methodologyParagraphs = modalBody.querySelectorAll('p');
+                        let methodologyParagraph = null;
+                        
+                        for (let p of methodologyParagraphs) {
+                            if (p.textContent.includes('For detailed information on our methodology, calculations, and frequently asked questions')) {
+                                methodologyParagraph = p;
+                                break;
+                            }
+                        }
+                        
+                        if (methodologyParagraph) {
+                            // Get the position relative to the modal body
+                            const paragraphPosition = methodologyParagraph.offsetTop;
+                            
+                            // Scroll the modal body to the methodology section
+                            modalBody.scrollTo({
+                                top: paragraphPosition - 100, // Subtract some pixels to show context above
+                                behavior: 'smooth'
+                            });
+                            
+                            // Add a brief highlight effect to the paragraph
+                            methodologyParagraph.style.backgroundColor = 'rgba(0, 118, 182, 0.1)';
+                            methodologyParagraph.style.transition = 'background-color 0.5s ease';
+                            
+                            // Remove highlight after 3 seconds
+                            setTimeout(() => {
+                                methodologyParagraph.style.backgroundColor = '';
+                            }, 3000);
+                        }
+                    }
+                }, 500); // Wait a bit longer for the modal to fully render
+            }, 100);
+        }
+    });
 });
 
 // Export functions for global access
@@ -402,7 +511,7 @@ class SparksGuidedTourV2 {
             {
                 target: null,
                 title: 'Explore the Price Effects of Tariffs  ',
-                content: 'This application helps users understand how tariffs on imports might affect consumer prices in the U.S. economy. It combines trade, tariff, and production data to show both direct and indirect effects—meaning not just what you pay at the store, but how higher input costs ripple through supply chains. This short walkthrough explains how the tool works at a glance.\n\nUse the left and right arrow keys to navigate through the tour.\n\n<strong>To skip the tour at any time, press the Escape key or click <span style="color: var(--excellenceOrange); text-decoration: underline; font-weight: bold;">SKIP TOUR</span> in the upper right corner.</strong>',
+                content: 'This application helps users understand how tariffs on imports might affect consumer prices in the U.S. economy. It combines trade, tariff, and production data to estimate potential direct and indirect effects — meaning not just what you might pay at the store, but how higher input costs could ripple through supply chains to domestically produced goods and services. This short walkthrough explains how the tool works at a glance.\n\nUse the left and right arrow keys to navigate through the tour.\n\n<strong>To skip the tour at any time, press the Escape key or click <span style="color: var(--excellenceOrange); text-decoration: underline; font-weight: bold;">SKIP TOUR</span> in the upper right corner.</strong>',
                 position: 'center',
                 isIntro: true,
                 beforeStep: function() {
@@ -461,8 +570,8 @@ class SparksGuidedTourV2 {
             },
             {
                 target: null,
-                title:"Model Potential Direct and Indirect Effects  ",
-                content: '<p>The tool calculates how tariffs might affect prices through two channels:</p> <p><b>Direct effects:</b> These occur when consumers buy imported goods that now cost more due to tariffs.</p> <p><b>Indirect effects:</b> These happen when domestic firms use imported inputs—like lumber or metals—and pass on those higher costs to customers.</p>',
+                title:"Model Direct and Indirect Price Effects",
+                content: '<p>Using U.S. trade and input-output data, the Tariff Price Tool estimates how potential tariff scenarios might impact consumer prices through two effects:</p> <p><b>Direct effects:</b> These occur when retailers pass higher tariff costs directly to consumers by raising prices on imported goods. The size depends on how much of each product category is imported and how much of the tariff increase retailers choose to pass through.</p> <p><b>Indirect effects:</b> These capture how tariff costs might spread through the economy via supply chains. When businesses use tariffed imports as production inputs, these higher costs can flow through to other products and services.</p> <p>It\'s a fast, flexible way to explore the potential ripple effects of trade policy changes.</p><p><em>To learn more about the effects, methodology, and assumptions, see the <a href="#" id="faq-link-methodology" style="color: var(--primary); text-decoration: underline;">Tariff Price Tool Methodology Guide and FAQs</a>.</em></p>',
                 position: 'center',
                 isIntro: true
             },
@@ -473,13 +582,6 @@ class SparksGuidedTourV2 {
                 position: 'center',
                 isIntro: true
             },*/
-            {
-                target: null,
-                title:"Create and Simulate Scenarios",
-                content: '<p>Using official U.S. trade and input-output data, the tool lets users estimate how a tariff scenario affects prices across products, sectors, and countries. </p><p>Try out different policy scenarios. Want to see what happens if tariffs rise on steel from China or electronics from Europe? Just select the country, pick the products, and set your tariff rates.</p> <p>The tool shows how much consumer prices could be expected to change in the short run—across both goods and services.</p> <p>It’s a fast, flexible way to explore the ripple effects of trade policy changes.</p>',
-                position: 'center',
-                isIntro: true
-            },
             
             {
                 target: '#map-section',
@@ -511,118 +613,34 @@ class SparksGuidedTourV2 {
             {
                 target: '.popup-container',
                 title: 'Country Tariff Popup',
-                content: 'This popup provides options for adjusting tariff rates for imports from Canada. Let\'s explore each option in detail.',
+                content: '<p>This popup provides options for adjusting tariff rates for imports from Canada:</p><p><strong>Country name <img src="assets/fontawesome/chart-line-solid.svg" alt="Chart icon" class="inline-icon" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"></strong><span style="color: var(--text-color);">:</span> Clickable to open detailed trade data visualizations for this country.</p><p><strong>Current Tariff Rate:</strong> Shows existing tariff rate (baseline from 2021 statutory rates). <em>Update this to reflect current effective tariff rates in your analysis.</em></p><p><strong>New Tariff Rate:</strong> Enter your proposed uniform tariff rate to calculate potential price effects across the economy.</p><p><strong>Pass-Through Rate:</strong> Percentage of tariff increase passed to consumer prices for the uniform tariff (100% = full pass-through, lower values = partial producer absorption).</p><p><button style="background-color: var(--background-color); color: var(--text-color); border: 1px solid var(--borderColor); padding: 8px 15px; border-radius: 12px; font-size: 0.95em; font-family: var(--font-family-monospace); pointer-events: none; transition: all 0.3s ease; margin-right: 8px;" onmouseover="this.style.backgroundColor=\'var(--primary)\'; this.style.color=\'var(--btn_text_color, white)\';" onmouseout="this.style.backgroundColor=\'var(--background-color)\'; this.style.color=\'var(--text-color)\';">Apply Tariff</button>: Applies uniform tariff to all product categories. <button style="background-color: var(--background-color); color: var(--text-color); border: 1px solid var(--borderColor); padding: 8px 15px; border-radius: 12px; font-size: 0.95em; font-family: var(--font-family-monospace); pointer-events: none; transition: all 0.3s ease;" onmouseover="this.style.backgroundColor=\'var(--primary)\'; this.style.color=\'var(--btn_text_color, white)\';" onmouseout="this.style.backgroundColor=\'var(--background-color)\'; this.style.color=\'var(--text-color)\';">Product-Specific Tariff</button>: Opens detailed editor for category-specific tariff rates using HS classifications.</p>',
                 position: 'right',
-                targetPopup: true
-            },
-            {
-                target: '.country-name-clickable',
-                title: 'Clickable Country Name',
-                content: 'The country name and chart icon <img src="assets/fontawesome/chart-line-solid.svg" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> are clickable. Clicking here opens the "Trade Data Explorer" panel with detailed charts about trade relationships, tariff data, and sector analysis for Canada.',
-                position: 'right',
-                targetPopup: true
-            },
-            {
-                target: '#currentTariffInput',
-                title: 'Current Tariff Rate',
-                content: '<p>This field shows the existing tariff rate currently applied to imports from this country. The baseline current tariff is the average statutory tariff rate in 2021.</p> <p> The statutory tariff rates are from the Global Tariff Database (Teti 2024) are not inclusive of Section 232 (national security) or Section 301 (unfair trade practices) tariffs, or anti-dumping duties.</p> <p><b> This value is only a baseline. Users are encouraged to update the baseline tariff levels to current effective rates in their estimations.</b></p>',
-                position: 'right',
-                targetPopup: true
-            },
-            {
-                target: '#newTariffInput',
-                title: 'New Tariff Rate',
-                content: 'Enter the new tariff rate you want to apply. This will be used to calculate the price effects across the economy. Every section of the economy will receive this flat tariff rate.',
-                position: 'right',
-                targetPopup: true
-            },
-            {
-                target: '#passThroughInput',
-                title: 'Pass-Through Rate',
-                content: 'This determines what percentage of the tariff increase gets passed on to consumer prices. A value of 100% means the full tariff cost is passed on to consumer and yields the maximum short-run price response, lower values reflect partial absorption by producers.',
-                position: 'right',
-                targetPopup: true
-            },
-            {
-                target: '#tariffSubmit',
-                title: 'Apply Tariff Button',
-                content: '<p>Click this button to apply the uniform tariff rate to all products from Canada and calculate the economic effects.</p> <p> This button assumes that there are no sector level differences in current tariffs, or the newly implemented tariffs. Every sector receives the same increase in tariffs.</p>',
-                position: 'bottom',
-                targetPopup: true
-            },
-            {
-                target: '#productTariffBtn',
-                title: 'Product-Specific Tariff',
-                content: '<p>Use this option to apply different tariff rates to specific product categories from Canada, allowing for more targeted policy analysis. This opens a screen where you can select individual product categories from the Harmonized System (HS) and apply custom current tarriff rates, new tariff rates, and pass-through rates to each.</p> <p> When selected, use the chevron icon <img src="assets/fontawesome/chevron-down-solid.svg" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> to expand HS section categories into their HS-2 and HS-4 subcomponents.',
-                position: 'bottom',
                 targetPopup: true
             },
             {
                 target: '#receipt-section',
                 title: 'Tariff Receipt Overview',
-                content: 'This is the Tariff Receipt, it tracks your tariff analysis with real-time calculations showing potential direct, indirect, and total consumer price effects . Let\'s explore key buttons to get started.',
+                content: '<p>This is the Tariff Receipt, which tracks your tariff analysis with real-time calculations showing potential direct, indirect, and total consumer price effects under your specified tariff scenarios. Key features include:</p><p><strong>Select Country Button</strong> <button style="background-color: var(--background-color); color: var(--text-color); border: 1px solid var(--borderColor); padding: 8px 15px; border-radius: 12px; font-size: 0.95em; font-family: var(--font-family-monospace); pointer-events: none; margin-right: 8px;">Select Countries</button><span style="color: var(--text-color);">:</span> Choose specific countries for tariff analysis. Opens a country selection modal where you can pick countries, continents, or country sets, then select different products to raise tariff rates on. <em>Note: Inputs are tariff changes in percentage points - entering 10% increases tariffs from 25% to 35%.</em></p><p><strong>Global Tariff Button</strong> <button style="background-color: var(--background-color); color: var(--text-color); border: 1px solid var(--borderColor); padding: 8px 15px; border-radius: 12px; font-size: 0.95em; font-family: var(--font-family-monospace); pointer-events: none;">Global Tariffs</button><span style="color: var(--text-color);">:</span> Add global tariffs affecting all trading partners simultaneously. Perfect for analyzing broad trade policy changes and their potential economy-wide effects.</p>',
                 position: 'left'
             },
             {
-                target: '#btn-country-list',
-                title: 'Select Country Button',
-                content: '<p>Click here to choose specific countries for tariff analysis. This opens a country selection modal where you can pick a country, continent, or sets of countries, and then select different products to raise tariff rates on.</p> <p> The inputs here are Tariff Changes: indicating percentage point increases in tariff rates. For example, inputting 10% would not yield a 10% increase in the tariff rate, but would increase tariffs from, for example, 25% to 35%. </p>',
-                position: 'bottom'
-            },
-            {
-                target: '#btn-global-list',
-                title: 'Global Tariff Button',
-                content: 'Use this button to add global tariffs that affect all trading partners simultaneously. You can then add tariffs on different products, perfect for analyzing broad trade policy changes and their economy-wide effects.',
-                position: 'top'
-            },
-            {
                 target: '#receipt-section',
-                title: 'Exploring the Receipt',
-                content: 'Let\'s look more closely at the receipt itself. I\'ll add some example entries to demonstrate how to use the receipt features.',
+                title: 'Receipt Features',
+                content: '<p>Now let me populate the receipt with examples to show how it works:</p><p><strong>Country Entry Rows:</strong> Each country shows its total potential price effect on the right. Use the chevron icon <img src="assets/fontawesome/chevron-down-solid.svg" alt="Chevron icon" class="inline-icon" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> to expand and see the breakdown between potential direct and indirect effects.</p><p><strong>Interactive Icons:</strong> The trash icon <img src="assets/fontawesome/trash-solid.svg" alt="Trash icon" class="inline-icon" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> removes a country from your analysis. The chart icon <img src="assets/fontawesome/chart-line-solid.svg" alt="Chart icon" class="inline-icon" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> opens detailed visualizations of the potential tariff effects for that country.</p>',
                 position: 'left',
                 isSpecialStep: true,
                 specialAction: 'populateReceiptWithExamples'
             },
             {
-                target: '#receipt-item-EX1',
-                title: 'Country Entry Row',
-                content: 'Each country entry shows the total price effect on the right. You can use the expand/collapse chevron icon <img src="assets/fontawesome/chevron-down-solid.svg" alt="Chevron icon" class="inline-icon" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> to see the breakdown between direct and indirect effects. The trash icon <img src="assets/fontawesome/trash-solid.svg" alt="Trash icon" class="inline-icon" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> allows you to remove a country from your analysis. The chart icon <img src="assets/fontawesome/chart-line-solid.svg" alt="Chart icon" class="inline-icon" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> opens detailed visualizations of the tariff effects for this country.',
-                position: 'left'
-            },
-            {
                 target: '#receipt_totals',
-                title: 'Receipt Summary',
-                content: '<p>The receipt footer summarizes your analysis with three key components: the <strong>Subtotal</strong> (sum of all country-specific tariffs), <strong>Rest of World</strong> (adds a constant tariff increase to unselected countries), and the <strong>Total Price Effect</strong> (overall impact on consumer prices across the economy).</p><p>Just like with individual country entries, you can click the chevron icons <img src="assets/fontawesome/chevron-right-solid.svg" alt="Chevron right icon" class="inline-icon" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> next to each summary row to decompose the overall effects into their direct and indirect components.</p>',
+                title: 'Receipt Summary & Controls',
+                content: '<p>The receipt footer provides comprehensive analysis summary and key control options:</p><p><strong>Subtotal:</strong> Shows the combined potential price effects from all selected countries under the user-specified tariffs. This represents the aggregate estimated impact of your country-specific tariff changes.</p><p><strong>Rest of World Input:</strong> <input type="number" style="background-color: var(--background-color); color: var(--text-color); border: 1px solid var(--borderColor); padding: 4px 8px; border-radius: 4px; font-size: 0.9em; font-family: var(--font-family-monospace); pointer-events: none; width: 60px; margin: 0 4px;" value="5.00" readonly> Applies a uniform tariff rate to all unselected countries. Enter percentage point increases here to model broad-based tariff policies.</p><p><strong>Total Price Effect:</strong> The overall estimated potential impact on consumer prices across the entire economy, combining both selected countries and rest-of-world effects under the specified tariff scenario. Each summary row can be expanded with chevron icons <img src="assets/fontawesome/chevron-right-solid.svg" alt="Chevron right icon" class="inline-icon" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> to see direct vs. indirect breakdowns.</p><p><strong>Control Buttons:</strong> Use the <button style="background-color: var(--background-color); color: var(--text-color); border: 1px solid var(--borderColor); padding: 6px 12px; border-radius: 8px; font-size: 0.9em; font-family: var(--font-family-monospace); pointer-events: none; margin: 0 4px;">Clear History</button> button to remove all countries and start fresh with a new tariff scenario. The <button style="background-color: var(--background-color); color: var(--text-color); border: 1px solid var(--borderColor); padding: 6px 12px; border-radius: 8px; font-size: 0.9em; font-family: var(--font-family-monospace); pointer-events: none; margin: 0 4px;">Select Countries</button> button opens the country selection modal to add more countries to your analysis.</p>',
                 position: 'left'
             },
             {
-                target: '#clear-btn',
-                title: 'Clear History Button',
-                content: 'Use this button to remove all countries from your analysis and start fresh. This is useful when you want to create a completely new tariff scenario without manually removing each country.',
-                position: 'top'
-            },
-            {
-                target: '#show-multi-chart-panel',
-                title: 'Trade Data Explorer',
-                content: '<p>Click on this chart icon to open detailed sector-level visualizations of trade and tariff data. This opens the Trade Area Charts panel showing bilateral trade relationships, allowing you to analyze how specific sectors contribute to overall trade patterns and how tariffs affect these relationships.</p><p>Anywhere you see this icon <img src="assets/fontawesome/chart-line-solid.svg" alt="Chart icon" class="inline-icon" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;">, there are charts available for view. When clicking a country name, this takes you to sector-specific trade charts, and when in the receipt, it takes you to graphs of the price effects of the tariffs on a given country.</p>',
-                position: 'bottom'
-            },
-            {
-                target: '#show-global-trade-panel',
-                title: 'Global Trade Data Explorer',
-                content: 'This globe icon opens comprehensive global trade visualizations. The Global Trade Data Explorer provides a bird\'s-eye view of worldwide trade flows, allowing you to explore patterns across countries and regions, and understand how tariffs impact global trade relationships.',
-                position: 'bottom'
-            },
-            {
-                target: '#show-help-panel',
-                title: 'Help & Information',
-                content: 'The Question Mark icon restarts this guided tour, allowing you to revisit any part of the application you need help with. This is particularly useful if you want a refresher on specific features or if you\'re showing the application to someone new.',
-                position: 'bottom'
-            },
-            {
-                target: '.settings-icon',
-                title: 'Developer Tools',
-                content: 'The Settings icon opens the Developer Tools panel where you can customize your experience with options like dark mode, chart animation styles, and various visual preferences. This panel provides advanced customization options for the application\'s appearance and behavior.',
+                target: '#header-right',
+                title: 'Top Navigation Tools',
+                content: '<p>The top-right corner provides quick access to key tools:</p><ul><li><img src="assets/fontawesome/chart-line-solid.svg" alt="Chart icon" class="inline-icon" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> <strong>Trade Data Explorer</strong> - Detailed sector-level trade visualizations</li><li><img src="assets/fontawesome/globe-solid.svg" alt="Globe icon" class="inline-icon" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> <strong>Global Trade Explorer</strong> - Worldwide trade U.S. imports and exports</li><li><img src="assets/fontawesome/info-circle.svg" alt="Help icon" class="inline-icon" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> <strong>Help & Information</strong> - Restart this tour or access documentation</li><li><img src="assets/fontawesome/settings.svg" alt="Settings icon" class="inline-icon" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> <strong>Developer Tools</strong> - Customize appearance and behavior settings</li></ul>',
                 position: 'bottom'
             },
             {
@@ -635,7 +653,7 @@ class SparksGuidedTourV2 {
             {
                 target: null,
                 title: 'Consistent Interface Elements',
-                content: '<p>Look for these consistent elements throughout the application:</p><ul><li>Chevron icons <img src="assets/fontawesome/chevron-down-solid.svg" alt="Chevron icon" class="inline-icon" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> indicate expandable information or dropdowns</li><li><span style="color: var(--excellenceOrange); font-weight: bold;">Orange</span>/<span style="color: var(--primary); font-weight: bold;">blue</span> text near icons indicates clickable elements or dropdowns</li><li>Chart icons <img src="assets/fontawesome/chart-line-solid.svg" alt="Chart icon" class="inline-icon" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> show that charts are available for that item</li><li>Press the Escape key to close any modal</li><li>If a tariff calculation seems incorrect, try refreshing the page or check the trade data explorer for that country to verify expected effects</li></ul>',
+                content: '<p>Look for these consistent elements throughout the application:</p><ul><li>Chevron icons <img src="assets/fontawesome/chevron-down-solid.svg" alt="Chevron icon" class="inline-icon" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> indicate expandable information or dropdowns</li><li><span style="color: var(--excellenceOrange); font-weight: bold;">Orange</span>/<span style="color: var(--primary); font-weight: bold;">blue</span> text near icons indicates clickable elements or dropdowns</li><li>Chart icons <img src="assets/fontawesome/chart-line-solid.svg" alt="Chart icon" class="inline-icon" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle;"> show that charts are available for that item</li><li>Press the Escape key to close any modal</li><li>If a tariff calculation seems incorrect, try refreshing the page or check the trade data explorer for that country to verify expected potential effects</li></ul>',
                 position: 'center',
                 isIntro: true
             }
@@ -969,62 +987,6 @@ class SparksGuidedTourV2 {
         
         console.log(`Showing step ${stepIndex + 1}/${this.tourSteps.length}:`, step.title, step.target);
         
-        // For step 16 (country entry row), expand it BEFORE highlighting
-        if (stepIndex === 15) {
-            console.log('Preparing to show country entry row step...');
-            
-            // Find and expand EXAMPLE 1 details BEFORE highlighting
-            const toggleIcon = document.querySelector('#receipt-item-EX1 .toggle-icon');
-            if (toggleIcon) {
-                // Expand it immediately
-                const minusIcon = toggleIcon.querySelector('.toggle-minus');
-                const plusIcon = toggleIcon.querySelector('.toggle-plus');
-                
-                // First update the icon states
-                if (minusIcon) minusIcon.style.display = 'inline';
-                if (plusIcon) plusIcon.style.display = 'none';
-                
-                // Then show the details panel
-                const targetId = toggleIcon.getAttribute('data-target');
-                if (targetId) {
-                    const detailSection = document.getElementById(targetId);
-                    if (detailSection) {
-                        detailSection.style.display = 'block';
-                        console.log('Country details expanded before highlighting');
-                        
-                        // Delay the highlighting to give time for the expansion to complete visually
-                        setTimeout(() => {
-                            // Now proceed with normal step display
-                            if (step.isIntro) {
-                                this.highlightRing.style.opacity = '0';
-                                this.showIntroStep(step.title, step.content);
-                            } else if (step.isSpecialStep) {
-                                if (step.target) {
-                                    this.highlightElement(step.target, step.title, step.content, step.position);
-                                }
-                            } else {
-                                this.highlightElement(step.target, step.title, step.content, step.position);
-                            }
-                            
-                            // Update navigation buttons after the delay
-                            document.getElementById('prevBtn').disabled = stepIndex === 0;
-                            const nextBtn = document.getElementById('nextBtn');
-                            
-                            if (stepIndex === this.tourSteps.length - 1) {
-                                nextBtn.innerHTML = '<u>Finish</u>';
-                            } else {
-                                nextBtn.innerHTML = '<u>Next</u>';
-                            }
-                            
-                            this.updateProgressDots();
-                        }, 500); // Wait a half second before highlighting
-                        
-                        // Return early to prevent normal step display logic
-                        return;
-                    }
-                }
-            }
-        }
         
         // Handle intro steps (centered content with no highlighting)
         if (step.isIntro) {
@@ -1047,7 +1009,7 @@ class SparksGuidedTourV2 {
                     this.openCanadaPopup();
                 }, 300);
             } else if (step.specialAction === 'populateReceiptWithExamples') {
-                // Highlight the receipt section
+                // Highlight the receipt section first
                 if (step.target) {
                     this.highlightElement(step.target, step.title, step.content, step.position);
                 }
@@ -1072,7 +1034,7 @@ class SparksGuidedTourV2 {
                         console.warn('Popup appears to be closed, attempting to reopen it');
                         
                         // Try to reopen the popup for Canada if it's closed and we're on a popup-related step
-                        if (this.currentStep >= 5) {  // Step 5 and beyond need the popup
+                        if (this.currentStep >= 4 && this.currentStep <= 5) {  // Steps 4-5 need the popup
                             // Reopen the popup
                             this.openCanadaPopup();
                             
@@ -1168,7 +1130,7 @@ class SparksGuidedTourV2 {
     
     nextStep() {
         // Close the popup only AFTER leaving the product-specific tariff step (the last popup step)
-        if (this.currentStep === 11) { // Step 11 is when we're moving to the receipt section
+        if (this.currentStep === 5) { // Step 5 is when we're moving to the receipt section
             // Close the popup when leaving the very last popup-related step
             if (window.map && typeof window.map.closePopup === 'function') {
                 window.map.closePopup();
@@ -1177,21 +1139,8 @@ class SparksGuidedTourV2 {
             }
         }
         
-        // Special case: If we're on the first popup detail step and moving to the second one, 
-        // we need to make sure the popup stays open
-        if (this.currentStep === 5) {
-            // Keep popup open and ensure we can focus on the input field
-            setTimeout(() => {
-                // Check if popup is open and highlight the current tariff input
-                const currentTariffInput = document.getElementById('currentTariffInput');
-                if (currentTariffInput) {
-                    // Scroll input into view if needed
-                    currentTariffInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-            }, 500);
-        }
         
-        // The expansion is now handled in showStep() for step 16
+        // The expansion is now handled in showStep() for step 10
         
         // Clear any existing highlight before moving to the next step
         this.highlightRing.style.opacity = '0';
@@ -1215,8 +1164,8 @@ class SparksGuidedTourV2 {
     // Helper function removed to prevent errors
     
     prevStep() {
-        // Only close the popup when navigating from the first popup container step back to the map
-        if (this.currentStep === 5) { // First popup step (popup container)
+        // Close the popup when navigating from popup step back to the map
+        if (this.currentStep === 5) { // Popup step going back to map
             // Close the popup only when going from popup back to map
             if (window.map && typeof window.map.closePopup === 'function') {
                 window.map.closePopup();
@@ -1397,10 +1346,13 @@ class SparksGuidedTourV2 {
     
     populateReceiptWithExamples() {
         console.log('Populating receipt with examples for guided tour...');
+        console.log('devTools available:', typeof devTools !== 'undefined');
+        console.log('toggleReceipt function available:', typeof devTools !== 'undefined' && typeof devTools.toggleReceipt === 'function');
         
         try {
             // Use the devTools function to add example countries to the receipt
             if (typeof devTools !== 'undefined' && typeof devTools.toggleReceipt === 'function') {
+                console.log('Calling devTools.toggleReceipt(true)...');
                 // Show the receipt and populate it with examples
                 devTools.toggleReceipt(true);
                 
@@ -1424,7 +1376,29 @@ class SparksGuidedTourV2 {
                         }
                     });
                     
-                    // We intentionally don't expand anything yet - we'll do that when we focus on the country row
+                    // Now expand the first example with a 50ms delay as requested
+                    setTimeout(() => {
+                        const toggleIcon = document.querySelector('#receipt-item-EX1 .toggle-icon');
+                        if (toggleIcon) {
+                            // Expand the first example
+                            const minusIcon = toggleIcon.querySelector('.toggle-minus');
+                            const plusIcon = toggleIcon.querySelector('.toggle-plus');
+                            
+                            // Update the icon states
+                            if (minusIcon) minusIcon.style.display = 'inline';
+                            if (plusIcon) plusIcon.style.display = 'none';
+                            
+                            // Show the details panel
+                            const targetId = toggleIcon.getAttribute('data-target');
+                            if (targetId) {
+                                const detailSection = document.getElementById(targetId);
+                                if (detailSection) {
+                                    detailSection.style.display = 'block';
+                                    console.log('Receipt example expanded after population');
+                                }
+                            }
+                        }
+                    }, 50); // 50ms delay as requested
                     
                     // Make trash icons visible by setting opacity and hover state
                     document.querySelectorAll('.remove-btn').forEach(btn => {

@@ -228,6 +228,7 @@
     padding: 10px;
     min-height: 0; /* Important for nested scrolling to work */
     overflow: hidden; /* Hide overflow at this level */
+    padding-bottom: 0px;
 }
 
 #receipt-items {

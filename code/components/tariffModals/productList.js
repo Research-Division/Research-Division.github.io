@@ -1369,7 +1369,7 @@ var ProductTariffModal = (function() {
         // console.log('[TARIFF_VECTOR_DEBUG] Starting tariff submission, isSubmittingTariff =', isSubmittingTariff);
         
         // Validate that we have a current country
-        if (!selectedCountry && !isoCode) {
+        if (!selectedCountry) {
             alert('Please select a country first.');
             isSubmittingTariff = false; // Reset flag on error
             return;

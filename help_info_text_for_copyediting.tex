@@ -1,0 +1,233 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{titlesec}
+
+% Define some colors for emphasis
+\definecolor{orange}{RGB}{255,165,0}
+\definecolor{blue}{RGB}{0,118,182}
+
+\title{Tariff Price Tool: User-Facing Text Content for Copy-Editing}
+\author{Federal Reserve Bank of Atlanta}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Help Panel Modal Content}
+
+\subsection{Modal Header}
+\textbf{Title:} Help \& Information
+
+\subsection{Section 1: Guided Tour}
+\textbf{Section Header:} Take a Guided Tour
+
+\textbf{Description:} Take a step-by-step tour of the application to learn about all the key features and tools.
+
+\textbf{Button Text:}
+\begin{itemize}
+    \item Start Tour
+    \item Reset First-Visit Tour
+\end{itemize}
+
+\subsection{Section 2: Getting Started}
+\textbf{Section Header:} Getting Started
+
+\textbf{Content:} 
+To get started, explore country trade relationships using the Global Trade Explorer or the country-level Trade Data Explorer. This will help you understand existing trade patterns before implementing policy changes.
+
+When you're ready to implement tariffs, click on a country to add a country-specific tariff, select a set of countries in the receipt, or add a global tariff that applies to all trading partners.
+
+\subsection{Section 3: Interface Elements}
+\textbf{Section Header:} Interface Elements
+
+\textbf{Content:} 
+Look for these consistent elements throughout the application:
+\begin{itemize}
+    \item Chevron icons indicate expandable information or dropdowns
+    \item \textcolor{orange}{\textbf{Orange}}/\textcolor{blue}{\textbf{blue}} text near icons indicates clickable elements or dropdowns
+    \item Chart icons show that charts are available for that item
+    \item Press the Escape key to close any modal
+    \item If a tariff calculation seems incorrect, try refreshing the page or check the trade data explorer for that country to verify expected potential effects
+\end{itemize}
+
+\subsection{Section 4: Attributions}
+\textbf{Section Header:} Attributions
+
+\textbf{Introduction:} This application is built on several open-source components and datasets:
+
+\subsubsection{Software Components}
+\textbf{Subsection Header:} Software Components
+
+\textbf{Leaflet.js:} Leaflet.js (v1.9.4): The interactive mapping library used in this application. To learn more about Leaflet, visit leafletjs.com
+
+\textbf{GeoJSON Countries:} GeoJSON Countries (v1.1): World map geographic data (modified to 3 decimal point accuracy). Data available at: github.com/datasets/geo-countries
+
+\textbf{Country Converter:} Country Converter (v1.3): Used for standardizing country codes and names under GNU General Public License v3.0 (GPLv3). Citation: Stadler, K. (2017). The country converter coco - a Python package for converting country names between different classification schemes. The Journal of Open Source Software. doi: 10.21105/joss.00332. Paper available at: joss.theoj.org/papers/10.21105/joss.00332
+
+\subsubsection{Data Sources}
+\textbf{Subsection Header:} Data Sources
+
+\textbf{Tariff Data:} Tariff Data: Feodora Teti's Global Tariff Database (v\_beta1-2024-12). Citation: Teti, F. A. (2024). Missing Tariffs. CESifo Working Papers No. 11590. Data available at: feodorateti.github.io/data.html
+
+\textbf{Trade Data:} Trade Data: U.S. Census Bureau international trade data. Data available at: usatrade.census.gov
+
+\subsubsection{Methodology Reference}
+For detailed information on our methodology, calculations, and frequently asked questions, please visit the Tariff Price Tool documentation page.
+
+\subsubsection{Citation Section}
+\textbf{Subsection Header:} Suggested Citation
+
+\textbf{Citation Text:} Michael Dwight Sparks, Salomé Baslandze \& Simon Fuchs, \textit{The Atlanta Fed's Tariff Price Tool: Methodology} (SSRN Working Paper No. \#\#\#\#\#), https://ssrn.com/abstract=\#\#\#\#\#
+
+\subsection{Section 5: Terms of Use}
+\textbf{Section Header:} Terms of Use
+
+\textbf{Introduction:} By using the Federal Reserve Bank of Atlanta's (Bank's) mobile app, Tariff Price Tool, you implicitly agree that your use is subject to the following disclaimers and other terms of use:
+
+\textbf{Terms List:}
+\begin{enumerate}
+    \item Unauthorized attempts to upload or change information, to defeat or circumvent security measures, or to use this app or its content for other than its intended purpose is prohibited.
+    
+    \item The Federal Reserve Bank of Atlanta takes reasonable measures to ensure the quality of the data and other information produced by the Bank and made available in this app. However, the Bank makes no warranty, express or implied, nor assumes any liability or responsibility for the accuracy, timeliness, correctness, completeness, merchantability, or fitness for a particular purpose of any information that is available through this app, nor represents that its use would not infringe upon any privately owned rights.
+    
+    \item Reproduction of Bank content (print and digital) offered through our app may be made without limitation as to number, provided that such reproductions are not for private gain and that appropriate attribution to the Federal Reserve Bank of Atlanta is made on all such reproductions.
+    
+    \item This app links to the Atlanta Fed's website. Material on that website may be subject to additional copyright restrictions. Please see the Disclaimer and Terms of Use and Online Privacy Policy for the Atlanta Fed's website for more information.
+    
+    \item The Bank does not endorse any product, service, or company and does not permit the use of its name in any form of advertising or for any other commercial purpose.
+\end{enumerate}
+
+\section{Guided Tour Content}
+
+\subsection{Tour Navigation Elements}
+\begin{itemize}
+    \item \textbf{Header:} Welcome to Sparks Graph
+    \item \textbf{Skip Button:} SKIP TOUR
+    \item \textbf{Navigation Buttons:} Previous, Next, Finish
+    \item \textbf{Keyboard Hint:} Use arrow keys (←→) to navigate. \textbf{Press Esc or click SKIP TOUR to exit the tour at any time.}
+\end{itemize}
+
+\subsection{Tour Steps Content}
+
+\subsubsection{Step 1: Introduction}
+\textbf{Title:} Explore the Price Effects of Tariffs
+
+\textbf{Content:} This application helps users understand how tariffs on imports might affect consumer prices in the U.S. economy. It combines trade, tariff, and production data to estimate potential direct and indirect effects — meaning not just what you might pay at the store, but how higher input costs could ripple through supply chains to domestically produced goods and services. This short walkthrough explains how the tool works at a glance.
+
+Use the left and right arrow keys to navigate through the tour.
+
+\textbf{To skip the tour at any time, press the Escape key or click SKIP TOUR in the upper right corner.}
+
+\subsubsection{Step 2: Model Effects}
+\textbf{Title:} Model Direct and Indirect Price Effects
+
+\textbf{Content:} Using U.S. trade and input-output data, the Tariff Price Tool estimates how potential tariff scenarios might impact consumer prices through two effects:
+
+\textbf{Direct effects:} These occur when retailers pass higher tariff costs directly to consumers by raising prices on imported goods. The size depends on how much of each product category is imported and how much of the tariff increase retailers choose to pass through.
+
+\textbf{Indirect effects:} These capture how tariff costs might spread through the economy via supply chains. When businesses use tariffed imports as production inputs, these higher costs can flow through to other products and services.
+
+It's a fast, flexible way to explore the potential ripple effects of trade policy changes.
+
+\textit{To learn more about the effects, methodology, and assumptions, see the Tariff Price Tool Methodology Guide and FAQs.}
+
+\subsubsection{Step 3: Interactive Trade Map}
+\textbf{Title:} Interactive Trade Map
+
+\textbf{Content:} This interactive map displays global trade relationships. Clicking on a country will let you adjust the current tariff rate, implement a new tariff, implement product level tariffs, and explore the trade and tariff relationships with the U.S.
+
+After applying tariffs, countries on the map are shaded according to their share of the overall potential consumer price effect:
+
+\textbf{Color Scale:}
+If the country contributes to increasing the overall potential price effect
+No Effect → Complete Effect
+
+If the country contributes to decreasing the overall potential price effect
+No Effect → Complete Effect
+
+Let's focus on Canada as an example.
+
+\subsubsection{Step 4: Country Tariff Popup}
+\textbf{Title:} Country Tariff Popup
+
+\textbf{Content:} This popup provides options for adjusting tariff rates for imports from Canada:
+
+\textbf{Country name:} Clickable to open detailed trade data visualizations for this country.
+
+\textbf{Current Tariff Rate:} Shows existing tariff rate (baseline from 2021 statutory rates). \textit{Update this to reflect current effective tariff rates in your analysis.}
+
+\textbf{New Tariff Rate:} Enter your proposed uniform tariff rate to calculate potential price effects across the economy.
+
+\textbf{Pass-Through Rate:} Percentage of tariff increase passed to consumer prices for the uniform tariff (100\% = full pass-through, lower values = partial producer absorption).
+
+\textbf{Apply Tariff}: Applies uniform tariff to all product categories. \textbf{Product-Specific Tariff}: Opens detailed editor for category-specific tariff rates using HS classifications.
+
+\subsubsection{Step 5: Tariff Receipt Overview}
+\textbf{Title:} Tariff Receipt Overview
+
+\textbf{Content:} This is the Tariff Receipt, which tracks your tariff analysis with real-time calculations showing potential direct, indirect, and total consumer price effects under your specified tariff scenarios. Key features include:
+
+\textbf{Select Country Button:} Choose specific countries for tariff analysis. Opens a country selection modal where you can pick countries, continents, or country sets, then select different products to raise tariff rates on. \textit{Note: Inputs are tariff changes in percentage points - entering 10\% increases tariffs from 25\% to 35\%.}
+
+\textbf{Global Tariff Button:} Add global tariffs affecting all trading partners simultaneously. Perfect for analyzing broad trade policy changes and their potential economy-wide effects.
+
+\subsubsection{Step 6: Receipt Features}
+\textbf{Title:} Receipt Features
+
+\textbf{Content:} Now let me populate the receipt with examples to show how it works:
+
+\textbf{Country Entry Rows:} Each country shows its total potential price effect on the right. Use the chevron icon to expand and see the breakdown between potential direct and indirect effects.
+
+\textbf{Interactive Icons:} The trash icon removes a country from your analysis. The chart icon opens detailed visualizations of the potential tariff effects for that country.
+
+\subsubsection{Step 7: Receipt Summary \& Controls}
+\textbf{Title:} Receipt Summary \& Controls
+
+\textbf{Content:} The receipt footer provides comprehensive analysis summary and key control options:
+
+\textbf{Subtotal:} Shows the combined potential price effects from all selected countries under the user-specified tariffs. This represents the aggregate estimated impact of your country-specific tariff changes.
+
+\textbf{Rest of World Input:} Applies a uniform tariff rate to all unselected countries. Enter percentage point increases here to model broad-based tariff policies.
+
+\textbf{Total Price Effect:} The overall estimated potential impact on consumer prices across the entire economy, combining both selected countries and rest-of-world effects under the specified tariff scenario. Each summary row can be expanded with chevron icons to see direct vs. indirect breakdowns.
+
+\textbf{Control Buttons:} Use the \textbf{Clear History} button to remove all countries and start fresh with a new tariff scenario. The \textbf{Select Countries} button opens the country selection modal to add more countries to your analysis.
+
+\subsubsection{Step 8: Top Navigation Tools}
+\textbf{Title:} Top Navigation Tools
+
+\textbf{Content:} The top-right corner provides quick access to key tools:
+\begin{itemize}
+    \item \textbf{Trade Data Explorer} - Detailed sector-level trade visualizations
+    \item \textbf{Global Trade Explorer} - Worldwide trade U.S. imports and exports
+    \item \textbf{Help \& Information} - Restart this tour or access documentation
+    \item \textbf{Developer Tools} - Customize appearance and behavior settings
+\end{itemize}
+
+\subsubsection{Step 9: Getting Started (Final)}
+\textbf{Title:} Getting Started
+
+\textbf{Content:} To get started, explore country trade relationships using the Global Trade Explorer or the country-level Trade Data Explorer. This will help you understand existing trade patterns before implementing policy changes.
+
+When you're ready to implement tariffs, click on a country to add a country-specific tariff, select a set of countries in the receipt, or add a global tariff that applies to all trading partners.
+
+\subsubsection{Step 10: Consistent Interface Elements (Final)}
+\textbf{Title:} Consistent Interface Elements
+
+\textbf{Content:} Look for these consistent elements throughout the application:
+\begin{itemize}
+    \item Chevron icons indicate expandable information or dropdowns
+    \item \textcolor{orange}{\textbf{Orange}}/\textcolor{blue}{\textbf{blue}} text near icons indicates clickable elements or dropdowns
+    \item Chart icons show that charts are available for that item
+    \item Press the Escape key to close any modal
+    \item If a tariff calculation seems incorrect, try refreshing the page or check the trade data explorer for that country to verify expected potential effects
+\end{itemize}
+
+\section{Alert Messages}
+\textbf{First-Visit Tour Reset:} First-visit tour has been reset. The guided tour will start automatically next time you reload the page.
+
+\end{document}
