@@ -786,7 +786,9 @@ class TariffPropagation {
    */
   clearAllData() {
     this.currentTariffs = {};
+    this.originalTariffs = {};
     this.directlySetTariffs = {};
+    this.cachedChapterWeights = {};
     this.iso_list = [];
     this.tau_c = [];
     this.original_tariffs_by_country = {};

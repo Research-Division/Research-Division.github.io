@@ -30,6 +30,9 @@ var ProductTariffModal = (function() {
     // The tariff propagator instance
     let tariffPropagator = null;
     
+    // Flag to indicate if data needs reloading after clearing
+    let needsDataReload = false;
+    
     /**
      * Initialize the product tariff modal
      * @returns {Promise<boolean>} A promise that resolves to true when initialization is complete
@@ -113,6 +116,54 @@ var ProductTariffModal = (function() {
             console.error('Error initializing product tariff modal:', error);
             return false;
         }
+    }
+    
+    /**
+     * Reload all data files - used after clearing to ensure fresh data
+     * @returns {Promise<void>} A promise that resolves when all data is loaded
+     */
+    async function reloadAllData() {
+        console.log('ProductTariffModal: Reloading all data...');
+        
+        // Load required data for tariff propagation
+        await Promise.all([
+            loadJSON(DataPaths.meta.section_to_chapters).then(data => {
+                console.log('hs4 reloaded');
+                sectionToHs4Mapping = data;
+            }),
+            loadJSON(DataPaths.calculations.hs_section_weights).then(data => {
+                console.log('section weights reloaded');
+                sectionWeights = data;
+            }),
+            loadJSON(DataPaths.calculations.bea_section_weights).then(data => {
+                console.log('bea section weights reloaded');
+                beaSectionWeights = data;
+            }),
+            loadJSON(DataPaths.calculations.importVector).then(data => {
+                console.log('bea import weights reloaded');
+                beaImportWeights = data;
+            }),
+            loadJSON(DataPaths.bilateral_tariffs.section.statutory).then(data => {
+                bilateralTariffs = data;
+                // Create mapping between section IDs and names
+                if (Object.keys(bilateralTariffs).length > 0) {
+                    const anySample = Object.values(bilateralTariffs)[0];
+                    if (anySample && anySample.sectors) {
+                        sectionIdToName = {};
+                        anySample.sectors.forEach(s => {
+                            if (s.code && s.name) {
+                                sectionIdToName[s.code.toString()] = s.name;
+                            }
+                        });
+                    }
+                }
+            })
+        ]);
+        
+        // Reset the needs reload flag
+        needsDataReload = false;
+        
+        console.log('ProductTariffModal: Data reload complete');
     }
     
     /**
@@ -340,6 +391,20 @@ var ProductTariffModal = (function() {
         
         // Set custom submit callback if provided
         onSubmitCallback = typeof options.onSubmit === 'function' ? options.onSubmit : null;
+        
+        // Check if we need to reload data after clearing
+        if (needsDataReload) {
+            console.log('ProductTariffModal: Data reload needed, reloading...');
+            try {
+                await reloadAllData();
+                // Reinitialize the tariff propagator with fresh data
+                await initializeTariffPropagator();
+            } catch (error) {
+                console.error("Failed to reload data:", error);
+                alert("Failed to reload tariff data. Please refresh the page and try again.");
+                return;
+            }
+        }
         
         // Ensure calculation data is loaded first
         if (window.TariffCalculations && typeof window.TariffCalculations.loadCalculationsData === 'function') {
@@ -656,9 +721,13 @@ var ProductTariffModal = (function() {
             return;
         }
         
-        // Skip if no hierarchical structure
-        if (!sectionToHs4Mapping || Object.keys(sectionToHs4Mapping).length === 0) {
+        // Skip if no hierarchical structure or if it needs reloading
+        if (!sectionToHs4Mapping || Object.keys(sectionToHs4Mapping).length === 0 || needsDataReload) {
             treeContainer.innerHTML = '<p style="text-align:center; padding: 20px;">Loading hierarchical structure...</p>';
+            // If needsDataReload is true, we should not continue
+            if (needsDataReload) {
+                console.log('ProductTariffModal: Data needs reloading, skipping build');
+            }
             return;
         }
         
@@ -1672,6 +1741,9 @@ var ProductTariffModal = (function() {
         if (tariffPropagator && typeof tariffPropagator.clearAllData === 'function') {
             tariffPropagator.clearAllData();
         }
+        
+        // Set flag to force data reload on next open
+        needsDataReload = true;
         
         //console.log('ProductTariffModal: Cleared all tariff data');
     }

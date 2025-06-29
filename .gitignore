@@ -4,3 +4,16 @@
 # Except README.md
 !README.md
 
+# LaTeX auxiliary files
+*.aux
+*.log
+
+# Compressed files
+*.gz
+
+# PDF files
+*.pdf
+
+# LaTeX source files
+*.tex
+
