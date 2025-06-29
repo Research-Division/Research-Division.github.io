@@ -359,17 +359,17 @@ var ProductTariffModal = (function() {
                         pointer-events: none;
                     `;
                     warningPopup.innerHTML = `
-                        <div style="display: flex; align-items: flex-start; gap: 8px;">
+                        <div style="display: flex; align-items: flex-start; gap: 12px;">
                             <span style="color: var(--warning, #f0ad4e); font-weight: bold;">⚠</span>
-                            <span>Changing this value will override all current industry-level tariff values. Make sure this is what you want before proceeding.</span>
+                            <span>Changing this value will override all current industry-level tariff values. Ensure this is the desired action.</span>
                         </div>
                     `;
                     
                     // Position the popup above the input
                     const rect = allTariffInput.getBoundingClientRect();
                     const modalRect = allTariffInput.closest('.modal-content').getBoundingClientRect();
-                    warningPopup.style.left = (rect.left - modalRect.left) + 'px';
-                    warningPopup.style.top = (rect.top - modalRect.top - 80) + 'px';
+                    warningPopup.style.left = (rect.left - modalRect.left+100) + 'px';
+                    warningPopup.style.top = (rect.top - modalRect.top - 0) + 'px';
                     
                     // Add to modal content
                     allTariffInput.closest('.modal-content').appendChild(warningPopup);
