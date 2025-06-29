@@ -899,3 +899,95 @@ body.menu-open {
     stroke-width: 4px !important;
     opacity: 0.8 !important;
 }
+
+/* Multi-chart panel (Trade Data Explorer) mobile adjustments */
+.multi-chart-panel-container,
+.trade-area-panel-container {
+    padding: 0 !important; /* Remove padding on mobile */
+    z-index: 2000 !important; /* Higher z-index on mobile */
+}
+
+.multi-chart-panel-content,
+.trade-area-panel-content {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 0 !important; /* No rounded corners on mobile */
+    margin: 0 !important;
+}
+
+/* Adjust panel header for mobile */
+.multi-chart-panel-header,
+.trade-area-panel-header {
+    padding: 10px 15px !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 100 !important;
+}
+
+/* Make tabs scrollable on mobile if needed */
+.tabs-container,
+#chart-tabs-container {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+}
+
+/* Smaller tabs on mobile */
+.tab {
+    padding: 10px 15px !important;
+    font-size: 14px !important;
+    white-space: nowrap !important;
+}
+
+/* Panel body scrolling */
+.multi-chart-panel-body,
+.trade-area-panel-body {
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding: 10px !important;
+}
+
+/* Close button adjustments */
+.panel-close-button {
+    min-width: 40px !important;
+    min-height: 40px !important;
+    font-size: 24px !important;
+}
+
+/* Chart containers within panels on mobile */
+.multi-chart-panel-body .chart-container,
+.trade-area-panel-body .chart-container {
+    min-height: 300px !important;
+    margin-bottom: 20px !important;
+}
+
+/* Country dropdown in panel header */
+.country-dropdown {
+    max-width: 90vw !important;
+    left: auto !important;
+    right: 0 !important;
+}
+
+/* Narrative text sections */
+.narrative-section {
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    padding: 10px !important;
+}
+
+/* Split sections should stack on mobile */
+.multi-chart-panel-body .split-section,
+.trade-area-panel-body .split-section {
+    flex-direction: column !important;
+}
+
+/* Make dropdowns more touch-friendly */
+.sector-group-dropdown,
+.country-dropdown {
+    max-height: 50vh !important; /* Limit height on mobile */
+}
+
+.sector-group-option,
+.country-option {
+    padding: 12px 15px !important; /* Larger touch targets */
+    font-size: 14px !important;
+}

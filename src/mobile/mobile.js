@@ -205,15 +205,20 @@
             });
         }
         
-        // Charts button
+        // Charts button (Trade Data Explorer)
         const chartsBtn = document.getElementById('mobile-charts-btn');
         if (chartsBtn) {
             chartsBtn.addEventListener('click', function() {
                 closeMenu();
-                // Trigger the same functionality as desktop
-                const chartPanel = document.getElementById('show-multi-chart-panel');
-                if (chartPanel) {
-                    chartPanel.click();
+                // Use the multiChartPanel API directly
+                if (window.multiChartPanel && window.multiChartPanel.showPanel) {
+                    window.multiChartPanel.showPanel('trade-relations');
+                } else {
+                    // Fallback: try clicking the desktop element
+                    const chartPanel = document.getElementById('show-multi-chart-panel');
+                    if (chartPanel) {
+                        chartPanel.click();
+                    }
                 }
             });
         }
@@ -1173,6 +1178,48 @@
         } else {
             addTouchTooltipSupport();
         }
+    }
+
+    // Function to ensure panel works properly on mobile
+    function ensurePanelMobileCompatibility() {
+        // Monitor for panel creation
+        const panelObserver = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                mutation.addedNodes.forEach(function(node) {
+                    if (node.nodeType === 1 && node.id === 'multi-chart-panel-container') {
+                        // Make close button more touch-friendly
+                        const closeBtn = node.querySelector('.panel-close-button');
+                        if (closeBtn) {
+                            closeBtn.style.touchAction = 'manipulation';
+                        }
+                        
+                        // Ensure dropdowns work with touch
+                        const dropdowns = node.querySelectorAll('.country-dropdown, .sector-group-dropdown');
+                        dropdowns.forEach(dropdown => {
+                            dropdown.style.touchAction = 'auto';
+                        });
+                        
+                        // Fix any chart containers
+                        setTimeout(() => {
+                            const charts = node.querySelectorAll('.chart-container');
+                            charts.forEach(chart => {
+                                chart.style.width = '100%';
+                                chart.style.maxWidth = '100%';
+                            });
+                        }, 500);
+                    }
+                });
+            });
+        });
+        
+        if (document.body) {
+            panelObserver.observe(document.body, { childList: true, subtree: true });
+        }
+    }
+    
+    // Initialize panel compatibility
+    if (window.isMobileVersion) {
+        ensurePanelMobileCompatibility();
     }
 
     // Expose functions to global scope if needed
